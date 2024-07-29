@@ -1,0 +1,58 @@
+// For format details, see https://aka.ms/devcontainer.json. For config options, see the
+// README at: https://github.com/devcontainers/templates/tree/main/src/typescript-node
+{
+	"name": "stewartarmbrecht-my-solution-devcontainer",
+	// Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
+	//"dockerComposeFile": ["docker-compose.yml"],
+  //"service": "devcontainer",
+	//"workspaceFolder": "/workspaces/my-solution",
+	"build": { "dockerfile": "Dockerfile" },
+	"runArgs": ["--privileged", "-v", "/dev/bus/usb:/dev/bus/usb"],
+	//"image": "mcr.microsoft.com/devcontainers/typescript-node:1-20-bullseye",
+
+	// Features to add to the dev container. More info: https://containers.dev/features.
+	// "features": {},
+
+	// Use 'forwardPorts' to make a list of ports inside the container available locally.
+	// "forwardPorts": [],
+
+	// Use 'postCreateCommand' to run commands after the container is created.
+	// "postCreateCommand": "npm install -g sharp-cli@^2.1.0; npm install -g sharp-cli; npm install -g n; sudo -E env \"PATH=$PATH\" n lts; n prune; npm install -g npm@latest; npm install -g @aws-amplify/cli; npm install -g eas-cli",
+
+	// Configure tool-specific properties.
+	// "customizations": {},
+
+	// Uncomment to connect as root instead. More info: https://aka.ms/dev-containers-non-root.
+	// "remoteUser": "root"
+	"appPort": [
+		// "10.24.1.57:19001:19001",
+		// "10.24.1.57:8097:8097",
+		// "10.24.1.57:5037:5037"
+	],
+	"remoteEnv": {
+		"REACT_NATIVE_PACKAGER_HOSTNAME": "localhost"
+	},
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"dbaeumer.vscode-eslint",
+				"donjayamanne.githistory",
+				"esbenp.prettier-vscode",
+				"expo.vscode-expo-tools",
+				"firsttris.vscode-jest-runner",
+				"GitHub.copilot",
+				"GitHub.copilot-chat",
+				"GitHub.vscode-pull-request-github",
+				"GraphQL.vscode-graphql",
+				"GraphQL.vscode-graphql-syntax",
+				"nrwl.angular-console",
+				"Orta.vscode-jest",
+				"alfnielsen.vsc-rename-files",
+				"msjsdiag.vscode-react-native",
+				"naumovs.color-highlight",
+				"anseki.vscode-color",
+				"andrew-codes.cypress-snippets"
+			]
+		}
+	}
+	}
