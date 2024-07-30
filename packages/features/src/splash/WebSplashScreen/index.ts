@@ -1,0 +1,1 @@
+export { WebSplashScreen } from './WebSplashScreen';

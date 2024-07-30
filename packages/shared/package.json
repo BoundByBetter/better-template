@@ -1,0 +1,21 @@
+{
+  "name": "@boundbybetter/shared",
+  "version": "1.0.0",
+  "main": "./src/index.ts",
+  "author": "Stewart Armbrecht",
+  "license": "MIT",
+  "scripts": {
+    "test": "jest --watchAll",
+    "lint": "expo lint"
+  },
+  "jest": {
+    "preset": "jest-expo"
+  },
+  "private": true,
+  "devDependencies": {
+    "jest": "^29.7.0"
+  },
+  "dependencies": {
+    "@reduxjs/toolkit": "^2.2.7"
+  }
+}
