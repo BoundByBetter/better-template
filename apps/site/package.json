@@ -9,7 +9,8 @@
     "ios": "EXPO_USE_METRO_WORKSPACE_ROOT=1 expo start --ios",
     "web": "EXPO_USE_METRO_WORKSPACE_ROOT=1 expo start --web",
     "test": "jest --watchAll",
-    "lint": "expo lint"
+    "lint": "expo lint",
+    "publish": "npx expo export -p web"
   },
   "jest": {
     "preset": "jest-expo"
