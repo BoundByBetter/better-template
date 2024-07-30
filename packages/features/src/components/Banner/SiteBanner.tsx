@@ -29,7 +29,7 @@ export function SiteBanner() {
           style={styles.appIcon} 
         />
       </View>
-      <H1 m="$2">My Site</H1>
+      <H1 m="$2">Bound By Better</H1>
       {/* <Text style={styles.textLg}>Hello there {user?.userName},</Text>
       <Pressable 
         onPress={handleSignOut}
