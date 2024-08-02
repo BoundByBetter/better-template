@@ -1,7 +1,7 @@
 import { Button, Text, YStack } from "@boundbybetter/ui";
 import { selectUser, useAppDispatch, useAppSelector } from "@boundbybetter/state";
 //import { signOut } from "@boundbybetter/backend";
-import { logRaw, userLoggedOut } from "@boundbybetter/shared";
+import { logRaw, User, userLoggedIn, userLoggedOut } from "@boundbybetter/shared";
 import { jwtDecode } from 'jwt-decode';
 
 import * as React from 'react';
@@ -25,13 +25,13 @@ export function Settings() {
 
   // Endpoint
   const discovery = useAutoDiscovery(
-    'https://login.microsoftonline.com/0009cc7a-b831-4911-be61-58865b14fccb/v2.0',
+    'https://login.microsoftonline.com/consumers/v2.0',
   );
   const redirectUri = makeRedirectUri({
     scheme: undefined,
     path: 'auth',
   });
-  const clientId = '9fd075e2-3060-421f-bf86-558a0c167de3';
+  const clientId = '57aeab3d-e5aa-4bf8-9e95-c5d803a39324';
 
   // We store the JWT in here
   const [token, setToken] = React.useState<string | null>(null);
@@ -69,13 +69,19 @@ export function Settings() {
                 if (!res.idToken) {
                   return;
                 }
-                const decoded = jwtDecode(res.idToken);
+                const decoded: any = jwtDecode(res.idToken);
+                dispatch(userLoggedIn({
+                  userName: decoded.name,
+                  userEmail: decoded.email,
+                }));
                 logRaw(decoded);
               });
             }
           });
         }}
       >Sign in</Button>
+      <Text>User Name: {user.userName}</Text>
+      <Text>User Email: {user.userEmail}</Text>
       <Text>{token}</Text>
       <Text>Hello there {user?.userName},</Text>
       <Button onPress={handleSignOut}>Sign Out</Button>
