@@ -1,9 +1,9 @@
 import { logSetup } from '@boundbybetter/shared';
 
-export interface TamaguiProviderProps {
+export interface MyStateProps {
   children: JSX.Element;
 }
-export function TamaguiProvider(props: TamaguiProviderProps) {
+export function MyState(props: MyStateProps) {
   logSetup('MyState.MOCK');
 
   return (props.children);

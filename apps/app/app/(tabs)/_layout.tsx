@@ -5,12 +5,14 @@ import { Drawer } from 'expo-router/drawer';
 
 import { Banner } from '@boundbybetter/features';
 import { BookOpen, Button, Info, MessageCircle, Settings, YStack, useMedia, useTheme } from '@boundbybetter/ui';
+import { logRaw } from '@boundbybetter/shared';
 
 // You can explore the built-in icon families and icons on the web at https://icons.expo.fyi/
 export default function TabLayout() {
   const theme = useTheme();
-  const accentColor = theme.accentColor.get();
-  const backgroundColor = theme.backgroundColor?.get();
+  const accentColor = theme.accentColor;
+  const backgroundColor = theme.background.val;
+  console.log('TabLayout', 'backgroundColor', backgroundColor);
   const media = useMedia();
   if (media.gtMd) {
     // Use a basic custom layout on web.

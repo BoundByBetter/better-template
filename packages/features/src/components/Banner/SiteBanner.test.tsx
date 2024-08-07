@@ -15,7 +15,7 @@ describe('SiteBanner', () => {
     (useSafeAreaInsets as unknown as jest.Mock).mockReturnValue({ top: 10 });
     const { getByText } = renderWithTamagui(<SiteBanner />);
     await act(async () => {
-      expect(getByText('My Site')).toBeTruthy();
+      expect(getByText('Bound By Better')).toBeTruthy();
     });
   });
 });

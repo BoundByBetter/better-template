@@ -1,8 +1,8 @@
-import { renderRouter, screen } from 'expo-router/testing-library';
+import { render, renderRouter, screen } from 'expo-router/testing-library';
 import { Platform } from 'react-native';
 import { useFonts,  } from 'expo-font';
 import { useColorScheme } from '@boundbybetter/ui';
-import { describe, it, beforeEach, expect } from '@jest/globals';
+import RootLayout from '../app/_layout';
 
 jest.mock('expo-font', () => {
   const actual: any = jest.requireActual('expo-font');
@@ -11,6 +11,15 @@ jest.mock('expo-font', () => {
     useFonts: jest.fn().mockImplementation(actual.useFonts),
   }
 });
+
+jest.mock('@boundbybetter/ui', () => {
+  const actual: any = jest.requireActual('@boundbybetter/ui');
+  return {
+    ...actual,
+    useColorScheme: jest.fn().mockImplementation(actual.useColorScheme),
+  }
+});
+
 
 jest.mock('expo-splash-screen', () => ({
   hideAsync: jest.fn(),
@@ -28,6 +37,7 @@ describe('_layout', () => {
 
   it('should render tab one for the root', async () => {
     (useFonts as jest.Mock).mockReturnValue([true, null]);
+    //render(<RootLayout />)
     renderRouter(appDir, {
       initialUrl: '/',
     });

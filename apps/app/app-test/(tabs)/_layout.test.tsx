@@ -10,6 +10,13 @@ jest.mock('expo-font', () => {
     useFonts: jest.fn().mockImplementation(actual.useFonts),
   }
 });
+jest.mock('@boundbybetter/ui', () => {
+  const actual: any = jest.requireActual('@boundbybetter/ui');
+  return {
+    ...actual,
+    useMedia: jest.fn().mockImplementation(actual.useFonts),
+  }
+});
 
 jest.mock('expo-splash-screen', () => ({
   hideAsync: jest.fn(),
@@ -29,6 +36,7 @@ describe('_layout', () => {
     (useMedia as jest.Mock).mockReturnValue({ gtMd: false });
 
     (useFonts as jest.Mock).mockReturnValue([true, null]);
+    console.log('appDir', appDir);
     renderRouter(appDir, {
       initialUrl: '/',
     });

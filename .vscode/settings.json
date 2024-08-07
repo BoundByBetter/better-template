@@ -1,0 +1,9 @@
+{
+  "typescript.referencesCodeLens.enabled": true,
+  "typescript.referencesCodeLens.showOnAllFunctions": true,
+  "typescript.tsdk": "node_modules/typescript/lib",
+  "react-native.packager.port": 19001,
+  "typescript.tsserver.nodePath": "node",
+  "jest.jestCommandLine": "node_modules/.bin/jest",
+  "jest.rootPath": "./"
+}
