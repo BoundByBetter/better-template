@@ -11,7 +11,11 @@
     "clean:packages": "yarn workspaces foreach --all --parallel --include \"./packages/*\" run clean",
     "build:packages": "yarn workspaces foreach --all --parallel --include \"./packages/*\" run build",
     "test:packages": "yarn workspaces foreach --all --parallel --include \"./packages/*\" run test",
-    "cover:packages": "yarn workspaces foreach --all --parallel --include \"./packages/*\" run cover"
+    "cover:packages": "yarn workspaces foreach --all --parallel --include \"./packages/*\" run cover",
+    "view:coverage": "npx serve ./coverage/lcov-report",
+    "view:coverage:features": "npx serve ./coverage/features/lcov-report",
+    "view:coverage:state": "npx serve ./coverage/state/lcov-report",
+    "view:coverage:shared": "npx serve ./coverage/shared/lcov-report"
   },
   "resolutions": {
     "react": "18.2.0",
