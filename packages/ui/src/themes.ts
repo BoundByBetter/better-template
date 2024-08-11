@@ -112,7 +112,7 @@ export const palettes = (() => {
   const transparent = (hsl: string, opacity = 0) =>
     hsl.replace(`%)`, `%, ${opacity})`).replace(`hsl(`, `hsla(`)
 
-  const getColorPalette = (colors: Object, accentColors: Object): string[] => {
+  const getColorPalette = (colors: object, accentColors: object): string[] => {
     const colorPalette = Object.values(colors)
     // make the transparent color vibrant and towards the middle
     const colorI = colorPalette.length - 4
@@ -779,6 +779,6 @@ export type EntriesToObject<ARR_T extends EntriesType> = MergeIntersectingObject
   UnionToIntersection<UnionObjectFromArrayOfPairs<ARR_T>>
 >
 
-export function objectKeys<O extends Object>(obj: O) {
+export function objectKeys<O extends object>(obj: O) {
   return Object.keys(obj) as Array<keyof O>
 }

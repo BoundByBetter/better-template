@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet } from "react-native";
+//import { StyleSheet } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { H1, XStack } from '@boundbybetter/ui';
 
@@ -13,12 +13,12 @@ export function MyTest() {
 
   const insets = useSafeAreaInsets();
   
-  const styles = StyleSheet.create({
-    appIcon: {
-      height: 42,
-      aspectRatio: 1,
-    },
-  });
+  // const styles = StyleSheet.create({
+  //   appIcon: {
+  //     height: 42,
+  //     aspectRatio: 1,
+  //   },
+  // });
   
   return (
     <XStack ai="center" mt={insets.top} ml={insets.left} mr={insets.right} mb={insets.bottom}>

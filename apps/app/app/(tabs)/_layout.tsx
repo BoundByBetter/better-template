@@ -5,7 +5,6 @@ import { Drawer } from 'expo-router/drawer';
 
 import { Banner } from '@boundbybetter/features';
 import { BookOpen, Button, Info, MessageCircle, Settings, YStack, useMedia, useTheme } from '@boundbybetter/ui';
-import { logRaw } from '@boundbybetter/shared';
 
 // You can explore the built-in icon families and icons on the web at https://icons.expo.fyi/
 export default function TabLayout() {

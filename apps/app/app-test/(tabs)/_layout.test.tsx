@@ -2,16 +2,17 @@ import { act, fireEvent, renderRouter, screen } from 'expo-router/testing-librar
 import { useFonts } from 'expo-font';
 import { useMedia } from '@boundbybetter/ui';
 import { describe, it, beforeEach, expect } from '@jest/globals';
+import path from 'path';
 
 jest.mock('expo-font', () => {
-  const actual: any = jest.requireActual('expo-font');
+  const actual = jest.requireActual('expo-font');
   return {
     ...actual,
     useFonts: jest.fn().mockImplementation(actual.useFonts),
   }
 });
 jest.mock('@boundbybetter/ui', () => {
-  const actual: any = jest.requireActual('@boundbybetter/ui');
+  const actual = jest.requireActual('@boundbybetter/ui');
   return {
     ...actual,
     useMedia: jest.fn().mockImplementation(actual.useFonts),
@@ -24,7 +25,6 @@ jest.mock('expo-splash-screen', () => ({
 }));
 
 // Get directory to app folder
-const path = require('path');
 const appDir = path.join(__dirname, '../../app');
 
 describe('_layout', () => {

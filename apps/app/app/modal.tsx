@@ -1,5 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
-import { Platform, StyleSheet } from 'react-native';
+import { Platform } from 'react-native';
 
 import { EditScreenInfo } from '@boundbybetter/features';
 import { H3, Separator, YStack } from '@boundbybetter/ui';

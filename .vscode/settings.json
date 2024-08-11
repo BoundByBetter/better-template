@@ -5,5 +5,15 @@
   "react-native.packager.port": 19001,
   "typescript.tsserver.nodePath": "node",
   "jest.jestCommandLine": "node_modules/.bin/jest",
-  "jest.rootPath": "./"
+  "jest.rootPath": "./",
+  // "editor.codeActionsOnSave": {
+  //   "source.fixAll.eslint": "always"
+  // },
+  // "eslint.validate": [
+  //   "javascript",
+  //   "javascriptreact",
+  //   "typescript",
+  //   "typescriptreact"
+  // ],
+  // "eslint.lintTask.enable": true
 }

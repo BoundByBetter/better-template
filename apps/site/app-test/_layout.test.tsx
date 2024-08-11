@@ -5,7 +5,7 @@ import { useColorScheme } from '@boundbybetter/ui';
 import { describe, it, beforeEach, expect } from '@jest/globals';
 
 jest.mock('expo-font', () => {
-  const actual: any = jest.requireActual('expo-font');
+  const actual = jest.requireActual('expo-font');
   return {
     ...actual,
     useFonts: jest.fn().mockImplementation(actual.useFonts),
@@ -18,7 +18,7 @@ jest.mock('expo-splash-screen', () => ({
 }));
 
 // Get directory to app folder
-const path = require('path');
+import path from 'path';
 const appDir = path.join(__dirname, '../app');
 
 describe('_layout', () => {

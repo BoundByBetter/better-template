@@ -4,7 +4,7 @@ import { Button, Card, Stack, Text, YStack } from "@boundbybetter/ui";
 import moment from "moment";
 import { Platform } from "react-native";
 
-/* eslint-disable-next-line */
+ 
 export interface FeatureProps {
   feature: Feature;
 }

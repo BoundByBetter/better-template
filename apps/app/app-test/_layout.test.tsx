@@ -1,11 +1,11 @@
-import { render, renderRouter, screen } from 'expo-router/testing-library';
+import { renderRouter, screen } from 'expo-router/testing-library';
 import { Platform } from 'react-native';
 import { useFonts,  } from 'expo-font';
 import { useColorScheme } from '@boundbybetter/ui';
-import RootLayout from '../app/_layout';
+import path from 'path';
 
 jest.mock('expo-font', () => {
-  const actual: any = jest.requireActual('expo-font');
+  const actual = jest.requireActual('expo-font');
   return {
     ...actual,
     useFonts: jest.fn().mockImplementation(actual.useFonts),
@@ -13,7 +13,7 @@ jest.mock('expo-font', () => {
 });
 
 jest.mock('@boundbybetter/ui', () => {
-  const actual: any = jest.requireActual('@boundbybetter/ui');
+  const actual = jest.requireActual('@boundbybetter/ui');
   return {
     ...actual,
     useColorScheme: jest.fn().mockImplementation(actual.useColorScheme),
@@ -27,7 +27,6 @@ jest.mock('expo-splash-screen', () => ({
 }));
 
 // Get directory to app folder
-const path = require('path');
 const appDir = path.join(__dirname, '../app');
 
 describe('_layout', () => {

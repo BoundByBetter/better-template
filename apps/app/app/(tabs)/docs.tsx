@@ -1,5 +1,5 @@
 import { EditScreenInfo } from '@boundbybetter/features';
-import { H3, Separator, YStack } from '@boundbybetter/ui';
+import { YStack } from '@boundbybetter/ui';
 
 export default function TabTwoScreen() {
   return (

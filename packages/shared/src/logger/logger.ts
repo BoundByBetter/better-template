@@ -10,7 +10,7 @@ function getLogId() {
   logId.value++;
   return logId.value;
 }
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
+ 
 // Use this filter to filter out logs.
 export const globalOptions = {
   /* istanbul ignore next */
@@ -31,7 +31,7 @@ export const globalOptions = {
  */
 export function logRaw(...data: unknown[]) {
   'worklet';
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-call
+   
   const currentLogId = getLogId();
   if (globalOptions.logging?.toLowerCase() === 'true' && globalOptions.filter(data)) {
     console.log(currentLogId, ...data);

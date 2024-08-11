@@ -2,7 +2,7 @@ import * as React from 'react';
 
 import { MyTest } from './MyTest';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { act, render } from '@testing-library/react-native';
+import { act } from '@testing-library/react-native';
 import { renderWithTamagui } from '../test/renderWithTamagui.test-util';
 
 // Mock the react-native-safe-area-context hook

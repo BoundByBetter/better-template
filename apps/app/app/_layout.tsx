@@ -34,7 +34,9 @@ export default function RootLayout() {
   logSetup('RootLayout');
   const [loaded, error] = useFonts({
     // Added next two lines for tamagui. (Removing to get tests to run)
+    // eslint-disable-next-line @typescript-eslint/no-require-imports
     Inter: require("@tamagui/font-inter/otf/Inter-Medium.otf"),
+    // eslint-disable-next-line @typescript-eslint/no-require-imports
     InterBold: require("@tamagui/font-inter/otf/Inter-Bold.otf"),
     //SpaceMono: require('../assets/fonts/SpaceMono-Regular.ttf'),
     ...FontAwesome.font,
