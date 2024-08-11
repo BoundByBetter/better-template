@@ -6,8 +6,7 @@
   "license": "MIT",
   "scripts": {
     "clean": "rimraf ./dist",
-    "build": "tsc --build",
-    "test": "jest --color"
+    "build": "tsc --build"
   },
   "private": true,
   "dependencies": {

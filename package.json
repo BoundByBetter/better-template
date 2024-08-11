@@ -10,7 +10,8 @@
     "test:all": "yarn workspaces foreach --all --parallel run test",
     "clean:packages": "yarn workspaces foreach --all --parallel --include \"./packages/*\" run clean",
     "build:packages": "yarn workspaces foreach --all --parallel --include \"./packages/*\" run build",
-    "test:packages": "yarn workspaces foreach --all --parallel --include \"./packages/*\" run test"
+    "test:packages": "yarn workspaces foreach --all --parallel --include \"./packages/*\" run test",
+    "cover:packages": "yarn workspaces foreach --all --parallel --include \"./packages/*\" run cover"
   },
   "resolutions": {
     "react": "18.2.0",

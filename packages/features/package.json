@@ -7,7 +7,8 @@
   "scripts": {
     "clean": "rimraf ./dist",
     "build": "tsc --build",
-    "test": "jest --color"
+    "test": "jest --color",
+    "cover": "jest --color --coverage"
   },
   "private": true,
   "dependencies": {
@@ -38,6 +39,15 @@
     ],
     "transformIgnorePatterns": [
       "node_modules/(?!((jest-)?react-native|@react-native(-community)?)|expo(nent)?|@expo(nent)?/.*|@expo-google-fonts/.*|react-navigation|@react-navigation/.*|@unimodules/.*|unimodules|sentry-expo|native-base|react-native-svg|react-redux)"
-    ]
+    ],
+    "coverageThreshold": {
+      "global": {
+        "statements": 100,
+        "branches": 100,
+        "functions": 100,
+        "lines": 100
+      }
+    },
+    "coverageDirectory": "../../coverage/features"
   }
 }

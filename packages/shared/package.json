@@ -7,13 +7,23 @@
   "scripts": {
     "clean": "rimraf ./dist",
     "build": "tsc --build",
-    "test": "jest --color"
+    "test": "jest --color",
+    "cover": "jest --color --coverage"
   },
   "jest": {
     "preset": "jest-expo",
     "roots": [
       "<rootDir>/src"
-    ]
+    ],
+    "coverageThreshold": {
+      "global": {
+        "statements": 100,
+        "branches": 100,
+        "functions": 100,
+        "lines": 100
+      }
+    },
+    "coverageDirectory": "../../coverage/shared"
   },
   "private": true,
   "devDependencies": {
