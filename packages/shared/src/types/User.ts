@@ -1,6 +1,6 @@
 /* istanbul ignore file */
 export interface User {
-  userName?: string;
-  userEmail?: string;
-  groups?: string[];
+  userName: string | null;
+  userEmail: string | null;
+  groups: string[];
 }

@@ -1,5 +1,5 @@
 /* istanbul ignore file */
-import { createAction } from "@reduxjs/toolkit";
+import { createAction, PayloadAction } from "@reduxjs/toolkit";
 import { Post } from "./types/Post";
 import { User } from "./types/User";
 import { Feature } from "./types/Feature";
@@ -19,5 +19,5 @@ export const featureAdded = createAction<Feature>('features/featureAdded');
 export const featureDeleted = createAction<Feature>('features/featureDeleted');
 
 export const userLoggedIn = createAction<User>('user/userLoggedIn');
-export const userLoggedOut = createAction('user/userLoggedOut');
+export const userLoggedOut = createAction<void>('user/userLoggedOut');
 

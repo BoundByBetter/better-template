@@ -7,7 +7,10 @@
   "private": true,
   "packageManager": "yarn@4.3.1",
   "scripts": {
-    "test:app": "yarn workspace @boundbybetter/app test"
+    "test:all": "yarn workspaces foreach --all --parallel run test",
+    "clean:packages": "yarn workspaces foreach --all --parallel --include \"./packages/*\" run clean",
+    "build:packages": "yarn workspaces foreach --all --parallel --include \"./packages/*\" run build",
+    "test:packages": "yarn workspaces foreach --all --parallel --include \"./packages/*\" run test"
   },
   "resolutions": {
     "react": "18.2.0",

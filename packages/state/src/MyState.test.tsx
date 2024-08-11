@@ -17,7 +17,7 @@ describe('MyState', () => {
 function MyTest() {
   const dispatch = useAppDispatch();
   useEffect(() => {
-    dispatch(userLoggedIn({ userName: 'Test User' }));
+    dispatch(userLoggedIn({ userName: 'Test User', userEmail: 'test@test.com', groups: [] }));
   }, [dispatch]);
   const user = useAppSelector(selectUser);
   return <Text>{user.userName}</Text>;

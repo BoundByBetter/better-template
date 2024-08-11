@@ -43,8 +43,8 @@ describe('userSlice', () => {
 
     const clearedState = store.getState().user;
 
-    expect(clearedState.userName).toBeUndefined();
-    expect(clearedState.userEmail).toBeUndefined();
-    expect(clearedState.groups).toBeUndefined();
+    expect(clearedState.userName).toBeNull();
+    expect(clearedState.userEmail).toBeNull();
+    expect(clearedState.groups).toHaveLength(0);
   });
 });

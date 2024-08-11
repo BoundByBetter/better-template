@@ -22,9 +22,9 @@ const userSlice = createSlice({
     })
     .addCase(userLoggedOut, (state, action) => {
         logCall('userSlice.userLoggedOut', action.payload);
-        state.userName = undefined;
-        state.userEmail = undefined;
-        state.groups = undefined;
+        state.userName = null;
+        state.userEmail = null;
+        state.groups = [];
       });
   },
 });

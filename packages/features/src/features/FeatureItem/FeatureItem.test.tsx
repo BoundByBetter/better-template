@@ -5,6 +5,8 @@ import { FeatureStatus } from '@boundbybetter/shared';
 import { useAppDispatch } from '@boundbybetter/state';
 import { renderWithTamagui } from '../../renderWithTamagui.test-util';
 
+jest.mock('@boundbybetter/state');
+
 describe('FeatureItem', () => {
   it('should render the feature title', async () => {
     const dispatch = jest.fn();

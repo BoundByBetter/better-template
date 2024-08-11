@@ -5,14 +5,9 @@
   "author": "Stewart Armbrecht",
   "license": "MIT",
   "scripts": {
-    "test": "jest --watchAll",
-    "lint": "expo lint"
-  },
-  "jest": {
-    "preset": "jest-expo",
-    "transformIgnorePatterns": [
-      "node_modules/(?!((jest-)?react-native|@react-native(-community)?)|expo(nent)?|@expo(nent)?/.*|@expo-google-fonts/.*|react-navigation|@react-navigation/.*|@unimodules/.*|unimodules|sentry-expo|native-base|react-native-svg|react-redux)"
-    ]
+    "clean": "rimraf ./dist",
+    "build": "tsc --build",
+    "test": "jest --color"
   },
   "private": true,
   "dependencies": {
@@ -22,6 +17,7 @@
     "react": "~18.2.0",
     "react-native": "0.74.3",
     "react-native-svg": "^15.4.0",
+    "rimraf": "^6.0.1",
     "tamagui": "^1.106.0"
   },
   "devDependencies": {

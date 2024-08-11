@@ -4,6 +4,8 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { renderWithTamagui } from '../../renderWithTamagui.test-util';
 import { AdminBanner } from './AdminBanner';
 
+jest.mock('expo-image');
+
 // Mock the react-native-safe-area-context hook
 jest.mock('react-native-safe-area-context', () => ({
   useSafeAreaInsets: jest.fn(),

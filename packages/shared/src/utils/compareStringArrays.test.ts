@@ -1,4 +1,5 @@
 import { compareStringArrays } from './compareStringArrays';
+import { describe, expect, it } from '@jest/globals';
 
 describe('compareStringArrays', () => {
   it('should return true when comparing two identical string arrays', () => {

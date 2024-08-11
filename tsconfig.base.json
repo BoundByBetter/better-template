@@ -1,0 +1,19 @@
+{
+  "compilerOptions": {
+    "composite": true,
+    "declaration": true,
+    "declarationMap": true,
+    "incremental": true,
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "outDir": "./dist",
+    "rootDir": "./packages",
+    "baseUrl": "./",
+    "jsx": "react-native",
+    "paths": {
+      "@boundbybetter/*": ["./packages/*/src"]
+    }
+  },
+  "include": ["./src"],
+  "exclude": ["node_modules"]
+}

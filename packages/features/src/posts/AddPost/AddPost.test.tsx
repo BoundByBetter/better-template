@@ -5,6 +5,8 @@ import { useAppDispatch, useAppSelector } from '@boundbybetter/state';
 import { renderWithTamagui } from '../../renderWithTamagui.test-util';
 import { useActiveFeature } from '../../features/useActiveFeature';
 
+jest.mock('@boundbybetter/state');
+
 jest.mock('../../features/useActiveFeature', () => ({
   useActiveFeature: jest.fn(),
 }));

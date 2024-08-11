@@ -5,6 +5,8 @@ import { PostStatus } from '@boundbybetter/shared';
 import { useAppDispatch } from '@boundbybetter/state';
 import { renderWithTamagui } from '../../renderWithTamagui.test-util';
 
+jest.mock('@boundbybetter/state');
+
 describe('PostItem', () => {
   it('should render the post title', async () => {
     const dispatch = jest.fn();

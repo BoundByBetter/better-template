@@ -12,11 +12,13 @@ describe('featuresSlice selectors', () => {
         entities: {
           '1': {
             id: '1',
+            key: 'feature1',
             groups: [],
             status: FeatureStatus.ACTIVE,
           },
           '2': {
             id: '2',
+            key: 'feature2',
             groups: [],
             status: FeatureStatus.ACTIVE,
           },
@@ -24,8 +26,11 @@ describe('featuresSlice selectors', () => {
         status: 'idle',
         error: null,
       },
-      sync: [],
-      user: {},
+      user: {
+        userName: null,
+        userEmail: null,
+        groups: [],
+      },
       posts: {
         ids: [],
         entities: {},

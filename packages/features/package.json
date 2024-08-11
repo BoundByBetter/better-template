@@ -5,8 +5,9 @@
   "author": "Stewart Armbrecht",
   "license": "MIT",
   "scripts": {
-    "test": "jest --watchAll",
-    "lint": "eslint --config ../../eslint.config.js ."
+    "clean": "rimraf ./dist",
+    "build": "tsc --build",
+    "test": "jest --color"
   },
   "private": true,
   "dependencies": {
@@ -23,15 +24,20 @@
     "@types/react-test-renderer": "^18",
     "globals": "^15.9.0",
     "jest": "^29.2.1",
-    "react-test-renderer": "~18.2.0"
+    "react-test-renderer": "~18.2.0",
+    "rimraf": "^6.0.1"
   },
   "jest": {
     "preset": "jest-expo",
+    "setupFilesAfterEnv": [
+      "./test/test.setup.ts",
+      "@testing-library/jest-native/extend-expect"
+    ],
+    "roots": [
+      "<rootDir>/src"
+    ],
     "transformIgnorePatterns": [
       "node_modules/(?!((jest-)?react-native|@react-native(-community)?)|expo(nent)?|@expo(nent)?/.*|@expo-google-fonts/.*|react-navigation|@react-navigation/.*|@unimodules/.*|unimodules|sentry-expo|native-base|react-native-svg|react-redux)"
-    ],
-    "setupFilesAfterEnv": [
-      "@testing-library/jest-native/extend-expect"
     ]
   }
 }

@@ -6,6 +6,8 @@ import { renderWithTamagui } from '../../renderWithTamagui.test-util';
 import { userLoggedOut } from '@boundbybetter/shared';
 //import { signOut } from '@boundbybetter/backend';
 
+jest.mock('@boundbybetter/state');
+
 describe('Settings', () => {
   it('should render the users name', async () => {
     // Mock the user being logged in

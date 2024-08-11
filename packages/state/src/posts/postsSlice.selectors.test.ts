@@ -26,7 +26,11 @@ describe('postsSlice selectors', () => {
         status: 'idle',
         error: null,
       },
-      user: {},
+      user: {
+        userName: null,
+        userEmail: null,
+        groups: [],
+      },
       features: {
         ids: [],
         entities: {},
