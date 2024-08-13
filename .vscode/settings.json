@@ -6,6 +6,7 @@
   "typescript.tsserver.nodePath": "node",
   "jest.jestCommandLine": "node_modules/.bin/jest",
   "jest.rootPath": "./",
+  "eslint.workingDirectories": ["apps/app", "apps/site", "packages/shared", "packages/ui", "packages/state", "packages/features"],
   // "editor.codeActionsOnSave": {
   //   "source.fixAll.eslint": "always"
   // },

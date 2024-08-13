@@ -1,19 +1,19 @@
-import React from 'react';
-import { act, fireEvent } from '@testing-library/react-native';
-import { FeatureItem } from './FeatureItem';
-import { FeatureStatus } from '@boundbybetter/shared';
-import { useAppDispatch } from '@boundbybetter/state';
-import { renderWithTamagui } from '../../renderWithTamagui.test-util';
+import React from "react";
+import { act, fireEvent } from "@testing-library/react-native";
+import { FeatureItem } from "./FeatureItem";
+import { FeatureStatus } from "@boundbybetter/shared";
+import { useAppDispatch } from "@boundbybetter/state";
+import { renderWithTamagui } from "../../renderWithTamagui.test-util";
 
-jest.mock('@boundbybetter/state');
+jest.mock("@boundbybetter/state");
 
-describe('FeatureItem', () => {
-  it('should render the feature title', async () => {
+describe("FeatureItem", () => {
+  it("should render the feature title", async () => {
     const dispatch = jest.fn();
     (useAppDispatch as unknown as jest.Mock).mockReturnValue(dispatch);
     const feature = {
-      id: '1',
-      key: 'My Feature',
+      id: "1",
+      key: "My Feature",
       status: FeatureStatus.ACTIVE,
       groups: [],
     };
@@ -23,35 +23,38 @@ describe('FeatureItem', () => {
       expect(title).toBeTruthy();
     });
   });
-  it('should render a delete button', async () => {
+  it("should render a delete button", async () => {
     const dispatch = jest.fn();
     (useAppDispatch as unknown as jest.Mock).mockReturnValue(dispatch);
     const feature = {
-      id: '1',
-      key: 'My Feature',
+      id: "1",
+      key: "My Feature",
       status: FeatureStatus.ACTIVE,
       groups: [],
     };
     const { getByText } = renderWithTamagui(<FeatureItem feature={feature} />);
     await act(async () => {
-      const deleteButton = getByText('X');
+      const deleteButton = getByText("X");
       expect(deleteButton).toBeTruthy();
     });
   });
-  it('should dispatch a featureDeleted action when delete button is pressed', async () => {
+  it("should dispatch a featureDeleted action when delete button is pressed", async () => {
     const dispatch = jest.fn();
     (useAppDispatch as unknown as jest.Mock).mockReturnValue(dispatch);
     const feature = {
-      id: '1',
-      key: 'My Feature',
+      id: "1",
+      key: "My Feature",
       status: FeatureStatus.ACTIVE,
       groups: [],
     };
     const { getByText } = renderWithTamagui(<FeatureItem feature={feature} />);
-    const deleteButton = getByText('X');
+    const deleteButton = getByText("X");
     await act(async () => {
       fireEvent.press(deleteButton);
     });
-    expect(dispatch).toHaveBeenCalledWith({ type: 'features/featureDeleted', payload: feature });
+    expect(dispatch).toHaveBeenCalledWith({
+      type: "features/featureDeleted",
+      payload: feature,
+    });
   });
 });

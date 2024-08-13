@@ -1,7 +1,11 @@
-import { Button, Text, YStack } from "@boundbybetter/ui";
-import { selectUser, useAppDispatch, useAppSelector } from "@boundbybetter/state";
+import { tg } from "@boundbybetter/ui";
+import {
+  selectUser,
+  useAppDispatch,
+  useAppSelector,
+} from "@boundbybetter/state";
 //import { signOut } from "@boundbybetter/backend";
-import { logRaw, User, userLoggedIn, userLoggedOut } from "@boundbybetter/shared";
+import { userLoggedOut } from "@boundbybetter/shared";
 
 // import { jwtDecode } from 'jwt-decode';
 
@@ -48,7 +52,7 @@ export function Settings() {
   // );
 
   return (
-    <YStack gap="$4" m="$4">
+    <tg.YStack gap="$4" m="$4">
       {/* <Button
         disabled={!request}
         onPress={() => {
@@ -81,10 +85,10 @@ export function Settings() {
           });
         }}
       >Sign in</Button> */}
-      <Text>User Name: {user?.userName}</Text>
-      <Text>User Email: {user?.userEmail}</Text>
-      <Text>Hello there {user?.userName},</Text>
-      <Button onPress={handleSignOut}>Sign Out</Button>
-    </YStack>
-  )
+      <tg.Text>User Name: {user?.userName}</tg.Text>
+      <tg.Text>User Email: {user?.userEmail}</tg.Text>
+      <tg.Text>Hello there {user?.userName},</tg.Text>
+      <tg.Button onPress={handleSignOut}>Sign Out</tg.Button>
+    </tg.YStack>
+  );
 }

@@ -11,4 +11,3 @@ export interface Post extends StateObject {
   createdAt?: string | null;
   updatedAt?: string | null;
 }
-

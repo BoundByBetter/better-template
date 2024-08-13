@@ -33,8 +33,7 @@ describe("useActiveFeature", () => {
   });
 
   it("should return true when feature is active and user belongs to at least one group", () => {
-    
-    const featureKey = 'feature1';
+    const featureKey = "feature1";
     const feature = undefined;
     const userGroups = ["group1"];
 
@@ -47,7 +46,7 @@ describe("useActiveFeature", () => {
   });
 
   it("should return true when feature is active and user belongs to at least one group regardless of group case", () => {
-    const featureKey = 'feature1';
+    const featureKey = "feature1";
     const feature = undefined;
     const userGroups = ["Group1"];
 
@@ -59,7 +58,7 @@ describe("useActiveFeature", () => {
     expect(result.current).toBe(true);
   });
   it("should return false when feature is not active", () => {
-    const featureKey = 'feature2';
+    const featureKey = "feature2";
     const feature = { status: FeatureStatus.INACTIVE };
     const userGroups = ["group1"];
 
@@ -72,7 +71,7 @@ describe("useActiveFeature", () => {
   });
 
   it("should return false when user does not belong to any group", () => {
-    const featureKey = 'feature3';
+    const featureKey = "feature3";
     const feature = { groups: ["group1"], status: FeatureStatus.ACTIVE };
     const userGroups: string[] = [];
 
@@ -85,7 +84,7 @@ describe("useActiveFeature", () => {
   });
 
   it("should return false when feature is not defined and requires activitation", () => {
-    const featureKey = 'feature4';
+    const featureKey = "feature4";
     const feature = undefined;
     const userGroups = ["group1"];
 

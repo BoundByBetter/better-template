@@ -1,12 +1,61 @@
 {
-	"version": "2.0.0",
-	"tasks": [
-		{
-			"type": "eslint",
-			"problemMatcher": [
-				"$eslint-stylish"
-			],
-			"label": "eslint: lint whole folder"
-		}
-	]
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "lint:all",
+      "type": "shell",
+      "command": "yarn",
+      "args": [
+        "workspaces",
+        "foreach",
+        "--all",
+        "--parallel",
+        "run",
+        "lint"
+      ],
+      "problemMatcher": [
+        {
+          "owner": "eslint",
+          "fileLocation": ["relative", "${workspaceFolder}"],
+          "pattern": [
+            {
+              "regexp": "^\\[\\@.*\\]:\\s/workspaces/better-template/(.*)$",
+              "file": 1
+            },
+            {
+              "regexp": "^\\[\\@.*\\]:\\s*(\\d+):(\\d+)\\s+(warning|error)\\s+(.*)$",
+              "line": 1,
+              "column": 2,
+              "severity": 3,
+              "message": 4
+            }
+          ]
+        }
+      ],
+      "group": "build",
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared"
+      }
+    },
+    {
+      "label": "build: all packages",
+      "type": "shell",
+      "command": "yarn",
+      "args": [
+        "workspaces",
+        "foreach",
+        "--all",
+        "--parallel",
+        "run",
+        "build"
+      ],
+      "problemMatcher": [],
+      "group": "build",
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared"
+      }
+    }
+  ]
 }

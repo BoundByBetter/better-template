@@ -1,6 +1,0 @@
-import pkg from 'eslint-config-expo';
-const { createConfig } = pkg;
-
-export default createConfig({
-  extends: ['expo'],
-});

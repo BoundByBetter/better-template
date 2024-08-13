@@ -1,10 +1,10 @@
-import { EditScreenInfo } from '@boundbybetter/features';
-import { YStack } from '@boundbybetter/ui';
+import { EditScreenInfo } from "@boundbybetter/features";
+import { tg } from "@boundbybetter/ui";
 
 export default function TabTwoScreen() {
   return (
-    <YStack>
+    <tg.YStack>
       <EditScreenInfo path="app/(tabs)/docs.tsx" />
-    </YStack>
+    </tg.YStack>
   );
 }

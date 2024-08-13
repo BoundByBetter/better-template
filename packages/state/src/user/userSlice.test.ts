@@ -6,7 +6,7 @@ import { AppStore } from "../store";
 import { userReducer } from "./userSlice";
 import { featuresReducer } from "../features/featuresSlice";
 
-describe('userSlice', () => {
+describe("userSlice", () => {
   let store: AppStore;
 
   beforeEach(() => {
@@ -20,24 +20,36 @@ describe('userSlice', () => {
     });
   });
 
-  it('should update the user when userLoggedIn action is dispatched.', () => {
-    store.dispatch(userLoggedIn({ userName: 'user', userEmail: 'userEmail', groups: ['Admin'] }));
+  it("should update the user when userLoggedIn action is dispatched.", () => {
+    store.dispatch(
+      userLoggedIn({
+        userName: "user",
+        userEmail: "userEmail",
+        groups: ["Admin"],
+      }),
+    );
 
     const state = store.getState().user;
 
-    expect(state.userName).toBe('user');
-    expect(state.userEmail).toBe('userEmail');
-    expect(state.groups).toEqual(['Admin']);
+    expect(state.userName).toBe("user");
+    expect(state.userEmail).toBe("userEmail");
+    expect(state.groups).toEqual(["Admin"]);
   });
 
-  it('should clear the user when userLoggedOut action is dispatched.', () => {
-    store.dispatch(userLoggedIn({ userName: 'user', userEmail: 'userEmail', groups: ['Admin']}));
+  it("should clear the user when userLoggedOut action is dispatched.", () => {
+    store.dispatch(
+      userLoggedIn({
+        userName: "user",
+        userEmail: "userEmail",
+        groups: ["Admin"],
+      }),
+    );
 
     const state = store.getState().user;
 
-    expect(state.userName).toBe('user');
-    expect(state.userEmail).toBe('userEmail');
-    expect(state.groups).toEqual(['Admin']);
+    expect(state.userName).toBe("user");
+    expect(state.userEmail).toBe("userEmail");
+    expect(state.groups).toEqual(["Admin"]);
 
     store.dispatch(userLoggedOut());
 

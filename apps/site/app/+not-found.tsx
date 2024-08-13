@@ -1,10 +1,10 @@
-import { Link, Stack } from 'expo-router';
-import { YStack, Text } from '@boundbybetter/ui';
+import { Link, Stack } from "expo-router";
+import { YStack, Text } from "@boundbybetter/ui";
 
 export default function NotFoundScreen() {
   return (
     <>
-      <Stack.Screen options={{ title: 'Oops!' }} />
+      <Stack.Screen options={{ title: "Oops!" }} />
       <YStack>
         <Text>This screen doesn't exist.</Text>
 
