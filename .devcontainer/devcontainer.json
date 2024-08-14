@@ -43,15 +43,13 @@
 				"GitHub.copilot",
 				"GitHub.copilot-chat",
 				"GitHub.vscode-pull-request-github",
-				"GraphQL.vscode-graphql",
-				"GraphQL.vscode-graphql-syntax",
-				"nrwl.angular-console",
 				"Orta.vscode-jest",
 				"alfnielsen.vsc-rename-files",
 				"msjsdiag.vscode-react-native",
 				"naumovs.color-highlight",
 				"anseki.vscode-color",
-				"andrew-codes.cypress-snippets"
+				"andrew-codes.cypress-snippets",
+				"ryanluker.vscode-coverage-gutters"
 			]
 		}
 	}

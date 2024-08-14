@@ -21,4 +21,10 @@ module.exports = {
       lines: 100,
     },
   },
+  collectCoverageFrom: [
+    "apps/*/app/**/*.{js,jsx,ts,tsx}",
+    "apps/*/app-test/**/*.{js,jsx,ts,tsx}",
+    "packages/*/src/**/*.{js,jsx,ts,tsx}",
+    "!src/index.tsx",
+  ],
 };

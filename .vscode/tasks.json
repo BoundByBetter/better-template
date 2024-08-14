@@ -57,6 +57,35 @@
         "$eslint-stylish"
       ],
       "detail": "Watching..."
+    },
+    {
+      "label": "test",
+      "type": "shell",
+      "command": "yarn",
+      "args": [
+        "cover"
+      ],
+      "group": {
+        "kind": "test",
+        "isDefault": true
+      },
+      "problemMatcher":     {
+        "source": "jest",
+        "fileLocation": ["relative", "${workspaceFolder}"],
+        "pattern": [
+          {
+            "regexp": "^\\s*(\\d+|)\\)\\s(.*)$",
+            "message": 2
+          },
+          {
+            "regexp": "^\\s*at\\s(.*)\\s\\(([^:]*):(\\d+):(\\d+)\\)$",
+            "file": 2,
+            "line": 3,
+            "column": 4
+          }
+        ]
+      },
+      "detail": "Running tests..."
     }
-  ]
+  ],
 }
