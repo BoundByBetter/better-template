@@ -5,12 +5,10 @@
   "author": "Stewart Armbrecht",
   "license": "MIT",
   "scripts": {
+    "start": "EXPO_USE_METRO_WORKSPACE_ROOT=1 expo start",
     "android": "EXPO_USE_METRO_WORKSPACE_ROOT=1 expo start --android",
     "ios": "EXPO_USE_METRO_WORKSPACE_ROOT=1 expo start --ios",
-    "web": "EXPO_USE_METRO_WORKSPACE_ROOT=1 expo start --web",
-    "test": "jest --config ./test/jest.config.ts --color",
-    "cover": "jest --config ./test/jest.config.ts --color --coverage",
-    "lint": "eslint ."
+    "web": "EXPO_USE_METRO_WORKSPACE_ROOT=1 expo start --web"
   },
   "dependencies": {
     "@boundbybetter/features": "workspace:*",

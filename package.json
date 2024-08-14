@@ -11,12 +11,12 @@
     "build": "tsc -b",
     "test": "jest --color",
     "cover": "jest --color --coverage",
-    "view:coverage:features": "npx serve ./coverage/features/lcov-report",
-    "view:coverage:state": "npx serve ./coverage/state/lcov-report",
-    "view:coverage:shared": "npx serve ./coverage/shared/lcov-report",
-    "view:coverage:app": "npx serve ./coverage/app/lcov-report",
-    "view:coverage:site": "npx serve ./coverage/site/lcov-report",
-    "start:app:web": "yarn workspace @boundbybetter/app run web"
+    "start:app": "yarn workspace @boundbybetter/app run start",
+    "start:app:web": "yarn workspace @boundbybetter/app run web",
+    "start:app:android": "yarn workspace @boundbybetter/app run android",
+    "start:site": "yarn workspace @boundbybetter/site run start",
+    "start:site:web": "yarn workspace @boundbybetter/site run web",
+    "start:site:android": "yarn workspace @boundbybetter/site run android"
   },
   "resolutions": {
     "react": "18.2.0",

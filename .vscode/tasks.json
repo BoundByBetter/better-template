@@ -4,7 +4,10 @@
     {
       "label": "build",
       "type": "shell",
-      "command": "tsc",
+      "command": "yarn",
+      "args": [
+        "build"
+      ],
       "group": {
         "kind": "build",
         "isDefault": true
@@ -12,12 +15,15 @@
       "problemMatcher": [
         "$tsc"
       ],
-      "detail": "Compiling..."
+      "detail": "Runs tsc build on all files to find compilation errors."
     },
     {
       "label": "build-watch",
       "type": "shell",
-      "command": "tsc -w",
+      "command": "yarn",
+      "args": [
+        "cover"
+      ],
       "group": {
         "kind": "build",
         "isDefault": true
@@ -25,7 +31,7 @@
       "problemMatcher": [
         "$tsc"
       ],
-      "detail": "Watching..."
+      "detail": "Runs tsc build on all files to find compilation errors every time you change a file. Use this when resolving a bunch of issues."
     },
     {
       "label": "lint",
@@ -38,7 +44,7 @@
       "problemMatcher": [
         "$eslint-stylish"
       ],
-      "detail": "Linting..."
+      "detail": "Lints all ts, tsx, js, and jsx files."
     },
     {
       "label": "lint-watch",
@@ -56,7 +62,7 @@
       "problemMatcher": [
         "$eslint-stylish"
       ],
-      "detail": "Watching..."
+      "detail": "Lints all ts, tsx, js, and jsx files every second. Use this when resolving a bunch of issues."
     },
     {
       "label": "test",
@@ -85,7 +91,7 @@
           }
         ]
       },
-      "detail": "Running tests..."
+      "detail": "Runs all tests in the project.  Use the jest runner when you want to watch."
     }
   ],
 }
