@@ -1,11 +1,11 @@
 /* eslint-env node */
 // Get directory to app folder
 const path = require("path");
-const appDir = path.join(__dirname, "../../../packages/ui/src");
+const appDir = path.join(__dirname, "./packages/ui/src");
 
 module.exports = function (api) {
   api.cache(true);
-  process.env.EXPO_ROUTER_APP_ROOT = "../../apps/app/app";
+  process.env.EXPO_ROUTER_APP_ROOT = "./apps/app/app";
   process.env.EXPO_ROUTER_ABS_APP_ROOT = "/app";
   return {
     presets: ["babel-preset-expo"],

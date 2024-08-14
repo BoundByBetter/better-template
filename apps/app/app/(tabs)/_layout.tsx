@@ -1,4 +1,3 @@
-import React from "react";
 import { Link, Tabs } from "expo-router";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { Drawer } from "expo-router/drawer";

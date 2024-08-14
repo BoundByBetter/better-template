@@ -5,11 +5,10 @@
   "author": "Stewart Armbrecht",
   "license": "MIT",
   "scripts": {
-    "clean": "rimraf ./dist",
-    "build": "tsc --build",
+    "lint": "eslint .",
+    "build": "tsc -b ../../packages/features",
     "test": "jest --color",
-    "cover": "jest --color --coverage",
-    "lint": "eslint ."
+    "cover": "jest --color --coverage"
   },
   "private": true,
   "dependencies": {
@@ -32,29 +31,6 @@
     "globals": "^15.9.0",
     "jest": "^29.2.1",
     "prettier": "^3.3.3",
-    "react-test-renderer": "~18.2.0",
-    "rimraf": "^6.0.1"
-  },
-  "jest": {
-    "preset": "jest-expo",
-    "setupFilesAfterEnv": [
-      "./test/test.setup.ts",
-      "@testing-library/jest-native/extend-expect"
-    ],
-    "roots": [
-      "<rootDir>/src"
-    ],
-    "transformIgnorePatterns": [
-      "node_modules/(?!((jest-)?react-native|@react-native(-community)?)|expo(nent)?|@expo(nent)?/.*|@expo-google-fonts/.*|react-navigation|@react-navigation/.*|@unimodules/.*|unimodules|sentry-expo|native-base|react-native-svg|react-redux)"
-    ],
-    "coverageThreshold": {
-      "global": {
-        "statements": 100,
-        "branches": 100,
-        "functions": 100,
-        "lines": 100
-      }
-    },
-    "coverageDirectory": "../../coverage/features"
+    "react-test-renderer": "~18.2.0"
   }
 }

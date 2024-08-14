@@ -3,14 +3,7 @@ import { useAppDispatch, useAppSelector } from "@boundbybetter/state";
 import { nanoid } from "@reduxjs/toolkit";
 import { Post, PostStatus, postAdded } from "@boundbybetter/shared";
 import { logMessage } from "@boundbybetter/shared";
-import {
-  Button,
-  H3,
-  Input,
-  Paragraph,
-  XStack,
-  YStack,
-} from "@boundbybetter/ui";
+import { tg } from "@boundbybetter/ui";
 import { useActiveFeature } from "../../features/useActiveFeature";
 import { FeatureKeys } from "../../features/Features";
 
@@ -39,9 +32,9 @@ export function AddPost() {
   const unlimitedPosts = useActiveFeature(FeatureKeys.MyAppPostsUnlimited);
   const canAdd = postCount < 5 || unlimitedPosts;
   return canAdd ? (
-    <XStack gap="$4" ai="center">
-      <Paragraph>New Post:</Paragraph>
-      <Input
+    <tg.XStack gap="$4" ai="center">
+      <tg.Paragraph>New Post:</tg.Paragraph>
+      <tg.Input
         onChangeText={(text) => setNewPostName(text)}
         value={newPostName}
         placeholder="New Post Name"
@@ -50,18 +43,18 @@ export function AddPost() {
         testID="new-post-name"
         onSubmitEditing={createPost}
       />
-      <Button onPress={createPost} testID="new-post-submit">
+      <tg.Button onPress={createPost} testID="new-post-submit">
         Add
-      </Button>
-    </XStack>
+      </tg.Button>
+    </tg.XStack>
   ) : (
-    <YStack gap="$4" ai="center">
-      <H3>Free Limit Reached</H3>
-      <Paragraph>
+    <tg.YStack gap="$4" ai="center">
+      <tg.H3>Free Limit Reached</tg.H3>
+      <tg.Paragraph>
         The free version is for evaluation purposes only and only allows up to 5
         posts. To add more posts please purchase a license.
-      </Paragraph>
-      <Button onPress={navigateToPurchase}>Purchase</Button>
-    </YStack>
+      </tg.Paragraph>
+      <tg.Button onPress={navigateToPurchase}>Purchase</tg.Button>
+    </tg.YStack>
   );
 }

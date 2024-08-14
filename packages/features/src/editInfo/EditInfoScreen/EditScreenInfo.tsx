@@ -2,32 +2,32 @@ import React from "react";
 
 import { ExternalLink } from "../../components/ExternalLink";
 
-import { Card, Text, YStack } from "@boundbybetter/ui";
+import { tg } from "@boundbybetter/ui";
 
 export function EditScreenInfo({ path }: { path: string }) {
   return (
-    <YStack gap="$4">
-      <Text my="$2" mt="$6" mx="$8">
+    <tg.YStack gap="$4">
+      <tg.Text my="$2" mt="$6" mx="$8">
         Open up the code for this screen:
-      </Text>
+      </tg.Text>
 
-      <Text my="$2" mx="$8">
+      <tg.Text my="$2" mx="$8">
         {path}
-      </Text>
+      </tg.Text>
 
-      <Text my="$2" mx="$8">
+      <tg.Text my="$2" mx="$8">
         Change any of the text, save the file, and your app will automatically
         update.
-      </Text>
+      </tg.Text>
 
-      <Card m="$4" mt="$0" p="$4">
+      <tg.Card m="$4" mt="$0" p="$4">
         <ExternalLink href="https://docs.expo.io/get-started/create-a-new-app/#opening-the-app-on-your-phonetablet">
-          <Text m="$4">
+          <tg.Text m="$4">
             Tap here if your app doesn't automatically update after making
             changes
-          </Text>
+          </tg.Text>
         </ExternalLink>
-      </Card>
-    </YStack>
+      </tg.Card>
+    </tg.YStack>
   );
 }

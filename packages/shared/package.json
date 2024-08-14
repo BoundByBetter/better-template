@@ -6,8 +6,7 @@
   "license": "MIT",
   "scripts": {
     "lint": "eslint .",
-    "clean": "npx rimraf ./dist",
-    "build": "npx tsc --build",
+    "build": "tsc",
     "test": "npx jest --color",
     "cover": "npx jest --color --coverage"
   },
@@ -23,8 +22,7 @@
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-prettier": "^5.2.1",
     "jest": "^29.7.0",
-    "prettier": "^3.3.3",
-    "rimraf": "^6.0.1"
+    "prettier": "^3.3.3"
   },
   "jest": {
     "preset": "jest-expo",

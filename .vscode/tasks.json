@@ -2,60 +2,61 @@
   "version": "2.0.0",
   "tasks": [
     {
-      "label": "lint:all",
+      "label": "build",
       "type": "shell",
-      "command": "yarn",
-      "args": [
-        "workspaces",
-        "foreach",
-        "--all",
-        "--parallel",
-        "run",
-        "lint"
-      ],
+      "command": "tsc",
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
       "problemMatcher": [
-        {
-          "owner": "eslint",
-          "fileLocation": ["relative", "${workspaceFolder}"],
-          "pattern": [
-            {
-              "regexp": "^\\[\\@.*\\]:\\s/workspaces/better-template/(.*)$",
-              "file": 1
-            },
-            {
-              "regexp": "^\\[\\@.*\\]:\\s*(\\d+):(\\d+)\\s+(warning|error)\\s+(.*)$",
-              "line": 1,
-              "column": 2,
-              "severity": 3,
-              "message": 4
-            }
-          ]
-        }
+        "$tsc"
       ],
-      "group": "build",
-      "presentation": {
-        "reveal": "always",
-        "panel": "shared"
-      }
+      "detail": "Compiling..."
     },
     {
-      "label": "build: all packages",
+      "label": "build-watch",
       "type": "shell",
-      "command": "yarn",
-      "args": [
-        "workspaces",
-        "foreach",
-        "--all",
-        "--parallel",
-        "run",
-        "build"
+      "command": "tsc -w",
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "problemMatcher": [
+        "$tsc"
       ],
-      "problemMatcher": [],
-      "group": "build",
-      "presentation": {
-        "reveal": "always",
-        "panel": "shared"
-      }
+      "detail": "Watching..."
+    },
+    {
+      "label": "lint",
+      "type": "shell",
+      "command": "npx eslint",
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "problemMatcher": [
+        "$eslint-stylish"
+      ],
+      "detail": "Linting..."
+    },
+    {
+      "label": "lint-watch",
+      "type": "shell",
+      "command": "watch",
+      "args": [
+        "-n",
+        "1", // Interval in seconds
+        "npx eslint ."
+      ],
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "problemMatcher": [
+        "$eslint-stylish"
+      ],
+      "detail": "Watching..."
     }
   ]
 }

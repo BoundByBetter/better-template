@@ -2,7 +2,7 @@ import React from "react";
 import { StyleSheet } from "react-native";
 import { Image } from "expo-image";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import { H1, View, XStack } from "@boundbybetter/ui";
+import { tg } from "@boundbybetter/ui";
 
 export function SiteBanner() {
   // const dispatch = useAppDispatch();
@@ -22,20 +22,20 @@ export function SiteBanner() {
   });
 
   return (
-    <XStack
+    <tg.XStack
       ai="center"
       mt={insets.top}
       ml={insets.left}
       mr={insets.right}
       mb={insets.bottom}
     >
-      <View m="$2" ml="$4">
+      <tg.View m="$2" ml="$4">
         <Image
           source={require("../../../assets/images/banner-icon.png")}
           style={styles.appIcon}
         />
-      </View>
-      <H1 m="$2">Bound By Better</H1>
+      </tg.View>
+      <tg.H1 m="$2">Bound By Better</tg.H1>
       {/* <Text style={styles.textLg}>Hello there {user?.userName},</Text>
       <Pressable 
         onPress={handleSignOut}
@@ -46,6 +46,6 @@ export function SiteBanner() {
       <View>
         <Text>Username: {user?.userName}</Text>
       </View> */}
-    </XStack>
+    </tg.XStack>
   );
 }

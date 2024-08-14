@@ -7,21 +7,34 @@
   "private": true,
   "packageManager": "yarn@4.3.1",
   "scripts": {
-    "lint:all": "yarn workspaces foreach --all --parallel run lint",
-    "test:all": "yarn workspaces foreach --all --parallel run test",
-    "clean:packages": "yarn workspaces foreach --all --parallel --include \"./packages/*\" run clean",
-    "build:packages": "yarn workspaces foreach --all --parallel --include \"./packages/*\" run build",
-    "test:packages": "yarn workspaces foreach --all --parallel --include \"./packages/*\" run test",
-    "cover:packages": "yarn workspaces foreach --all --parallel --include \"./packages/*\" run cover",
-    "view:coverage": "npx serve ./coverage/lcov-report",
+    "lint": "eslint .",
+    "build": "tsc -b",
+    "test": "jest --color",
+    "cover": "jest --color --coverage",
     "view:coverage:features": "npx serve ./coverage/features/lcov-report",
     "view:coverage:state": "npx serve ./coverage/state/lcov-report",
     "view:coverage:shared": "npx serve ./coverage/shared/lcov-report",
+    "view:coverage:app": "npx serve ./coverage/app/lcov-report",
+    "view:coverage:site": "npx serve ./coverage/site/lcov-report",
     "start:app:web": "yarn workspace @boundbybetter/app run web"
   },
   "resolutions": {
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-native": "0.74.3"
+  },
+  "devDependencies": {
+    "@testing-library/jest-native": "^5.4.3",
+    "@types/eslint": "^8",
+    "@types/react": "~18.2.0",
+    "@types/react-test-renderer": "^18",
+    "eslint": "^8.57.0",
+    "eslint-config-expo": "^7.1.2",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-prettier": "^5.2.1",
+    "globals": "^15.9.0",
+    "jest": "^29.2.1",
+    "prettier": "^3.3.3",
+    "react-test-renderer": "~18.2.0"
   }
 }

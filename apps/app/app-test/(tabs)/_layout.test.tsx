@@ -9,6 +9,14 @@ import { tg } from "@boundbybetter/ui";
 import { describe, it, beforeEach, expect } from "@jest/globals";
 import path from "path";
 
+jest.mock(
+  "@tamagui/font-inter/otf/Inter-Medium.otf",
+  () => "mocked-inter-font",
+);
+jest.mock(
+  "@tamagui/font-inter/otf/Inter-Bold.otf",
+  () => "mocked-inter-bold-font",
+);
 jest.mock("expo-font", () => {
   const actual = jest.requireActual("expo-font");
   return {

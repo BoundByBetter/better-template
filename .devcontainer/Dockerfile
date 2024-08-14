@@ -87,3 +87,5 @@ RUN npm install -g esbuild
 RUN gmsaas config set android-sdk-path /home/node/Android/Sdk
 
 RUN npm install -g netlify-cli
+
+RUN npm install -g nodemon

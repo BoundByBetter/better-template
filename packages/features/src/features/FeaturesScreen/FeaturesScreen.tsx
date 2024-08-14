@@ -1,6 +1,6 @@
 import { FeatureList } from "../FeatureList";
 import { ScrollView } from "react-native";
-import { YStack } from "@boundbybetter/ui";
+import { tg } from "@boundbybetter/ui";
 
 export function FeaturesScreen() {
   return (
@@ -8,9 +8,9 @@ export function FeaturesScreen() {
       contentInsetAdjustmentBehavior="automatic"
       style={{ alignSelf: "stretch", margin: 12 }}
     >
-      <YStack gap="$4">
+      <tg.YStack gap="$4">
         <FeatureList />
-      </YStack>
+      </tg.YStack>
     </ScrollView>
   );
 }

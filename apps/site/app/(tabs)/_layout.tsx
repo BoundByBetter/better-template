@@ -4,23 +4,14 @@ import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { Drawer } from "expo-router/drawer";
 
 import { SiteBanner } from "@boundbybetter/features";
-import {
-  BookOpen,
-  Button,
-  Info,
-  MessageCircle,
-  Settings,
-  YStack,
-  useMedia,
-  useTheme,
-} from "@boundbybetter/ui";
+import { BookOpen, Info, MessageCircle, Settings, tg } from "@boundbybetter/ui";
 
 // You can explore the built-in icon families and icons on the web at https://icons.expo.fyi/
 export default function TabLayout() {
-  const theme = useTheme();
-  const accentColor = theme.accentColor.get();
-  const backgroundColor = theme.backgroundColor?.get();
-  const media = useMedia();
+  const theme = tg.useTheme();
+  const accentColor = theme.accentColor;
+  const backgroundColor = theme.background.val;
+  const media = tg.useMedia();
   if (media.gtMd) {
     // Use a basic custom layout on web.
     return (
@@ -42,9 +33,9 @@ export default function TabLayout() {
               title: "Home",
               headerRight: () => (
                 <Link href="/modal" asChild>
-                  <Button unstyled p="$0" m="$4">
+                  <tg.Button unstyled p="$0" m="$4">
                     <Info color={accentColor} testID="info-icon" />
-                  </Button>
+                  </tg.Button>
                 </Link>
               ),
             }}
@@ -66,7 +57,7 @@ export default function TabLayout() {
     );
   }
   return (
-    <YStack f={1}>
+    <tg.YStack f={1}>
       <Tabs
         screenOptions={{
           // Disable the static render of the header on web
@@ -85,9 +76,9 @@ export default function TabLayout() {
             tabBarIcon: ({ color }) => <MessageCircle color={color} />,
             headerRight: () => (
               <Link href="/modal" asChild>
-                <Button unstyled p="$0" m="$4">
+                <tg.Button unstyled p="$0" m="$4">
                   <Info color={accentColor} testID="info-icon" />
-                </Button>
+                </tg.Button>
               </Link>
             ),
           }}
@@ -107,6 +98,6 @@ export default function TabLayout() {
           }}
         />
       </Tabs>
-    </YStack>
+    </tg.YStack>
   );
 }

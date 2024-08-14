@@ -1,7 +1,7 @@
 // Added next 3 lines for tamagui.
 // Removing to get tests to pass.
 // import '../tamagui-web.css'
-import { TamaguiProvider, colors, tamaguiConfig } from "@boundbybetter/ui";
+import { tg, colors, tamaguiConfig } from "@boundbybetter/ui";
 // import { tamaguiConfig } from '../tamagui.config'
 
 import FontAwesome from "@expo/vector-icons/FontAwesome";
@@ -77,7 +77,7 @@ function RootLayoutNav() {
   //DefaultTheme.colors.background = colorScheme === 'dark' ? '#000000' : '#b8dff6';
 
   return (
-    <TamaguiProvider
+    <tg.TamaguiProvider
       config={tamaguiConfig}
       defaultTheme={
         /*istanbul ignore next*/ colorScheme === "dark"
@@ -99,6 +99,6 @@ function RootLayoutNav() {
           </Stack>
         </MyState>
       </ThemeProvider>
-    </TamaguiProvider>
+    </tg.TamaguiProvider>
   );
 }

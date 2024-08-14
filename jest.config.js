@@ -1,10 +1,24 @@
 module.exports = {
-  projects: [
-    "<rootDir>/apps/app/test/jest.config.ts",
-    "<rootDir>/apps/site",
-    "<rootDir>/packages/shared",
-    "<rootDir>/packages/features",
-    "<rootDir>/packages/state",
-    "<rootDir>/packages/ui",
+  preset: "jest-expo",
+  setupFilesAfterEnv: [
+    "@testing-library/jest-native/extend-expect",
+    "./jest.setup.tsx",
   ],
+  transformIgnorePatterns: [
+    "node_modules/(?!((jest-)?react-native|@react-native(-community)?)|expo(nent)?|@expo(nent)?/.*|@expo-google-fonts/.*|react-navigation|@react-navigation/.*|@unimodules/.*|unimodules|sentry-expo|native-base|react-native-svg|react-redux)",
+  ],
+  transform: {
+    "^.+\\.[tj]sx?$": ["babel-jest", { configFile: "./babel.config.js" }],
+  },
+  moduleNameMapper: {
+    "^@boundbybetter/(.*)$": "<rootDir>/packages/$1/src",
+  },
+  coverageThreshold: {
+    global: {
+      statements: 100,
+      branches: 100,
+      functions: 100,
+      lines: 100,
+    },
+  },
 };

@@ -6,8 +6,7 @@
   "license": "MIT",
   "scripts": {
     "lint": "eslint .",
-    "clean": "rimraf ./dist",
-    "build": "tsc --build"
+    "build": "tsc"
   },
   "private": true,
   "dependencies": {
@@ -17,7 +16,6 @@
     "react": "~18.2.0",
     "react-native": "0.74.3",
     "react-native-svg": "^15.4.0",
-    "rimraf": "^6.0.1",
     "tamagui": "^1.106.0"
   },
   "devDependencies": {

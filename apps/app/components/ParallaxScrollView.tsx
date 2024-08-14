@@ -8,6 +8,7 @@ import Animated, {
 } from "react-native-reanimated";
 
 import { ThemedView } from "./ThemedView";
+import { DefaultStyle } from "react-native-reanimated/lib/typescript/reanimated2/hook/commonTypes";
 
 const HEADER_HEIGHT = 250;
 
@@ -43,7 +44,7 @@ export default function ParallaxScrollView({
           ),
         },
       ],
-    };
+    } as DefaultStyle;
   });
 
   return (

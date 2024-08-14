@@ -1,10 +1,10 @@
 import { EditScreenInfo } from "@boundbybetter/features";
-import { H3, Separator, YStack } from "@boundbybetter/ui";
+import { tg } from "@boundbybetter/ui";
 
 export default function DocsTab() {
   return (
-    <YStack>
+    <tg.YStack>
       <EditScreenInfo path="app/(tabs)/docs.tsx" />
-    </YStack>
+    </tg.YStack>
   );
 }
