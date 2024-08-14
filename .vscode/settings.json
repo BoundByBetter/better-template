@@ -6,7 +6,6 @@
   "jest.jestCommandLine": "node_modules/.bin/jest",
   "jest.rootPath": "./",
   "jest.runMode": {
-    "coverage": true,
     "type": "watch"
   },
   "coverage-gutters.coverageBaseDir": "**/coverage",
