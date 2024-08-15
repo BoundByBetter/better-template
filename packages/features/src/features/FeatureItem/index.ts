@@ -1,1 +1,1 @@
-export { FeatureItem } from "./FeatureItem";
+export { FeatureItem } from './FeatureItem';

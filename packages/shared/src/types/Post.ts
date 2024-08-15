@@ -1,6 +1,6 @@
 /* istanbul ignore file */
-import { PostStatus } from "./PostStatus";
-import { StateObject } from "./StateObject";
+import { PostStatus } from './PostStatus';
+import { StateObject } from './StateObject';
 
 export interface Post extends StateObject {
   title: string;

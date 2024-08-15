@@ -1,12 +1,12 @@
-import React from "react";
-import { WebSplashScreen } from "./WebSplashScreen";
-import { renderWithTamagui } from "../../renderWithTamagui.test-util";
+import React from 'react';
+import { WebSplashScreen } from './WebSplashScreen';
+import { renderWithTamagui } from '../../renderWithTamagui.test-util';
 
-jest.mock("expo-image");
+jest.mock('expo-image');
 
-describe("WebSplashScreen", () => {
-  it("should render the splash screen", () => {
+describe('WebSplashScreen', () => {
+  it('should render the splash screen', () => {
     const { getByTestId } = renderWithTamagui(<WebSplashScreen />);
-    expect(getByTestId("web-splash-screen")).toBeTruthy();
+    expect(getByTestId('web-splash-screen')).toBeTruthy();
   });
 });

@@ -2,10 +2,10 @@ import {
   PayloadAction,
   createEntityAdapter,
   createSlice,
-} from "@reduxjs/toolkit";
-import { Posts } from "./Posts";
-import { RootState } from "../store";
-import { comparePosts } from "./comparePosts";
+} from '@reduxjs/toolkit';
+import { Posts } from './Posts';
+import { RootState } from '../store';
+import { comparePosts } from './comparePosts';
 import {
   Post,
   compareStringArrays,
@@ -15,7 +15,7 @@ import {
   postDeleted,
   postDeletedViaSync,
   postsLoadedViaSync,
-} from "@boundbybetter/shared";
+} from '@boundbybetter/shared';
 
 const postsAdapter = createEntityAdapter<Post>({
   sortComparer: (a, b) => {
@@ -31,18 +31,18 @@ const postsAdapter = createEntityAdapter<Post>({
 const initialState: Posts = postsAdapter.getInitialState({
   ids: [],
   entities: {},
-  status: "idle",
+  status: 'idle',
   error: null,
 });
 
 const postsSlice = createSlice({
-  name: "posts",
+  name: 'posts',
   initialState,
   reducers: {},
   extraReducers: (builder) => {
     builder
       .addCase(postAdded, (state, action) => {
-        logCall("postsSlice.addPost", action.payload);
+        logCall('postsSlice.addPost', action.payload);
         if (action.payload.createdAt === undefined) {
           action.payload.createdAt = new Date().toISOString();
         }
@@ -52,26 +52,26 @@ const postsSlice = createSlice({
         // state.ids.unshift(action.payload.id);
       })
       .addCase(postDeleted, (state, action) => {
-        logCall("postsSlice.deletePost", action.payload);
+        logCall('postsSlice.deletePost', action.payload);
         postsAdapter.removeOne(state, action.payload.id);
       })
       .addCase(postDeletedViaSync, (state, action) => {
-        logCall("postsSlice.postDeletedViaSync", action.payload);
+        logCall('postsSlice.postDeletedViaSync', action.payload);
         postsAdapter.removeOne(state, action.payload.id);
       })
       .addCase(
         postAddedOrUpdatedViaSync,
         (state, action: PayloadAction<Post>) => {
-          logCall("postsSlice.postAddedOrUpdatedViaSync", action.payload);
+          logCall('postsSlice.postAddedOrUpdatedViaSync', action.payload);
           const post = state.entities[action.payload.id];
           if (comparePosts(post, action.payload) === false) {
-            logCall("postsSlice.postAddedOrUpdatedViaSync.upsertOne");
+            logCall('postsSlice.postAddedOrUpdatedViaSync.upsertOne');
             postsAdapter.upsertOne(state, action.payload);
           }
         },
       )
       .addCase(postsLoadedViaSync, (state, action) => {
-        logCall("postsSlice.postsLoadedViaSync");
+        logCall('postsSlice.postsLoadedViaSync');
         const posts = action.payload;
         const postIds = posts.map((post) => post.id);
         if (!compareStringArrays(state.ids, postIds)) {
@@ -79,7 +79,7 @@ const postsSlice = createSlice({
             (id) => postIds.includes(id) === false,
           );
           activityIdsToRemove.forEach((id) => {
-            logCall("postsSlice.postsLoadedViaSync.delete", id);
+            logCall('postsSlice.postsLoadedViaSync.delete', id);
             delete state.entities[id];
           });
           const activityIdsToAdd = postIds.filter(
@@ -89,7 +89,7 @@ const postsSlice = createSlice({
             const newPost = posts.find((post) => post.id === id);
             /* istanbul ignore else */
             if (newPost !== undefined) {
-              logCall("postsSlice.postsLoadedViaSync.add", newPost);
+              logCall('postsSlice.postsLoadedViaSync.add', newPost);
               state.entities[id] = newPost;
             }
           });
@@ -105,7 +105,7 @@ const postsSlice = createSlice({
             newPost !== undefined &&
             comparePosts(state.entities[id], newPost) === false
           ) {
-            logCall("postsSlice.postsLoadedViaSync.update", newPost);
+            logCall('postsSlice.postsLoadedViaSync.update', newPost);
             state.entities[id] = newPost;
           }
         });

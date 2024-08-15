@@ -1,6 +1,6 @@
-import { PostsScreen } from "@boundbybetter/features";
-import { tg } from "@boundbybetter/ui";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { PostsScreen } from '@boundbybetter/features';
+import { tg } from '@boundbybetter/ui';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 export default function PostsTab() {
   const insets = useSafeAreaInsets();

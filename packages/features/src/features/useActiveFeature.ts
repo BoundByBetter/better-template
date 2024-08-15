@@ -1,6 +1,6 @@
-import { selectFeatureById, useAppSelector } from "@boundbybetter/state";
-import { features } from "./Features";
-import { FeatureStatus } from "@boundbybetter/shared";
+import { selectFeatureById, useAppSelector } from '@boundbybetter/state';
+import { features } from './Features';
+import { FeatureStatus } from '@boundbybetter/shared';
 
 export const useActiveFeature = (featureKey: string): boolean => {
   const featureDetail = features[featureKey];

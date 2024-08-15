@@ -1,1 +1,1 @@
-process.env.LOGGING = "false";
+process.env.LOGGING = 'false';

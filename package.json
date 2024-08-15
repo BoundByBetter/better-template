@@ -14,6 +14,7 @@
     "start:app": "yarn workspace @boundbybetter/app run start",
     "start:app:web": "yarn workspace @boundbybetter/app run web",
     "start:app:android": "yarn workspace @boundbybetter/app run android",
+    "start:cypress:app": "yarn workspace @boundbybetter/app run cypress open",
     "start:site": "yarn workspace @boundbybetter/site run start",
     "start:site:web": "yarn workspace @boundbybetter/site run web",
     "start:site:android": "yarn workspace @boundbybetter/site run android"

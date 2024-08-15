@@ -1,8 +1,8 @@
-import { Action, ThunkAction, configureStore } from "@reduxjs/toolkit";
-import { postsReducer } from "./posts/postsSlice";
+import { Action, ThunkAction, configureStore } from '@reduxjs/toolkit';
+import { postsReducer } from './posts/postsSlice';
 //import { syncReducer } from '@boundbybetter/backend'
-import { userReducer } from "./user/userSlice";
-import { featuresReducer } from "./features/featuresSlice";
+import { userReducer } from './user/userSlice';
+import { featuresReducer } from './features/featuresSlice';
 // ...
 
 export const store = configureStore({

@@ -1,7 +1,7 @@
-import { FeatureItem } from "../FeatureItem";
-import { AddFeature } from "../AddFeature";
-import { selectAllFeatures, useAppSelector } from "@boundbybetter/state";
-import { tg } from "@boundbybetter/ui";
+import { FeatureItem } from '../FeatureItem';
+import { AddFeature } from '../AddFeature';
+import { selectAllFeatures, useAppSelector } from '@boundbybetter/state';
+import { tg } from '@boundbybetter/ui';
 
 export function FeatureList() {
   const features = useAppSelector(selectAllFeatures);

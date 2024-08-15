@@ -1,5 +1,5 @@
 //import { signOut } from "@boundbybetter/backend";
-import { tg } from "@boundbybetter/ui";
+import { tg } from '@boundbybetter/ui';
 
 export function AccessDenied() {
   return (
@@ -10,7 +10,7 @@ export function AccessDenied() {
         that does.
       </tg.Text>
       <tg.Button
-        $gtSm={{ height: "100%" }}
+        $gtSm={{ height: '100%' }}
         //onPress={signOut}
         testID="access-denied.sign-out"
       >

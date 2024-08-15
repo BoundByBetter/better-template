@@ -1,5 +1,5 @@
-import { EditScreenInfo } from "@boundbybetter/features";
-import { tg } from "@boundbybetter/ui";
+import { EditScreenInfo } from '@boundbybetter/features';
+import { tg } from '@boundbybetter/ui';
 
 export default function TabTwoScreen() {
   return (

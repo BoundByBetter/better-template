@@ -1,5 +1,5 @@
 /* istanbul ignore file */
 export enum FeatureStatus {
-  ACTIVE = "ACTIVE",
-  INACTIVE = "INACTIVE",
+  ACTIVE = 'ACTIVE',
+  INACTIVE = 'INACTIVE',
 }

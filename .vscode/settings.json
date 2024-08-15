@@ -8,13 +8,13 @@
   "jest.runMode": {
     "type": "watch"
   },
-  "coverage-gutters.coverageBaseDir": "**/coverage",
+  "coverage-gutters.coverageBaseDir": "**/coverage"
   // "eslint.workingDirectories": [
-  //   "apps/app", 
-  //   "apps/site", 
-  //   "packages/shared", 
-  //   "packages/ui", 
-  //   "packages/state", 
+  //   "apps/app",
+  //   "apps/site",
+  //   "packages/shared",
+  //   "packages/ui",
+  //   "packages/state",
   //   "packages/features"
   // ],
   // "editor.codeActionsOnSave": {

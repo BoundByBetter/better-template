@@ -1,14 +1,14 @@
-import { useState } from "react";
-import { useAppDispatch } from "@boundbybetter/state";
-import { nanoid } from "@reduxjs/toolkit";
-import { Feature, FeatureStatus, featureAdded } from "@boundbybetter/shared";
-import { logMessage } from "@boundbybetter/shared";
-import { tg } from "@boundbybetter/ui";
-import { Check, ChevronDown } from "@tamagui/lucide-icons";
+import { useState } from 'react';
+import { useAppDispatch } from '@boundbybetter/state';
+import { nanoid } from '@reduxjs/toolkit';
+import { Feature, FeatureStatus, featureAdded } from '@boundbybetter/shared';
+import { logMessage } from '@boundbybetter/shared';
+import { tg } from '@boundbybetter/ui';
+import { Check, ChevronDown } from '@tamagui/lucide-icons';
 
 export function AddFeature() {
-  const [newFeatureName, setNewFeatureName] = useState("");
-  const [newFeatureStatus, setNewFeatureStatus] = useState("INACTIVE");
+  const [newFeatureName, setNewFeatureName] = useState('');
+  const [newFeatureStatus, setNewFeatureStatus] = useState('INACTIVE');
   const dispatch = useAppDispatch();
   const createFeature = () => {
     const feature: Feature = {
@@ -19,7 +19,7 @@ export function AddFeature() {
       createdAt: new Date().toISOString(),
     };
     dispatch(featureAdded(feature));
-    logMessage("Feature saved successfully!", feature);
+    logMessage('Feature saved successfully!', feature);
   };
   const native = false;
   return (
@@ -51,7 +51,7 @@ export function AddFeature() {
             modal
             dismissOnSnapToBottom
             animationConfig={{
-              type: "spring",
+              type: 'spring',
               damping: 20,
               mass: 1.2,
               stiffness: 250,

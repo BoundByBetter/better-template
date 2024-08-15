@@ -1,8 +1,8 @@
-import { Post, postDeleted } from "@boundbybetter/shared";
-import { useAppDispatch } from "@boundbybetter/state";
-import { tg } from "@boundbybetter/ui";
-import moment from "moment";
-import { Platform } from "react-native";
+import { Post, postDeleted } from '@boundbybetter/shared';
+import { useAppDispatch } from '@boundbybetter/state';
+import { tg } from '@boundbybetter/ui';
+import moment from 'moment';
+import { Platform } from 'react-native';
 
 export interface PostProps {
   post: Post;
@@ -21,7 +21,7 @@ export function PostItem(props: PostProps) {
           f={1}
           p="$4"
           pr="$0"
-          $gtSm={{ flexDirection: "row", alignItems: "center" }}
+          $gtSm={{ flexDirection: 'row', alignItems: 'center' }}
         >
           <tg.Text f={1} testID="post-item.title">
             {props.post.title}
@@ -31,10 +31,10 @@ export function PostItem(props: PostProps) {
             mt="$4"
             $gtSm={{
               flex: -1,
-              marginTop: "$0",
-              marginLeft: "$4",
-              flexDirection: "row",
-              alignItems: "center",
+              marginTop: '$0',
+              marginLeft: '$4',
+              flexDirection: 'row',
+              alignItems: 'center',
             }}
           >
             <tg.Text
@@ -42,7 +42,7 @@ export function PostItem(props: PostProps) {
               // Fixes a layout bug on mobile.  if this is set to 1, the title compresses.
               $gtSm={{
                 flex:
-                  /*istanbul ignore next*/ Platform.OS === "web"
+                  /*istanbul ignore next*/ Platform.OS === 'web'
                     ? undefined
                     : -1,
               }}
@@ -51,14 +51,14 @@ export function PostItem(props: PostProps) {
               Stewart Armbrecht
             </tg.Text>
             <tg.Text
-              $gtSm={{ alignSelf: "flex-end", paddingRight: "$4" }}
+              $gtSm={{ alignSelf: 'flex-end', paddingRight: '$4' }}
               pl="$4"
             >
               {moment(props.post.createdAt).fromNow()}
             </tg.Text>
           </tg.Stack>
         </tg.Stack>
-        <tg.Button $gtSm={{ height: "100%" }} onPress={deletePostHandler}>
+        <tg.Button $gtSm={{ height: '100%' }} onPress={deletePostHandler}>
           X
         </tg.Button>
       </tg.Card>

@@ -1,8 +1,8 @@
-import React from "react";
+import React from 'react';
 
-import { ExternalLink } from "../../components/ExternalLink";
+import { ExternalLink } from '../../components/ExternalLink';
 
-import { tg } from "@boundbybetter/ui";
+import { tg } from '@boundbybetter/ui';
 
 export function EditScreenInfo({ path }: { path: string }) {
   return (

@@ -1,17 +1,17 @@
 module.exports = {
-  preset: "jest-expo",
+  preset: 'jest-expo',
   setupFilesAfterEnv: [
-    "@testing-library/jest-native/extend-expect",
-    "./jest.setup.tsx",
+    '@testing-library/jest-native/extend-expect',
+    './jest.setup.tsx',
   ],
   transformIgnorePatterns: [
-    "node_modules/(?!((jest-)?react-native|@react-native(-community)?)|expo(nent)?|@expo(nent)?/.*|@expo-google-fonts/.*|react-navigation|@react-navigation/.*|@unimodules/.*|unimodules|sentry-expo|native-base|react-native-svg|react-redux)",
+    'node_modules/(?!((jest-)?react-native|@react-native(-community)?)|expo(nent)?|@expo(nent)?/.*|@expo-google-fonts/.*|react-navigation|@react-navigation/.*|@unimodules/.*|unimodules|sentry-expo|native-base|react-native-svg|react-redux)',
   ],
   transform: {
-    "^.+\\.[tj]sx?$": ["babel-jest", { configFile: "./babel.config.js" }],
+    '^.+\\.[tj]sx?$': ['babel-jest', { configFile: './babel.config.js' }],
   },
   moduleNameMapper: {
-    "^@boundbybetter/(.*)$": "<rootDir>/packages/$1/src",
+    '^@boundbybetter/(.*)$': '<rootDir>/packages/$1/src',
   },
   coverageThreshold: {
     global: {
@@ -22,9 +22,9 @@ module.exports = {
     },
   },
   collectCoverageFrom: [
-    "apps/*/app/**/*.{js,jsx,ts,tsx}",
-    "apps/*/app-test/**/*.{js,jsx,ts,tsx}",
-    "packages/*/src/**/*.{js,jsx,ts,tsx}",
-    "!src/index.tsx",
+    'apps/*/app/**/*.{js,jsx,ts,tsx}',
+    'apps/*/app-test/**/*.{js,jsx,ts,tsx}',
+    'packages/*/src/**/*.{js,jsx,ts,tsx}',
+    '!src/index.tsx',
   ],
 };

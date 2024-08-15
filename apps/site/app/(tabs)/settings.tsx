@@ -1,6 +1,6 @@
-import { Settings } from "@boundbybetter/features";
-import { tg } from "@boundbybetter/ui";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { Settings } from '@boundbybetter/features';
+import { tg } from '@boundbybetter/ui';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 export default function SettingsTab() {
   const insets = useSafeAreaInsets();
   return (

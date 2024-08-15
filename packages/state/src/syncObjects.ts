@@ -2,8 +2,8 @@ import {
   compareStringArrays,
   logCall,
   StateObject,
-} from "@boundbybetter/shared";
-import { StateObjectCollection } from "./StateObjectCollection";
+} from '@boundbybetter/shared';
+import { StateObjectCollection } from './StateObjectCollection';
 export function syncObjects<T extends StateObject>(
   objectName: string,
   remoteObjects: T[],

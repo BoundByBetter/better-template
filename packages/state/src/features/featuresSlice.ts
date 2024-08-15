@@ -2,8 +2,8 @@ import {
   PayloadAction,
   createEntityAdapter,
   createSlice,
-} from "@reduxjs/toolkit";
-import { RootState } from "../store";
+} from '@reduxjs/toolkit';
+import { RootState } from '../store';
 import {
   Feature,
   logCall,
@@ -12,9 +12,9 @@ import {
   featureDeleted,
   featureDeletedViaSync,
   featuresLoadedViaSync,
-} from "@boundbybetter/shared";
-import { StateObjectCollection } from "../StateObjectCollection";
-import { syncObjects } from "../syncObjects";
+} from '@boundbybetter/shared';
+import { StateObjectCollection } from '../StateObjectCollection';
+import { syncObjects } from '../syncObjects';
 
 const featuresAdapter = createEntityAdapter<Feature>({
   sortComparer: (a, b) => {
@@ -31,18 +31,18 @@ const initialState: StateObjectCollection<Feature> =
   featuresAdapter.getInitialState({
     ids: [],
     entities: {},
-    status: "idle",
+    status: 'idle',
     error: null,
   });
 
 const featuresSlice = createSlice({
-  name: "features",
+  name: 'features',
   initialState,
   reducers: {},
   extraReducers: (builder) => {
     builder
       .addCase(featureAdded, (state, action) => {
-        logCall("featuresSlice.addFeature", action.payload);
+        logCall('featuresSlice.addFeature', action.payload);
         if (action.payload.createdAt === undefined) {
           action.payload.createdAt = new Date().toISOString();
         }
@@ -52,29 +52,29 @@ const featuresSlice = createSlice({
         // state.ids.unshift(action.payload.id);
       })
       .addCase(featureDeleted, (state, action) => {
-        logCall("featuresSlice.deleteFeature", action.payload);
+        logCall('featuresSlice.deleteFeature', action.payload);
         featuresAdapter.removeOne(state, action.payload.id);
       })
       .addCase(featureDeletedViaSync, (state, action) => {
-        logCall("featuresSlice.featureDeletedViaSync", action.payload);
+        logCall('featuresSlice.featureDeletedViaSync', action.payload);
         featuresAdapter.removeOne(state, action.payload.id);
       })
       .addCase(
         featureAddedOrUpdatedViaSync,
         (state, action: PayloadAction<Feature>) => {
-          logCall("featuresSlice.featureAddedOrUpdatedViaSync", action.payload);
+          logCall('featuresSlice.featureAddedOrUpdatedViaSync', action.payload);
           const feature = state.entities[action.payload.id];
           if (
             (JSON.stringify(feature) === JSON.stringify(action.payload)) ===
             false
           ) {
-            logCall("featuresSlice.featureAddedOrUpdatedViaSync.upsertOne");
+            logCall('featuresSlice.featureAddedOrUpdatedViaSync.upsertOne');
             featuresAdapter.upsertOne(state, action.payload);
           }
         },
       )
       .addCase(featuresLoadedViaSync, (state, action) => {
-        const objectName = "features";
+        const objectName = 'features';
         syncObjects(objectName, action.payload, state);
       });
   },

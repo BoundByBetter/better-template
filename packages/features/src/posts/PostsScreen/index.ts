@@ -1,1 +1,1 @@
-export { PostsScreen } from "./PostsScreen";
+export { PostsScreen } from './PostsScreen';

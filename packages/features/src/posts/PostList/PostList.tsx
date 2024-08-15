@@ -1,7 +1,7 @@
-import { PostItem } from "../PostItem";
-import { AddPost } from "../AddPost";
-import { selectAllPosts, useAppSelector } from "@boundbybetter/state";
-import { tg } from "@boundbybetter/ui";
+import { PostItem } from '../PostItem';
+import { AddPost } from '../AddPost';
+import { selectAllPosts, useAppSelector } from '@boundbybetter/state';
+import { tg } from '@boundbybetter/ui';
 
 export function PostList() {
   const posts = useAppSelector(selectAllPosts);

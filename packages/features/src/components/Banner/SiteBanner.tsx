@@ -1,8 +1,8 @@
-import React from "react";
-import { StyleSheet } from "react-native";
-import { Image } from "expo-image";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
-import { tg } from "@boundbybetter/ui";
+import React from 'react';
+import { StyleSheet } from 'react-native';
+import { Image } from 'expo-image';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { tg } from '@boundbybetter/ui';
 
 export function SiteBanner() {
   // const dispatch = useAppDispatch();
@@ -31,7 +31,7 @@ export function SiteBanner() {
     >
       <tg.View m="$2" ml="$4">
         <Image
-          source={require("../../../assets/images/banner-icon.png")}
+          source={require('../../../assets/images/banner-icon.png')}
           style={styles.appIcon}
         />
       </tg.View>

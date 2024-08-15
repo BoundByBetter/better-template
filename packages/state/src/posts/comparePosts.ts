@@ -1,4 +1,4 @@
-import { Post } from "@boundbybetter/shared";
+import { Post } from '@boundbybetter/shared';
 
 export function comparePosts(
   a: Post | undefined,

@@ -1,6 +1,6 @@
 /* istanbul ignore file */
-import { Post } from "@boundbybetter/shared";
-import { SerializedError } from "@reduxjs/toolkit";
+import { Post } from '@boundbybetter/shared';
+import { SerializedError } from '@reduxjs/toolkit';
 
 export interface Posts {
   ids: string[];

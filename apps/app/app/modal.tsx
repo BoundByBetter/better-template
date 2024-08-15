@@ -1,8 +1,8 @@
-import { StatusBar } from "expo-status-bar";
-import { Platform } from "react-native";
+import { StatusBar } from 'expo-status-bar';
+import { Platform } from 'react-native';
 
-import { EditScreenInfo } from "@boundbybetter/features";
-import { tg } from "@boundbybetter/ui";
+import { EditScreenInfo } from '@boundbybetter/features';
+import { tg } from '@boundbybetter/ui';
 
 export default function ModalScreen() {
   return (
@@ -14,7 +14,7 @@ export default function ModalScreen() {
       {/* Use a light status bar on iOS to account for the black space above the modal */}
       <StatusBar
         style={
-          /*istanbul ignore next*/ Platform.OS === "ios" ? "light" : "auto"
+          /*istanbul ignore next*/ Platform.OS === 'ios' ? 'light' : 'auto'
         }
       />
     </tg.YStack>

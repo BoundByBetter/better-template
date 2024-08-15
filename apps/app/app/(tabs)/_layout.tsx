@@ -1,9 +1,9 @@
-import { Link, Tabs } from "expo-router";
-import { GestureHandlerRootView } from "react-native-gesture-handler";
-import { Drawer } from "expo-router/drawer";
+import { Link, Tabs } from 'expo-router';
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
+import { Drawer } from 'expo-router/drawer';
 
-import { Banner } from "@boundbybetter/features";
-import { BookOpen, tg, Info, MessageCircle, Settings } from "@boundbybetter/ui";
+import { Banner } from '@boundbybetter/features';
+import { BookOpen, tg, Info, MessageCircle, Settings } from '@boundbybetter/ui';
 
 // You can explore the built-in icon families and icons on the web at https://icons.expo.fyi/
 export default function TabLayout() {
@@ -19,7 +19,7 @@ export default function TabLayout() {
         <Banner />
         <Drawer
           screenOptions={{
-            drawerType: "permanent",
+            drawerType: 'permanent',
             headerLeft: () => null,
             drawerStyle: {
               width: 175,
@@ -30,7 +30,7 @@ export default function TabLayout() {
           <Drawer.Screen
             name="index"
             options={{
-              title: "Posts",
+              title: 'Posts',
               headerRight: () => (
                 <Link href="/modal" asChild>
                   <tg.Button unstyled p="$0" m="$4">
@@ -43,13 +43,13 @@ export default function TabLayout() {
           <Drawer.Screen
             name="docs"
             options={{
-              title: "Documentation",
+              title: 'Documentation',
             }}
           />
           <Drawer.Screen
             name="settings"
             options={{
-              title: "Settings",
+              title: 'Settings',
             }}
           />
         </Drawer>
@@ -72,7 +72,7 @@ export default function TabLayout() {
         <Tabs.Screen
           name="index"
           options={{
-            title: "Posts",
+            title: 'Posts',
             tabBarIcon: ({ color }) => <MessageCircle color={color} />,
             headerRight: () => (
               <Link href="/modal" asChild>
@@ -86,14 +86,14 @@ export default function TabLayout() {
         <Tabs.Screen
           name="docs"
           options={{
-            title: "Documentation",
+            title: 'Documentation',
             tabBarIcon: ({ color }) => <BookOpen color={color} />,
           }}
         />
         <Tabs.Screen
           name="settings"
           options={{
-            title: "Settings",
+            title: 'Settings',
             tabBarIcon: ({ color }) => <Settings color={color} />,
           }}
         />

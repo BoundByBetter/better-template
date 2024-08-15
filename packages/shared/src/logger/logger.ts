@@ -6,7 +6,7 @@ export const logId = { value: 0 };
  * @returns {number} The unique id.
  */
 function getLogId() {
-  "worklet";
+  'worklet';
   logId.value++;
   return logId.value;
 }
@@ -16,13 +16,13 @@ export const globalOptions = {
   /* istanbul ignore next */
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   filter: /* istanbul ignore next */ (...data: unknown[]) => {
-    "worklet";
+    'worklet';
     /* istanbul ignore next */
     return true;
     /* istanbul ignore next */
     //return data[0] === 'call';
   },
-  logging: /* istanbul ignore next */ process.env.LOGGING ?? "true",
+  logging: /* istanbul ignore next */ process.env.LOGGING ?? 'true',
 };
 /**
  * @description
@@ -30,11 +30,11 @@ export const globalOptions = {
  * @param {unknown[]} data The data to log.
  */
 export function logRaw(...data: unknown[]) {
-  "worklet";
+  'worklet';
 
   const currentLogId = getLogId();
   if (
-    globalOptions.logging?.toLowerCase() === "true" &&
+    globalOptions.logging?.toLowerCase() === 'true' &&
     globalOptions.filter(data)
   ) {
     console.log(currentLogId, ...data);
@@ -47,8 +47,8 @@ export function logRaw(...data: unknown[]) {
  * @param {unknown[]} data The data to log.
  */
 export function logSetup(name: string, ...data: unknown[]) {
-  "worklet";
-  logRaw("setup", name, ...data);
+  'worklet';
+  logRaw('setup', name, ...data);
 }
 
 /**
@@ -57,8 +57,8 @@ export function logSetup(name: string, ...data: unknown[]) {
  * @param {unknown[]} data The data to log.
  */
 export function logCall(name: string, ...data: unknown[]) {
-  "worklet";
-  logRaw("call", name, ...data);
+  'worklet';
+  logRaw('call', name, ...data);
 }
 
 /**
@@ -67,8 +67,8 @@ export function logCall(name: string, ...data: unknown[]) {
  * @param {unknown[]} data The data to log.
  */
 export function logHighFrequencyCheck(name: string, ...data: unknown[]) {
-  "worklet";
-  logRaw("hf check", name, ...data);
+  'worklet';
+  logRaw('hf check', name, ...data);
 }
 
 /**
@@ -77,8 +77,8 @@ export function logHighFrequencyCheck(name: string, ...data: unknown[]) {
  * @param {unknown[]} data The data to log.
  */
 export function logHighFrequencyCall(name: string, ...data: unknown[]) {
-  "worklet";
-  logRaw("hf call", name, ...data);
+  'worklet';
+  logRaw('hf call', name, ...data);
 }
 
 /**
@@ -87,8 +87,8 @@ export function logHighFrequencyCall(name: string, ...data: unknown[]) {
  * @param {unknown[]} data The data to log.
  */
 export function logError(error: Error, ...data: unknown[]) {
-  "worklet";
-  logRaw("ERROR", error.name, error.message, ...data);
+  'worklet';
+  logRaw('ERROR', error.name, error.message, ...data);
 }
 
 /**
@@ -97,6 +97,6 @@ export function logError(error: Error, ...data: unknown[]) {
  * @param {unknown[]} data The data to log.
  */
 export function logMessage(...data: unknown[]) {
-  "worklet";
-  logRaw("MESSAGE", ...data);
+  'worklet';
+  logRaw('MESSAGE', ...data);
 }

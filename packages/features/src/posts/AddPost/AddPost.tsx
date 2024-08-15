@@ -1,14 +1,14 @@
-import { useState } from "react";
-import { useAppDispatch, useAppSelector } from "@boundbybetter/state";
-import { nanoid } from "@reduxjs/toolkit";
-import { Post, PostStatus, postAdded } from "@boundbybetter/shared";
-import { logMessage } from "@boundbybetter/shared";
-import { tg } from "@boundbybetter/ui";
-import { useActiveFeature } from "../../features/useActiveFeature";
-import { FeatureKeys } from "../../features/Features";
+import { useState } from 'react';
+import { useAppDispatch, useAppSelector } from '@boundbybetter/state';
+import { nanoid } from '@reduxjs/toolkit';
+import { Post, PostStatus, postAdded } from '@boundbybetter/shared';
+import { logMessage } from '@boundbybetter/shared';
+import { tg } from '@boundbybetter/ui';
+import { useActiveFeature } from '../../features/useActiveFeature';
+import { FeatureKeys } from '../../features/Features';
 
 export function AddPost() {
-  const [newPostName, setNewPostName] = useState("");
+  const [newPostName, setNewPostName] = useState('');
   const dispatch = useAppDispatch();
   const createPost = async () => {
     const post: Post = {
@@ -19,12 +19,12 @@ export function AddPost() {
       createdAt: new Date().toISOString(),
     };
     dispatch(postAdded(post));
-    logMessage("Post saved successfully!", post);
+    logMessage('Post saved successfully!', post);
   };
   // istanbul ignore next
   const navigateToPurchase = () => {
     // istanbul ignore next
-    logMessage("Navigate to purchase");
+    logMessage('Navigate to purchase');
   };
   const postCount = useAppSelector(
     /* istanbul ignore next */ (state) => state.posts.ids.length,

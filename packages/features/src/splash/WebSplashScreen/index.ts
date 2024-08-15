@@ -1,1 +1,1 @@
-export { WebSplashScreen } from "./WebSplashScreen";
+export { WebSplashScreen } from './WebSplashScreen';

@@ -3,30 +3,30 @@ import {
   logCall,
   userLoggedIn,
   userLoggedOut,
-} from "@boundbybetter/shared";
-import { createSlice } from "@reduxjs/toolkit";
-import { RootState } from "../store";
+} from '@boundbybetter/shared';
+import { createSlice } from '@reduxjs/toolkit';
+import { RootState } from '../store';
 
 const initialState: User = {
-  userName: "My Tester",
-  userEmail: "my-tester@boundbybetter.com",
+  userName: null,
+  userEmail: null,
   groups: [],
 };
 
 const userSlice = createSlice({
-  name: "user",
+  name: 'user',
   initialState,
   reducers: {},
   extraReducers: (builder) => {
     builder
       .addCase(userLoggedIn, (state, action) => {
-        logCall("userSlice.userLoggedIn", action.payload);
+        logCall('userSlice.userLoggedIn', action.payload);
         state.userName = action.payload.userName;
         state.userEmail = action.payload.userEmail;
         state.groups = action.payload.groups;
       })
       .addCase(userLoggedOut, (state, action) => {
-        logCall("userSlice.userLoggedOut", action.payload);
+        logCall('userSlice.userLoggedOut', action.payload);
         state.userName = null;
         state.userEmail = null;
         state.groups = [];
