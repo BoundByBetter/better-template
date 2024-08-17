@@ -140,9 +140,9 @@ describe('_layout', () => {
     const infoIcon = await screen.findAllByTestId('info-icon');
     expect(infoIcon).toBeTruthy();
     // Click the info icon
-    await act(async () => {
-      fireEvent.press(infoIcon[0]);
-    });
+    // await act(async () => {
+    fireEvent.press(infoIcon[0]);
+    // });
     // expect the modal window to be visible
     const modal = await screen.findAllByText('Modal');
     expect(modal).toBeTruthy();

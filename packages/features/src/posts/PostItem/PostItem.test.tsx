@@ -19,10 +19,8 @@ describe('PostItem', () => {
       content: 'This is my post',
     };
     const { getByText } = renderWithTamagui(<PostItem post={post} />);
-    await act(async () => {
-      const title = getByText(post.title);
-      expect(title).toBeTruthy();
-    });
+    const title = getByText(post.title);
+    expect(title).toBeTruthy();
   });
   it('should render a delete button', async () => {
     const dispatch = jest.fn();
@@ -34,10 +32,8 @@ describe('PostItem', () => {
       content: 'This is my post',
     };
     const { getByText } = renderWithTamagui(<PostItem post={post} />);
-    await act(async () => {
-      const deleteButton = getByText('X');
-      expect(deleteButton).toBeTruthy();
-    });
+    const deleteButton = getByText('X');
+    expect(deleteButton).toBeTruthy();
   });
   it('should dispatch a postDeleted action when delete button is pressed', async () => {
     const dispatch = jest.fn();
@@ -50,12 +46,10 @@ describe('PostItem', () => {
     };
     const { getByText } = renderWithTamagui(<PostItem post={post} />);
     const deleteButton = getByText('X');
-    await act(async () => {
-      fireEvent.press(deleteButton);
-      expect(dispatch).toHaveBeenCalledWith({
-        type: 'posts/postDeleted',
-        payload: post,
-      });
+    fireEvent.press(deleteButton);
+    expect(dispatch).toHaveBeenCalledWith({
+      type: 'posts/postDeleted',
+      payload: post,
     });
   });
 });
