@@ -1,6 +1,7 @@
 import { Colors } from '../constants/Colors';
 import { useThemeColor } from './useThemeColor';
 import { useColorScheme } from 'react-native';
+import { describe, it, expect } from '@jest/globals';
 
 jest.mock('react-native', () => ({
   useColorScheme: jest.fn(),

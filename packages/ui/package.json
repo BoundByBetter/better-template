@@ -17,14 +17,5 @@
     "react-native": "0.74.3",
     "react-native-svg": "^15.4.0",
     "tamagui": "^1.106.0"
-  },
-  "devDependencies": {
-    "@types/eslint": "^8",
-    "@types/react": "~18.2.0",
-    "eslint": "^8.57.0",
-    "eslint-config-expo": "^7.1.2",
-    "eslint-config-prettier": "^9.1.0",
-    "eslint-plugin-prettier": "^5.2.1",
-    "prettier": "^3.3.3"
   }
 }

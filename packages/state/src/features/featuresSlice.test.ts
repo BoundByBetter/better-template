@@ -13,6 +13,7 @@ import { AppStore } from '../store';
 //import { syncReducer } from "@boundbybetter/backend";
 import { userReducer } from '../user/userSlice';
 import { postsReducer } from '../posts/postsSlice';
+import { describe, it, expect } from '@jest/globals';
 
 const delay = (ms: number) => new Promise((res) => setTimeout(res, ms));
 

@@ -3,6 +3,7 @@ import { Platform } from 'react-native';
 import { useFonts } from 'expo-font';
 import { useColorScheme } from '@boundbybetter/ui';
 import path from 'path';
+import { it, expect, beforeEach } from '@jest/globals';
 
 jest.mock(
   '@tamagui/font-inter/otf/Inter-Medium.otf',
@@ -89,7 +90,8 @@ describe('_layout', () => {
     renderRouter(appDir, {
       initialUrl: '/notfound',
     });
-    const notFound = await screen.findAllByText("This screen doesn't exist.");
+    // eslint-disable-next-line prettier/prettier
+    const notFound = await screen.findAllByText('This screen doesn\'t exist.');
     expect(notFound).toBeTruthy();
   });
 });

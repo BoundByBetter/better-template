@@ -2,6 +2,7 @@ import { renderHook } from '@testing-library/react-native';
 import { useAppSelector } from '@boundbybetter/state';
 import { FeatureStatus } from '@boundbybetter/shared';
 import { useActiveFeature } from './useActiveFeature';
+import { describe, it, expect } from '@jest/globals';
 
 jest.mock('@boundbybetter/state', () => ({
   useAppSelector: jest.fn(),

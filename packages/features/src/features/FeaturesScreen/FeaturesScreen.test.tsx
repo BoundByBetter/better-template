@@ -2,6 +2,7 @@ import React from 'react';
 import { FeaturesScreen } from './FeaturesScreen';
 import { FeatureList } from '../FeatureList';
 import { renderWithTamagui } from '../../renderWithTamagui.test-util';
+import { describe, it, expect } from '@jest/globals';
 
 // Mock My Features
 jest.mock('../FeatureList', () => ({

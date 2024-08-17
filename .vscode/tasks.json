@@ -4,31 +4,26 @@
     {
       "label": "Build",
       "type": "shell",
-      "command": "yarn",
-      "args": ["build"],
+      "command": "tsc",
+      "args": ["-p", "."],
       "group": {
         "kind": "build",
         "isDefault": true
       },
-      "problemMatcher": ["$tsc"],
-      "detail": "Runs tsc build on all files to find compilation errors."
+      "problemMatcher": ["$tsc"]
     },
     {
       "label": "Build and Watch",
       "type": "shell",
-      "command": "yarn",
-      "args": ["cover"],
-      "group": {
-        "kind": "build",
-        "isDefault": true
-      },
-      "problemMatcher": ["$tsc"],
-      "detail": "Runs tsc build on all files to find compilation errors every time you change a file. Use this when resolving a bunch of issues."
+      "command": "tsc",
+      "args": ["-p", ".", "--watch"],
+      "isBackground": true,
+      "problemMatcher": ["$tsc-watch"]
     },
-    {
-      "label": "Lint",
+    { "label": "Lint",
       "type": "shell",
-      "command": "npx eslint",
+      "command": "yarn",
+      "args": ["lint:all"],
       "group": {
         "kind": "build",
         "isDefault": true
@@ -36,14 +31,13 @@
       "problemMatcher": ["$eslint-stylish"],
       "detail": "Lints all ts, tsx, js, and jsx files."
     },
-    {
-      "label": "Lint and Watch",
+    { "label": "Lint and Watch",
       "type": "shell",
       "command": "watch",
       "args": [
         "-n",
         "1", // Interval in seconds
-        "npx eslint ."
+        "yarn lint:all"
       ],
       "group": {
         "kind": "build",
@@ -52,11 +46,10 @@
       "problemMatcher": ["$eslint-stylish"],
       "detail": "Lints all ts, tsx, js, and jsx files every second. Use this when resolving a bunch of issues."
     },
-    {
-      "label": "Test",
+    { "label": "Test",
       "type": "shell",
       "command": "yarn",
-      "args": ["cover"],
+      "args": ["test:all"],
       "group": {
         "kind": "test",
         "isDefault": true
@@ -79,24 +72,21 @@
       },
       "detail": "Runs all tests in the project.  Use the jest runner when you want to watch."
     },
-    {
-      "label": "Start App for Web",
+    { "label": "Start App for Web",
       "type": "shell",
       "command": "yarn",
       "args": ["start:app:web"],
       "problemMatcher": [],
       "detail": "Starts the app using yarn start:app:web command."
     },
-    {
-      "label": "Open Cypress",
+    { "label": "Open Cypress",
       "type": "shell",
       "command": "yarn",
       "args": ["start:cypress:app"],
       "problemMatcher": [],
       "detail": "Opens cypress using yarn start:cypress:app command."
     },
-    {
-      "label": "Start E2E dev for app",
+    { "label": "Start E2E dev for app",
       "dependsOn": ["Start App for Web", "Open Cypress"],
       "problemMatcher": [],
       "detail": "Runs both start-app and start-cypress tasks in parallel."

@@ -3,5 +3,11 @@
   "compilerOptions": {
     "strict": true
   },
-  "include": ["./**/*.ts", "./**/*.tsx", ".expo/types/**/*.ts", "expo-env.d.ts"]
+  "include": [
+    "./**/*.ts", 
+    "./**/*.tsx", 
+    "../../packages/**/*.ts",
+    ".expo/types/**/*.ts", 
+    "expo-env.d.ts"
+  ]
 }

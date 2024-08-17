@@ -5,6 +5,7 @@ import { AppStore } from '../store';
 //import { syncReducer } from "@boundbybetter/backend";
 import { userReducer } from './userSlice';
 import { featuresReducer } from '../features/featuresSlice';
+import { describe, beforeEach, it, expect } from '@jest/globals';
 
 describe('userSlice', () => {
   let store: AppStore;

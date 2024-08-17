@@ -1,18 +1,20 @@
 module.exports = {
   preset: 'jest-expo',
-  setupFilesAfterEnv: [
-    '@testing-library/jest-native/extend-expect',
-    './jest.setup.tsx',
-  ],
+  setupFilesAfterEnv: ['./jest.setup.tsx'],
   transformIgnorePatterns: [
-    'node_modules/(?!((jest-)?react-native|@react-native(-community)?)|expo(nent)?|@expo(nent)?/.*|@expo-google-fonts/.*|react-navigation|@react-navigation/.*|@unimodules/.*|unimodules|sentry-expo|native-base|react-native-svg|react-redux)',
+    'node_modules/(?!((jest-)?react-native|@react-native(-community)?)|expo(nent)?|@expo(nent)?/.*|@expo-google-fonts/.*|react-navigation|@react-navigation/.*|@unimodules/.*|unimodules|sentry-expo|native-base|react-native-svg|react-redux|@boundbybetter)',
   ],
   transform: {
-    '^.+\\.[tj]sx?$': ['babel-jest', { configFile: './babel.config.js' }],
+    '^.+/(src|apps/app|apps/site)/.*\\.[tj]sx?$': [
+      'babel-jest',
+      { configFile: './babel.config.js' },
+    ],
   },
   moduleNameMapper: {
     '^@boundbybetter/(.*)$': '<rootDir>/packages/$1/src',
   },
+  maxWorkers: '50%',
+  cache: true,
   coverageThreshold: {
     global: {
       statements: 100,
@@ -26,5 +28,6 @@ module.exports = {
     'apps/*/app-test/**/*.{js,jsx,ts,tsx}',
     'packages/*/src/**/*.{js,jsx,ts,tsx}',
     '!src/index.tsx',
+    '!**/node_modules/**',
   ],
 };

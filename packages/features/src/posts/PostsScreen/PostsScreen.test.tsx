@@ -2,6 +2,7 @@ import React from 'react';
 import { PostsScreen } from './PostsScreen';
 import { PostList } from '../PostList';
 import { renderWithTamagui } from '../../renderWithTamagui.test-util';
+import { describe, it, expect } from '@jest/globals';
 
 // Mock My Posts
 jest.mock('../PostList', () => ({

@@ -1,6 +1,7 @@
 import { renderWithTamagui } from '../../renderWithTamagui.test-util';
 import { ExternalLink } from './ExternalLink';
 import { Platform } from 'react-native';
+import { it, expect } from '@jest/globals';
 
 describe('ExternalLink', () => {
   it('should render a link with target="_blank"', () => {

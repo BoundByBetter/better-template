@@ -1,5 +1,4 @@
 import { Link, Tabs } from 'expo-router';
-import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { Drawer } from 'expo-router/drawer';
 
 import { Banner } from '@boundbybetter/features';
@@ -15,7 +14,8 @@ export default function TabLayout() {
   if (media.gtMd) {
     // Use a basic custom layout on web.
     return (
-      <GestureHandlerRootView style={{ flex: 1 }}>
+      // <GestureHandlerRootView style={{ flex: 1 }}>
+      <tg.YStack f={1}>
         <Banner />
         <Drawer
           screenOptions={{
@@ -53,7 +53,8 @@ export default function TabLayout() {
             }}
           />
         </Drawer>
-      </GestureHandlerRootView>
+      </tg.YStack>
+      // </GestureHandlerRootView>
     );
   }
   return (

@@ -89,7 +89,8 @@ describe('_layout', () => {
     renderRouter(appDir, {
       initialUrl: '/notfound',
     });
-    const notFound = await screen.findAllByText("This screen doesn't exist.");
+    // eslint-disable-next-line prettier/prettier
+    const notFound = await screen.findAllByText('This screen doesn\'t exist.');
     expect(notFound).toBeTruthy();
   });
 });

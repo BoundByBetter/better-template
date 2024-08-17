@@ -6,6 +6,7 @@ import { useAppDispatch, useAppSelector } from './hooks';
 import { userLoggedIn } from '@boundbybetter/shared';
 import { selectUser } from './user/userSlice';
 import { Text } from 'react-native';
+import { describe, it, expect } from '@jest/globals';
 
 describe('MyState', () => {
   it('should load the store for use by child components', () => {

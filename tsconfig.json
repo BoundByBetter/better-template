@@ -9,9 +9,19 @@
     "noEmit": true,
     "jsx": "react-native",
     "paths": {
-      "@boundbybetter/*": ["./packages/*/src"]
+      "@boundbybetter/*": [
+        "./packages/*/src"
+      ]
     }
   },
-  "include": ["packages/*/src", "apps/app", "apps/site"],
-  "exclude": ["node_modules"]
+  "include": [
+    "packages/*/src",
+    "apps/app",
+    "apps/site",
+    "babel.config.test.js"
+  ],
+  "exclude": [
+    "node_modules"
+  ],
+  "extends": "expo/tsconfig.base"
 }

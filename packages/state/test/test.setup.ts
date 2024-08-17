@@ -1,1 +1,0 @@
-process.env.LOGGING = 'false';

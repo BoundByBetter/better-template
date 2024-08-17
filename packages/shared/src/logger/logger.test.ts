@@ -9,7 +9,7 @@ import {
   logError,
   logMessage,
 } from './logger';
-import { describe, expect, it, jest } from '@jest/globals';
+import { describe, expect, it } from '@jest/globals';
 
 describe('logger', () => {
   const originalLOGGING = process.env.LOGGING;

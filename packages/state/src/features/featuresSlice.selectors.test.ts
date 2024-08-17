@@ -5,6 +5,7 @@ import {
   selectFeatureById,
   selectFeatureIds,
 } from './featuresSlice';
+import { describe, expect, it } from '@jest/globals';
 
 describe('featuresSlice selectors', () => {
   let state: RootState;

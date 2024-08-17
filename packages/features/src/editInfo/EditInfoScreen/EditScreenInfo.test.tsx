@@ -22,7 +22,8 @@ describe('EditScreenInfo', () => {
   it('should render the help link', async () => {
     const { getByText } = renderWithTamagui(<EditScreenInfo path="" />);
     const helpLinkElement = getByText(
-      "Tap here if your app doesn't automatically update after making changes",
+      // eslint-disable-next-line prettier/prettier
+      'Tap here if your app doesn\'t automatically update after making changes',
     );
     expect(helpLinkElement).toBeTruthy();
   });

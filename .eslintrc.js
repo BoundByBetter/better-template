@@ -3,6 +3,6 @@ module.exports = {
   plugins: ['prettier'],
   rules: {
     'prettier/prettier': 'error',
-    quotes: ['error', 'single'],
+    'quotes': ['error', 'single'],
   },
 };

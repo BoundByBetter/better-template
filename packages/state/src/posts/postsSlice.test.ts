@@ -12,6 +12,7 @@ import {
 import { AppStore } from '../store';
 import { userReducer } from '../user/userSlice';
 import { featuresReducer } from '../features/featuresSlice';
+import { describe, it, expect } from '@jest/globals';
 
 const delay = (ms: number) => new Promise((res) => setTimeout(res, ms));
 

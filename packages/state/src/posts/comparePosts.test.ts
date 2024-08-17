@@ -1,5 +1,6 @@
 import { Post, PostStatus } from '@boundbybetter/shared';
 import { comparePosts } from './comparePosts';
+import { describe, it, expect } from '@jest/globals';
 
 describe('comparePosts', () => {
   it('should return true when comparing two identical posts', () => {
