@@ -21,7 +21,9 @@
     "babel.config.test.js"
   ],
   "exclude": [
-    "node_modules"
+    "node_modules",
+    "apps/site/dist",
+    "apps/app/dist"
   ],
   "extends": "expo/tsconfig.base"
 }

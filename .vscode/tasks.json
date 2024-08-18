@@ -1,24 +1,42 @@
 {
   "version": "2.0.0",
   "tasks": [
-    {
-      "label": "Build",
+    { "label": "Build",
       "type": "shell",
-      "command": "tsc",
-      "args": ["-p", "."],
+      "command": "yarn",
+      "args": ["build:all"],
       "group": {
         "kind": "build",
         "isDefault": true
       },
       "problemMatcher": ["$tsc"]
     },
-    {
-      "label": "Build and Watch",
+    { "label": "Build and Watch",
       "type": "shell",
-      "command": "tsc",
-      "args": ["-p", ".", "--watch"],
+      "command": "yarn",
+      "args": [
+        "chokidar",
+        "'packages/**/*.js'",
+        "'packages/**/*.ts'",
+        "'packages/**/*.tsx'",
+        "'packages/**/*.test.ts'",
+        "'packages/**/*.test.tsx'",
+        "'apps/**/*.js'",
+        "'apps/**/*.ts'",
+        "'apps/**/*.tsx'",
+        "'apps/**/*.test.ts'",
+        "'apps/**/*.test.tsx'",
+        "-c",
+        "yarn build:all",
+        "--initial"
+      ],
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "problemMatcher": ["$eslint-stylish"],
       "isBackground": true,
-      "problemMatcher": ["$tsc-watch"]
+      "detail": "Lints all ts, tsx, js, and jsx files on change."
     },
     { "label": "Lint",
       "type": "shell",
@@ -49,6 +67,7 @@
         "-c",
         "yarn lint:all"
       ],
+      "dependsOn": ["Lint"],
       "group": {
         "kind": "build",
         "isDefault": true
