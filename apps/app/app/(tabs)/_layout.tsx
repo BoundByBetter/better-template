@@ -3,6 +3,7 @@ import { Drawer } from 'expo-router/drawer';
 
 import { Banner } from '@boundbybetter/features';
 import { BookOpen, tg, Info, MessageCircle, Settings } from '@boundbybetter/ui';
+import { Pressable } from 'react-native';
 
 // You can explore the built-in icon families and icons on the web at https://icons.expo.fyi/
 export default function TabLayout() {
@@ -96,6 +97,9 @@ export default function TabLayout() {
           options={{
             title: 'Settings',
             tabBarIcon: ({ color }) => <Settings color={color} />,
+            tabBarButton: (props) => (
+              <Pressable {...props} testID="tab-settings" />
+            ),
           }}
         />
       </Tabs>

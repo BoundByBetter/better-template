@@ -5,7 +5,7 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 export default function PostsTab() {
   const insets = useSafeAreaInsets();
   return (
-    <tg.YStack f={1} ml={insets.left} mr={insets.right}>
+    <tg.YStack f={1} ml={insets.left} mr={insets.right} testID="home-screen">
       <PostsScreen />
     </tg.YStack>
   );

@@ -95,12 +95,12 @@ function RootLayoutNav() {
         }
       >
         <MyState>
-          {/* <AuthProvider> */}
-          <Stack>
-            <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-            <Stack.Screen name="modal" options={{ presentation: 'modal' }} />
-          </Stack>
-          {/* </AuthProvider> */}
+          <AuthProvider>
+            <Stack>
+              <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+              <Stack.Screen name="modal" options={{ presentation: 'modal' }} />
+            </Stack>
+          </AuthProvider>
         </MyState>
       </ThemeProvider>
     </tg.TamaguiProvider>

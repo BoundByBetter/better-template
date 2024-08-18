@@ -43,12 +43,17 @@ describe('_layout', () => {
     jest.clearAllMocks();
   });
 
+  it('should render the authentication provider', async () => {
+    (useFonts as jest.Mock).mockReturnValue([true, null]);
+    //render(<RootLayout />)
+    renderRouter(appDir);
+    expect(screen.queryByTestId('AuthProvider')).not.toBeNull();
+  }, 60000);
+
   it('should render tab one for the root', async () => {
     (useFonts as jest.Mock).mockReturnValue([true, null]);
     //render(<RootLayout />)
-    renderRouter(appDir, {
-      initialUrl: '/',
-    });
+    renderRouter(appDir);
     const tabOne = await screen.findAllByText('Posts');
     expect(tabOne).toBeTruthy();
   }, 60000);
@@ -75,11 +80,8 @@ describe('_layout', () => {
   it('should set the theme to dark if the color scheme is dark', async () => {
     (useColorScheme as jest.Mock).mockReturnValue('dark');
     (useFonts as jest.Mock).mockReturnValue([true, null]);
-    renderRouter(appDir, {
-      initialUrl: '/',
-    });
-    const tabOne = await screen.findAllByText('Posts');
-    expect(tabOne).toBeTruthy();
+    renderRouter(appDir);
+    expect(screen.queryByTestId('AuthProvider')).not.toBeNull();
 
     // TODO: Just triggering code coverage.  No idea on how to assert on this:
     // const sut = await screen.findByTestId('theme-provider');

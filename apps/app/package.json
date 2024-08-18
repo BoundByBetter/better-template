@@ -8,10 +8,10 @@
     "lint:app": "npx eslint .",
     "build:app": "npx tsc -b",
     "test:app": "npx jest --colors",
-    "start:app": "EXPO_USE_METRO_WORKSPACE_ROOT=1 npx expo start",
-    "android:app": "EXPO_USE_METRO_WORKSPACE_ROOT=1 npx expo start --android",
-    "ios:app": "EXPO_USE_METRO_WORKSPACE_ROOT=1 npx expo start --ios",
-    "web:app": "EXPO_USE_METRO_WORKSPACE_ROOT=1 npx expo start --web"
+    "app:start": "EXPO_USE_METRO_WORKSPACE_ROOT=1 npx expo start",
+    "app:android": "EXPO_USE_METRO_WORKSPACE_ROOT=1 npx expo start --android",
+    "app:ios": "EXPO_USE_METRO_WORKSPACE_ROOT=1 npx expo start --ios",
+    "app:web": "EXPO_USE_METRO_WORKSPACE_ROOT=1 npx expo start --web"
   },
   "dependencies": {
     "@babel/core": "^7.24.0",

@@ -37,3 +37,6 @@ export const FeaturesScreen = jest
 export const WebSplashScreen = jest
   .fn()
   .mockReturnValue(<View testID="WebSplashScreen" />);
+export const AuthProvider = jest.fn(({ children }) => (
+  <View testID="AuthProvider">{children}</View>
+));

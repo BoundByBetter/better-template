@@ -75,7 +75,7 @@
     { "label": "Start App for Web",
       "type": "shell",
       "command": "yarn",
-      "args": ["start:app:web"],
+      "args": ["app:web"],
       "problemMatcher": [],
       "detail": "Starts the app using yarn start:app:web command."
     },
@@ -90,6 +90,13 @@
       "dependsOn": ["Start App for Web", "Open Cypress"],
       "problemMatcher": [],
       "detail": "Runs both start-app and start-cypress tasks in parallel."
-    }
+    },
+    { "label": "Test with Coverage",
+      "type": "shell",
+      "command": "yarn",
+      "args": ["cover:all"],
+      "problemMatcher": [],
+      "detail": "Starts the app using yarn start:app:web command."
+    },
   ]
 }
