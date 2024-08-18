@@ -1,6 +1,6 @@
 // For more details about the project structure and key components, refer to <projectRoog>/docs/PROJECT_DETAILS.md
 import React from 'react';
-import { render, fireEvent } from '@testing-library/react-native';
+import { fireEvent } from '@testing-library/react-native';
 import { LogInScreen } from './LogInScreen';
 import { userLoggedIn } from '@boundbybetter/shared';
 import { useAppDispatch } from '@boundbybetter/state';

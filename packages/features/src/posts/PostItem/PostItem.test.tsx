@@ -1,5 +1,5 @@
 import React from 'react';
-import { act, fireEvent } from '@testing-library/react-native';
+import { fireEvent } from '@testing-library/react-native';
 import { PostItem } from './PostItem';
 import { PostStatus } from '@boundbybetter/shared';
 import { useAppDispatch } from '@boundbybetter/state';

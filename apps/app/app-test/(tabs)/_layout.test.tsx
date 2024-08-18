@@ -1,9 +1,4 @@
-import {
-  act,
-  fireEvent,
-  renderRouter,
-  screen,
-} from 'expo-router/testing-library';
+import { fireEvent, renderRouter, screen } from 'expo-router/testing-library';
 import { useFonts } from 'expo-font';
 import { tg } from '@boundbybetter/ui';
 import { describe, it, beforeEach, expect } from '@jest/globals';

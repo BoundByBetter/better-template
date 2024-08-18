@@ -1,5 +1,5 @@
 import React from 'react';
-import { act, fireEvent } from '@testing-library/react-native';
+import { fireEvent } from '@testing-library/react-native';
 import { Settings } from './Settings';
 import { useAppDispatch, useAppSelector } from '@boundbybetter/state';
 import { renderWithTamagui } from '../../renderWithTamagui.test-util';
