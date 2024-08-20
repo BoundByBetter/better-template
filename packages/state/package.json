@@ -5,6 +5,7 @@
   "author": "Stewart Armbrecht",
   "license": "MIT",
   "scripts": {
+    "check:dependencies": "npx npm-check-updates && npx expo install --check",
     "lint": "eslint .",
     "build": "tsc -b",
     "test": "jest --color",

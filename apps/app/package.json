@@ -5,12 +5,17 @@
   "author": "Stewart Armbrecht",
   "license": "MIT",
   "scripts": {
+    "check:dependencies": "npx npm-check-updates && npx expo install --check",
     "lint:app": "npx eslint .",
     "build:app": "npx tsc -b",
+    "build:android": "npx eas build --platform android --profile development --local --output ./better-app.dev.apk",
+    "list:devices": "adb devices",
+    "install:android": "adb install -r ./better-app.dev.apk",
     "test:app": "npx jest --colors",
+    "wireless:app": "ip=$(adb shell ip -f inet addr show wlan0 | grep -oP '(?<=inet\\s)\\d+(\\.\\d+){3}') && adb tcpip 5555 && adb connect $ip",
     "app:start": "EXPO_USE_METRO_WORKSPACE_ROOT=1 npx expo start",
-    "app:android": "EXPO_USE_METRO_WORKSPACE_ROOT=1 npx expo start --android",
-    "app:ios": "EXPO_USE_METRO_WORKSPACE_ROOT=1 npx expo start --ios",
+    "app:android": "EXPO_USE_METRO_WORKSPACE_ROOT=1 npx expo start --android --dev-client",
+    "app:ios": "EXPO_USE_METRO_WORKSPACE_ROOT=1 npx expo start --ios --dev-client",
     "app:web": "EXPO_USE_METRO_WORKSPACE_ROOT=1 npx expo start --web"
   },
   "dependencies": {
@@ -25,17 +30,21 @@
     "@react-navigation/native": "^6.1.18",
     "expo": "~51.0.22",
     "expo-constants": "~16.0.2",
+    "expo-dev-client": "~4.0.23",
     "expo-font": "~12.0.9",
     "expo-linking": "~6.3.1",
     "expo-router": "~3.5.20",
     "expo-splash-screen": "~0.27.5",
     "expo-status-bar": "~1.12.1",
+    "expo-updates": "~0.25.22",
     "react": "^18.2.0",
     "react-native": "0.74.5",
     "react-native-gesture-handler": "~2.16.1",
     "react-native-reanimated": "~3.10.1",
     "react-native-safe-area-context": "4.10.5",
-    "react-native-screens": "3.31.1"
+    "react-native-screens": "3.31.1",
+    "react-native-svg": "15.2.0",
+    "react-native-svg-transformer": "^1.5.0"
   },
   "devDependencies": {
     "@testing-library/react-native": "^12.5.2",
@@ -43,6 +52,7 @@
     "@types/node": "^22.1.0",
     "@types/react": "~18.2.45",
     "cypress": "^13.13.3",
+    "expo-screen-orientation": "^7.0.5",
     "react-test-renderer": "~18.2.0"
   },
   "private": true

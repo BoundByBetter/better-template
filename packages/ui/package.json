@@ -5,6 +5,7 @@
   "author": "Stewart Armbrecht",
   "license": "MIT",
   "scripts": {
+    "check:dependencies": "npx npm-check-updates && npx expo install --check",
     "lint": "eslint .",
     "build": "tsc"
   },
@@ -15,7 +16,7 @@
     "@tamagui/lucide-icons": "^1.106.0",
     "react": "~18.2.0",
     "react-native": "0.74.3",
-    "react-native-svg": "^15.4.0",
+    "react-native-svg": "15.2.0",
     "tamagui": "^1.106.0"
   }
 }

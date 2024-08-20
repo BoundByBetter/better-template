@@ -1,0 +1,7 @@
+# flow.yaml
+
+appId: ${APP}
+---
+- runFlow: log-in.yaml
+- runFlow: posts.yaml
+- runFlow: log-out.yaml

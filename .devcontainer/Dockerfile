@@ -89,3 +89,7 @@ RUN gmsaas config set android-sdk-path /home/node/Android/Sdk
 RUN npm install -g netlify-cli
 
 RUN npm install -g nodemon
+
+RUN apt install curl -y
+
+RUN curl -Ls "https://get.maestro.mobile.dev" | bash

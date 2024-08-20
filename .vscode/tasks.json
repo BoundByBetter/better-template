@@ -1,6 +1,18 @@
 {
   "version": "2.0.0",
   "tasks": [
+		{ "label": "Install dependencies",
+			"detail": "Runs npm install to install all dependencies.",
+      "type": "shell",
+      "command": "npm install",
+      "problemMatcher": []
+    },
+		{ "label": "Check dependencies",
+			"detail": "Checks the npm dependency versions for updates.  Also checks the version match for expo modules for my-app and my-site.",
+      "type": "shell",
+      "command": "npx npm-check-updates",
+      "problemMatcher": []
+    },
     { "label": "Build",
       "type": "shell",
       "command": "yarn",
@@ -37,6 +49,20 @@
       "problemMatcher": ["$eslint-stylish"],
       "isBackground": true,
       "detail": "Lints all ts, tsx, js, and jsx files on change."
+    },
+    { "label": "Build App for Android",
+      "type": "shell",
+      "command": "yarn",
+      "args": ["build:android"],
+      "problemMatcher": [],
+      "detail": "Builds the app for android."
+    },
+    { "label": "Install App for Android",
+      "type": "shell",
+      "command": "yarn",
+      "args": ["install:android"],
+      "problemMatcher": [],
+      "detail": "Installs the app for android."
     },
     { "label": "Lint",
       "type": "shell",
@@ -108,6 +134,13 @@
       "args": ["app:web"],
       "problemMatcher": [],
       "detail": "Starts the app using yarn start:app:web command."
+    },
+    { "label": "Start App for Android",
+      "type": "shell",
+      "command": "yarn",
+      "args": ["app:android"],
+      "problemMatcher": [],
+      "detail": "Starts the app for android."
     },
     { "label": "Open Cypress",
       "type": "shell",

@@ -33,4 +33,10 @@ config.resolver.nodeModulesPaths = [
   path.resolve(monorepoRoot, 'node_modules'),
 ];
 
+// 3. Add configuration to handle SVG files
+config.transformer.babelTransformerPath = require.resolve(
+  'react-native-svg-transformer',
+);
+config.resolver.sourceExts = [...config.resolver.sourceExts, 'svg', 'mjs'];
+
 module.exports = config;

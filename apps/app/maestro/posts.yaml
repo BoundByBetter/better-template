@@ -1,0 +1,19 @@
+# flow.yaml
+
+appId: ${APP}
+---
+- tapOn:
+    id: new-post-name
+    label: Tap on new post name textbox
+- eraseText
+- inputText: New Test
+- hideKeyboard
+- tapOn:
+    id: new-post-submit
+    label: Tap Add button
+- assertVisible:
+    text: New Test
+    index: 1
+- tapOn: 
+    text: X
+    label: Tap Delete button

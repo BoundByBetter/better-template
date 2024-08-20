@@ -34,3 +34,6 @@ web-build
 
 
 tsconfig.tsbuildinfo
+
+# Android apks.
+*.apk

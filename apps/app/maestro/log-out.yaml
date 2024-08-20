@@ -1,0 +1,6 @@
+# flow.yaml
+
+appId: ${APP}
+---
+- tapOn: Settings
+- tapOn: Sign Out
