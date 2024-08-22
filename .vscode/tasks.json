@@ -24,6 +24,15 @@
       },
       "problemMatcher": []
     },
+		{ "label": "Add dependencies",
+			"detail": "Uses expo to add new dev dependencies to a workspace.",
+      "type": "shell",
+      "command": "npx expo install ${input:dependencies}",
+      "options": {
+        "cwd": "${input:selectProjectFolder}"
+      },
+      "problemMatcher": []
+    },
 		{ "label": "Update dependencies",
 			"detail": "Updates all depdencies using npm_check_updates and then uses Expo to fix any dependency version mismatches.",
       "type": "shell",
