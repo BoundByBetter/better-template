@@ -26,7 +26,9 @@ jest.mock('@boundbybetter/ui', () => {
   const actual = jest.requireActual('@boundbybetter/ui');
   return {
     ...actual,
-    useColorScheme: jest.fn().mockImplementation(actual.useColorScheme),
+    useColorScheme: jest.fn().mockImplementation(() => {
+      return actual.useColorScheme
+    }),
   };
 });
 
@@ -46,7 +48,9 @@ describe('_layout', () => {
   it('should render the authentication provider', async () => {
     (useFonts as jest.Mock).mockReturnValue([true, null]);
     //render(<RootLayout />)
-    renderRouter(appDir);
+    renderRouter(appDir, {
+      initialUrl: '/',
+    });
     expect(screen.queryByTestId('AuthProvider')).not.toBeNull();
   }, 60000);
 

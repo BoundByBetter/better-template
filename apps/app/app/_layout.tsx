@@ -1,7 +1,7 @@
 // Added next 3 lines for tamagui.
 // Removing to get tests to pass.
 // import '../tamagui-web.css'
-import { tg, colors, tamaguiConfig } from '@boundbybetter/ui';
+import { tg, colors, tamaguiConfig, useColorScheme } from '@boundbybetter/ui';
 // import { tamaguiConfig } from '../tamagui.config'
 
 import FontAwesome from '@expo/vector-icons/FontAwesome';
@@ -17,7 +17,6 @@ import { useEffect } from 'react';
 
 import { MyState } from '@boundbybetter/state';
 import { Platform } from 'react-native';
-import { useColorScheme } from '@boundbybetter/ui';
 import { AuthProvider, WebSplashScreen } from '@boundbybetter/features';
 import { logCall, logRaw, logSetup } from '@boundbybetter/shared';
 

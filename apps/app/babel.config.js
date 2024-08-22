@@ -4,7 +4,6 @@ const path = require('path');
 const appDir = path.join(__dirname, '../../packages/ui/src');
 
 module.exports = function (api) {
-  console.log('I was hit!');
 
   api.cache(true);
   process.env.EXPO_ROUTER_APP_ROOT = './app';

@@ -14,7 +14,7 @@ export const LogInScreen = () => {
       }),
     );
     // TODO: Implement login logic for the selected method
-    console.log(`Logging in with ${method}`);
+    // console.log(`Logging in with ${method}`);
   };
 
   return (

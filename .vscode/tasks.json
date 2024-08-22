@@ -39,6 +39,44 @@
       "command": "yarn update-deps:all",
       "problemMatcher": []
     },
+    { "label": "Lint",
+      "type": "shell",
+      "command": "yarn",
+      "args": ["lint:all"],
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "problemMatcher": ["$eslint-stylish"],
+      "detail": "Lints all ts, tsx, js, and jsx files."
+    },
+    { "label": "Lint and Watch",
+      "type": "shell",
+      "command": "yarn",
+      "args": [
+        "chokidar",
+        "'packages/**/*.js'",
+        "'packages/**/*.ts'",
+        "'packages/**/*.tsx'",
+        "'packages/**/*.test.ts'",
+        "'packages/**/*.test.tsx'",
+        "'apps/**/*.js'",
+        "'apps/**/*.ts'",
+        "'apps/**/*.tsx'",
+        "'apps/**/*.test.ts'",
+        "'apps/**/*.test.tsx'",
+        "-c",
+        "yarn lint:all"
+      ],
+      "dependsOn": ["Lint"],
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "problemMatcher": ["$eslint-stylish"],
+      "isBackground": true,
+      "detail": "Lints all ts, tsx, js, and jsx files on change."
+    },
     { "label": "Build",
       "type": "shell",
       "command": "yarn",
@@ -89,44 +127,6 @@
       "args": ["install:android"],
       "problemMatcher": [],
       "detail": "Installs the app for android."
-    },
-    { "label": "Lint",
-      "type": "shell",
-      "command": "yarn",
-      "args": ["lint:all"],
-      "group": {
-        "kind": "build",
-        "isDefault": true
-      },
-      "problemMatcher": ["$eslint-stylish"],
-      "detail": "Lints all ts, tsx, js, and jsx files."
-    },
-    { "label": "Lint and Watch",
-      "type": "shell",
-      "command": "yarn",
-      "args": [
-        "chokidar",
-        "'packages/**/*.js'",
-        "'packages/**/*.ts'",
-        "'packages/**/*.tsx'",
-        "'packages/**/*.test.ts'",
-        "'packages/**/*.test.tsx'",
-        "'apps/**/*.js'",
-        "'apps/**/*.ts'",
-        "'apps/**/*.tsx'",
-        "'apps/**/*.test.ts'",
-        "'apps/**/*.test.tsx'",
-        "-c",
-        "yarn lint:all"
-      ],
-      "dependsOn": ["Lint"],
-      "group": {
-        "kind": "build",
-        "isDefault": true
-      },
-      "problemMatcher": ["$eslint-stylish"],
-      "isBackground": true,
-      "detail": "Lints all ts, tsx, js, and jsx files on change."
     },
     { "label": "Test",
       "type": "shell",
