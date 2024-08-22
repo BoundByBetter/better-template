@@ -1,16 +1,24 @@
+// Cmd/Cntrl+Shift+P -> Tasks: Run Task -> Select Task
+// Cmd/Cntrl+Shift+P -> Fold Level 3 to collapse task definitions to just names.
 {
   "version": "2.0.0",
   "tasks": [
 		{ "label": "Install dependencies",
-			"detail": "Runs npm install to install all dependencies.",
+			"detail": "Runs yarn install to install all dependencies. Included for completeness.",
       "type": "shell",
-      "command": "npm install",
+      "command": "yarn install",
       "problemMatcher": []
     },
 		{ "label": "Check dependencies",
-			"detail": "Checks the npm dependency versions for updates.  Also checks the version match for expo modules for my-app and my-site.",
+			"detail": "Uses npm-check-updates and expo install --check to help identify available updates.  Beware, npm-check-updates will return updates that you should not install because of Expo.",
       "type": "shell",
-      "command": "npx npm-check-updates",
+      "command": "yarn check-deps:all",
+      "problemMatcher": []
+    },
+		{ "label": "Update dependencies",
+			"detail": "Updates all depdencies using npm_check_updates and then uses Expo to fix any dependency version mismatches.",
+      "type": "shell",
+      "command": "update-deps:all",
       "problemMatcher": []
     },
     { "label": "Build",

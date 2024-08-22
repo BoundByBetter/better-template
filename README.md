@@ -140,14 +140,15 @@ TBD.  Targeting using standard services like Google, Microsoft, and Facebook for
 
 ## DEVELOPMENT FLOW (Still developing...)
 All development commands are defined as VS code tasks in the .vscode/tasks.json file.  Some listed below might not be built yet.
-1. **Install Dependencies** - just runs yarn install.  Included for completeness.
-2. **Check Dependencies** - Uses npm-check-updates and expo install --check to help identify available updates.  Beware, npm-check-updates will return updates that you should not install because of Expo.
-3. **Update Dependencies** - Runs 
-4. Compile - Runs all 
-5. Build and Watch
-6. Lint
-7. Lint and Watch
-8. Test
-9. Test and Watch <- Not needed, VS Code Jest plugin configured to automatically run tests while you code.
-10. Test with Coverage
-11. View Coverage
+1. **Install Dependencies** - Runs yarn install.  Included for completeness.
+1. **Check Dependencies** - Uses npm-check-updates and expo install --check to help identify available updates.  Beware, npm-check-updates will return updates that you should not install because of Expo.
+1. **Update App Dependencies** - Takes a comma separated 
+1. **Build** - Compiles all TypeScript and JavaScript files to check for errors.  Adds errors to the Problems window.
+1. **Build and Watch** - Use when refactoring.  Compiles all TypeScript and JavaScript files and usees chokidar to watch for file changes.
+1. **Build for Android** - 
+1. Lint
+1. Lint and Watch
+1. Test
+1. Test and Watch <- Not needed, VS Code Jest plugin configured to automatically run tests while you code.
+1. Test with Coverage
+1. View Coverage

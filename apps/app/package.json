@@ -5,7 +5,8 @@
   "author": "Stewart Armbrecht",
   "license": "MIT",
   "scripts": {
-    "check:dependencies": "npx npm-check-updates && npx expo install --check",
+    "check-deps": "npx npm-check-updates && npx expo install --check",
+    "update-deps": "npx npm-check-updates -u && yarn install && npx expo install --fix",
     "lint:app": "npx eslint .",
     "build:app": "npx tsc -b",
     "build:android": "npx eas build --platform android --profile development --local --output ./better-app.dev.apk",

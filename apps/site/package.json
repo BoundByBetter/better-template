@@ -5,7 +5,8 @@
   "author": "Stewart Armbrecht",
   "license": "MIT",
   "scripts": {
-    "check:dependencies": "npx npm-check-updates && npx expo install --check",
+    "check-deps": "npx npm-check-updates && npx expo install --check",
+    "update-deps": "npx npm-check-updates -u && yarn install && npx expo install --fix",
     "start": "EXPO_USE_METRO_WORKSPACE_ROOT=1 expo start",
     "android": "EXPO_USE_METRO_WORKSPACE_ROOT=1 expo start --android",
     "ios": "EXPO_USE_METRO_WORKSPACE_ROOT=1 expo start --ios",
