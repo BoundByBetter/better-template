@@ -6,7 +6,7 @@
   "license": "MIT",
   "scripts": {
     "check-deps": "npx npm-check-updates && npx expo install --check",
-    "update-deps": "npx npm-check-updates -u && yarn install && npx expo install --fix",
+    "update-deps": "export YARN_ENABLE_IMMUTABLE_INSTALLS=false && npx npm-check-updates -u && yarn install && npx expo install --fix",
     "lint:app": "npx eslint .",
     "build:app": "npx tsc -b",
     "build:android": "npx eas build --platform android --profile development --local --output ./better-app.dev.apk",

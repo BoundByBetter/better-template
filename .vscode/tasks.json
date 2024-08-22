@@ -15,10 +15,19 @@
       "command": "yarn check-deps:all",
       "problemMatcher": []
     },
+		{ "label": "Add dev dependencies",
+			"detail": "Uses expo to add new dev dependencies to a workspace.",
+      "type": "shell",
+      "command": "npx expo install ${input:dependencies} -- -D",
+      "options": {
+        "cwd": "${input:selectProjectFolder}"
+      },
+      "problemMatcher": []
+    },
 		{ "label": "Update dependencies",
 			"detail": "Updates all depdencies using npm_check_updates and then uses Expo to fix any dependency version mismatches.",
       "type": "shell",
-      "command": "update-deps:all",
+      "command": "yarn update-deps:all",
       "problemMatcher": []
     },
     { "label": "Build",
@@ -168,6 +177,28 @@
       "args": ["cover:all"],
       "problemMatcher": [],
       "detail": "Starts the app using yarn start:app:web command."
+    },
+  ],
+  "inputs": [
+    {
+			"id": "selectProjectFolder",
+			"type": "pickString",
+			"description": "Select a project",
+			"options": [
+        "",
+        "apps/app", 
+        "apps/admin", 
+        "apps/site", 
+        "packages/features", 
+        "packages/shared", 
+        "packages/state", 
+        "packages/ui"
+      ],
+    },
+    {
+      "id": "dependencies",
+      "type": "promptString",
+      "description": "Enter a space separate list of dependencies to install.",
     },
   ]
 }
