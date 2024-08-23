@@ -73,6 +73,8 @@ RUN yes | sdkmanager "cmake;3.22.1"
 RUN apt-get install watchman
 ENV CI=false
 ENV npm_config_loglevel=info
+
+# used for web e2e testing.
 RUN npx cypress install
 
 RUN apt -y update
@@ -86,10 +88,16 @@ RUN npm install -g esbuild
 
 RUN gmsaas config set android-sdk-path /home/node/Android/Sdk
 
+# used for deploying the web site to netlify (hosting environment).
 RUN npm install -g netlify-cli
 
+# used for file watching.
 RUN npm install -g nodemon
 
+# used to get maestro.
 RUN apt install curl -y
-
+# used to run mobile e2e tests.
 RUN curl -Ls "https://get.maestro.mobile.dev" | bash
+
+# used in run-tests.sh script.
+RUN apt-get install lsof
