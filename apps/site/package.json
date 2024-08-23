@@ -7,10 +7,20 @@
   "scripts": {
     "check-deps": "npx npm-check-updates && npx expo install --check",
     "update-deps": "export YARN_ENABLE_IMMUTABLE_INSTALLS=false && npx npm-check-updates -u && yarn install && npx expo install --fix",
-    "start": "EXPO_USE_METRO_WORKSPACE_ROOT=1 expo start",
-    "android": "EXPO_USE_METRO_WORKSPACE_ROOT=1 expo start --android",
-    "ios": "EXPO_USE_METRO_WORKSPACE_ROOT=1 expo start --ios",
-    "web": "EXPO_USE_METRO_WORKSPACE_ROOT=1 expo start --web"
+    "site:start": "EXPO_USE_METRO_WORKSPACE_ROOT=1 npx expo start",
+    "site:test-e2e": "npx cypress run",
+    "site:start-and-test-e2e": "chmod +x ./test/run-tests.sh && ./test/run-tests.sh",
+    
+    "site:lint": "npx eslint .",
+    "site:build": "npx tsc -b",
+    "site:test": "npx jest --colors",
+    "site:build:android": "npx eas build --platform android --profile development --local --output ./better-app.dev.apk",
+    "site:list:devices": "adb devices",
+    "site:install:android": "adb install -r ./better-app.dev.apk",
+    "site:wireless": "ip=$(adb shell ip -f inet addr show wlan0 | grep -oP '(?<=inet\\s)\\d+(\\.\\d+){3}') && adb tcpip 5555 && adb connect $ip",
+    "site:android": "EXPO_USE_METRO_WORKSPACE_ROOT=1 npx expo start --android --dev-client",
+    "site:ios": "EXPO_USE_METRO_WORKSPACE_ROOT=1 npx expo start --ios --dev-client",
+    "site:web": "EXPO_USE_METRO_WORKSPACE_ROOT=1 npx expo start --web"
   },
   "dependencies": {
     "@boundbybetter/features": "workspace:*",
