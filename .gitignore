@@ -37,3 +37,6 @@ tsconfig.tsbuildinfo
 
 # Android apks.
 *.apk
+
+# Expo Run:Android
+android

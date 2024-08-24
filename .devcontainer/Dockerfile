@@ -40,13 +40,16 @@ RUN n prune
 RUN npm install -g npm@latest
 RUN npm install -g eas-cli
 
+# install java needed for android.
 RUN cd /usr/lib
 RUN wget https://download.oracle.com/java/17/latest/jdk-17_linux-x64_bin.deb
 RUN dpkg -i jdk-17_linux-x64_bin.deb
 
+# Make android sdk directories.
 RUN mkdir /home/node/Android
 RUN mkdir /home/node/Android/Sdk
 
+# Download the command line tools and install them.
 RUN cd /home/node/Android/Sdk \
 && wget -O commandlinetools-linux.zip https://dl.google.com/android/repository/commandlinetools-linux-11076708_latest.zip 
 
@@ -64,9 +67,10 @@ RUN yes | sdkmanager --licenses
 RUN yes | sdkmanager "platform-tools" "platforms;android-34"
 RUN yes | sdkmanager "build-tools;34.0.0"
 RUN yes | sdkmanager "ndk-bundle" "ndk;25.1.8937393"
-RUN yes | sdkmanager "cmdline-tools;latest"
+# RUN yes | sdkmanager "cmdline-tools;latest"
 RUN yes | sdkmanager "build-tools;33.0.1"
 RUN yes | sdkmanager "cmake;3.22.1"
+RUN yes | sdkmanager "system-images;android-33;google_apis;x86_64"
 
 # RUN yes | apt-get -y install libgtk2.0-0 libgtk-3-0 libgbm-dev libnotify-dev libnss3 libxss1 libasound2 libxtst6 xauth xvfb
 
@@ -101,3 +105,7 @@ RUN curl -Ls "https://get.maestro.mobile.dev" | bash
 
 # used in run-tests.sh script.
 RUN apt-get install lsof
+
+RUN yes | sdkmanager "emulator"
+
+RUN echo "no" | avdmanager create avd -n test_avd -k "system-images;android-33;google_apis;x86_64" --device "pixel"

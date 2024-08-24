@@ -3,43 +3,47 @@
 {
   "version": "2.0.0",
   "tasks": [
-		{ "label": "Install dependencies",
+    
+    // Dependencies
+		{ "label": "Dependencies: Install",
 			"detail": "Runs yarn install to install all dependencies. Included for completeness.",
       "type": "shell",
-      "command": "yarn install",
+      "command": "yarn deps:install",
       "problemMatcher": []
     },
-		{ "label": "Check dependencies",
+		{ "label": "Dependencies: Check",
 			"detail": "Uses npm-check-updates and expo install --check to help identify available updates.  Beware, npm-check-updates will return updates that you should not install because of Expo.",
       "type": "shell",
-      "command": "yarn check-deps:all",
+      "command": "yarn deps:check-all",
       "problemMatcher": []
     },
-		{ "label": "Add dev dependencies",
+		{ "label": "Dependencies: Add dev",
 			"detail": "Uses expo to add new dev dependencies to a workspace.",
       "type": "shell",
-      "command": "npx expo install ${input:dependencies} -- -D",
+      "command": "yarn deps:add-dev ${input:dependencies}",
       "options": {
         "cwd": "${input:selectProjectFolder}"
       },
       "problemMatcher": []
     },
-		{ "label": "Add dependencies",
+		{ "label": "Dependencies: Add",
 			"detail": "Uses expo to add new dev dependencies to a workspace.",
       "type": "shell",
-      "command": "npx expo install ${input:dependencies}",
+      "command": "yarn deps:add ${input:dependencies}",
       "options": {
         "cwd": "${input:selectProjectFolder}"
       },
       "problemMatcher": []
     },
-		{ "label": "Update dependencies",
-			"detail": "Updates all depdencies using npm_check_updates and then uses Expo to fix any dependency version mismatches.",
+		{ "label": "Dependencies: Upgrade",
+			"detail": "Upgrades the specified dependency in the root and each workspace where it exists",
       "type": "shell",
-      "command": "yarn update-deps:all",
+      "command": "yarn deps:upgrade",
       "problemMatcher": []
     },
-    { "label": "Lint",
+
+    // Code
+    { "label": "Code: Lint",
       "type": "shell",
       "command": "yarn",
       "args": ["lint:all"],
@@ -50,7 +54,7 @@
       "problemMatcher": ["$eslint-stylish"],
       "detail": "Lints all ts, tsx, js, and jsx files."
     },
-    { "label": "Lint and Watch",
+    { "label": "Code: Lint and watch",
       "type": "shell",
       "command": "yarn",
       "args": [
@@ -77,7 +81,7 @@
       "isBackground": true,
       "detail": "Lints all ts, tsx, js, and jsx files on change."
     },
-    { "label": "Build",
+    { "label": "Code: Compile",
       "type": "shell",
       "command": "yarn",
       "args": ["build:all"],
@@ -87,7 +91,7 @@
       },
       "problemMatcher": ["$tsc"]
     },
-    { "label": "Build and Watch",
+    { "label": "Code: Compile and watch",
       "type": "shell",
       "command": "yarn",
       "args": [
@@ -114,21 +118,44 @@
       "isBackground": true,
       "detail": "Lints all ts, tsx, js, and jsx files on change."
     },
-    { "label": "Build App for Android",
+
+    // Mobile
+    { "label": "Mobile: List Android devices",
+      "type": "shell",
+      "command": "yarn android:devices",
+      "problemMatcher": [],
+      "detail": "Lists all android devices connected to the computer."
+    },
+    { "label": "Mobile: Switch Android device to wireless",
+      "type": "shell",
+      "command": "yarn android:wireless",
+      "problemMatcher": [],
+      "detail": "Switches the android device to using a tcpip connection."
+    },
+    { "label": "Mobile: Build app for Android with EAS locally",
       "type": "shell",
       "command": "yarn",
       "args": ["build:android"],
       "problemMatcher": [],
       "detail": "Builds the app for android."
     },
-    { "label": "Install App for Android",
+    { "label": "Mobile: Install EAS locally built APK",
       "type": "shell",
       "command": "yarn",
       "args": ["install:android"],
       "problemMatcher": [],
       "detail": "Installs the app for android."
     },
-    { "label": "Test",
+    { "label": "Mobile: Build and install Android app using Expo",
+      "type": "shell",
+      "command": "yarn",
+      "args": ["app:run-android"],
+      "problemMatcher": [],
+      "detail": "Starts the app for android."
+    },
+    
+    // Testing
+    { "label": "Unit Testing: Run all tests",
       "type": "shell",
       "command": "yarn",
       "args": ["test:all"],
@@ -154,46 +181,70 @@
       },
       "detail": "Runs all tests in the project.  Use the jest runner when you want to watch."
     },
-    { "label": "Test with Coverage",
+    { "label": "Unit Testing: Run all tests with coverage",
       "type": "shell",
       "command": "yarn",
       "args": ["cover:all"],
       "problemMatcher": [],
       "detail": "Starts the app using yarn start:app:web command."
     },
-    { "label": "Test End to End Web",
-      "type": "shell",
-      "command": "yarn",
-      "args": ["e2e:all"],
-      "problemMatcher": [],
-      "detail": "Starts the app using yarn start:app:web command."
-    },
-    { "label": "Start App for Web",
+    
+    // Development
+    { "label": "Dev: Start server for web",
       "type": "shell",
       "command": "yarn",
       "args": ["app:web"],
       "problemMatcher": [],
       "detail": "Starts the app using yarn start:app:web command."
     },
-    { "label": "Start App for Android",
+    { "label": "Dev: Start server for Android",
       "type": "shell",
       "command": "yarn",
       "args": ["app:android"],
       "problemMatcher": [],
       "detail": "Starts the app for android."
     },
-    { "label": "Open Cypress",
+    
+    // E2E Web
+    { "label": "E2E Web: Open Cypress for E2E test development",
       "type": "shell",
       "command": "yarn",
       "args": ["start:cypress:app"],
       "problemMatcher": [],
       "detail": "Opens cypress using yarn start:cypress:app command."
     },
-    { "label": "Start E2E dev for app",
+    { "label": "E2E Web: Start app and open Cypress for E2E dev",
       "dependsOn": ["Start App for Web", "Open Cypress"],
       "problemMatcher": [],
       "detail": "Runs both start-app and start-cypress tasks in parallel."
     },
+    { "label": "E2E Web: Run all tests",
+      "type": "shell",
+      "command": "yarn",
+      "args": ["e2e:web"],
+      "problemMatcher": [],
+      "detail": "Starts the app using yarn start:app:web command."
+    },
+    // { "label": "E2E Web: Run app tests" },
+    // { "label": "E2E Web: Run site tests" },
+    // { "label": "E2E Web: Run admin tests" },
+
+    // E2E Mobile
+    // { "label": "E2E Mobile: Open maestro studio to write tests" },
+    // { "label": "E2E Mobile: Run all tests" },
+    // { "label": "E2E Mobile: Run app tests" },
+    // { "label": "E2E Mobile: Run site tests" },
+    // { "label": "E2E Mobile: Run admin tests" },
+
+    // Pipeline
+    { "label": "E2E Web: Run all tests",
+      "type": "shell",
+      "command": "yarn",
+      "args": ["pipeline:run"],
+      "problemMatcher": [],
+      "detail": "Starts the app using yarn start:app:web command."
+    },
+    
   ],
   "inputs": [
     {

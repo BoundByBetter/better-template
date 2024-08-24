@@ -2,6 +2,7 @@
 
 appId: ${APP}
 ---
+- runFlow: launch.yaml
 - runFlow: log-in.yaml
 - runFlow: posts.yaml
 - runFlow: log-out.yaml

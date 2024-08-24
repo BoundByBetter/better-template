@@ -6,9 +6,9 @@
   //"dockerComposeFile": ["docker-compose.yml"],
   //"service": "devcontainer",
   //"workspaceFolder": "/workspaces/my-solution",
-  "build": { "dockerfile": "Dockerfile" },
+  //"build": { "dockerfile": "Dockerfile" },
   "runArgs": ["--privileged", "-v", "/dev/bus/usb:/dev/bus/usb"],
-  //"image": "mcr.microsoft.com/devcontainers/typescript-node:1-20-bullseye",
+  "image": "betterstew/better-template:v0.1",
 
   // Features to add to the dev container. More info: https://containers.dev/features.
   // "features": {},
