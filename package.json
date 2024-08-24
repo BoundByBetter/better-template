@@ -12,6 +12,8 @@
     "deps:check-all": "yarn deps:check && yarn workspaces foreach --all run deps:check",
     "deps:add": "npx expo install",
     "deps:add-dev": "node tools/scripts/deps-install-dev.js",
+    "deps:fix": "YARN_ENABLE_IMMUTABLE_INSTALLS=false && npx expo install --fix",
+    "deps:fix-all": "yarn deps:fix && yarn workspaces foreach --all run deps:fix",
     "deps:upgrade": "node tools/scripts/deps-upgrade.js",
     "code:lint-all": "eslint .",
     "code:build-all": "tsc -b",

@@ -17,6 +17,12 @@
       "command": "yarn deps:check-all",
       "problemMatcher": []
     },
+		{ "label": "Dependencies: Fix",
+			"detail": "Uses expo to update mismatched dependencies across all projects.",
+      "type": "shell",
+      "command": "yarn deps:fix-all",
+      "problemMatcher": []
+    },
 		{ "label": "Dependencies: Add dev",
 			"detail": "Uses expo to add new dev dependencies to a workspace.",
       "type": "shell",

@@ -5,8 +5,10 @@
   "author": "Stewart Armbrecht",
   "license": "MIT",
   "scripts": {
-    "check-deps": "npx npm-check-updates && npx expo install --check",
-    "update-deps": "export YARN_ENABLE_IMMUTABLE_INSTALLS=false && npx npm-check-updates -u && yarn install && npx expo install --fix",
+    "deps:check": "npx npm-check-updates && npx expo install --check",
+    "deps:add": "npx expo install",
+    "deps:add-dev": "node tools/scripts/deps-install-dev.js",
+    "deps:fix": "YARN_ENABLE_IMMUTABLE_INSTALLS=false && npx expo install --fix",
     "site:start": "EXPO_USE_METRO_WORKSPACE_ROOT=1 npx expo start",
     "site:web-e2e": "npx cypress run",
     "site:start-and-web-e2e": "chmod +x ./test/run-tests.sh && ./test/run-tests.sh",
