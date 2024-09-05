@@ -11,11 +11,12 @@
     "deps:fix": "YARN_ENABLE_IMMUTABLE_INSTALLS=false && npx expo install --fix",
     "lint": "eslint .",
     "build": "tsc -b",
-    "test": "jest --color",
-    "cover": "jest --color --coverage"
+    "test": "npx jest --color",
+    "cover": "npx jest --color --coverage"
   },
   "private": true,
   "dependencies": {
+    "@automerge/automerge-repo": "^1.2.1",
     "@reduxjs/toolkit": "^2.2.7",
     "react": "18.2.0",
     "react-redux": "^9.1.2"

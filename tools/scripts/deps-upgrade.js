@@ -38,7 +38,18 @@ const checkAndUpgradeDependencies = (packageJsonPath, workspaceName) => {
     const devDependencies = packageJson.devDependencies || {};
 
     dependenciesToCheck.forEach((dependencyWithVersion) => {
-      const [dependency, version] = dependencyWithVersion.split('@');
+      let dependency, version;
+      if (dependencyWithVersion.startsWith('@')) {
+        // Handle scoped packages
+        const [scope, rest] = dependencyWithVersion.split('/');
+        const [packageName, packageVersion] = rest.split('@');
+        dependency = `${scope}/${packageName}`;
+        version = packageVersion;
+      } else {
+        // Handle regular packages
+        [dependency, version] = dependencyWithVersion.split('@');
+      }
+
       if (dependencies[dependency] || devDependencies[dependency]) {
         const installCommand = version
           ? `${dependency}@${version}`
