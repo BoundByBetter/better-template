@@ -15,7 +15,7 @@ import { Stack } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
 import { useEffect } from 'react';
 
-import { MyState } from '@boundbybetter/state';
+import { State } from '@boundbybetter/state';
 import { Platform } from 'react-native';
 import { AuthProvider, WebSplashScreen } from '@boundbybetter/features';
 import { logCall, logRaw, logSetup } from '@boundbybetter/shared';
@@ -93,14 +93,14 @@ function RootLayoutNav() {
             : DefaultTheme
         }
       >
-        <MyState>
+        <State>
           <AuthProvider>
             <Stack>
               <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
               <Stack.Screen name="modal" options={{ presentation: 'modal' }} />
             </Stack>
           </AuthProvider>
-        </MyState>
+        </State>
       </ThemeProvider>
     </tg.TamaguiProvider>
   );

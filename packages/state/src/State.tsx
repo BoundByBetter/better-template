@@ -1,8 +1,8 @@
 import { store } from './store';
 import { Provider } from 'react-redux';
-export interface MyDataProps {
+export interface StateProps {
   children: JSX.Element;
 }
-export function MyState(props: MyDataProps) {
+export function State(props: StateProps) {
   return <Provider store={store}>{props.children}</Provider>;
 }

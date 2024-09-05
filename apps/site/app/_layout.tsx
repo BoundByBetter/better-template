@@ -15,7 +15,7 @@ import { Stack } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
 import { useEffect } from 'react';
 
-import { MyState } from '@boundbybetter/state';
+import { State } from '@boundbybetter/state';
 import { Platform } from 'react-native';
 import { useColorScheme } from '@boundbybetter/ui';
 import { WebSplashScreen } from '@boundbybetter/features';
@@ -92,12 +92,12 @@ function RootLayoutNav() {
             : DefaultTheme
         }
       >
-        <MyState>
+        <State>
           <Stack>
             <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
             <Stack.Screen name="modal" options={{ presentation: 'modal' }} />
           </Stack>
-        </MyState>
+        </State>
       </ThemeProvider>
     </tg.TamaguiProvider>
   );
