@@ -18,7 +18,8 @@
     "packages/*/src",
     "apps/app",
     "apps/site",
-    "babel.config.test.js"
+    "babel.config.test.js",
+    "mocks/*"
   ],
   "exclude": [
     "node_modules",

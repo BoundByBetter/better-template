@@ -1,5 +1,5 @@
+import { View } from 'react-native';
 /* istanbul ignore file */
-export { State } from './State';
 const selectUser = jest.fn();
 const useAppDispatch = jest.fn();
 const useAppSelector = jest.fn();
@@ -16,3 +16,6 @@ const useAppSelector = jest.fn();
 // });
 
 export { selectUser, useAppDispatch, useAppSelector };
+export const State = jest.fn(({ children }) => {
+  return <View testID="State">{children}</View>;
+});

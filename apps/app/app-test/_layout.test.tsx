@@ -5,38 +5,6 @@ import { useColorScheme } from '@boundbybetter/ui';
 import path from 'path';
 import { it, expect, beforeEach } from '@jest/globals';
 
-jest.mock(
-  '@tamagui/font-inter/otf/Inter-Medium.otf',
-  () => 'mocked-inter-font',
-);
-jest.mock(
-  '@tamagui/font-inter/otf/Inter-Bold.otf',
-  () => 'mocked-inter-bold-font',
-);
-
-jest.mock('expo-font', () => {
-  const actual = jest.requireActual('expo-font');
-  return {
-    ...actual,
-    useFonts: jest.fn().mockImplementation(actual.useFonts),
-  };
-});
-
-jest.mock('@boundbybetter/ui', () => {
-  const actual = jest.requireActual('@boundbybetter/ui');
-  return {
-    ...actual,
-    useColorScheme: jest.fn().mockImplementation(() => {
-      return actual.useColorScheme
-    }),
-  };
-});
-
-jest.mock('expo-splash-screen', () => ({
-  hideAsync: jest.fn(),
-  preventAutoHideAsync: jest.fn(),
-}));
-
 // Get directory to app folder
 const appDir = path.join(__dirname, '../app');
 
