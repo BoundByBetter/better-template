@@ -1,75 +1,67 @@
-// For more details about the project structure and key components, refer to <projectRoog>/docs/PROJECT_DETAILS.md
-import React from 'react';
-import { fireEvent } from '@testing-library/react-native';
+import { fireEvent, screen } from '@testing-library/react-native';
 import { LogInScreen } from './LogInScreen';
-import { userLoggedIn } from '@boundbybetter/shared';
-import { useAppDispatch } from '@boundbybetter/state';
-import { describe, it, expect } from '@jest/globals';
+import { User } from '@boundbybetter/shared';
+import { updateCurrentUser } from '@boundbybetter/state';
 import { renderWithTamagui } from '../renderWithTamagui.test-util';
+import { describe, expect, it } from '@jest/globals';
+import '@testing-library/jest-native/extend-expect';
 
 jest.mock('@boundbybetter/state', () => ({
-  useAppDispatch: jest.fn(),
+  updateCurrentUser: jest.fn(),
 }));
 
 describe('LogInScreen', () => {
-  beforeEach(() => {
-    (useAppDispatch as unknown as jest.Mock).mockReturnValue(jest.fn());
+  it('should render the login options', () => {
+    const { getByText, getByTestId } = renderWithTamagui(<LogInScreen />);
+    
+    expect(getByTestId('app-log-in')).toBeTruthy();
+    expect(getByText('My App')).toBeTruthy();
+    expect(getByText('Log In')).toBeTruthy();
+    expect(getByText('Please select a method for logging in.')).toBeTruthy();
+    expect(getByText('Microsoft')).toBeTruthy();
+    expect(getByText('Google')).toBeTruthy();
+    expect(getByText('Facebook')).toBeTruthy();
   });
 
-  it('should render the component', () => {
-    const { getByTestId } = renderWithTamagui(<LogInScreen />);
-    const logInScreen = getByTestId('app-log-in');
-    expect(logInScreen).toBeTruthy();
-  });
-
-  it('should dispatch userLoggedIn action when Microsoft button is clicked', () => {
-    const dispatch = jest.fn();
-    (useAppDispatch as unknown as jest.Mock).mockReturnValue(dispatch);
-
-    const { getByText } = renderWithTamagui(<LogInScreen />);
-    const microsoftButton = getByText('Microsoft');
+  it('should call updateCurrentUser when Microsoft button is clicked', () => {
+    renderWithTamagui(<LogInScreen />);
+    const microsoftButton = screen.getByText('Microsoft');
     fireEvent.press(microsoftButton);
 
-    expect(dispatch).toHaveBeenCalledWith(
-      userLoggedIn({
-        userName: 'Test User',
-        userEmail: 'testuser@boundbybetter.com',
-        groups: [],
-      }),
-    );
+    const expectedUser: User = {
+      userName: 'Test User',
+      userEmail: 'testuser@boundbybetter.com',
+      groups: [],
+    };
+
+    expect(updateCurrentUser).toHaveBeenCalledWith(expectedUser);
   });
 
-  it('should dispatch userLoggedIn action when Google button is clicked', () => {
-    const dispatch = jest.fn();
-    (useAppDispatch as unknown as jest.Mock).mockReturnValue(dispatch);
-
-    const { getByText } = renderWithTamagui(<LogInScreen />);
-    const googleButton = getByText('Google');
+  it('should call updateCurrentUser when Google button is clicked', () => {
+    renderWithTamagui(<LogInScreen />);
+    const googleButton = screen.getByText('Google');
     fireEvent.press(googleButton);
 
-    expect(dispatch).toHaveBeenCalledWith(
-      userLoggedIn({
-        userName: 'Test User',
-        userEmail: 'testuser@boundbybetter.com',
-        groups: [],
-      }),
-    );
+    const expectedUser: User = {
+      userName: 'Test User',
+      userEmail: 'testuser@boundbybetter.com',
+      groups: [],
+    };
+
+    expect(updateCurrentUser).toHaveBeenCalledWith(expectedUser);
   });
 
-  it('should dispatch userLoggedIn action when Facebook button is clicked', () => {
-    const dispatch = jest.fn();
-    (useAppDispatch as unknown as jest.Mock).mockReturnValue(dispatch);
-
-    const { getByText } = renderWithTamagui(<LogInScreen />);
-    const facebookButton = getByText('Facebook');
+  it('should call updateCurrentUser when Facebook button is clicked', () => {
+    renderWithTamagui(<LogInScreen />);
+    const facebookButton = screen.getByText('Facebook');
     fireEvent.press(facebookButton);
 
-    expect(dispatch).toHaveBeenCalledWith(
-      userLoggedIn({
-        userName: 'Test User',
-        userEmail: 'testuser@boundbybetter.com',
-        groups: [],
-      }),
-    );
+    const expectedUser: User = {
+      userName: 'Test User',
+      userEmail: 'testuser@boundbybetter.com',
+      groups: [],
+    };
+
+    expect(updateCurrentUser).toHaveBeenCalledWith(expectedUser);
   });
 });

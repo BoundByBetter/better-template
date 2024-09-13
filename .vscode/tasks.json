@@ -28,7 +28,7 @@
       "type": "shell",
       "command": "yarn deps:add-dev ${input:dependencies}",
       "options": {
-        "cwd": "${input:selectProjectFolder}"
+        "cwd": "${workspaceFolder}/${input:selectProjectFolder}"
       },
       "problemMatcher": []
     },
@@ -37,7 +37,7 @@
       "type": "shell",
       "command": "yarn deps:add ${input:dependencies}",
       "options": {
-        "cwd": "${input:selectProjectFolder}"
+        "cwd": "${workspaceFolder}/${input:selectProjectFolder}"
       },
       "problemMatcher": []
     },
@@ -195,6 +195,42 @@
       "problemMatcher": [],
       "detail": "Starts the app using yarn start:app:web command."
     },
+		{ "label": "Unit Testing: Run workspace tests",
+			"detail": "Runs all unit tests in the selected workspace.",
+      "type": "shell",
+      "command": "yarn",
+      "args": [
+        "test:run-all",
+        "${input:selectProjectFolder}"
+      ],
+      "group": "test",
+      "problemMatcher": ["$jest-cli"],
+    },
+		{ "label": "Unit Testing: Run workspace tests with coverage",
+			"detail": "Runs all unit tests in the selected workspace.",
+      "type": "shell",
+      "command": "yarn",
+      "args": [
+        "test:cover-all",
+        "${input:selectProjectFolder}",
+        "--collectCoverageFrom=${input:selectProjectFolder}/src/**/*.{js,jsx,ts,tsx}"    
+      ],
+      "group": "test",
+      "problemMatcher": ["$jest-cli"],
+    },
+    { "label": "Unit Testing: View code coverage",
+      "detail": "Serves the code coverage report using npx serve.",
+      "type": "shell",
+      "command": "npx",
+      "args": [
+        "serve",
+        "${workspaceFolder}/coverage/lcov-report"
+      ],
+      "problemMatcher": [],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      }
+    }
     
     // Development
     { "label": "Dev: Start server for web",
@@ -254,8 +290,7 @@
     
   ],
   "inputs": [
-    {
-			"id": "selectProjectFolder",
+    { "id": "selectProjectFolder",
 			"type": "pickString",
 			"description": "Select a project",
 			"options": [
@@ -269,8 +304,7 @@
         "packages/ui"
       ],
     },
-    {
-      "id": "dependencies",
+    { "id": "dependencies",
       "type": "promptString",
       "description": "Enter a space separate list of dependencies to install.",
     },

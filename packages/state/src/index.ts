@@ -1,18 +1,14 @@
 /* istanbul ignore file */
-export { State } from './State';
-export { useAppDispatch, useAppSelector, useAppStore } from './hooks';
-export {
-  selectAllPosts,
-  selectPostById,
-  selectPostIds,
-} from './posts/postsSlice';
-export { postAdded, postDeleted } from '@boundbybetter/shared';
-export {
-  selectAllFeatures,
-  selectFeatureById,
-  selectFeatureIds,
-  //selectFeatureByKey
-} from './features/featuresSlice';
-export { featureAdded, featureDeleted } from '@boundbybetter/shared';
+export { usePosts, usePost, usePostStatus } from './posts/hooks';
+
+export { useFeature, useFeatures } from './features/hooks';
+
+export { useCurrentUser } from './users/hooks';
+
+export { addPost, updatePost, deletePost } from './posts/mutations';
+
+export { addFeature, updateFeature, deleteFeature } from './features/mutations';
+
+export { updateCurrentUser } from './users/mutations';
+
 export { store } from './store';
-export { selectUser } from './user/userSlice';

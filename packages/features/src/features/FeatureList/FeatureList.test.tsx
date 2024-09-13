@@ -1,15 +1,14 @@
 import React from 'react';
 import { FeatureList } from './FeatureList';
-import { useAppSelector } from '@boundbybetter/state';
+import { useFeatures } from '@boundbybetter/state';
 import { FeatureItem } from '../FeatureItem';
 import { AddFeature } from '../AddFeature';
 import { renderWithTamagui } from '../../renderWithTamagui.test-util';
 import { describe, it, expect } from '@jest/globals';
 
-//mock useAppSelector
+//mock useFeatures
 jest.mock('@boundbybetter/state', () => ({
-  useAppSelector: jest.fn(),
-  useAppDispatch: jest.fn(),
+  useFeatures: jest.fn(),
 }));
 
 //spy on FeatureItem
@@ -23,19 +22,23 @@ jest.mock('../AddFeature', () => ({
 }));
 
 describe('FeatureItems', () => {
+  beforeEach(() => {
+    jest.clearAllMocks();
+  });
+
   it('should render a FeatureItem for each feature', () => {
-    (useAppSelector as unknown as jest.Mock).mockReturnValue([
+    (useFeatures as jest.Mock).mockReturnValue([
       {
         id: '1',
-        title: 'My Feature',
+        key: 'My Feature',
         status: 'ACTIVE',
-        content: 'This is my feature',
+        groups: [],
       },
       {
         id: '2',
-        title: 'My Second Feature',
+        key: 'My Second Feature',
         status: 'ACTIVE',
-        content: 'This is my second feature',
+        groups: [],
       },
     ]);
     renderWithTamagui(<FeatureList />);
@@ -43,9 +46,9 @@ describe('FeatureItems', () => {
       {
         feature: {
           id: '1',
-          title: 'My Feature',
+          key: 'My Feature',
           status: 'ACTIVE',
-          content: 'This is my feature',
+          groups: [],
         },
       },
       {},
@@ -54,15 +57,23 @@ describe('FeatureItems', () => {
       {
         feature: {
           id: '2',
-          title: 'My Second Feature',
+          key: 'My Second Feature',
           status: 'ACTIVE',
-          content: 'This is my second feature',
+          groups: [],
         },
       },
       {},
     );
   });
+
+  it('should not render FeatureItems when features is undefined', () => {
+    (useFeatures as jest.Mock).mockReturnValue(undefined);
+    renderWithTamagui(<FeatureList />);
+    expect(FeatureItem).not.toHaveBeenCalled();
+  });
+
   it('should render an AddFeature', () => {
+    (useFeatures as jest.Mock).mockReturnValue(undefined);
     renderWithTamagui(<FeatureList />);
     expect(AddFeature).toHaveBeenCalledWith({}, {});
   });

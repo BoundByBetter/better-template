@@ -1340,6 +1340,7 @@ __metadata:
     "@reduxjs/toolkit": "npm:^2.2.7"
     react: "npm:18.2.0"
     react-redux: "npm:^9.1.2"
+    tinybase: "npm:^5.2.3"
   languageName: unknown
   linkType: soft
 
@@ -16212,6 +16213,71 @@ __metadata:
   version: 2.1.0
   resolution: "tiny-typed-emitter@npm:2.1.0"
   checksum: 10c0/522bed4c579ee7ee16548540cb693a3d098b137496110f5a74bff970b54187e6b7343a359b703e33f77c5b4b90ec6cebc0d0ec3dbdf1bd418723c5c3ce36d8a2
+  languageName: node
+  linkType: hard
+
+"tinybase@npm:^5.2.3":
+  version: 5.2.3
+  resolution: "tinybase@npm:5.2.3"
+  peerDependencies:
+    "@automerge/automerge-repo": ^1.2.0
+    "@electric-sql/pglite": ^0.2.5
+    "@libsql/client": ^0.10.0
+    "@powersync/common": ^1.16.2
+    "@sqlite.org/sqlite-wasm": ^3.46.1-build3
+    "@vlcn.io/crsqlite-wasm": ^0.16.0
+    electric-sql: ^0.12.1
+    expo: ^51.0.0
+    expo-sqlite: ^14.0.5
+    partykit: ^0.0.110
+    partysocket: ^1.0.2
+    postgres: ^3.4.4
+    prettier: ^3.3.2
+    react: ^18.2.0
+    react-dom: ^18.2.0
+    sqlite3: ^5.1.7
+    ws: ^8.17.0
+    yjs: ^13.6.18
+  peerDependenciesMeta:
+    "@automerge/automerge-repo":
+      optional: true
+    "@electric-sql/pglite":
+      optional: true
+    "@libsql/client":
+      optional: true
+    "@powersync/common":
+      optional: true
+    "@sqlite.org/sqlite-wasm":
+      optional: true
+    "@vlcn.io/crsqlite-wasm":
+      optional: true
+    electric-sql:
+      optional: true
+    expo:
+      optional: true
+    expo-sqlite:
+      optional: true
+    partykit:
+      optional: true
+    partysocket:
+      optional: true
+    postgres:
+      optional: true
+    prettier:
+      optional: true
+    react:
+      optional: true
+    react-dom:
+      optional: true
+    sqlite3:
+      optional: true
+    ws:
+      optional: true
+    yjs:
+      optional: true
+  bin:
+    tinybase: cli/index.js
+  checksum: 10c0/9c69e5f3f97a042347bdb36174798beaa57c2e130f251ae6a2ecf5de4fd93d48ceef68f486286e561910883c069e28bdcaca143f152b36288d7071b156dd7ad1
   languageName: node
   linkType: hard
 

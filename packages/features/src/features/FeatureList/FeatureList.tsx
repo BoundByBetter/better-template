@@ -1,10 +1,10 @@
 import { FeatureItem } from '../FeatureItem';
 import { AddFeature } from '../AddFeature';
-import { selectAllFeatures, useAppSelector } from '@boundbybetter/state';
+import { useFeatures } from '@boundbybetter/state';
 import { tg } from '@boundbybetter/ui';
 
 export function FeatureList() {
-  const features = useAppSelector(selectAllFeatures);
+  const features = useFeatures();
 
   return (
     <tg.YStack gap="$4" mt="$2" testID="feature-list">

@@ -1,15 +1,15 @@
 import { useState } from 'react';
-import { useAppDispatch } from '@boundbybetter/state';
 import { nanoid } from '@reduxjs/toolkit';
 import { Feature, FeatureStatus, featureAdded } from '@boundbybetter/shared';
 import { logMessage } from '@boundbybetter/shared';
 import { tg } from '@boundbybetter/ui';
 import { Check, ChevronDown } from '@tamagui/lucide-icons';
+import { addFeature } from '@boundbybetter/state';
 
 export function AddFeature() {
   const [newFeatureName, setNewFeatureName] = useState('');
   const [newFeatureStatus, setNewFeatureStatus] = useState('INACTIVE');
-  const dispatch = useAppDispatch();
+
   const createFeature = () => {
     const feature: Feature = {
       id: nanoid(),
@@ -18,9 +18,10 @@ export function AddFeature() {
       groups: [],
       createdAt: new Date().toISOString(),
     };
-    dispatch(featureAdded(feature));
+    addFeature(feature);
     logMessage('Feature saved successfully!', feature);
   };
+
   const native = false;
   return (
     <tg.XStack gap="$4" ai="center" flexWrap="wrap">
@@ -71,14 +72,7 @@ export function AddFeature() {
         </tg.Adapt>
 
         <tg.Select.Content zIndex={200000}>
-          <tg.Select.Viewport
-            // to do animations:
-            // animation="quick"
-            // animateOnly={['transform', 'opacity']}
-            // enterStyle={{ o: 0, y: -10 }}
-            // exitStyle={{ o: 0, y: 10 }}
-            minWidth={200}
-          >
+          <tg.Select.Viewport minWidth={200}>
             {[FeatureStatus.ACTIVE, FeatureStatus.INACTIVE].map((item, i) => {
               return (
                 <tg.Select.Item index={i} key={item} value={item}>

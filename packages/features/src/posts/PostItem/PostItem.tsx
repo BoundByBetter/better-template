@@ -1,5 +1,5 @@
 import { Post, postDeleted } from '@boundbybetter/shared';
-import { useAppDispatch } from '@boundbybetter/state';
+import { deletePost } from '@boundbybetter/state';
 import { tg } from '@boundbybetter/ui';
 import moment from 'moment';
 import { Platform } from 'react-native';
@@ -9,9 +9,8 @@ export interface PostProps {
 }
 
 export function PostItem(props: PostProps) {
-  const dispatch = useAppDispatch();
   const deletePostHandler = () => {
-    dispatch(postDeleted(props.post));
+    deletePost(props.post.id);
   };
 
   return (

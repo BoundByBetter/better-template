@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import { useAppDispatch, useAppSelector } from '@boundbybetter/state';
+import { usePosts, addPost } from '@boundbybetter/state';
 import { nanoid } from '@reduxjs/toolkit';
-import { Post, PostStatus, postAdded } from '@boundbybetter/shared';
+import { Post, PostStatus } from '@boundbybetter/shared';
 import { logMessage } from '@boundbybetter/shared';
 import { tg } from '@boundbybetter/ui';
 import { useActiveFeature } from '../../features/useActiveFeature';
@@ -9,7 +9,7 @@ import { FeatureKeys } from '../../features/Features';
 
 export function AddPost() {
   const [newPostName, setNewPostName] = useState('');
-  const dispatch = useAppDispatch();
+  const posts = usePosts();
   const createPost = async () => {
     const post: Post = {
       id: nanoid(),
@@ -18,7 +18,7 @@ export function AddPost() {
       status: PostStatus.ACTIVE,
       createdAt: new Date().toISOString(),
     };
-    dispatch(postAdded(post));
+    addPost(post);
     logMessage('Post saved successfully!', post);
   };
   // istanbul ignore next
@@ -26,9 +26,7 @@ export function AddPost() {
     // istanbul ignore next
     logMessage('Navigate to purchase');
   };
-  const postCount = useAppSelector(
-    /* istanbul ignore next */ (state) => state.posts.ids.length,
-  );
+  const postCount = posts ? Object.keys(posts).length : 0;
   const unlimitedPosts = useActiveFeature(FeatureKeys.MyAppPostsUnlimited);
   const canAdd = postCount < 5 || unlimitedPosts;
   return canAdd ? (

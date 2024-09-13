@@ -1,16 +1,13 @@
-import { selectFeatureById, useAppSelector } from '@boundbybetter/state';
+import { useFeature, useCurrentUser } from '@boundbybetter/state';
 import { features } from './Features';
 import { FeatureStatus } from '@boundbybetter/shared';
 
 export const useActiveFeature = (featureKey: string): boolean => {
   const featureDetail = features[featureKey];
-  const featureOverride = useAppSelector(
-    /* istanbul ignore next */ (state) => selectFeatureById(state, featureKey),
-  );
+  const featureOverride = useFeature(featureKey);
+  const currentUser = useCurrentUser();
   const groups = featureOverride?.groups ?? featureDetail.defaultGroups ?? [];
-  const userGroups =
-    useAppSelector(/* istanbul ignore next */ (state) => state.user.groups) ??
-    /* istanbul ignore next */ [];
+  const userGroups = currentUser?.groups ?? [];
   const groupAccess =
     groups.length === 0 ||
     groups.some((group) =>

@@ -1,18 +1,16 @@
 import React from 'react';
 import { tg } from '@boundbybetter/ui';
-import { useAppDispatch } from '@boundbybetter/state';
-import { userLoggedIn } from '@boundbybetter/shared';
+import { updateCurrentUser } from '@boundbybetter/state';
+import { User } from '@boundbybetter/shared';
 
 export const LogInScreen = () => {
-  const dispatch = useAppDispatch();
   const logIn = (method: string) => {
-    dispatch(
-      userLoggedIn({
-        userName: 'Test User',
-        userEmail: 'testuser@boundbybetter.com',
-        groups: [],
-      }),
-    );
+    const newUser: User = {
+      userName: 'Test User',
+      userEmail: 'testuser@boundbybetter.com',
+      groups: [],
+    };
+    updateCurrentUser(newUser);
     // TODO: Implement login logic for the selected method
     // console.log(`Logging in with ${method}`);
   };

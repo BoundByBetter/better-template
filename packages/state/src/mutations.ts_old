@@ -1,0 +1,31 @@
+import { Row } from 'tinybase/store';
+import { store } from './store';
+import { Post, Feature, User } from '@boundbybetter/shared';
+
+export const addPost = (post: Post) => {
+  store.setRow('posts', post.id, post as any);
+};
+
+export const updatePost = (postId: string, updates: Partial<Post>) => {
+  store.setPartialRow('posts', postId, updates);
+};
+
+export const deletePost = (postId: string) => {
+  store.delRow('posts', postId);
+};
+
+export const addFeature = (feature: Feature) => {
+  store.setRow('features', feature.id, feature as any);
+};
+
+export const updateFeature = (featureId: string, updates: Partial<Feature>) => {
+  store.setPartialRow('features', featureId, updates as any);
+};
+
+export const deleteFeature = (featureId: string) => {
+  store.delRow('features', featureId);
+};
+
+export const updateCurrentUser = (updates: Partial<User>) => {
+  store.setPartialRow('user', 'current', updates as any);
+};

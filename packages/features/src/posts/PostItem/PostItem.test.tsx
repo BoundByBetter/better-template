@@ -2,16 +2,16 @@ import React from 'react';
 import { fireEvent } from '@testing-library/react-native';
 import { PostItem } from './PostItem';
 import { PostStatus } from '@boundbybetter/shared';
-import { useAppDispatch } from '@boundbybetter/state';
+import { deletePost } from '@boundbybetter/state';
 import { renderWithTamagui } from '../../renderWithTamagui.test-util';
 import { describe, it, expect } from '@jest/globals';
 
-jest.mock('@boundbybetter/state');
+jest.mock('@boundbybetter/state', () => ({
+  deletePost: jest.fn(),
+}));
 
 describe('PostItem', () => {
   it('should render the post title', async () => {
-    const dispatch = jest.fn();
-    (useAppDispatch as unknown as jest.Mock).mockReturnValue(dispatch);
     const post = {
       id: '1',
       title: 'My Post',
@@ -22,9 +22,8 @@ describe('PostItem', () => {
     const title = getByText(post.title);
     expect(title).toBeTruthy();
   });
+
   it('should render a delete button', async () => {
-    const dispatch = jest.fn();
-    (useAppDispatch as unknown as jest.Mock).mockReturnValue(dispatch);
     const post = {
       id: '1',
       title: 'My Post',
@@ -35,9 +34,8 @@ describe('PostItem', () => {
     const deleteButton = getByText('X');
     expect(deleteButton).toBeTruthy();
   });
-  it('should dispatch a postDeleted action when delete button is pressed', async () => {
-    const dispatch = jest.fn();
-    (useAppDispatch as unknown as jest.Mock).mockReturnValue(dispatch);
+
+  it('should call deletePost when delete button is pressed', async () => {
     const post = {
       id: '1',
       title: 'My Post',
@@ -47,9 +45,6 @@ describe('PostItem', () => {
     const { getByText } = renderWithTamagui(<PostItem post={post} />);
     const deleteButton = getByText('X');
     fireEvent.press(deleteButton);
-    expect(dispatch).toHaveBeenCalledWith({
-      type: 'posts/postDeleted',
-      payload: post,
-    });
+    expect(deletePost).toHaveBeenCalledWith(post.id);
   });
 });

@@ -1,15 +1,14 @@
 import React from 'react';
 import { PostList } from './PostList';
-import { useAppSelector } from '@boundbybetter/state';
+import { usePosts } from '@boundbybetter/state';
 import { PostItem } from '../PostItem';
 import { AddPost } from '../AddPost';
 import { renderWithTamagui } from '../../renderWithTamagui.test-util';
-import { describe, it, expect } from '@jest/globals';
+import { describe, it, expect, jest } from '@jest/globals';
 
-//mock useAppSelector
+//mock usePosts
 jest.mock('@boundbybetter/state', () => ({
-  useAppSelector: jest.fn(),
-  useAppDispatch: jest.fn(),
+  usePosts: jest.fn(),
 }));
 
 //spy on PostItem
@@ -24,7 +23,7 @@ jest.mock('../AddPost', () => ({
 
 describe('PostItems', () => {
   it('should render a PostItem for each post', () => {
-    (useAppSelector as unknown as jest.Mock).mockReturnValue([
+    (usePosts as jest.Mock).mockReturnValue([
       {
         id: '1',
         title: 'My Post',

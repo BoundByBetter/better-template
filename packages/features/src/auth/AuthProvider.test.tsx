@@ -3,10 +3,13 @@ import { render } from '@testing-library/react-native';
 import { AuthProvider } from './AuthProvider';
 import { Text } from 'react-native';
 import { describe, expect, it } from '@jest/globals';
-import { useAppSelector } from '@boundbybetter/state';
+import { useCurrentUser } from '@boundbybetter/state';
 import { User } from '@boundbybetter/shared';
 
-jest.mock('@boundbybetter/state');
+jest.mock('@boundbybetter/state', () => ({
+  useCurrentUser: jest.fn(),
+}));
+
 jest.mock('./LogInScreen', () => {
   const Text = require('react-native').Text;
   return {
@@ -21,7 +24,7 @@ describe('AuthProvider', () => {
       userName: 'mytest',
       groups: [],
     };
-    (useAppSelector as unknown as jest.Mock).mockReturnValue(user);
+    (useCurrentUser as jest.Mock).mockReturnValue(user);
     const { getByText } = render(
       <AuthProvider>
         <Text>Child Component</Text>
@@ -32,12 +35,7 @@ describe('AuthProvider', () => {
   });
 
   it('renders LogInScreen when user is not logged in', () => {
-    const user: User = {
-      userEmail: null,
-      userName: null,
-      groups: [],
-    };
-    (useAppSelector as unknown as jest.Mock).mockReturnValue(user);
+    (useCurrentUser as jest.Mock).mockReturnValue(undefined);
 
     const { getByTestId } = render(
       <AuthProvider>
@@ -54,7 +52,7 @@ describe('AuthProvider', () => {
       userName: 'mytest',
       groups: [],
     };
-    (useAppSelector as unknown as jest.Mock).mockReturnValue(user);
+    (useCurrentUser as jest.Mock).mockReturnValue(user);
 
     const { getByText } = render(
       <AuthProvider>

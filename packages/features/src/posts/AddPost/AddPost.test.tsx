@@ -1,21 +1,22 @@
 import React from 'react';
 import { fireEvent, waitFor } from '@testing-library/react-native';
 import { AddPost } from './AddPost';
-import { useAppDispatch, useAppSelector } from '@boundbybetter/state';
 import { renderWithTamagui } from '../../renderWithTamagui.test-util';
 import { useActiveFeature } from '../../features/useActiveFeature';
-import { describe, it, expect } from '@jest/globals';
-
-jest.mock('@boundbybetter/state');
+import { describe, it, expect, beforeEach } from '@jest/globals';
+import { store } from '@boundbybetter/state';
 
 jest.mock('../../features/useActiveFeature', () => ({
   useActiveFeature: jest.fn(),
 }));
 
 describe('AddPost', () => {
+  beforeEach(() => {
+    store.delTables();
+    (useActiveFeature as jest.Mock).mockReturnValue(true);
+  });
+
   it('should update the title when input value changes', () => {
-    (useAppSelector as unknown as jest.Mock).mockReturnValue(0);
-    (useActiveFeature as unknown as jest.Mock).mockReturnValue(true);
     const { getByPlaceholderText } = renderWithTamagui(<AddPost />);
     const inputElement = getByPlaceholderText('New Post Name');
 
@@ -23,11 +24,8 @@ describe('AddPost', () => {
 
     expect(inputElement.props.value).toBe('New Post Title');
   });
-  it('should dispatch postAdded action when Add button is pressed', async () => {
-    (useAppSelector as unknown as jest.Mock).mockReturnValue(0);
-    (useActiveFeature as unknown as jest.Mock).mockReturnValue(true);
-    const dispatch = jest.fn();
-    (useAppDispatch as unknown as jest.Mock).mockReturnValue(dispatch);
+
+  it('should add a new post when Add button is pressed', async () => {
     const { getByPlaceholderText, getByText } = renderWithTamagui(<AddPost />);
     const inputElement = getByPlaceholderText('New Post Name');
     const addButton = getByText('Add');
@@ -35,31 +33,31 @@ describe('AddPost', () => {
     fireEvent.changeText(inputElement, 'New Post Title');
     fireEvent.press(addButton);
 
-    await waitFor(() =>
-      expect(dispatch).toHaveBeenCalledWith({
-        type: 'posts/postAdded',
-        payload: {
-          createdAt: expect.any(String),
-          id: expect.any(String),
-          title: 'New Post Title',
-          rating: 5,
-          status: 'ACTIVE',
-        },
-      }),
-    );
+    await waitFor(() => {
+      const posts = store.getTable('posts');
+      expect(Object.keys(posts).length).toBe(1);
+      const newPost = Object.values(posts)[0] as any;
+      expect(newPost.title).toBe('New Post Title');
+      expect(newPost.status).toBe('ACTIVE');
+      expect(newPost.rating).toBe(5);
+    });
   });
+
   it('should prevent the user from adding more than 5 posts if the user is not a member of the licensed group', async () => {
-    const dispatch = jest.fn();
-    (useAppDispatch as unknown as jest.Mock).mockReturnValue(dispatch);
-    (useAppSelector as unknown as jest.Mock).mockReturnValue(5);
-    (useActiveFeature as unknown as jest.Mock).mockReturnValue(false);
+    (useActiveFeature as jest.Mock).mockReturnValue(false);
+    
+    // Add 5 posts to the store
+    for (let i = 0; i < 5; i++) {
+      store.setRow('posts', `post${i}`, { id: `post${i}`, title: `Post ${i}`, status: 'ACTIVE' });
+    }
+
     const { getByText } = renderWithTamagui(<AddPost />);
 
     await waitFor(() => expect(getByText('Free Limit Reached')).toBeTruthy());
     await waitFor(() =>
       expect(
         getByText(
-          'The free version is for evaluation purposes only and only allows up to 5 posts.  To add more posts please purchase a license.',
+          'The free version is for evaluation purposes only and only allows up to 5 posts. To add more posts please purchase a license.',
         ),
       ).toBeTruthy(),
     );

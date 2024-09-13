@@ -1,0 +1,189 @@
+import { renderHook } from '@testing-library/react-native';
+import {
+  usePosts,
+  usePost,
+  usePostStatus,
+  useFeature,
+  useCurrentUser,
+  useFeatures,
+} from './hooks';
+import { store } from './store';
+import { describe, it, expect, beforeEach } from '@jest/globals';
+
+describe('hooks', () => {
+  beforeEach(() => {
+    // Clear the store before each test
+    store.delTables();
+  });
+
+  describe('usePosts', () => {
+    it('should return all posts from the store as an array', () => {
+      store.setTable('posts', {
+        '1': {
+          id: '1',
+          title: 'Post 1',
+          status: 'ACTIVE',
+          content: 'Content 1',
+          createdAt: '2023-01-01',
+        },
+        '2': {
+          id: '2',
+          title: 'Post 2',
+          status: 'INACTIVE',
+          content: 'Content 2',
+          createdAt: '2023-01-02',
+        },
+      });
+
+      const { result } = renderHook(() => usePosts());
+
+      expect(result.current).toEqual([
+        {
+          id: '1',
+          title: 'Post 1',
+          status: 'ACTIVE',
+          content: 'Content 1',
+          createdAt: '2023-01-01',
+        },
+        {
+          id: '2',
+          title: 'Post 2',
+          status: 'INACTIVE',
+          content: 'Content 2',
+          createdAt: '2023-01-02',
+        },
+      ]);
+    });
+
+    it('should return undefined when there are no posts', () => {
+      const { result } = renderHook(() => usePosts());
+
+      expect(result.current).toBeUndefined();
+    });
+  });
+
+  describe('usePost', () => {
+    it('should return a specific post from the store', () => {
+      store.setTable('posts', {
+        '1': { id: '1', title: 'Post 1', status: 'ACTIVE' },
+        '2': { id: '2', title: 'Post 2', status: 'INACTIVE' },
+      });
+
+      const { result } = renderHook(() => usePost('1'));
+
+      expect(result.current).toEqual({
+        id: '1',
+        title: 'Post 1',
+        status: 'ACTIVE',
+      });
+    });
+
+    it('should return undefined for a non-existent post', () => {
+      const { result } = renderHook(() => usePost('3'));
+
+      expect(result.current).toBeUndefined();
+    });
+  });
+
+  describe('usePostStatus', () => {
+    it('should return the status of a specific post', () => {
+      store.setTable('posts', {
+        '1': { id: '1', title: 'Post 1', status: 'ACTIVE' },
+        '2': { id: '2', title: 'Post 2', status: 'INACTIVE' },
+      });
+
+      const { result } = renderHook(() => usePostStatus('2'));
+
+      expect(result.current).toBe('INACTIVE');
+    });
+
+    it('should return undefined for a non-existent post', () => {
+      const { result } = renderHook(() => usePostStatus('3'));
+
+      expect(result.current).toBeUndefined();
+    });
+  });
+
+  describe('useFeature', () => {
+    it('should return a specific feature from the store', () => {
+      store.setTable('features', {
+        feature1: {
+          id: 'feature1',
+          key: 'Feature 1',
+          status: 'ACTIVE',
+          groups: JSON.stringify(['group1']),
+        },
+        feature2: {
+          id: 'feature2',
+          key: 'Feature 2',
+          status: 'INACTIVE',
+          groups: JSON.stringify([]),
+        },
+      });
+
+      const { result } = renderHook(() => useFeature('feature1'));
+
+      expect(result.current).toEqual({
+        id: 'feature1',
+        key: 'Feature 1',
+        status: 'ACTIVE',
+        groups: ['group1'],
+      });
+    });
+
+    it('should return undefined for a non-existent feature', () => {
+      const { result } = renderHook(() => useFeature('feature3'));
+
+      expect(result.current).toBeUndefined();
+    });
+  });
+
+  describe('useCurrentUser', () => {
+    it('should return the current user from the store', () => {
+      store.setTable('user', {
+        current: {
+          id: 'user1',
+          userName: 'John Doe',
+          userEmail: 'john@example.com',
+        },
+      });
+
+      const { result } = renderHook(() => useCurrentUser());
+
+      expect(result.current).toEqual({
+        id: 'user1',
+        userName: 'John Doe',
+        userEmail: 'john@example.com',
+        groups: [],
+      });
+    });
+
+    it('should return undefined when there is no current user', () => {
+      const { result } = renderHook(() => useCurrentUser());
+
+      expect(result.current).toBeUndefined();
+    });
+  });
+
+  describe('useFeatures', () => {
+    it('should return all features from the store', () => {
+      store.setTable('features', {
+        feature1: { id: 'feature1', name: 'Feature 1', enabled: true },
+        feature2: { id: 'feature2', name: 'Feature 2', enabled: false },
+      });
+
+      const { result } = renderHook(() => useFeatures());
+
+      expect(result.current).toEqual([
+        { id: 'feature1', key: undefined, status: undefined, groups: [] },
+        { id: 'feature2', key: undefined, status: undefined, groups: [] },
+      ]);
+    });
+
+    it('should return undefined when there are no features', () => {
+      const { result } = renderHook(() => useFeatures());
+
+      expect(result.current).toBeUndefined();
+    });
+  });
+});
