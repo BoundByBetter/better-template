@@ -11,9 +11,9 @@ export const useActiveFeature = (featureKey: string): boolean => {
   const groupAccess =
     groups.length === 0 ||
     groups.some((group) =>
-      userGroups
-        .map((group) => group.toLowerCase())
-        .includes(group.toLowerCase()),
+      userGroups.some(
+        (userGroup) => userGroup.toLowerCase() === group.toLowerCase(),
+      ),
     );
   const requiresActivation = featureDetail.requiresActivation ?? false;
   const featureActive =

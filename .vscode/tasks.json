@@ -98,6 +98,17 @@
       "problemMatcher": ["$tsc"],
       "detail": "Compiles all ts, tsx, js, and jsx files."
     },
+    { "label": "Code: Compile Clean",
+      "type": "shell",
+      "command": "yarn",
+      "args": ["code:compile-all", "--clean"],
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "problemMatcher": ["$tsc"],
+      "detail": "Compiles all ts, tsx, js, and jsx files with the --clean flag."
+    },
     { "label": "Code: Compile and watch",
       "type": "shell",
       "command": "yarn",
@@ -230,7 +241,7 @@
       "options": {
         "cwd": "${workspaceFolder}"
       }
-    }
+    },
     
     // Development
     { "label": "Dev: Start server for web",

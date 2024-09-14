@@ -4,7 +4,7 @@ import { usePosts } from '@boundbybetter/state';
 import { PostItem } from '../PostItem';
 import { AddPost } from '../AddPost';
 import { renderWithTamagui } from '../../renderWithTamagui.test-util';
-import { describe, it, expect, jest } from '@jest/globals';
+import { describe, it, expect } from '@jest/globals';
 
 //mock usePosts
 jest.mock('@boundbybetter/state', () => ({

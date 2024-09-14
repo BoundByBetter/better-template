@@ -1,11 +1,12 @@
 import { renderHook } from '@testing-library/react-native';
-import { useAppSelector } from '@boundbybetter/state';
+import { useCurrentUser, useFeature } from '@boundbybetter/state';
 import { FeatureStatus } from '@boundbybetter/shared';
 import { useActiveFeature } from './useActiveFeature';
 import { describe, it, expect } from '@jest/globals';
 
 jest.mock('@boundbybetter/state', () => ({
-  useAppSelector: jest.fn(),
+  useFeature: jest.fn(),
+  useCurrentUser: jest.fn(),
 }));
 
 jest.mock('./Features', () => ({
@@ -35,11 +36,25 @@ describe('useActiveFeature', () => {
 
   it('should return true when feature is active and user belongs to at least one group', () => {
     const featureKey = 'feature1';
-    const feature = undefined;
+    const feature = { status: FeatureStatus.ACTIVE };
     const userGroups = ['group1'];
 
-    (useAppSelector as unknown as jest.Mock).mockReturnValueOnce(feature);
-    (useAppSelector as unknown as jest.Mock).mockReturnValueOnce(userGroups);
+    (useFeature as unknown as jest.Mock).mockReturnValueOnce(feature);
+    (useCurrentUser as unknown as jest.Mock).mockReturnValueOnce({
+      groups: userGroups,
+    });
+
+    const { result } = renderHook(() => useActiveFeature(featureKey));
+
+    expect(result.current).toBe(true);
+  });
+
+  it('should return true when the feature is active, does not require any groups and the user is not set', () => {
+    const featureKey = 'feature2';
+    const feature = { status: FeatureStatus.ACTIVE };
+
+    (useFeature as unknown as jest.Mock).mockReturnValueOnce(feature);
+    (useCurrentUser as unknown as jest.Mock).mockReturnValueOnce(undefined);
 
     const { result } = renderHook(() => useActiveFeature(featureKey));
 
@@ -49,10 +64,10 @@ describe('useActiveFeature', () => {
   it('should return true when feature is active and user belongs to at least one group regardless of group case', () => {
     const featureKey = 'feature1';
     const feature = undefined;
-    const userGroups = ['Group1'];
+    const user = { groups: ['Group1'] };
 
-    (useAppSelector as unknown as jest.Mock).mockReturnValueOnce(feature);
-    (useAppSelector as unknown as jest.Mock).mockReturnValueOnce(userGroups);
+    (useFeature as unknown as jest.Mock).mockReturnValueOnce(feature);
+    (useCurrentUser as unknown as jest.Mock).mockReturnValueOnce(user);
 
     const { result } = renderHook(() => useActiveFeature(featureKey));
 
@@ -61,10 +76,10 @@ describe('useActiveFeature', () => {
   it('should return false when feature is not active', () => {
     const featureKey = 'feature2';
     const feature = { status: FeatureStatus.INACTIVE };
-    const userGroups = ['group1'];
+    const user = { groups: ['group1'] };
 
-    (useAppSelector as unknown as jest.Mock).mockReturnValueOnce(feature);
-    (useAppSelector as unknown as jest.Mock).mockReturnValueOnce(userGroups);
+    (useFeature as unknown as jest.Mock).mockReturnValueOnce(feature);
+    (useCurrentUser as unknown as jest.Mock).mockReturnValueOnce(user);
 
     const { result } = renderHook(() => useActiveFeature(featureKey));
 
@@ -74,10 +89,10 @@ describe('useActiveFeature', () => {
   it('should return false when user does not belong to any group', () => {
     const featureKey = 'feature3';
     const feature = { groups: ['group1'], status: FeatureStatus.ACTIVE };
-    const userGroups: string[] = [];
+    const user = { groups: ['group2'] };
 
-    (useAppSelector as unknown as jest.Mock).mockReturnValueOnce(feature);
-    (useAppSelector as unknown as jest.Mock).mockReturnValueOnce(userGroups);
+    (useFeature as unknown as jest.Mock).mockReturnValueOnce(feature);
+    (useCurrentUser as unknown as jest.Mock).mockReturnValueOnce(user);
 
     const { result } = renderHook(() => useActiveFeature(featureKey));
 
@@ -87,10 +102,10 @@ describe('useActiveFeature', () => {
   it('should return false when feature is not defined and requires activitation', () => {
     const featureKey = 'feature4';
     const feature = undefined;
-    const userGroups = ['group1'];
+    const user = { groups: ['group1'] };
 
-    (useAppSelector as unknown as jest.Mock).mockReturnValueOnce(feature);
-    (useAppSelector as unknown as jest.Mock).mockReturnValueOnce(userGroups);
+    (useFeature as unknown as jest.Mock).mockReturnValueOnce(feature);
+    (useCurrentUser as unknown as jest.Mock).mockReturnValueOnce(user);
 
     const { result } = renderHook(() => useActiveFeature(featureKey));
 
