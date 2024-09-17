@@ -5,6 +5,7 @@ import type {
 import { WebSocketServer } from 'ws';
 import { createServer } from 'http';
 import { createWsServer } from 'tinybase/synchronizers/synchronizer-ws-server';
+import { AddressInfo } from 'net';
 
 const subDomains = ['localhost:8043'];
 
@@ -33,7 +34,10 @@ httpServer.listen(8043);
 
 httpServer.on('listening', () => {
   // write the address to the console.
-  console.log('Server listening on ' + httpServer.address());
+  console.log(
+    'Server listening on http://localhost:' +
+      (httpServer.address() as AddressInfo).port,
+  );
 });
 httpServer.on('request', (request, response) => {
   console.log('request', request.url);

@@ -244,19 +244,25 @@
     },
     
     // Development
-    { "label": "Dev: Start server for web",
+    { "label": "Dev: Start dev server for web",
       "type": "shell",
       "command": "yarn",
       "args": ["app:web"],
       "problemMatcher": [],
       "detail": "Starts the app using yarn start:app:web command."
     },
-    { "label": "Dev: Start server for Android",
+    { "label": "Dev: Start dev server for Android",
       "type": "shell",
       "command": "yarn",
       "args": ["app:android"],
       "problemMatcher": [],
       "detail": "Starts the app for android."
+    },
+    { "label": "Dev: Start dev server for Sync",
+      "type": "shell",
+      "command": "yarn",
+      "args": ["server:start"],
+      "detail": "Starts the sync server."
     },
     
     // E2E Web

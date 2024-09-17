@@ -7,9 +7,8 @@
     "deps:add": "npx expo install",
     "deps:add-dev": "node ../../tools/scripts/deps-install-dev.js",
     "deps:fix": "YARN_ENABLE_IMMUTABLE_INSTALLS=false && npx expo install --fix",
-    "start": "partykit dev",
-    "build": "partykit build",
-    "deploy": "partykit deploy"
+    "server:start": "npx ts-node ./src/index.ts",
+    "server:build": "tsc -b"
   },
   "dependencies": {
     "tinybase": "^5.2.3",
