@@ -28,20 +28,30 @@ if (typeof jest === 'undefined') {
   };
 
   // Initialize persister
-  initializePersister().then((persister) => {
-    persister.startAutoLoad();
-    persister.startAutoSave();
-    return persister;
-  });
+  initializePersister()
+    .then((persister) => {
+      persister.startAutoLoad();
+      persister.startAutoSave();
+      return persister;
+    })
+    .catch((error) => {
+      logMessage('Error creating WebSocket synchronizer', error);
+    });
 
   // Create PartyKit synchronizer
-  createWsSynchronizer(store, new WebSocket('ws://localhost:8043/myroom')).then(
-    async (synchronizer) => {
-      logMessage('Starting sync');
-      await synchronizer.startSync();
-      return synchronizer;
-    },
-  );
+  try {
+    createWsSynchronizer(store, new WebSocket('ws://localhost:8043/myroom'))
+      .then(async (synchronizer) => {
+        logMessage('Starting sync');
+        await synchronizer.startSync();
+        return synchronizer;
+      })
+      .catch((error) => {
+        logMessage('Error creating WebSocket synchronizer', error);
+      });
+  } catch (error) {
+    logMessage('Error creating WebSocket synchronizer', error);
+  }
 }
 
 export type Store = typeof store;

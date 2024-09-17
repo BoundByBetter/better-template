@@ -1,5 +1,5 @@
 import { store } from '../store';
-import { updateCurrentUser } from './mutations';
+import { clearCurrentUser, updateCurrentUser } from './mutations';
 import { User } from '@boundbybetter/shared';
 import { describe, it, expect, beforeEach } from '@jest/globals';
 
@@ -25,6 +25,22 @@ describe('user mutations', () => {
 
       const updatedUser = store.getRow('user', 'current');
       expect(updatedUser).toEqual({ ...user, ...updates });
+    });
+  });
+
+  describe('clearCurrentUser', () => {
+    it('should clear the current user in the store', () => {
+      const user: User = {
+        userName: 'John Doe',
+        userEmail: 'john@example.com',
+        groups: ['group1'],
+      };
+      store.setRow('user', 'current', user as any);
+
+      clearCurrentUser();
+
+      const updatedUser = store.getRow('user', 'current');
+      expect(updatedUser).toEqual({});
     });
   });
 });

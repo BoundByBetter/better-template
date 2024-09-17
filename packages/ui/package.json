@@ -14,12 +14,12 @@
   },
   "private": true,
   "dependencies": {
-    "@tamagui/colors": "^1.110.2",
-    "@tamagui/config": "^1.110.2",
-    "@tamagui/lucide-icons": "^1.110.2",
+    "@tamagui/colors": "^1.111.7",
+    "@tamagui/config": "^1.111.7",
+    "@tamagui/lucide-icons": "^1.111.7",
     "react": "18.2.0",
     "react-native": "0.74.5",
     "react-native-svg": "15.2.0",
-    "tamagui": "^1.110.2"
+    "tamagui": "^1.111.7"
   }
 }

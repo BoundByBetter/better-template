@@ -1,12 +1,11 @@
 import { tg } from '@boundbybetter/ui';
-import { useCurrentUser, updateCurrentUser } from '@boundbybetter/state';
-import { userLoggedOut } from '@boundbybetter/shared';
+import { useCurrentUser, clearCurrentUser } from '@boundbybetter/state';
 
 export function Settings() {
   const user = useCurrentUser();
-  
+
   async function handleSignOut() {
-    updateCurrentUser(null);
+    clearCurrentUser();
     // Dispatch userLoggedOut action if needed
   }
 

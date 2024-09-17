@@ -9,6 +9,6 @@ export { addPost, updatePost, deletePost } from './posts/mutations';
 
 export { addFeature, updateFeature, deleteFeature } from './features/mutations';
 
-export { updateCurrentUser } from './users/mutations';
+export { updateCurrentUser, clearCurrentUser } from './users/mutations';
 
 export { store } from './store';

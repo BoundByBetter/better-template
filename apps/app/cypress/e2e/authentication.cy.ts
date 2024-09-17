@@ -1,5 +1,6 @@
 describe('authentication', () => {
   it('log in and log out', () => {
+    cy.clearLocalStorage();
     cy.visit('/');
     cy.get('[data-testid="app-log-in"]').should('exist');
     cy.get('button').contains('Microsoft').should('exist');
