@@ -1,0 +1,25 @@
+{
+  "name": "@boundbybetter/dev-server",
+  "version": "1.0.0",
+  "main": "./src/index.ts",
+  "scripts": {
+    "deps:check": "npx npm-check-updates && npx expo install --check",
+    "deps:add": "npx expo install",
+    "deps:add-dev": "node ../../tools/scripts/deps-install-dev.js",
+    "deps:fix": "YARN_ENABLE_IMMUTABLE_INSTALLS=false && npx expo install --fix",
+    "start": "partykit dev",
+    "build": "partykit build",
+    "deploy": "partykit deploy"
+  },
+  "dependencies": {
+    "tinybase": "^5.2.3",
+    "ws": "^8.18.0"
+  },
+  "devDependencies": {
+    "@flydotio/dockerfile": "^0.5.8",
+    "@types/node": "^20.11.24",
+    "@types/ws": "^8",
+    "jest-websocket-mock": "^2.5.0",
+    "typescript": "^5.3.3"
+  }
+}

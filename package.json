@@ -2,12 +2,13 @@
   "name": "better-template",
   "workspaces": [
     "packages/*",
-    "apps/*"
+    "apps/*",
+    "servers/*"
   ],
   "private": true,
   "packageManager": "yarn@4.3.1",
   "scripts": {
-    "deps:install": "yarn install",
+    "deps:install": "YARN_ENABLE_IMMUTABLE_INSTALLS=false && yarn install",
     "deps:check": "npx npm-check-updates && npx expo install --check",
     "deps:check-all": "yarn deps:check && yarn workspaces foreach --all run deps:check",
     "deps:add": "npx expo install",

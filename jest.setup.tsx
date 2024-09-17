@@ -1,5 +1,6 @@
 import '@testing-library/jest-native/extend-expect';
 import 'react-native-gesture-handler/jestSetup.js';
+import { WebSocket as MockWebSocket } from 'mock-socket';
 
 process.env.LOGGING = 'false';
 
@@ -87,6 +88,33 @@ jest.mock('expo-splash-screen', () => {
     }),
   };
 });
+
+jest.mock('expo-sqlite', () => ({
+  openDatabaseSync: jest.fn(),
+}));
+
+jest.mock('tinybase/persisters/persister-expo-sqlite', () => ({
+  createExpoSqlitePersister: jest.fn(),
+}));
+
+jest.mock('tinybase/synchronizers/synchronizer-ws-client', () => ({
+  createWsSynchronizer: jest.fn().mockImplementation(() => {
+    return Promise.resolve({
+      // Mock the expected methods/properties of the synchronizer
+      start: jest.fn(),
+      stop: jest.fn(),
+      // Add any other methods you need to mock
+    });
+  }),
+}));
+
+class EnhancedWebSocket extends MockWebSocket {
+  ping() {
+    // Add an empty implementation
+  }
+}
+
+global.WebSocket = EnhancedWebSocket as any;
 
 // jest.mock('@react-native-async-storage/async-storage', () =>
 //   require('@react-native-async-storage/async-storage/jest/async-storage-mock')

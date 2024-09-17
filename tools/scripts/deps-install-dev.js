@@ -7,4 +7,4 @@ if (!dependencies) {
   process.exit(1);
 }
 
-execSync(`npx expo install ${dependencies} -- -dev`, { stdio: 'inherit' });
+execSync(`npx expo install ${dependencies} -- --dev`, { stdio: 'inherit' });

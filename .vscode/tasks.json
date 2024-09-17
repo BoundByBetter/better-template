@@ -312,7 +312,8 @@
         "packages/features", 
         "packages/shared", 
         "packages/state", 
-        "packages/ui"
+        "packages/ui",
+        "servers/dev-server"
       ],
     },
     { "id": "dependencies",
