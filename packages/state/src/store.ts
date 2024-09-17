@@ -12,33 +12,36 @@ export const store = createMergeableStore('my-store').setTables({
   user: {},
 });
 
-const initializePersister = async () => {
-  logMessage('Platform.OS', Platform.OS);
+/* istanbul ignore next */
+if (typeof jest === 'undefined') {
+  const initializePersister = async () => {
+    logMessage('Platform.OS', Platform.OS);
 
-  if (Platform.OS === 'web') {
-    // Use LocalPersister for web
-    return createLocalPersister(store, 'myapp_store');
-  } else {
-    // Use ExpoSqlitePersister for native platforms
-    const db = SQLite.openDatabaseSync('myapp.db');
-    return createExpoSqlitePersister(store, db, 'tinybase_store');
-  }
-};
+    if (Platform.OS === 'web') {
+      // Use LocalPersister for web
+      return createLocalPersister(store, 'myapp_store');
+    } else {
+      // Use ExpoSqlitePersister for native platforms
+      const db = SQLite.openDatabaseSync('myapp.db');
+      return createExpoSqlitePersister(store, db, 'tinybase_store');
+    }
+  };
 
-// Initialize persister
-initializePersister().then((persister) => {
-  persister.startAutoLoad();
-  persister.startAutoSave();
-  return persister;
-});
+  // Initialize persister
+  initializePersister().then((persister) => {
+    persister.startAutoLoad();
+    persister.startAutoSave();
+    return persister;
+  });
 
-// Create PartyKit synchronizer
-createWsSynchronizer(store, new WebSocket('ws://localhost:8043/myroom')).then(
-  async (synchronizer) => {
-    logMessage('Starting sync');
-    await synchronizer.startSync();
-    return synchronizer;
-  },
-);
+  // Create PartyKit synchronizer
+  createWsSynchronizer(store, new WebSocket('ws://localhost:8043/myroom')).then(
+    async (synchronizer) => {
+      logMessage('Starting sync');
+      await synchronizer.startSync();
+      return synchronizer;
+    },
+  );
+}
 
 export type Store = typeof store;
