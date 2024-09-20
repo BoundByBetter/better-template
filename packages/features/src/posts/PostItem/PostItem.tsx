@@ -1,21 +1,24 @@
-import { Post, postDeleted } from '@boundbybetter/shared';
-import { deletePost } from '@boundbybetter/state';
+import { logCall, logSetup } from '@boundbybetter/shared';
+import { deletePost, usePost } from '@boundbybetter/state';
 import { tg } from '@boundbybetter/ui';
 import moment from 'moment';
 import { Platform } from 'react-native';
 
 export interface PostProps {
-  post: Post;
+  id: string;
 }
 
 export function PostItem(props: PostProps) {
+  logSetup('PostItem', 'id', props.id);
+  const post = usePost(props.id);
   const deletePostHandler = () => {
-    deletePost(props.post.id);
+    logCall('PostItem', 'deletePostHandler');
+    deletePost(props.id);
   };
 
   return (
     <tg.YStack gap="$2">
-      <tg.Card fd="row" key={props.post.id} testID="post-item">
+      <tg.Card fd="row" key={post.id} testID="post-item">
         <tg.Stack
           f={1}
           p="$4"
@@ -23,7 +26,7 @@ export function PostItem(props: PostProps) {
           $gtSm={{ flexDirection: 'row', alignItems: 'center' }}
         >
           <tg.Text f={1} testID="post-item.title">
-            {props.post.title}
+            {post.title}
           </tg.Text>
           <tg.Stack
             fd="row"
@@ -53,7 +56,7 @@ export function PostItem(props: PostProps) {
               $gtSm={{ alignSelf: 'flex-end', paddingRight: '$4' }}
               pl="$4"
             >
-              {moment(props.post.createdAt).fromNow()}
+              {moment(post.createdAt).fromNow()}
             </tg.Text>
           </tg.Stack>
         </tg.Stack>

@@ -17,6 +17,7 @@
   "private": true,
   "dependencies": {
     "@react-native-picker/picker": "2.7.5",
+    "@shopify/flash-list": "1.6.4",
     "expo": "~51.0.31",
     "expo-image": "~1.12.15",
     "moment": "^2.30.1",

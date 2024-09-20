@@ -1,13 +1,14 @@
 import React from 'react';
 import { fireEvent } from '@testing-library/react-native';
 import { Settings } from './Settings';
-import { useCurrentUser, updateCurrentUser } from '@boundbybetter/state';
+import { useCurrentUser, clearCurrentUser } from '@boundbybetter/state';
 import { renderWithTamagui } from '../../renderWithTamagui.test-util';
 import { describe, it, expect } from '@jest/globals';
 
 jest.mock('@boundbybetter/state', () => ({
   useCurrentUser: jest.fn(),
   updateCurrentUser: jest.fn(),
+  clearCurrentUser: jest.fn(),
 }));
 
 describe('Settings', () => {
@@ -19,10 +20,10 @@ describe('Settings', () => {
     expect(getByText('Hello there myusername,')).toBeTruthy();
   });
 
-  it('should call updateCurrentUser when the sign out button is pressed', async () => {
+  it('should call clearCurrentUser when the sign out button is pressed', async () => {
     const { getByText } = renderWithTamagui(<Settings />);
     const signOutButton = getByText('Sign Out');
     fireEvent.press(signOutButton);
-    expect(updateCurrentUser).toHaveBeenCalledWith(null);
+    expect(clearCurrentUser).toHaveBeenCalled();
   });
 });

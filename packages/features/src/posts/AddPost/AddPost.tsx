@@ -1,16 +1,18 @@
 import { useState } from 'react';
 import { usePosts, addPost } from '@boundbybetter/state';
 import { nanoid } from '@reduxjs/toolkit';
-import { Post, PostStatus } from '@boundbybetter/shared';
+import { logCall, logSetup, Post, PostStatus } from '@boundbybetter/shared';
 import { logMessage } from '@boundbybetter/shared';
 import { tg } from '@boundbybetter/ui';
 import { useActiveFeature } from '../../features/useActiveFeature';
 import { FeatureKeys } from '../../features/Features';
 
 export function AddPost() {
+  logSetup('AddPost');
   const [newPostName, setNewPostName] = useState('');
   const posts = usePosts();
   const createPost = async () => {
+    logCall('AddPost', 'createPost');
     const post: Post = {
       id: nanoid(),
       title: newPostName,

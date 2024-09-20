@@ -4,7 +4,7 @@ import { createLocalPersister } from 'tinybase/persisters/persister-browser';
 import { createWsSynchronizer } from 'tinybase/synchronizers/synchronizer-ws-client';
 import * as SQLite from 'expo-sqlite';
 import { Platform } from 'react-native';
-import { logMessage } from '@boundbybetter/shared';
+import { logCall, logMessage } from '@boundbybetter/shared';
 
 export const store = createMergeableStore('my-store').setTables({
   posts: {},
@@ -12,9 +12,12 @@ export const store = createMergeableStore('my-store').setTables({
   user: {},
 });
 
+logCall('store', 'createMergeableStore');
+
 /* istanbul ignore next */
 if (typeof jest === 'undefined') {
   const initializePersister = async () => {
+    logCall('store', 'initializePersister');
     logMessage('Platform.OS', Platform.OS);
 
     if (Platform.OS === 'web') {
@@ -30,6 +33,7 @@ if (typeof jest === 'undefined') {
   // Initialize persister
   initializePersister()
     .then((persister) => {
+      logCall('store', 'initializePersister', 'startAuto');
       persister.startAutoLoad();
       persister.startAutoSave();
       return persister;
