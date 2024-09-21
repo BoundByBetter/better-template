@@ -1,9 +1,10 @@
 /* istanbul ignore file */
 export {
-  usePostsPaginated,
   usePosts,
   usePost,
   usePostStatus,
+  useBulkLoadStatus,
+  usePostCount,
 } from './posts/hooks';
 
 export { useFeature, useFeatures } from './features/hooks';

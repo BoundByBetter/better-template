@@ -1,17 +1,17 @@
 import React, { useCallback, useMemo } from 'react';
 import { FlashList } from '@shopify/flash-list';
 import { PostItem } from '../PostItem';
-import { usePosts } from '@boundbybetter/state';
+import { usePosts, useBulkLoadStatus } from '@boundbybetter/state';
 import { logCall, logSetup } from '@boundbybetter/shared';
 import { AddPost } from '../AddPost';
 import { tg } from '@boundbybetter/ui';
-import { Platform } from 'react-native';
 
 const ItemSeparator = () => <tg.YStack height="$1" />;
 
-export function PostList() {
+function PostListComponent() {
   logSetup('PostList');
   const posts = usePosts();
+  const { isBulkLoading, bulkLoadingProgress } = useBulkLoadStatus();
 
   const sortedPosts = useMemo(() => {
     logCall('PostList', 'useMemo');
@@ -30,7 +30,22 @@ export function PostList() {
     return item.id;
   }, []);
 
-  const postCount = sortedPosts.length;
+  if (isBulkLoading) {
+    return (
+      <tg.YStack flex={1} justifyContent="center" alignItems="center">
+        <tg.Text>Loading posts... {bulkLoadingProgress}%</tg.Text>
+        <tg.Progress
+          value={bulkLoadingProgress}
+          max={100}
+          w={200}
+          h={20}
+          mt={10}
+        >
+          <tg.Progress.Indicator animation="bouncy" />
+        </tg.Progress>
+      </tg.YStack>
+    );
+  }
 
   return (
     <tg.YStack flex={1} gap="$4" p="$4">
@@ -40,13 +55,14 @@ export function PostList() {
         renderItem={renderItem}
         keyExtractor={keyExtractor}
         estimatedItemSize={55}
-        removeClippedSubviews={Platform.OS !== 'web'}
         ItemSeparatorComponent={ItemSeparator}
-        contentContainerStyle={{ paddingRight: 28 }} // Add this line
+        contentContainerStyle={{ paddingRight: 28 }}
       />
       <tg.Text p="$2" ta="center" fontSize="$3">
-        Total Posts: {postCount}
+        Total Posts: {sortedPosts.length}
       </tg.Text>
     </tg.YStack>
   );
 }
+
+export const PostList = React.memo(PostListComponent);

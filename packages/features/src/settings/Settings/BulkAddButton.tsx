@@ -1,5 +1,5 @@
 import React from 'react';
-import { bulkAddPosts } from '@boundbybetter/state';
+import { bulkAddPosts, useBulkLoadStatus } from '@boundbybetter/state';
 import { tg } from '@boundbybetter/ui';
 
 interface BulkAddButtonProps {
@@ -17,7 +17,7 @@ export const BulkAddButton = ({ count }: BulkAddButtonProps) => {
 
   return (
     <tg.Button onPress={handleBulkAdd} testID="bulk-add-button">
-      Bulk Add {count.toString()} Posts
+      {`Bulk Add ${count.toString()} Posts`}
     </tg.Button>
   );
 };

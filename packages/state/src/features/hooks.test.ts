@@ -69,6 +69,29 @@ describe('feature hooks', () => {
         updatedAt: expect.any(String),
       });
     });
+
+    it('should return an empty array for groups when the groups property is not set', () => {
+      store.setTable('features', {
+        feature1: {
+          id: 'feature1',
+          key: 'Feature 1',
+          status: 'ACTIVE',
+          createdAt: new Date().toISOString(),
+          updatedAt: new Date().toISOString(),
+        },
+      });
+
+      const { result } = renderHook(() => useFeature('feature1'));
+
+      expect(result.current).toEqual({
+        id: 'feature1',
+        key: 'Feature 1',
+        status: 'ACTIVE',
+        groups: [],
+        createdAt: expect.any(String),
+        updatedAt: expect.any(String),
+      });
+    });
   });
 
   describe('useFeatures', () => {

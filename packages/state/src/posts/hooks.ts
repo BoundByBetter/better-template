@@ -25,20 +25,6 @@ export const usePosts = (): Post[] | undefined => {
   }, [posts]);
 };
 
-export const usePostsPaginated = (
-  page: number,
-  pageSize: number,
-): Post[] | undefined => {
-  logCall('usePostsPaginated', page, pageSize);
-  // use tinyQL queries to get the page of posts
-  const posts = useTable('posts', store);
-  const startIndex = (page - 1) * pageSize;
-  const endIndex = startIndex + pageSize;
-  return Object.values(posts)
-    .slice(startIndex, endIndex)
-    .map((post) => post as unknown as Post);
-};
-
 export const usePost = (postId: string): Post | undefined => {
   logCall('usePost', postId);
   const post = useRow('posts', postId, store);
@@ -61,4 +47,24 @@ export const usePostStatus = (postId: string): FeatureStatus | undefined => {
   return status === undefined || status === null
     ? undefined
     : (status as FeatureStatus);
+};
+
+export const useBulkLoadStatus = () => {
+  const isBulkLoading = useCell('app', 'status', 'isBulkLoading', store);
+  const bulkLoadingProgress = useCell(
+    'app',
+    'status',
+    'bulkLoadingProgress',
+    store,
+  );
+  return {
+    isBulkLoading: isBulkLoading as boolean,
+    bulkLoadingProgress: bulkLoadingProgress as number,
+  };
+};
+
+export const usePostCount = (): number => {
+  logCall('usePostCount');
+  const posts = useTable('posts', store);
+  return Object.keys(posts).length;
 };

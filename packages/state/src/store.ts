@@ -10,6 +10,12 @@ export const store = createMergeableStore('my-store').setTables({
   posts: {},
   features: {},
   user: {},
+  app: {
+    status: {
+      isBulkLoading: false,
+      bulkLoadingProgress: 0,
+    },
+  },
 });
 
 logCall('store', 'createMergeableStore');
@@ -57,5 +63,8 @@ if (typeof jest === 'undefined') {
     logMessage('Error creating WebSocket synchronizer', error);
   }
 }
+
+store.setCell('app', 'status', 'isBulkLoading', false);
+store.setCell('app', 'status', 'bulkLoadingProgress', 0);
 
 export type Store = typeof store;

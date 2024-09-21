@@ -2,13 +2,14 @@ import { logCall, logSetup } from '@boundbybetter/shared';
 import { deletePost, usePost } from '@boundbybetter/state';
 import { tg } from '@boundbybetter/ui';
 import moment from 'moment';
+import { memo } from 'react';
 import { Platform } from 'react-native';
 
 export interface PostProps {
   id: string;
 }
 
-export function PostItem(props: PostProps) {
+const PostItemComponent = (props: PostProps) => {
   logSetup('PostItem', 'id', props.id);
   const post = usePost(props.id);
   const deletePostHandler = () => {
@@ -66,4 +67,6 @@ export function PostItem(props: PostProps) {
       </tg.Card>
     </tg.YStack>
   );
-}
+};
+
+export const PostItem = memo(PostItemComponent);

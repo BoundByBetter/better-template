@@ -53,5 +53,11 @@ describe('user hooks', () => {
         groups: [],
       });
     });
+
+    it('should return undefined when the current user is not set', () => {
+      const { result } = renderHook(() => useCurrentUser());
+
+      expect(result.current).toBeUndefined();
+    });
   });
 });

@@ -1,9 +1,9 @@
 import { store } from '../store';
-import { logCall, Post } from '@boundbybetter/shared';
+import { logCall, logMessage, Post } from '@boundbybetter/shared';
 import { nanoid } from '@reduxjs/toolkit';
 
 export const addPost = (post: Post) => {
-  logCall('Adding post', post);
+  logCall('addPost', post);
   const now = new Date().toISOString();
   store.setRow('posts', post.id, {
     ...post,
@@ -13,32 +13,58 @@ export const addPost = (post: Post) => {
 };
 
 export const updatePost = (postId: string, updates: Partial<Post>) => {
-  logCall('Deleting post', postId, updates);
+  logCall('updatePost', postId, updates);
   const updatedAt = new Date().toISOString();
   store.setPartialRow('posts', postId, { ...updates, updatedAt });
 };
 
 export const deletePost = (postId: string) => {
-  logCall('Deleting post', postId);
+  logCall('deletePost', postId);
   store.delRow('posts', postId);
 };
 
-export const bulkAddPosts = (count: number) => {
-  const now = new Date().toISOString();
-  const posts = Array.from({ length: count }, (_, i) => ({
-    id: (i + 1).toString(),
-    title: `Post ${i + 1}`,
-    status: 'ACTIVE',
-    rating: 5,
-    createdAt: now,
-    updatedAt: now,
-  }));
+export const bulkAddPosts = (count: number): Promise<void> => {
+  logCall('bulkAddPosts', count);
+  return new Promise((resolve) => {
+    store.setCell('app', 'status', 'isBulkLoading', true);
+    store.setCell('app', 'status', 'bulkLoadingProgress', 0);
+    const now = new Date().toISOString();
+    let added = 0;
 
-  posts.forEach((post) => {
-    store.setRow('posts', post.id, post as any);
+    const addNextBatch = () => {
+      const batchSize = Math.min(100, count - added);
+
+      store.transaction(() => {
+        for (let i = 0; i < batchSize; i++) {
+          const post = {
+            id: nanoid(),
+            title: `Post ${added + i + 1}`,
+            status: 'ACTIVE',
+            rating: 5,
+            createdAt: now,
+            updatedAt: now,
+          };
+          store.setRow('posts', post.id, post as any);
+        }
+        added += batchSize;
+      });
+
+      const progress = Math.round((added / count) * 100);
+      store.setCell('app', 'status', 'bulkLoadingProgress', progress);
+      logMessage('Progress:', progress);
+      if (added < count) {
+        setTimeout(addNextBatch, 0);
+      } else {
+        store.setCell('app', 'status', 'isBulkLoading', false);
+        resolve();
+      }
+    };
+
+    addNextBatch();
   });
 };
 
 export const clearAllPosts = () => {
+  logCall('clearAllPosts');
   store.delTable('posts');
 };

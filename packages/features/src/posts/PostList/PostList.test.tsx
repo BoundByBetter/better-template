@@ -1,15 +1,15 @@
 import React from 'react';
 import { PostList } from './PostList';
-import { usePosts } from '@boundbybetter/state';
+import { usePosts, useBulkLoadStatus } from '@boundbybetter/state';
 import { AddPost } from '../AddPost';
 import { renderWithTamagui } from '../../renderWithTamagui.test-util';
-import { describe, it, expect } from '@jest/globals';
+import { describe, it, expect, beforeEach } from '@jest/globals';
 import { PostItem } from '../PostItem';
-import { act, waitFor } from '@testing-library/react-native';
 
 //mock usePosts
 jest.mock('@boundbybetter/state', () => ({
   usePosts: jest.fn(),
+  useBulkLoadStatus: jest.fn(),
 }));
 
 //spy on PostItem
@@ -23,7 +23,11 @@ jest.mock('../AddPost', () => ({
 }));
 
 describe('PostList', () => {
-  it('should render a PostItem for each post', async () => {
+  beforeEach(() => {
+    jest.clearAllMocks();
+  });
+
+  it('should render a PostItem for each post', () => {
     const mockPosts = [
       {
         id: '1',
@@ -41,16 +45,26 @@ describe('PostList', () => {
       },
     ];
     (usePosts as jest.Mock).mockReturnValue(mockPosts);
+    (useBulkLoadStatus as jest.Mock).mockReturnValue({
+      isBulkLoading: false,
+      bulkLoadingProgress: 0,
+    });
 
     renderWithTamagui(<PostList />);
 
+    expect(PostItem).toHaveBeenCalledTimes(2);
     expect(PostItem).toHaveBeenCalledWith({ id: '1' }, {});
     expect(PostItem).toHaveBeenCalledWith({ id: '2' }, {});
   });
 
   it('should render an AddPost component', () => {
+    (usePosts as jest.Mock).mockReturnValue([]);
+    (useBulkLoadStatus as jest.Mock).mockReturnValue({
+      isBulkLoading: false,
+      bulkLoadingProgress: 0,
+    });
     renderWithTamagui(<PostList />);
-    expect(AddPost).toHaveBeenCalledWith({}, {});
+    expect(AddPost).toHaveBeenCalledTimes(1);
   });
 
   it('should display the correct total post count', () => {
@@ -59,8 +73,23 @@ describe('PostList', () => {
       { id: '2', title: 'Post 2', createdAt: '2023-05-02T00:00:00.000Z' },
     ];
     (usePosts as jest.Mock).mockReturnValue(mockPosts);
+    (useBulkLoadStatus as jest.Mock).mockReturnValue({
+      isBulkLoading: false,
+      bulkLoadingProgress: 0,
+    });
 
     const { getByText } = renderWithTamagui(<PostList />);
     expect(getByText('Total Posts: 2')).toBeTruthy();
+  });
+
+  it('should display loading state when bulk loading', () => {
+    (usePosts as jest.Mock).mockReturnValue([]);
+    (useBulkLoadStatus as jest.Mock).mockReturnValue({
+      isBulkLoading: true,
+      bulkLoadingProgress: 50,
+    });
+
+    const { getByText } = renderWithTamagui(<PostList />);
+    expect(getByText('Loading posts... 50%')).toBeTruthy();
   });
 });

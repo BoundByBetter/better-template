@@ -6,6 +6,7 @@ export const useActiveFeature = (featureKey: string): boolean => {
   const featureDetail = features[featureKey];
   const featureOverride = useFeature(featureKey);
   const currentUser = useCurrentUser();
+  if (!featureDetail) return false;
   const groups = featureOverride?.groups ?? featureDetail.defaultGroups ?? [];
   const userGroups = currentUser?.groups ?? [];
   const groupAccess =

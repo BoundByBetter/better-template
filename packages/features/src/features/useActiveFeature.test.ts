@@ -111,4 +111,17 @@ describe('useActiveFeature', () => {
 
     expect(result.current).toBe(false);
   });
+
+  it('should return false when the feature is not defined in Features object', () => {
+    const featureKey = 'nonexistentFeature';
+    const feature = undefined;
+    const user = { groups: ['group1'] };
+
+    (useFeature as unknown as jest.Mock).mockReturnValueOnce(feature);
+    (useCurrentUser as unknown as jest.Mock).mockReturnValueOnce(user);
+
+    const { result } = renderHook(() => useActiveFeature(featureKey));
+
+    expect(result.current).toBe(false);
+  });
 });

@@ -3,11 +3,15 @@ import {
   useCurrentUser,
   clearCurrentUser,
   clearAllPosts,
+  usePostCount,
+  useBulkLoadStatus,
 } from '@boundbybetter/state';
 import { BulkAddButton } from './BulkAddButton';
 
 export function Settings() {
   const user = useCurrentUser();
+  const postCount = usePostCount();
+  const { isBulkLoading, bulkLoadingProgress } = useBulkLoadStatus();
 
   async function handleSignOut() {
     clearCurrentUser();
@@ -24,11 +28,23 @@ export function Settings() {
       <tg.Text>User Email: {user?.userEmail}</tg.Text>
       <tg.Text>Hello there {user?.userName},</tg.Text>
       <tg.Button onPress={handleSignOut}>Sign Out</tg.Button>
-      <tg.Button onPress={handleClearAllPosts} testID="clear-all-posts">
-        Clear All Posts
-      </tg.Button>
-      <BulkAddButton count={5000} />
-      <BulkAddButton count={50} />
+      {isBulkLoading ? (
+        <tg.YStack gap="$2" alignItems="center">
+          <tg.Text>Loading posts... {bulkLoadingProgress}%</tg.Text>
+          <tg.Progress value={bulkLoadingProgress} max={100} w={200} h={20}>
+            <tg.Progress.Indicator animation="bouncy" />
+          </tg.Progress>
+        </tg.YStack>
+      ) : (
+        <>
+          <tg.Button onPress={handleClearAllPosts} testID="clear-all-posts">
+            {`Clear All ${postCount.toString()} Posts`}
+          </tg.Button>
+          <BulkAddButton count={5000} />
+          <BulkAddButton count={50} />
+          <BulkAddButton count={1} />
+        </>
+      )}
     </tg.YStack>
   );
 }
