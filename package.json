@@ -22,6 +22,8 @@
     "test:cover-all": "npx jest --color --coverage",
     "mobile:devices": "adb devices",
     "mobile:wireless": "ip=$(adb shell ip -f inet addr show wlan0 | grep -oP '(?<=inet\\s)\\d+(\\.\\d+){3}') && adb tcpip 5555 && adb connect $ip",
+    "mobile:wireless-connect": "adb connect",
+    "mobile:wireless-disconnect": "adb disconnect",
     "e2e:web": "yarn app:start-and-web-e2e && yarn site:start-and-web-e2e",
     "start:cypress:app": "yarn workspace @boundbybetter/app run cypress open",
     "start:site": "yarn workspace @boundbybetter/site run start",

@@ -50,7 +50,7 @@ if (typeof jest === 'undefined') {
 
   // Create PartyKit synchronizer
   try {
-    createWsSynchronizer(store, new WebSocket('ws://localhost:8043/myroom'))
+    createWsSynchronizer(store, new WebSocket('ws://10.24.1.57:8043/myroom'))
       .then(async (synchronizer) => {
         logMessage('Starting sync');
         await synchronizer.startSync();

@@ -7,7 +7,7 @@ import { createServer } from 'http';
 import { createWsServer } from 'tinybase/synchronizers/synchronizer-ws-server';
 import { AddressInfo } from 'net';
 
-const subDomains = ['localhost:8043'];
+const subDomains = ['localhost:8043', '10.24.1.57:8043'];
 
 const wsServersBySubDomain = new Map<string, WsServer>(
   subDomains.map((subDomain) => {

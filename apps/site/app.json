@@ -28,7 +28,13 @@
     },
     "plugins": [
       "expo-router",
-      ["expo-dev-launcher", { "launchMode": "most-recent" }]
+      [
+        "expo-dev-launcher",
+        {
+          "launchMode": "most-recent"
+        }
+      ],
+      "expo-font"
     ],
     "experiments": {
       "typedRoutes": true

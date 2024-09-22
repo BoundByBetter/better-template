@@ -140,27 +140,39 @@
     // Mobile
     { "label": "Mobile: List Android devices",
       "type": "shell",
-      "command": "yarn android:devices",
+      "command": "yarn mobile:devices",
       "problemMatcher": [],
       "detail": "Lists all android devices connected to the computer."
     },
     { "label": "Mobile: Switch Android device to wireless",
       "type": "shell",
-      "command": "yarn android:wireless",
+      "command": "yarn mobile:wireless",
       "problemMatcher": [],
       "detail": "Switches the android device to using a tcpip connection."
+    },
+    { "label": "Mobile: Connect to Android device wirelessly",
+      "type": "shell",
+      "command": "yarn mobile:wireless-connect ${input:androidDeviceIp}:5555",
+      "problemMatcher": [],
+      "detail": "Connects to the android device wirelessly."
+    },
+    { "label": "Mobile: Disconnect from Android device",
+      "type": "shell",
+      "command": "yarn mobile:wireless-disconnect ${input:androidDeviceName}",
+      "problemMatcher": [],
+      "detail": "Disconnects the named android device."
     },
     { "label": "Mobile: Build app for Android with EAS locally",
       "type": "shell",
       "command": "yarn",
-      "args": ["build:android"],
+      "args": ["app:build-android-local"],
       "problemMatcher": [],
       "detail": "Builds the app for android."
     },
     { "label": "Mobile: Install EAS locally built APK",
       "type": "shell",
       "command": "yarn",
-      "args": ["install:android"],
+      "args": ["app:install-android"],
       "problemMatcher": [],
       "detail": "Installs the app for android."
     },
@@ -325,6 +337,14 @@
     { "id": "dependencies",
       "type": "promptString",
       "description": "Enter a space separate list of dependencies to install.",
+    },
+    { "id": "androidDeviceIp",
+      "type": "promptString",
+      "description": "Enter the IP address of the Android device.",
+    },
+    { "id": "androidDeviceName",
+      "type": "promptString",
+      "description": "Enter the name of the Android device.",
     },
   ]
 }

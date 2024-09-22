@@ -8,7 +8,8 @@
   "jest.runMode": {
     "type": "watch"
   },
-  "coverage-gutters.coverageBaseDir": "**/coverage"
+  "coverage-gutters.coverageBaseDir": "**/coverage",
+  "remote.localPortHost": "allInterfaces",
   // "eslint.workingDirectories": [
   //   "apps/app",
   //   "apps/site",

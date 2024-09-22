@@ -14,7 +14,7 @@
   // "features": {},
 
   // Use 'forwardPorts' to make a list of ports inside the container available locally.
-  // "forwardPorts": [],
+  "forwardPorts": [8043, 8081, 8044],
 
   // Use 'postCreateCommand' to run commands after the container is created.
   // "postCreateCommand": "npm install -g sharp-cli@^2.1.0; npm install -g sharp-cli; npm install -g n; sudo -E env \"PATH=$PATH\" n lts; n prune; npm install -g npm@latest; npm install -g @aws-amplify/cli; npm install -g eas-cli",
@@ -24,11 +24,9 @@
 
   // Uncomment to connect as root instead. More info: https://aka.ms/dev-containers-non-root.
   // "remoteUser": "root"
-  "appPort": [
-    // "10.24.1.57:19001:19001",
-    // "10.24.1.57:8097:8097",
-    // "10.24.1.57:5037:5037"
-  ],
+  // "appPort": [
+  //   "10.24.1.57:8043:8043"
+  // ],
   "remoteEnv": {
     "REACT_NATIVE_PACKAGER_HOSTNAME": "localhost"
   },
