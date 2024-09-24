@@ -29,6 +29,7 @@ export const globalOptions = {
   },
   logging: /* istanbul ignore next */ process.env.LOGGING ?? 'true',
 };
+
 /**
  * @description
  * A simple logger that can be turned on and off.
@@ -104,4 +105,32 @@ export function logError(error: Error, ...data: unknown[]) {
 export function logMessage(...data: unknown[]) {
   'worklet';
   logRaw('MESSAGE', ...data);
+}
+
+let currentGroup = null;
+
+export function logGroup(groupName: string) {
+  'worklet';
+
+  if (globalOptions.logging?.toLowerCase() === 'true') {
+    if (currentGroup !== groupName) {
+      if (currentGroup !== null) {
+        console.groupEnd();
+      }
+      console.groupCollapsed(groupName);
+      currentGroup = groupName;
+    }
+  }
+}
+
+export function logGroupEnd() {
+  'worklet';
+
+  if (
+    globalOptions.logging?.toLowerCase() === 'true' &&
+    currentGroup !== null
+  ) {
+    console.groupEnd();
+    currentGroup = null;
+  }
 }

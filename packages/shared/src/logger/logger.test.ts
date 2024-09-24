@@ -8,6 +8,8 @@ import {
   logSetup,
   logError,
   logMessage,
+  logGroup,
+  logGroupEnd,
 } from './logger';
 import { describe, expect, it } from '@jest/globals';
 
@@ -18,11 +20,13 @@ describe('logger', () => {
     globalOptions.filter = () => true;
     globalOptions.logging = 'true';
     logId.value = 0;
+    jest.clearAllMocks();
   });
   afterEach(() => {
     globalOptions.filter = originalFilter;
     process.env.LOGGING = originalLOGGING;
   });
+
   describe('logSetup', () => {
     it('should log the setup function name and data', () => {
       const consoleSpy = jest
@@ -130,6 +134,7 @@ describe('logger', () => {
       );
       consoleSpy.mockRestore();
     });
+
     it('should not log the data if the LOGGING environment variable is not set to true', () => {
       const consoleSpy = jest
         .spyOn(console, 'log')
@@ -139,6 +144,7 @@ describe('logger', () => {
       expect(consoleSpy).not.toHaveBeenCalled();
       consoleSpy.mockRestore();
     });
+
     it('should not log the data if there is a filter in the global options that filters out the entry', () => {
       const consoleSpy = jest
         .spyOn(console, 'log')
@@ -171,6 +177,88 @@ describe('logger', () => {
         'some',
         'data',
       );
+      consoleSpy.mockRestore();
+    });
+  });
+
+  describe('logGroup', () => {
+    beforeEach(() => {
+      // Reset the currentGroup variable before each test
+      logGroupEnd();
+    });
+
+    it('should start a new log group with the given name when logging is enabled', () => {
+      const consoleSpy = jest
+        .spyOn(console, 'groupCollapsed')
+        .mockImplementation(() => {});
+      globalOptions.logging = 'true';
+      logGroup('Test Group');
+      expect(consoleSpy).toHaveBeenCalledWith('Test Group');
+      consoleSpy.mockRestore();
+    });
+
+    it('should not start a new log group when logging is disabled', () => {
+      const consoleSpy = jest
+        .spyOn(console, 'groupCollapsed')
+        .mockImplementation(() => {});
+      globalOptions.logging = 'false';
+      logGroup('Test Group');
+      expect(consoleSpy).not.toHaveBeenCalled();
+      consoleSpy.mockRestore();
+    });
+
+    it('should switch to a new log group if a different group name is provided', () => {
+      const consoleGroupSpy = jest
+        .spyOn(console, 'groupCollapsed')
+        .mockImplementation(() => {});
+      const consoleGroupEndSpy = jest
+        .spyOn(console, 'groupEnd')
+        .mockImplementation(() => {});
+      globalOptions.logging = 'true';
+      consoleGroupEndSpy.mockReset();
+      logGroup('Group A');
+      logGroup('Group B');
+      expect(consoleGroupEndSpy).toHaveBeenCalled();
+      expect(consoleGroupSpy).toHaveBeenCalledWith('Group B');
+      consoleGroupSpy.mockRestore();
+      consoleGroupEndSpy.mockRestore();
+    });
+
+    it('should not end the current group if the same group name is provided', () => {
+      const consoleGroupSpy = jest
+        .spyOn(console, 'groupCollapsed')
+        .mockImplementation(() => {});
+      const consoleGroupEndSpy = jest
+        .spyOn(console, 'groupEnd')
+        .mockImplementation(() => {});
+      globalOptions.logging = 'true';
+      logGroup('Group A');
+      logGroup('Group A');
+      expect(consoleGroupEndSpy).not.toHaveBeenCalled();
+      consoleGroupSpy.mockRestore();
+      consoleGroupEndSpy.mockRestore();
+    });
+  });
+
+  describe('logGroupEnd', () => {
+    it('should end the current log group when logging is enabled', () => {
+      const consoleSpy = jest
+        .spyOn(console, 'groupEnd')
+        .mockImplementation(() => {});
+      globalOptions.logging = 'true';
+      logGroup('Test Group');
+      logGroupEnd();
+      expect(consoleSpy).toHaveBeenCalled();
+      consoleSpy.mockRestore();
+    });
+
+    it('should not end the current log group when logging is disabled', () => {
+      const consoleSpy = jest
+        .spyOn(console, 'groupEnd')
+        .mockImplementation(() => {});
+      globalOptions.logging = 'false';
+      logGroupEnd();
+      expect(consoleSpy).not.toHaveBeenCalled();
       consoleSpy.mockRestore();
     });
   });

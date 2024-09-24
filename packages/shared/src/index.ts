@@ -9,6 +9,8 @@ export {
   logSetup,
   logError,
   logMessage,
+  logGroup,
+  logGroupEnd,
 } from './logger/logger';
 
 //export { SyncDataItem } from './types/SyncDataItem';
