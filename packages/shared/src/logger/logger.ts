@@ -7,8 +7,13 @@ export const logId = { value: 0 };
  */
 function getLogId() {
   'worklet';
-  logId.value++;
-  return logId.value;
+  const now = new Date();
+  const formattedTimestamp = now
+    .toISOString()
+    .replace('T', ' ')
+    .replace('Z', '')
+    .slice(2); // Remove the first two characters (year prefix)
+  return formattedTimestamp;
 }
 
 // Use this filter to filter out logs.

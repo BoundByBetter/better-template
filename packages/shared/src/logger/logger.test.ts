@@ -29,8 +29,9 @@ describe('logger', () => {
         .spyOn(console, 'log')
         .mockImplementation(() => {});
       logSetup('mySetupFunction', 'some', 'data');
+      const timestampRegex = /\d{2}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}\.\d{3}/;
       expect(consoleSpy).toHaveBeenCalledWith(
-        1,
+        expect.stringMatching(timestampRegex),
         'setup',
         'mySetupFunction',
         'some',
@@ -46,8 +47,9 @@ describe('logger', () => {
         .spyOn(console, 'log')
         .mockImplementation(() => {});
       logCall('myCallFunction', 'some', 'data');
+      const timestampRegex = /\d{2}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}\.\d{3}/;
       expect(consoleSpy).toHaveBeenCalledWith(
-        1,
+        expect.stringMatching(timestampRegex),
         'call',
         'myCallFunction',
         'some',
@@ -63,8 +65,9 @@ describe('logger', () => {
         .spyOn(console, 'log')
         .mockImplementation(() => {});
       logMessage('message', 'some', 'data');
+      const timestampRegex = /\d{2}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}\.\d{3}/;
       expect(consoleSpy).toHaveBeenCalledWith(
-        1,
+        expect.stringMatching(timestampRegex),
         'MESSAGE',
         'message',
         'some',
@@ -80,8 +83,9 @@ describe('logger', () => {
         .spyOn(console, 'log')
         .mockImplementation(() => {});
       logHighFrequencyCheck('myHighFrequencyCheckFunction', 'some', 'data');
+      const timestampRegex = /\d{2}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}\.\d{3}/;
       expect(consoleSpy).toHaveBeenCalledWith(
-        1,
+        expect.stringMatching(timestampRegex),
         'hf check',
         'myHighFrequencyCheckFunction',
         'some',
@@ -97,8 +101,9 @@ describe('logger', () => {
         .spyOn(console, 'log')
         .mockImplementation(() => {});
       logHighFrequencyCall('myHighFrequencyCallFunction', 'some', 'data');
+      const timestampRegex = /\d{2}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}\.\d{3}/;
       expect(consoleSpy).toHaveBeenCalledWith(
-        1,
+        expect.stringMatching(timestampRegex),
         'hf call',
         'myHighFrequencyCallFunction',
         'some',
@@ -117,7 +122,12 @@ describe('logger', () => {
       process.env.LOGGING = 'true';
       logRaw('some', 'data');
       process.env.LOGGING = currentLogging;
-      expect(consoleSpy).toHaveBeenCalledWith(1, 'some', 'data');
+      const timestampRegex = /\d{2}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}\.\d{3}/;
+      expect(consoleSpy).toHaveBeenCalledWith(
+        expect.stringMatching(timestampRegex),
+        'some',
+        'data',
+      );
       consoleSpy.mockRestore();
     });
     it('should not log the data if the LOGGING environment variable is not set to true', () => {
@@ -143,7 +153,6 @@ describe('logger', () => {
       globalOptions.filter = currentFilter;
       process.env.LOGGING = currentLogging;
       expect(consoleSpy).not.toHaveBeenCalled();
-      consoleSpy.mockRestore();
     });
   });
 
@@ -153,8 +162,9 @@ describe('logger', () => {
         .spyOn(console, 'log')
         .mockImplementation(() => {});
       logError(new Error('Here is my error message'), 'some', 'data');
+      const timestampRegex = /\d{2}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}\.\d{3}/;
       expect(consoleSpy).toHaveBeenCalledWith(
-        1,
+        expect.stringMatching(timestampRegex),
         'ERROR',
         'Error',
         'Here is my error message',

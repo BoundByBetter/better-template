@@ -92,4 +92,37 @@ describe('PostList', () => {
     const { getByText } = renderWithTamagui(<PostList />);
     expect(getByText('Loading posts... 50%')).toBeTruthy();
   });
+
+  it('should display a message when there are no posts', () => {
+    (usePosts as jest.Mock).mockReturnValue([]);
+    (useBulkLoadStatus as jest.Mock).mockReturnValue({
+      isBulkLoading: false,
+      bulkLoadingProgress: 0,
+    });
+
+    const { getByText } = renderWithTamagui(<PostList />);
+    expect(getByText('Total Posts: 0')).toBeTruthy();
+  });
+
+  it('should handle undefined posts', () => {
+    (usePosts as jest.Mock).mockReturnValue(undefined);
+    (useBulkLoadStatus as jest.Mock).mockReturnValue({
+      isBulkLoading: false,
+      bulkLoadingProgress: 0,
+    });
+
+    const { getByText } = renderWithTamagui(<PostList />);
+    expect(getByText('Total Posts: 0')).toBeTruthy();
+  });
+
+  it('should handle empty posts array', () => {
+    (usePosts as jest.Mock).mockReturnValue([]);
+    (useBulkLoadStatus as jest.Mock).mockReturnValue({
+      isBulkLoading: false,
+      bulkLoadingProgress: 0,
+    });
+
+    const { getByText } = renderWithTamagui(<PostList />);
+    expect(getByText('Total Posts: 0')).toBeTruthy();
+  });
 });
