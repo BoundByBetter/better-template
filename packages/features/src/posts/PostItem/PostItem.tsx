@@ -10,8 +10,8 @@ export interface PostProps {
 }
 
 const PostItemComponent = (props: PostProps) => {
-  logSetup('PostItem', 'id', props.id);
-  const post = usePost(props.id);
+  logSetup('PostList', 'PostItem', 'id', props.id);
+  const post = usePost(props.id, ['PostList', 'PostItem']);
   const deletePostHandler = () => {
     logCall('PostItem', 'deletePostHandler');
     deletePost(props.id);

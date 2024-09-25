@@ -2,19 +2,13 @@ import React, { useCallback, useMemo } from 'react';
 import { FlashList } from '@shopify/flash-list';
 import { PostItem } from '../PostItem';
 import { usePosts, useBulkLoadStatus } from '@boundbybetter/state';
-import {
-  logCall,
-  logGroup,
-  logGroupEnd,
-  logSetup,
-} from '@boundbybetter/shared';
+import { logCall, logSetup } from '@boundbybetter/shared';
 import { AddPost } from '../AddPost';
 import { tg } from '@boundbybetter/ui';
 
 const ItemSeparator = () => <tg.YStack height="$1" />;
 
 function PostListComponent() {
-  logGroup('PostList');
   logSetup('PostList');
   const posts = usePosts();
   const { isBulkLoading, bulkLoadingProgress } = useBulkLoadStatus();
@@ -27,13 +21,11 @@ function PostListComponent() {
   }, [posts]);
 
   const renderItem = useCallback(({ item }) => {
-    logGroup('PostList renderItem');
     logCall('PostList', 'renderItem', item.id);
     return <PostItem id={item.id} />;
   }, []);
 
   const keyExtractor = useCallback((item) => {
-    logGroup('PostList keyExtractor');
     logCall('PostList', 'keyExtractor', item.id);
     return item.id;
   }, []);

@@ -9,6 +9,7 @@ import {
 import { store } from '../store';
 import { describe, it, expect, beforeEach } from '@jest/globals';
 import { act } from 'react-test-renderer';
+import { globalOptions, logCall } from '@boundbybetter/shared';
 
 describe('post hooks', () => {
   beforeEach(() => {
@@ -101,6 +102,31 @@ describe('post hooks', () => {
       const { result } = renderHook(() => usePost('3'));
 
       expect(result.current).toBeUndefined();
+    });
+
+    it('should return undefined for a post with no properties', () => {
+      store.setTable('posts', {
+        '1': {},
+      });
+
+      const { result } = renderHook(() => usePost('1'));
+
+      expect(result.current).toBeUndefined();
+    });
+
+    it('should log the caller if provided', () => {
+      const spy = jest.spyOn(console, 'log');
+      globalOptions.logging = 'true';
+      renderHook(() => usePost('1', ['test']));
+      expect(spy).toHaveBeenCalledWith(
+        expect.any(String),
+        'call',
+        'test',
+        'usePost',
+        '1',
+      );
+      spy.mockRestore();
+      globalOptions.logging = 'false';
     });
   });
 

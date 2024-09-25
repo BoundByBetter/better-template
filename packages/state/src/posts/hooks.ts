@@ -25,8 +25,14 @@ export const usePosts = (): Post[] | undefined => {
   }, [posts]);
 };
 
-export const usePost = (postId: string): Post | undefined => {
-  logCall('usePost', postId);
+export const usePost = (
+  postId: string,
+  caller?: string[],
+): Post | undefined => {
+  const logParams = caller
+    ? [...caller, 'usePost', postId]
+    : ['usePost', postId];
+  logCall(logParams[0], ...logParams.slice(1));
   const post = useRow('posts', postId, store);
   return Object.keys(post).length === 0
     ? undefined

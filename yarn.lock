@@ -1253,7 +1253,7 @@ __metadata:
     "@types/node": "npm:^20.11.24"
     "@types/ws": "npm:^8"
     jest-websocket-mock: "npm:^2.5.0"
-    tinybase: "npm:^5.2.3"
+    tinybase: "npm:^5.3.1"
     typescript: "npm:^5.3.3"
     ws: "npm:^8.18.0"
   languageName: unknown
@@ -1327,7 +1327,7 @@ __metadata:
   dependencies:
     expo-sqlite: "npm:~14.0.6"
     react: "npm:18.2.0"
-    tinybase: "npm:^5.2.3"
+    tinybase: "npm:^5.3.1"
   languageName: unknown
   linkType: soft
 
@@ -16157,14 +16157,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"tinybase@npm:^5.2.3":
-  version: 5.2.3
-  resolution: "tinybase@npm:5.2.3"
+"tinybase@npm:^5.3.1":
+  version: 5.3.1
+  resolution: "tinybase@npm:5.3.1"
   peerDependencies:
     "@automerge/automerge-repo": ^1.2.0
-    "@electric-sql/pglite": ^0.2.5
-    "@libsql/client": ^0.10.0
-    "@powersync/common": ^1.16.2
+    "@electric-sql/pglite": ^0.2.7
+    "@libsql/client": ^0.14.0
+    "@powersync/common": ^1.18.1
     "@sqlite.org/sqlite-wasm": ^3.46.1-build3
     "@vlcn.io/crsqlite-wasm": ^0.16.0
     electric-sql: ^0.12.1
@@ -16178,7 +16178,7 @@ __metadata:
     react-dom: ^18.2.0
     sqlite3: ^5.1.7
     ws: ^8.17.0
-    yjs: ^13.6.18
+    yjs: ^13.6.19
   peerDependenciesMeta:
     "@automerge/automerge-repo":
       optional: true
@@ -16218,7 +16218,7 @@ __metadata:
       optional: true
   bin:
     tinybase: cli/index.js
-  checksum: 10c0/9c69e5f3f97a042347bdb36174798beaa57c2e130f251ae6a2ecf5de4fd93d48ceef68f486286e561910883c069e28bdcaca143f152b36288d7071b156dd7ad1
+  checksum: 10c0/651887ca437502aa1da9e0ff4b5df99c96d1ce4dc22e88f8ef64a15ae1563034a453aa289c677457fe641e902a4b6f8364dd38272e98c0140586e62d0cc7638f
   languageName: node
   linkType: hard
 

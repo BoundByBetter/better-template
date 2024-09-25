@@ -30,83 +30,6 @@ export const globalOptions = {
   logging: /* istanbul ignore next */ process.env.LOGGING ?? 'true',
 };
 
-/**
- * @description
- * A simple logger that can be turned on and off.
- * @param {unknown[]} data The data to log.
- */
-export function logRaw(...data: unknown[]) {
-  'worklet';
-
-  const currentLogId = getLogId();
-  if (
-    globalOptions.logging?.toLowerCase() === 'true' &&
-    globalOptions.filter(data)
-  ) {
-    console.log(currentLogId, ...data);
-  }
-}
-
-/**
- * Call when logging for a setup function.
- * @param {string} name The name of the setup function.
- * @param {unknown[]} data The data to log.
- */
-export function logSetup(name: string, ...data: unknown[]) {
-  'worklet';
-  logRaw('setup', name, ...data);
-}
-
-/**
- * Call when logging for a setup function.
- * @param {string} name The name of the setup function.
- * @param {unknown[]} data The data to log.
- */
-export function logCall(name: string, ...data: unknown[]) {
-  'worklet';
-  logRaw('call', name, ...data);
-}
-
-/**
- * Call when logging for the initial check action of a function.
- * @param {string} name The name of the setup function.
- * @param {unknown[]} data The data to log.
- */
-export function logHighFrequencyCheck(name: string, ...data: unknown[]) {
-  'worklet';
-  logRaw('hf check', name, ...data);
-}
-
-/**
- * Call when logging for a setup function.
- * @param {string} name The name of the setup function.
- * @param {unknown[]} data The data to log.
- */
-export function logHighFrequencyCall(name: string, ...data: unknown[]) {
-  'worklet';
-  logRaw('hf call', name, ...data);
-}
-
-/**
- * Call when logging for a setup function.
- * @param {string} name The name of the setup function.
- * @param {unknown[]} data The data to log.
- */
-export function logError(error: Error, ...data: unknown[]) {
-  'worklet';
-  logRaw('ERROR', error.name, error.message, ...data);
-}
-
-/**
- * Call when logging for a setup function.
- * @param {string} name The name of the setup function.
- * @param {unknown[]} data The data to log.
- */
-export function logMessage(...data: unknown[]) {
-  'worklet';
-  logRaw('MESSAGE', ...data);
-}
-
 let currentGroup = null;
 
 export function logGroup(groupName: string) {
@@ -134,3 +57,85 @@ export function logGroupEnd() {
     currentGroup = null;
   }
 }
+
+/**
+ * @description
+ * A simple logger that can be turned on and off.
+ * @param {unknown[]} data The data to log.
+ */
+export function logRaw(...data: unknown[]) {
+  'worklet';
+
+  const currentLogId = getLogId();
+  if (
+    globalOptions.logging?.toLowerCase() === 'true' &&
+    globalOptions.filter(data)
+  ) {
+    console.log(currentLogId, ...data);
+  }
+}
+
+/**
+ * Call when logging for a setup function.
+ * @param {string} name The name of the setup function.
+ * @param {unknown[]} data The data to log.
+ */
+export function logSetup(name: string, ...data: unknown[]) {
+  'worklet';
+  logGroup(name);
+  logRaw('setup', name, ...data);
+}
+
+/**
+ * Call when logging for a setup function.
+ * @param {string} name The name of the setup function.
+ * @param {unknown[]} data The data to log.
+ */
+export function logCall(name: string, ...data: unknown[]) {
+  'worklet';
+  logGroup(name);
+  logRaw('call', name, ...data);
+}
+
+/**
+ * Call when logging for the initial check action of a function.
+ * @param {string} name The name of the setup function.
+ * @param {unknown[]} data The data to log.
+ */
+export function logHighFrequencyCheck(name: string, ...data: unknown[]) {
+  'worklet';
+  logGroup(name);
+  logRaw('hf check', name, ...data);
+}
+
+/**
+ * Call when logging for a setup function.
+ * @param {string} name The name of the setup function.
+ * @param {unknown[]} data The data to log.
+ */
+export function logHighFrequencyCall(name: string, ...data: unknown[]) {
+  'worklet';
+  logGroup(name);
+  logRaw('hf call', name, ...data);
+}
+
+/**
+ * Call when logging for a setup function.
+ * @param {string} name The name of the setup function.
+ * @param {unknown[]} data The data to log.
+ */
+export function logError(error: Error, ...data: unknown[]) {
+  'worklet';
+  logRaw('ERROR', error.name, error.message, ...data);
+}
+
+/**
+ * Call when logging for a setup function.
+ * @param {string} name The name of the setup function.
+ * @param {unknown[]} data The data to log.
+ */
+export function logMessage(...data: unknown[]) {
+  'worklet';
+  logRaw('MESSAGE', ...data);
+}
+
