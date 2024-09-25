@@ -1,27 +1,6 @@
 import { store } from '../store';
-import { logCall, logMessage, Post } from '@boundbybetter/shared';
+import { logCall, logMessage } from '@boundbybetter/shared';
 import { nanoid } from '@reduxjs/toolkit';
-
-export const addPost = (post: Post) => {
-  logCall('addPost', post);
-  const now = new Date().toISOString();
-  store.setRow('posts', post.id, {
-    ...post,
-    createdAt: now,
-    updatedAt: now,
-  } as any);
-};
-
-export const updatePost = (postId: string, updates: Partial<Post>) => {
-  logCall('updatePost', postId, updates);
-  const updatedAt = new Date().toISOString();
-  store.setPartialRow('posts', postId, { ...updates, updatedAt });
-};
-
-export const deletePost = (postId: string) => {
-  logCall('deletePost', postId);
-  store.delRow('posts', postId);
-};
 
 export const bulkAddPosts = (count: number): Promise<void> => {
   logCall('bulkAddPosts', count);
@@ -62,9 +41,4 @@ export const bulkAddPosts = (count: number): Promise<void> => {
 
     addNextBatch();
   });
-};
-
-export const clearAllPosts = () => {
-  logCall('clearAllPosts');
-  store.delTable('posts');
 };
