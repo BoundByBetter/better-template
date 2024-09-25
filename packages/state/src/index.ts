@@ -1,15 +1,14 @@
 /* istanbul ignore file */
-export {
-  usePosts,
-  usePost,
-  usePostStatus,
-  useBulkLoadStatus,
-  usePostCount,
-} from './posts/hooks';
+export { usePosts } from './posts/usePosts';
+export { usePost } from './posts/usePost';
+export { usePostStatus } from './posts/usePostStatus';
+export { useBulkLoadStatus } from './posts/useBulkLoadStatus';
+export { usePostCount } from './posts/usePostCount';
 
-export { useFeature, useFeatures } from './features/hooks';
+export { useFeatures } from './features/useFeatures';
+export { useFeature } from './features/useFeature';
 
-export { useCurrentUser } from './users/hooks';
+export { useCurrentUser } from './users/useCurrentUser';
 
 export {
   addPost,
