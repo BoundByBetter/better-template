@@ -1,11 +1,15 @@
 import { createMergeableStore } from 'tinybase';
 import { createExpoSqlitePersister } from 'tinybase/persisters/persister-expo-sqlite';
 import { createLocalPersister } from 'tinybase/persisters/persister-browser';
-import { createWsSynchronizer, WsSynchronizer } from 'tinybase/synchronizers/synchronizer-ws-client';
+import {
+  createWsSynchronizer,
+  WsSynchronizer,
+} from 'tinybase/synchronizers/synchronizer-ws-client';
 import * as SQLite from 'expo-sqlite';
 import { Platform } from 'react-native';
 import { logCall, logMessage } from '@boundbybetter/shared';
 import { Persister, Persists } from 'tinybase/persisters';
+import { createMetrics } from 'tinybase';
 
 export const store = createMergeableStore('my-store').setTables({
   posts: {},
@@ -112,5 +116,14 @@ if (typeof jest === 'undefined') {
 
 store.setCell('app', 'status', 'isBulkLoading', false);
 store.setCell('app', 'status', 'bulkLoadingProgress', 0);
+
+// Set up metric definition for post count
+export const metrics = createMetrics(store);
+metrics.setMetricDefinition(
+  'postCount', // metricId
+  'posts', // tableId to aggregate
+  'sum', // aggregation type
+  () => 1, // custom aggregator function that always returns 1
+);
 
 export type Store = typeof store;

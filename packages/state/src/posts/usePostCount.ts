@@ -1,9 +1,9 @@
-import { useTable } from 'tinybase/ui-react';
-import { store } from '../store';
+import { useMetric } from 'tinybase/ui-react';
+import { metrics } from '../store';
 import { logCall } from '@boundbybetter/shared';
 
-export const usePostCount = (): number => {
-  logCall('usePostCount');
-  const posts = useTable('posts', store);
-  return Object.keys(posts).length;
+export const usePostCount = (caller?: string[]): number => {
+  const logParams = caller ? [...caller, 'usePostCount'] : ['usePostCount'];
+  logCall(logParams[0], ...logParams.slice(1));
+  return useMetric('postCount', metrics) ?? 0;
 };
