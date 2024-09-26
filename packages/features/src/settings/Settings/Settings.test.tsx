@@ -4,8 +4,8 @@ import { Settings } from './Settings';
 import {
   useCurrentUser,
   clearCurrentUser,
-  clearAllPosts,
-  usePostCount,
+  clearAllTasks,
+  useTaskCount,
   useBulkLoadStatus,
 } from '@boundbybetter/state';
 import { renderWithTamagui } from '../../renderWithTamagui.test-util';
@@ -14,8 +14,8 @@ import { describe, it, expect } from '@jest/globals';
 jest.mock('@boundbybetter/state', () => ({
   useCurrentUser: jest.fn(),
   clearCurrentUser: jest.fn(),
-  clearAllPosts: jest.fn(),
-  usePostCount: jest.fn(),
+  clearAllTasks: jest.fn(),
+  useTaskCount: jest.fn(),
   useBulkLoadStatus: jest.fn(),
 }));
 
@@ -37,7 +37,7 @@ describe('Settings', () => {
       userName: 'John Doe',
       userEmail: 'john@example.com',
     });
-    (usePostCount as jest.Mock).mockReturnValue(10);
+    (useTaskCount as jest.Mock).mockReturnValue(10);
     (useBulkLoadStatus as jest.Mock).mockReturnValue({
       isBulkLoading: false,
       bulkLoadingProgress: 0,
@@ -54,7 +54,7 @@ describe('Settings', () => {
       userName: 'John Doe',
       userEmail: 'john@example.com',
     });
-    (usePostCount as jest.Mock).mockReturnValue(10);
+    (useTaskCount as jest.Mock).mockReturnValue(10);
     (useBulkLoadStatus as jest.Mock).mockReturnValue({
       isBulkLoading: false,
       bulkLoadingProgress: 0,
@@ -66,36 +66,36 @@ describe('Settings', () => {
     expect(clearCurrentUser).toHaveBeenCalled();
   });
 
-  it('should call clearAllPosts when the clear all posts button is pressed', () => {
+  it('should call clearAllTasks when the clear all tasks button is pressed', () => {
     (useCurrentUser as jest.Mock).mockReturnValue({
       userName: 'John Doe',
       userEmail: 'john@example.com',
     });
-    (usePostCount as jest.Mock).mockReturnValue(10);
+    (useTaskCount as jest.Mock).mockReturnValue(10);
     (useBulkLoadStatus as jest.Mock).mockReturnValue({
       isBulkLoading: false,
       bulkLoadingProgress: 0,
     });
 
     const { getByTestId } = renderWithTamagui(<Settings />);
-    const clearAllPostsButton = getByTestId('clear-all-posts');
-    fireEvent.press(clearAllPostsButton);
-    expect(clearAllPosts).toHaveBeenCalled();
+    const clearAllTasksButton = getByTestId('clear-all-tasks');
+    fireEvent.press(clearAllTasksButton);
+    expect(clearAllTasks).toHaveBeenCalled();
   });
 
-  it('should display the correct number of posts', () => {
+  it('should display the correct number of tasks', () => {
     (useCurrentUser as jest.Mock).mockReturnValue({
       userName: 'John Doe',
       userEmail: 'john@example.com',
     });
-    (usePostCount as jest.Mock).mockReturnValue(10);
+    (useTaskCount as jest.Mock).mockReturnValue(10);
     (useBulkLoadStatus as jest.Mock).mockReturnValue({
       isBulkLoading: false,
       bulkLoadingProgress: 0,
     });
 
     const { getByText } = renderWithTamagui(<Settings />);
-    expect(getByText('Clear All 10 Posts')).toBeTruthy();
+    expect(getByText('Clear All 10 Tasks')).toBeTruthy();
   });
 
   it('should render bulk loading progress when isBulkLoading is true', () => {
@@ -103,14 +103,14 @@ describe('Settings', () => {
       userName: 'John Doe',
       userEmail: 'john@example.com',
     });
-    (usePostCount as jest.Mock).mockReturnValue(10);
+    (useTaskCount as jest.Mock).mockReturnValue(10);
     (useBulkLoadStatus as jest.Mock).mockReturnValue({
       isBulkLoading: true,
       bulkLoadingProgress: 50,
     });
 
     const { getByText } = renderWithTamagui(<Settings />);
-    expect(getByText('Loading posts... 50%')).toBeTruthy();
+    expect(getByText('Loading tasks... 50%')).toBeTruthy();
   });
 
   it('should render BulkAddButton components when not bulk loading and in development mode', () => {
@@ -118,15 +118,15 @@ describe('Settings', () => {
       userName: 'John Doe',
       userEmail: 'john@example.com',
     });
-    (usePostCount as jest.Mock).mockReturnValue(10);
+    (useTaskCount as jest.Mock).mockReturnValue(10);
     (useBulkLoadStatus as jest.Mock).mockReturnValue({
       isBulkLoading: false,
       bulkLoadingProgress: 0,
     });
 
     const { getByText } = renderWithTamagui(<Settings />);
-    expect(getByText('Bulk Add 5000 Posts')).toBeTruthy();
-    expect(getByText('Bulk Add 50 Posts')).toBeTruthy();
-    expect(getByText('Bulk Add 1 Posts')).toBeTruthy();
+    expect(getByText('Bulk Add 5000 Tasks')).toBeTruthy();
+    expect(getByText('Bulk Add 50 Tasks')).toBeTruthy();
+    expect(getByText('Bulk Add 1 Tasks')).toBeTruthy();
   });
 });

@@ -1,1 +1,0 @@
-export { PostsScreen } from './PostsScreen';

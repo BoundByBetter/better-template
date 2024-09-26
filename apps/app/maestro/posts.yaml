@@ -3,13 +3,13 @@
 appId: ${APP}
 ---
 - tapOn:
-    id: new-post-name
-    label: Tap on new post name textbox
+    id: new-task-name
+    label: Tap on new task name textbox
 - eraseText
 - inputText: New Test
 - hideKeyboard
 - tapOn:
-    id: new-post-submit
+    id: new-task-submit
     label: Tap Add button
 - assertVisible:
     text: New Test

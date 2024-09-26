@@ -12,8 +12,8 @@ export interface FeatureDetail {
 
 export class FeatureKeys {
   // Max: 7
-  public static readonly MyAppPosts = 'MyAppPosts';
-  public static readonly MyAppPostsUnlimited = 'MyAppPostsUnlimited';
+  public static readonly MyAppTasks = 'MyAppTasks';
+  public static readonly MyAppTasksUnlimited = 'MyAppTasksUnlimited';
   public static readonly MyAppFeatures = 'MyAppFeatures';
   public static readonly MyAppSettings = 'MyAppSettings';
   public static readonly MyAppDocs = 'MyAppDocs';
@@ -21,10 +21,10 @@ export class FeatureKeys {
   public static readonly MyAdminFeatures = 'MyAdminFeatures';
 }
 const features: FeatureDetail = {};
-features[FeatureKeys.MyAppPosts] = {
+features[FeatureKeys.MyAppTasks] = {
   actions: { read: 1, refresh: 2, create: 3, update: 4, delete: 5 },
 };
-features[FeatureKeys.MyAppPostsUnlimited] = {
+features[FeatureKeys.MyAppTasksUnlimited] = {
   actions: { read: 1, refresh: 2, create: 3, update: 4, delete: 5 },
   defaultGroups: ['licensed'],
 };

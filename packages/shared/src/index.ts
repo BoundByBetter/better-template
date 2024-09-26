@@ -14,8 +14,8 @@ export {
 } from './logger/logger';
 
 //export { SyncDataItem } from './types/SyncDataItem';
-export { Post } from './types/Post';
-export { PostStatus } from './types/PostStatus';
+export { Task } from './types/Task';
+export { TaskStatus } from './types/TaskStatus';
 export { Feature } from './types/Feature';
 export { StateObject } from './types/StateObject';
 export { FeatureStatus } from './types/FeatureStatus';

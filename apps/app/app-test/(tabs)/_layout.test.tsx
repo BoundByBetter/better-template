@@ -51,7 +51,7 @@ describe('_layout', () => {
     renderRouter(appDir, {
       initialUrl: '/',
     });
-    const tabOne = await screen.findAllByText('Posts');
+    const tabOne = await screen.findAllByText('Tasks');
     expect(tabOne).toBeTruthy();
     const tabTwo = await screen.findAllByText('Documentation');
     expect(tabTwo).toBeTruthy();
@@ -87,7 +87,7 @@ describe('_layout', () => {
     renderRouter(appDir, {
       initialUrl: '/',
     });
-    const tabOne = await screen.findAllByText('Posts');
+    const tabOne = await screen.findAllByText('Tasks');
     expect(tabOne).toBeTruthy();
     const tabTwo = await screen.findAllByText('Documentation');
     expect(tabTwo).toBeTruthy();

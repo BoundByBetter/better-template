@@ -5,24 +5,24 @@ describe('persistence', () => {
     // Nothing here yet.
   });
 
-  it('posts are persisted across sessions', () => {
+  it('tasks are persisted across sessions', () => {
     // We'll store our item text in a variable so we can reuse it
     cy.clearLocalStorage();
     cy.login();
 
-    const newPost = 'This is a test';
-    cy.get('[data-testid=new-post-name]').type(`${newPost}{enter}`);
+    const newTask = 'This is a test';
+    cy.get('[data-testid=new-task-name]').type(`${newTask}{enter}`);
 
-    cy.get('[data-testid=post-item]')
+    cy.get('[data-testid=task-item]')
       .should('have.length.above', 0)
       .first()
-      .should('contain.text', newPost);
-    // Close browser and then reopen it to verify post still visible.
+      .should('contain.text', newTask);
+    // Close browser and then reopen it to verify task still visible.
     cy.reload();
-    // Wait for up to 10 seconds for the post to appear.
-    cy.get('[data-testid=post-item]', { timeout: 10000 })
+    // Wait for up to 10 seconds for the task to appear.
+    cy.get('[data-testid=task-item]', { timeout: 10000 })
       .should('have.length.above', 0)
       .first()
-      .should('contain.text', newPost);
+      .should('contain.text', newTask);
   });
 });

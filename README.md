@@ -49,7 +49,7 @@ Below are the objectives that drove the design of this solution.
 
 | TYPE | TECHNOLOGY | DESCRIPTION |
 |-|-|-|
-| **IDE** | **VS Code** | The development environment was built assuming the user is using VS Code.  While we have avoided using VS Code specific flows (like using VS Code posts for development activities), we have not explicitly designed the code base or tested it to see if the flows work outside of VS Code.  Instructions on performing setup activities will assume you are working in VS Code. |
+| **IDE** | **VS Code** | The development environment was built assuming the user is using VS Code.  While we have avoided using VS Code specific flows (like using VS Code tasks for development activities), we have not explicitly designed the code base or tested it to see if the flows work outside of VS Code.  Instructions on performing setup activities will assume you are working in VS Code. |
 | **Dev Container** | **Docker** | Used to enable setting up development environments across multiple platforms: Windows, Mac, or Linux. |
 | **Dev OS** | **Debian** | Used as the OS for the development machine. |
 | **Source Code** | **Git** | Used for source control with remotes hosted on GitHub. |

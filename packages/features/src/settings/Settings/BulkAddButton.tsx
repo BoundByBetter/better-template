@@ -1,5 +1,5 @@
 import React from 'react';
-import { bulkAddPosts, useBulkLoadStatus } from '@boundbybetter/state';
+import { bulkAddTasks, useBulkLoadStatus } from '@boundbybetter/state';
 import { tg } from '@boundbybetter/ui';
 
 interface BulkAddButtonProps {
@@ -8,7 +8,7 @@ interface BulkAddButtonProps {
 
 export const BulkAddButton = ({ count }: BulkAddButtonProps) => {
   const handleBulkAdd = () => {
-    bulkAddPosts(count);
+    bulkAddTasks(count);
   };
 
   if (process.env.NODE_ENV !== 'development') {
@@ -17,7 +17,7 @@ export const BulkAddButton = ({ count }: BulkAddButtonProps) => {
 
   return (
     <tg.Button onPress={handleBulkAdd} testID="bulk-add-button">
-      {`Bulk Add ${count.toString()} Posts`}
+      {`Bulk Add ${count.toString()} Tasks`}
     </tg.Button>
   );
 };

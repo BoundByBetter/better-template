@@ -26,7 +26,7 @@ describe('_layout', () => {
     (useFonts as jest.Mock).mockReturnValue([true, null]);
     //render(<RootLayout />)
     renderRouter(appDir);
-    const tabOne = await screen.findAllByText('Posts');
+    const tabOne = await screen.findAllByText('Tasks');
     expect(tabOne).toBeTruthy();
   }, 60000);
 

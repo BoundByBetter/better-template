@@ -1,14 +1,14 @@
 /* istanbul ignore file */
-export { usePosts } from './posts/usePosts';
-export { usePost } from './posts/usePost';
-export { usePostStatus } from './posts/usePostStatus';
-export { useBulkLoadStatus } from './posts/useBulkLoadStatus';
-export { usePostCount } from './posts/usePostCount';
-export { addPost } from './posts/addPost';
-export { updatePost } from './posts/updatePost';
-export { deletePost } from './posts/deletePost';
-export { bulkAddPosts } from './posts/bulkAddPosts';
-export { clearAllPosts } from './posts/clearAllPosts';
+export { useTasks } from './tasks/useTasks';
+export { useTask } from './tasks/useTask';
+export { useTaskStatus } from './tasks/useTaskStatus';
+export { useBulkLoadStatus } from './tasks/useBulkLoadStatus';
+export { useTaskCount } from './tasks/useTaskCount';
+export { addTask } from './tasks/addTask';
+export { updateTask } from './tasks/updateTask';
+export { deleteTask } from './tasks/deleteTask';
+export { bulkAddTasks } from './tasks/bulkAddTasks';
+export { clearAllTasks } from './tasks/clearAllTasks';
 
 export { useFeatures } from './features/useFeatures';
 export { useFeature } from './features/useFeature';

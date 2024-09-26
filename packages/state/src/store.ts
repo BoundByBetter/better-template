@@ -12,7 +12,7 @@ import { Persister, Persists } from 'tinybase/persisters';
 import { createMetrics } from 'tinybase';
 
 export const store = createMergeableStore('my-store').setTables({
-  posts: {},
+  tasks: {},
   features: {},
   user: {},
   app: {
@@ -117,11 +117,11 @@ if (typeof jest === 'undefined') {
 store.setCell('app', 'status', 'isBulkLoading', false);
 store.setCell('app', 'status', 'bulkLoadingProgress', 0);
 
-// Set up metric definition for post count
+// Set up metric definition for task count
 export const metrics = createMetrics(store);
 metrics.setMetricDefinition(
-  'postCount', // metricId
-  'posts', // tableId to aggregate
+  'taskCount', // metricId
+  'tasks', // tableId to aggregate
   'sum', // aggregation type
   () => 1, // custom aggregator function that always returns 1
 );

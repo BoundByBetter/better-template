@@ -58,7 +58,7 @@ jest.mock('@boundbybetter/features', () => {
     AccessDenied: jest
       .fn()
       .mockImplementation(() => <View testID="AccessDenied" />),
-    PostList: jest.fn().mockImplementation(() => <View testID="PostList" />),
+    TaskList: jest.fn().mockImplementation(() => <View testID="TaskList" />),
     FeatureList: jest
       .fn()
       .mockImplementation(() => <View testID="FeatureList" />),
@@ -66,13 +66,13 @@ jest.mock('@boundbybetter/features', () => {
     SiteBanner: jest
       .fn()
       .mockImplementation(() => <View testID="SiteBanner" />),
-    Post: jest.fn().mockImplementation(() => <View testID="Post" />),
-    PostDetail: jest
+    Task: jest.fn().mockImplementation(() => <View testID="Task" />),
+    TaskDetail: jest
       .fn()
-      .mockImplementation(() => <View testID="PostDetail" />),
-    PostsScreen: jest
+      .mockImplementation(() => <View testID="TaskDetail" />),
+    TasksScreen: jest
       .fn()
-      .mockImplementation(() => <View testID="PostsScreen" />),
+      .mockImplementation(() => <View testID="TasksScreen" />),
     WebSplashScreen: jest
       .fn()
       .mockImplementation(() => <View testID="WebSplashScreen" />),

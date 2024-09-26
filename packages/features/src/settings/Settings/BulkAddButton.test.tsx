@@ -1,12 +1,12 @@
 import React from 'react';
 import { fireEvent } from '@testing-library/react-native';
 import { BulkAddButton } from './BulkAddButton';
-import { bulkAddPosts, useBulkLoadStatus } from '@boundbybetter/state';
+import { bulkAddTasks, useBulkLoadStatus } from '@boundbybetter/state';
 import { renderWithTamagui } from '../../renderWithTamagui.test-util';
 import { describe, beforeEach, afterEach, it, expect } from '@jest/globals';
 
 jest.mock('@boundbybetter/state', () => ({
-  bulkAddPosts: jest.fn(),
+  bulkAddTasks: jest.fn(),
   useBulkLoadStatus: jest.fn(),
 }));
 
@@ -28,16 +28,16 @@ describe('BulkAddButton', () => {
 
   it('should render the button with correct text', () => {
     const { getByText } = renderWithTamagui(<BulkAddButton count={100} />);
-    expect(getByText('Bulk Add 100 Posts')).toBeTruthy();
+    expect(getByText('Bulk Add 100 Tasks')).toBeTruthy();
   });
 
-  it('should call bulkAddPosts when pressed', () => {
+  it('should call bulkAddTasks when pressed', () => {
     const { getByText } = renderWithTamagui(<BulkAddButton count={100} />);
-    const button = getByText('Bulk Add 100 Posts');
+    const button = getByText('Bulk Add 100 Tasks');
 
     fireEvent.press(button);
 
-    expect(bulkAddPosts).toHaveBeenCalledWith(100);
+    expect(bulkAddTasks).toHaveBeenCalledWith(100);
   });
 
   it('should not render in production environment', () => {
