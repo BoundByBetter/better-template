@@ -1,3 +1,4 @@
+import React, { forwardRef } from 'react';
 import { useState } from 'react';
 import { useTasks, addTask } from '@boundbybetter/state';
 import { nanoid } from '@reduxjs/toolkit';
@@ -7,7 +8,7 @@ import { tg } from '@boundbybetter/ui';
 import { useActiveFeature } from '../../features/useActiveFeature';
 import { FeatureKeys } from '../../features/Features';
 
-export function AddTask() {
+export const AddTask = forwardRef(function AddTask(props, ref) {
   logSetup('AddTask');
   const [newTaskName, setNewTaskName] = useState('');
   const tasks = useTasks();
@@ -40,6 +41,7 @@ export function AddTask() {
     <tg.XStack gap="$4" ai="center">
       <tg.Paragraph>New Task:</tg.Paragraph>
       <tg.Input
+        ref={ref as React.Ref<tg.Input>}
         onChangeText={(text) => {
           setNewTaskName(text);
         }}
@@ -69,4 +71,4 @@ export function AddTask() {
       <tg.Button onPress={navigateToPurchase}>Purchase</tg.Button>
     </tg.YStack>
   );
-}
+});

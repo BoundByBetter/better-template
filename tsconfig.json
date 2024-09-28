@@ -27,7 +27,8 @@
     "servers/*/src",
     "apps/app",
     "apps/site",
-    "babel.config.test.js"
+    "babel.config.test.js",
+    "jest.setup.tsx"
   ],
   "exclude": [
     "node_modules", 

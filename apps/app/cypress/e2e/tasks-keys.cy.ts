@@ -1,0 +1,43 @@
+describe('Task Input Focus and Creation', () => {
+  beforeEach(() => {
+    cy.clearLocalStorage();
+    cy.login();
+  });
+
+  it('should focus on New Task input when pressing "n" key and create multiple tasks without losing focus', () => {
+    // Press 'n' key to focus on the input
+    cy.get('body').type('n');
+
+    // Check if the input is focused
+    cy.get('[data-testid=new-task-name]').should('have.focus');
+
+    // Type first task name and press enter
+    const taskName1 = 'New Test Task 1';
+    cy.get('[data-testid=new-task-name]').type(`${taskName1}{enter}`);
+
+    // Check if the first task was created
+    cy.get('[data-testid=task-item]').first().should('contain.text', taskName1);
+
+    // Check if the input is cleared and still focused
+    cy.get('[data-testid=new-task-name]')
+      .should('have.value', '')
+      .and('have.focus');
+
+    // Immediately type second task name without refocusing and press enter
+    const taskName2 = 'New Test Task 2';
+    cy.get('[data-testid=new-task-name]').type(`${taskName2}{enter}`);
+
+    // Check if the second task was created
+    cy.get('[data-testid=task-item]').first().should('contain.text', taskName2);
+
+    // Check if the input is cleared and still focused after second task
+    cy.get('[data-testid=new-task-name]')
+      .should('have.value', '')
+      .and('have.focus');
+
+    // Verify both tasks are present
+    cy.get('[data-testid=task-item]').should('have.length', 2);
+    cy.get('[data-testid=task-item]').eq(0).should('contain.text', taskName2);
+    cy.get('[data-testid=task-item]').eq(1).should('contain.text', taskName1);
+  });
+});

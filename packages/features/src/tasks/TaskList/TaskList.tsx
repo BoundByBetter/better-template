@@ -1,10 +1,11 @@
-import React, { useCallback, useMemo } from 'react';
+import React, { useCallback, useMemo, useEffect, useRef } from 'react';
 import { FlashList } from '@shopify/flash-list';
 import { TaskItem } from '../TaskItem';
 import { useTasks, useBulkLoadStatus } from '@boundbybetter/state';
 import { logCall, logSetup } from '@boundbybetter/shared';
 import { AddTask } from '../AddTask';
 import { tg } from '@boundbybetter/ui';
+import { Platform } from 'react-native';
 
 const ItemSeparator = () => <tg.YStack height="$1" />;
 
@@ -12,6 +13,7 @@ function TaskListComponent() {
   logSetup('TaskList');
   const tasks = useTasks();
   const { isBulkLoading, bulkLoadingProgress } = useBulkLoadStatus();
+  const inputRef = useRef(null);
 
   const sortedTasks = useMemo(() => {
     logCall('TaskList', 'useMemo');
@@ -28,6 +30,30 @@ function TaskListComponent() {
   const keyExtractor = useCallback((item) => {
     logCall('TaskList', 'keyExtractor', item.id);
     return item.id;
+  }, []);
+
+  /** Code below covered by cypress tests. */
+  /* istanbul ignore next */
+  useEffect(() => {
+    if (Platform.OS === 'web') {
+      const handleKeyPress = (event: KeyboardEvent) => {
+        if (
+          event.key === 'n' &&
+          !event.ctrlKey &&
+          !event.altKey &&
+          !event.metaKey
+        ) {
+          event.preventDefault();
+          inputRef.current?.focus();
+        }
+      };
+
+      window.addEventListener('keydown', handleKeyPress);
+
+      return () => {
+        window.removeEventListener('keydown', handleKeyPress);
+      };
+    }
   }, []);
 
   if (isBulkLoading) {
@@ -48,8 +74,8 @@ function TaskListComponent() {
   }
 
   return (
-    <tg.YStack flex={1} gap="$4" p="$4">
-      <AddTask />
+    <tg.YStack flex={1} gap="$4" p="$4" testID="task-list">
+      <AddTask ref={inputRef} />
       <FlashList
         data={sortedTasks}
         renderItem={renderItem}
