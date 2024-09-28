@@ -1,5 +1,4 @@
-import React, { forwardRef } from 'react';
-import { useState } from 'react';
+import React, { forwardRef, useState, useRef } from 'react';
 import { useTasks, addTask } from '@boundbybetter/state';
 import { nanoid } from '@reduxjs/toolkit';
 import { logCall, logSetup, Task, TaskStatus } from '@boundbybetter/shared';
@@ -7,8 +6,12 @@ import { logMessage } from '@boundbybetter/shared';
 import { tg } from '@boundbybetter/ui';
 import { useActiveFeature } from '../../features/useActiveFeature';
 import { FeatureKeys } from '../../features/Features';
+import { Platform } from 'react-native';
 
-export const AddTask = forwardRef(function AddTask(props, ref) {
+export const AddTask = forwardRef(function AddTask(
+  props,
+  ref: React.MutableRefObject<tg.Input>,
+) {
   logSetup('AddTask');
   const [newTaskName, setNewTaskName] = useState('');
   const tasks = useTasks();
@@ -31,6 +34,15 @@ export const AddTask = forwardRef(function AddTask(props, ref) {
   const navigateToPurchase = () => {
     // istanbul ignore next
     logMessage('Navigate to purchase');
+  };
+
+  /* This code is tested by cypress */
+  /* istanbul ignore next */
+  const handleKeyPress = (event: any) => {
+    if (Platform.OS === 'web' && event.key === 'Escape') {
+      logMessage('Blurring input', ref);
+      ref.current?.blur();
+    }
   };
 
   const taskCount = tasks ? Object.keys(tasks).length : 0;
@@ -56,6 +68,7 @@ export const AddTask = forwardRef(function AddTask(props, ref) {
         blurOnSubmit={false}
         testID="new-task-name"
         onSubmitEditing={createTask}
+        onKeyPress={handleKeyPress}
       />
       <tg.Button onPress={createTask} testID="new-task-submit">
         Add

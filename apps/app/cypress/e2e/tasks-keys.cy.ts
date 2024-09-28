@@ -53,8 +53,8 @@ describe('Task Input Focus and Creation', () => {
       cy.get('[data-testid=new-task-name]').type(`${task}{enter}`);
     });
 
-    // click outside of the input to blur it
-    cy.get('body').click();
+    // Hit escape to blur the input
+    cy.get('body').type('{esc}');
 
     // Press down arrow key to select the first task
     cy.get('body').type('{downarrow}');
