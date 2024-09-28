@@ -53,8 +53,8 @@ describe('TaskList', () => {
     renderWithTamagui(<TaskList />);
 
     expect(TaskItem).toHaveBeenCalledTimes(2);
-    expect(TaskItem).toHaveBeenCalledWith({ id: '1' }, {});
-    expect(TaskItem).toHaveBeenCalledWith({ id: '2' }, {});
+    expect(TaskItem).toHaveBeenCalledWith({ id: '1', isSelected: false }, {});
+    expect(TaskItem).toHaveBeenCalledWith({ id: '2', isSelected: false }, {});
   });
 
   it('should render an AddTask component', () => {

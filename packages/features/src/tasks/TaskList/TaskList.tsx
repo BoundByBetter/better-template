@@ -1,8 +1,14 @@
-import React, { useCallback, useMemo, useEffect, useRef } from 'react';
+import React, {
+  useCallback,
+  useMemo,
+  useEffect,
+  useRef,
+  useState,
+} from 'react';
 import { FlashList } from '@shopify/flash-list';
 import { TaskItem } from '../TaskItem';
 import { useTasks, useBulkLoadStatus } from '@boundbybetter/state';
-import { logCall, logSetup } from '@boundbybetter/shared';
+import { logCall, logMessage, logSetup } from '@boundbybetter/shared';
 import { AddTask } from '../AddTask';
 import { tg } from '@boundbybetter/ui';
 import { Platform } from 'react-native';
@@ -14,6 +20,7 @@ function TaskListComponent() {
   const tasks = useTasks();
   const { isBulkLoading, bulkLoadingProgress } = useBulkLoadStatus();
   const inputRef = useRef(null);
+  const [selectedTaskIndex, setSelectedTaskIndex] = useState(-1);
 
   const sortedTasks = useMemo(() => {
     logCall('TaskList', 'useMemo');
@@ -22,21 +29,25 @@ function TaskListComponent() {
       : [];
   }, [tasks]);
 
-  const renderItem = useCallback(({ item }) => {
-    logCall('TaskList', 'renderItem', item.id);
-    return <TaskItem id={item.id} />;
-  }, []);
+  const renderItem = useCallback(
+    ({ item, index }) => {
+      logCall('TaskList', 'renderItem', item.id);
+      return <TaskItem id={item.id} isSelected={index === selectedTaskIndex} />;
+    },
+    [selectedTaskIndex],
+  );
 
   const keyExtractor = useCallback((item) => {
     logCall('TaskList', 'keyExtractor', item.id);
     return item.id;
   }, []);
 
-  /** Code below covered by cypress tests. */
+  /* Code coverage is handled by the task-keys.cy.ts test */
   /* istanbul ignore next */
   useEffect(() => {
     if (Platform.OS === 'web') {
       const handleKeyPress = (event: KeyboardEvent) => {
+        console.log('event', event);
         if (
           event.key === 'n' &&
           !event.ctrlKey &&
@@ -45,16 +56,30 @@ function TaskListComponent() {
         ) {
           event.preventDefault();
           inputRef.current?.focus();
+        } else if (event.key === 'ArrowDown') {
+          event.preventDefault();
+          setSelectedTaskIndex((prevIndex) => {
+            const newIndex =
+              prevIndex < sortedTasks.length - 1 ? prevIndex + 1 : prevIndex;
+            logMessage('TaskList', 'ArrowDown', newIndex);
+            return newIndex;
+          });
+        } else if (event.key === 'ArrowUp') {
+          event.preventDefault();
+          setSelectedTaskIndex((prevIndex) => {
+            const newIndex = prevIndex > 0 ? prevIndex - 1 : prevIndex;
+            logMessage('TaskList', 'ArrowUp', newIndex);
+            return newIndex;
+          });
         }
       };
-
       window.addEventListener('keydown', handleKeyPress);
 
       return () => {
         window.removeEventListener('keydown', handleKeyPress);
       };
     }
-  }, []);
+  }, [sortedTasks.length]);
 
   if (isBulkLoading) {
     return (
@@ -83,6 +108,7 @@ function TaskListComponent() {
         estimatedItemSize={55}
         ItemSeparatorComponent={ItemSeparator}
         contentContainerStyle={{ paddingRight: 28 }}
+        extraData={selectedTaskIndex}
       />
       <tg.Text p="$2" ta="center" fontSize="$3">
         Total Tasks: {sortedTasks.length}

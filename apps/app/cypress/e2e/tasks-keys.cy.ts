@@ -40,4 +40,56 @@ describe('Task Input Focus and Creation', () => {
     cy.get('[data-testid=task-item]').eq(0).should('contain.text', taskName2);
     cy.get('[data-testid=task-item]').eq(1).should('contain.text', taskName1);
   });
+
+  it('should navigate through tasks using up and down arrow keys', () => {
+    // Create three tasks
+    const tasks = ['Task 1', 'Task 2', 'Task 3'];
+    const selectedColor = 'rgb(157, 218, 251)';
+
+    // Press 'n' key to focus on the input
+    cy.get('body').type('n');
+
+    tasks.forEach((task) => {
+      cy.get('[data-testid=new-task-name]').type(`${task}{enter}`);
+    });
+
+    // click outside of the input to blur it
+    cy.get('body').click();
+
+    // Press down arrow key to select the first task
+    cy.get('body').type('{downarrow}');
+    cy.get('[data-testid=task-item]')
+      .first()
+      .should('have.css', 'background-color', selectedColor);
+
+    // Press down arrow key again to select the second task
+    cy.get('body').type('{downarrow}');
+    cy.get('[data-testid=task-item]')
+      .eq(1)
+      .should('have.css', 'background-color', selectedColor);
+
+    // Press up arrow key to select the first task again
+    cy.get('body').type('{uparrow}');
+    cy.get('[data-testid=task-item]')
+      .first()
+      .should('have.css', 'background-color', selectedColor);
+
+    // Press up arrow key again, selection should remain on the first task
+    cy.get('body').type('{uparrow}');
+    cy.get('[data-testid=task-item]')
+      .first()
+      .should('have.css', 'background-color', selectedColor);
+
+    // Press down arrow key multiple times to reach the last task
+    cy.get('body').type('{downarrow}{downarrow}');
+    cy.get('[data-testid=task-item]')
+      .last()
+      .should('have.css', 'background-color', selectedColor);
+
+    // Press down arrow key again, selection should remain on the last task
+    cy.get('body').type('{downarrow}');
+    cy.get('[data-testid=task-item]')
+      .last()
+      .should('have.css', 'background-color', selectedColor);
+  });
 });
