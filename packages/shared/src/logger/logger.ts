@@ -136,6 +136,6 @@ export function logError(error: Error, ...data: unknown[]) {
  */
 export function logMessage(...data: unknown[]) {
   'worklet';
+  logGroupEnd();
   logRaw('MESSAGE', ...data);
 }
-

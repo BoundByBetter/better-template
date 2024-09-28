@@ -11,6 +11,7 @@ export function AddTask() {
   logSetup('AddTask');
   const [newTaskName, setNewTaskName] = useState('');
   const tasks = useTasks();
+
   const createTask = async () => {
     logCall('AddTask', 'createTask');
     const task: Task = {
@@ -22,24 +23,35 @@ export function AddTask() {
     };
     addTask(task);
     logMessage('Task saved successfully!', task);
+    setNewTaskName('');
   };
+
   // istanbul ignore next
   const navigateToPurchase = () => {
     // istanbul ignore next
     logMessage('Navigate to purchase');
   };
+
   const taskCount = tasks ? Object.keys(tasks).length : 0;
   const unlimitedTasks = useActiveFeature(FeatureKeys.MyAppTasksUnlimited);
   const canAdd = taskCount < 5 || unlimitedTasks;
+
   return canAdd ? (
     <tg.XStack gap="$4" ai="center">
       <tg.Paragraph>New Task:</tg.Paragraph>
       <tg.Input
-        onChangeText={(text) => setNewTaskName(text)}
+        onChangeText={(text) => {
+          setNewTaskName(text);
+        }}
         value={newTaskName}
         placeholder="New Task Name"
         accessibilityLabel="New Task Name"
         flex={1}
+        style={{
+          borderWidth: 1,
+          borderColor: 'red',
+        }}
+        blurOnSubmit={false}
         testID="new-task-name"
         onSubmitEditing={createTask}
       />
