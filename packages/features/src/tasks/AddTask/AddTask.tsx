@@ -1,4 +1,4 @@
-import React, { forwardRef, useState, useRef } from 'react';
+import React, { forwardRef, useState } from 'react';
 import { useTasks, addTask } from '@boundbybetter/state';
 import { nanoid } from '@reduxjs/toolkit';
 import { logCall, logSetup, Task, TaskStatus } from '@boundbybetter/shared';
@@ -8,7 +8,11 @@ import { useActiveFeature } from '../../features/useActiveFeature';
 import { FeatureKeys } from '../../features/Features';
 import { Platform } from 'react-native';
 
-export const AddTask = forwardRef(function AddTask(
+interface AddTaskProps {
+  onArrowDown?: () => void;
+}
+
+export const AddTask = forwardRef<tg.Input, AddTaskProps>(function AddTask(
   props,
   ref: React.MutableRefObject<tg.Input>,
 ) {
@@ -39,9 +43,16 @@ export const AddTask = forwardRef(function AddTask(
   /* This code is tested by cypress */
   /* istanbul ignore next */
   const handleKeyPress = (event: any) => {
-    if (Platform.OS === 'web' && event.key === 'Escape') {
-      logMessage('Blurring input', ref);
-      ref.current?.blur();
+    if (Platform.OS === 'web') {
+      if (event.key === 'Escape') {
+        logMessage('Blurring input', ref);
+        ref.current?.blur();
+      } else if (event.key === 'ArrowDown') {
+        event.preventDefault();
+        ref.current?.blur();
+        // Notify parent component to select the first task
+        props.onArrowDown && props.onArrowDown();
+      }
     }
   };
 

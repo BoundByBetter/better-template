@@ -19,7 +19,7 @@ function TaskListComponent() {
   logSetup('TaskList');
   const tasks = useTasks();
   const { isBulkLoading, bulkLoadingProgress } = useBulkLoadStatus();
-  const inputRef = useRef(null);
+  const addTaskInputRef = useRef(null);
   const [selectedTaskIndex, setSelectedTaskIndex] = useState(-1);
 
   const sortedTasks = useMemo(() => {
@@ -42,6 +42,12 @@ function TaskListComponent() {
     return item.id;
   }, []);
 
+  const handleAddTaskArrowDown = useCallback(() => {
+    if (sortedTasks.length > 0) {
+      setSelectedTaskIndex(0);
+    }
+  }, [sortedTasks]);
+
   /* Code coverage is handled by the task-keys.cy.ts test */
   /* istanbul ignore next */
   useEffect(() => {
@@ -55,7 +61,7 @@ function TaskListComponent() {
           !event.metaKey
         ) {
           event.preventDefault();
-          inputRef.current?.focus();
+          addTaskInputRef.current?.focus();
         } else if (event.key === 'ArrowDown') {
           event.preventDefault();
           setSelectedTaskIndex((prevIndex) => {
@@ -67,6 +73,11 @@ function TaskListComponent() {
         } else if (event.key === 'ArrowUp') {
           event.preventDefault();
           setSelectedTaskIndex((prevIndex) => {
+            if (prevIndex === 0) {
+              // Focus on the Add Task input when the first task is selected
+              addTaskInputRef.current?.focus();
+              return -1;
+            }
             const newIndex = prevIndex > 0 ? prevIndex - 1 : prevIndex;
             logMessage('TaskList', 'ArrowUp', newIndex);
             return newIndex;
@@ -112,7 +123,7 @@ function TaskListComponent() {
 
   return (
     <tg.YStack flex={1} gap="$4" p="$4" testID="task-list">
-      <AddTask ref={inputRef} />
+      <AddTask ref={addTaskInputRef} onArrowDown={handleAddTaskArrowDown} />
       <FlashList
         data={sortedTasks}
         renderItem={renderItem}
