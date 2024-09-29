@@ -62,7 +62,6 @@ export const AddTask = forwardRef<tg.Input, AddTaskProps>(function AddTask(
 
   return canAdd ? (
     <tg.XStack gap="$4" ai="center">
-      <tg.Paragraph>New Task:</tg.Paragraph>
       <tg.Input
         ref={ref as React.Ref<tg.Input>}
         onChangeText={(text) => {

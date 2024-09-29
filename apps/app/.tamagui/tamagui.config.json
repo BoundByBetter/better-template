@@ -26984,8 +26984,8 @@
     },
     "themes": {
       "light": {
-        "accentBackground": "hsl(201, 80%, 55%)",
-        "accentColor": "hsl(201, 95%, 58%)",
+        "accentBackground": "hsl(201, 93%, 80%)",
+        "accentColor": "hsl(201, 65.8%, 17.9%)",
         "background0": "rgba(255,255,255,0)",
         "background025": "rgba(255,255,255,0.25)",
         "background05": "rgba(255,255,255,0.5)",
@@ -27124,8 +27124,8 @@
         "id": "light"
       },
       "dark": {
-        "accentBackground": "hsl(201, 95%, 58%)",
-        "accentColor": "hsl(201, 80%, 55%)",
+        "accentBackground": "hsl(201, 65.8%, 17.9%)",
+        "accentColor": "hsl(201, 93%, 80%)",
         "background0": "rgba(10,10,10,0)",
         "background025": "rgba(10,10,10,0.25)",
         "background05": "rgba(10,10,10,0.5)",
