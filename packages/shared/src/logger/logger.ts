@@ -1,4 +1,4 @@
-//import { Platform } from 'react-native';
+import { Platform } from 'react-native';
 
 export const logId = { value: 0 };
 /**
@@ -32,10 +32,18 @@ export const globalOptions = {
 
 let currentGroup = null;
 
+function isWebEnvironment() {
+  return (
+    typeof window !== 'undefined' &&
+    typeof console.groupCollapsed === 'function' &&
+    Platform.OS === 'web'
+  );
+}
+
 export function logGroup(groupName: string) {
   'worklet';
 
-  if (globalOptions.logging?.toLowerCase() === 'true') {
+  if (globalOptions.logging?.toLowerCase() === 'true' && isWebEnvironment()) {
     if (currentGroup !== groupName) {
       if (currentGroup !== null) {
         console.groupEnd();
@@ -51,6 +59,7 @@ export function logGroupEnd() {
 
   if (
     globalOptions.logging?.toLowerCase() === 'true' &&
+    isWebEnvironment() &&
     currentGroup !== null
   ) {
     console.groupEnd();
