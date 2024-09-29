@@ -8,8 +8,6 @@ import { Pressable } from 'react-native';
 // You can explore the built-in icon families and icons on the web at https://icons.expo.fyi/
 export default function TabLayout() {
   const theme = tg.useTheme();
-  const accentColor = theme.accentColor;
-  const backgroundColor = theme.background.val;
   const media = tg.useMedia();
 
   if (media.gtMd) {
@@ -34,7 +32,7 @@ export default function TabLayout() {
               headerRight: () => (
                 <Link href="/modal" asChild>
                   <tg.Button unstyled p="$0" m="$4">
-                    <Info color={accentColor} testID="info-icon" />
+                    <Info color={theme.color.val} testID="info-icon" />
                   </tg.Button>
                 </Link>
               ),
@@ -64,7 +62,7 @@ export default function TabLayout() {
           // Disable the static render of the header on web
           // to prevent a hydration error in React Navigation v6.
           headerShown: true,
-          tabBarActiveTintColor: backgroundColor,
+          tabBarActiveTintColor: theme.colorFocus.val,
         }}
         sceneContainerStyle={{
           flex: 1,
@@ -78,7 +76,7 @@ export default function TabLayout() {
             headerRight: () => (
               <Link href="/modal" asChild>
                 <tg.Button unstyled p="$0" m="$4">
-                  <Info color={accentColor} testID="info-icon" />
+                  <Info color={theme.color.val} testID="info-icon" />
                 </tg.Button>
               </Link>
             ),
