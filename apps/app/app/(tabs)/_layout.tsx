@@ -10,12 +10,11 @@ export default function TabLayout() {
   const theme = tg.useTheme();
   const accentColor = theme.accentColor;
   const backgroundColor = theme.background.val;
-  //console.log('TabLayout', 'backgroundColor', backgroundColor);
   const media = tg.useMedia();
+
   if (media.gtMd) {
     // Use a basic custom layout on web.
     return (
-      // <GestureHandlerRootView style={{ flex: 1 }}>
       <tg.YStack f={1}>
         <Banner />
         <Drawer
@@ -55,9 +54,9 @@ export default function TabLayout() {
           />
         </Drawer>
       </tg.YStack>
-      // </GestureHandlerRootView>
     );
   }
+
   return (
     <tg.YStack f={1}>
       <Tabs

@@ -1,5 +1,5 @@
-import { logCall, logSetup } from '@boundbybetter/shared';
-import { deleteTask, useTask } from '@boundbybetter/state';
+import { logSetup } from '@boundbybetter/shared';
+import { useTask } from '@boundbybetter/state';
 import { tg } from '@boundbybetter/ui';
 import moment from 'moment';
 import { memo } from 'react';
@@ -8,22 +8,18 @@ import { Platform } from 'react-native';
 export interface TaskProps {
   id: string;
   isSelected: boolean;
+  onSelect: () => void;
+  onDelete: () => void;
 }
 
-const TaskItemComponent = (props: TaskProps) => {
-  logSetup(
-    'TaskList',
-    'TaskItem',
-    'id',
-    props.id,
-    'isSelected',
-    props.isSelected,
-  );
-  const task = useTask(props.id, ['TaskList', 'TaskItem']);
-  const deleteTaskHandler = () => {
-    logCall('TaskItem', 'deleteTaskHandler');
-    deleteTask(props.id);
-  };
+const TaskItemComponent = ({
+  id,
+  isSelected,
+  onSelect,
+  onDelete,
+}: TaskProps) => {
+  logSetup('TaskList', 'TaskItem', 'id', id, 'isSelected', isSelected);
+  const task = useTask(id, ['TaskList', 'TaskItem']);
 
   return (
     <tg.YStack gap="$2">
@@ -31,9 +27,10 @@ const TaskItemComponent = (props: TaskProps) => {
         fd="row"
         key={task.id}
         testID="task-item"
-        backgroundColor={props.isSelected ? '$color4' : undefined}
+        backgroundColor={isSelected ? '$color4' : undefined}
         focusable
         tabIndex={0}
+        onPress={onSelect}
       >
         <tg.Stack
           f={1}
@@ -57,12 +54,11 @@ const TaskItemComponent = (props: TaskProps) => {
           >
             <tg.Text
               f={1}
-              // Fixes a layout bug on mobile.  if this is set to 1, the title compresses.
               $gtSm={{
                 flex:
-                  /*istanbul ignore next*/ Platform.OS === 'web'
+                  /* istanbul ignore next */ Platform.OS === 'web'
                     ? undefined
-                    : -1,
+                    : /* istanbul ignore next */ -1,
               }}
               fontStyle="italic"
             >
@@ -76,7 +72,19 @@ const TaskItemComponent = (props: TaskProps) => {
             </tg.Text>
           </tg.Stack>
         </tg.Stack>
-        <tg.Button $gtSm={{ height: '100%' }} onPress={deleteTaskHandler}>
+        <tg.Button
+          $gtSm={{ height: '100%' }}
+          onPress={(e) => {
+            /* The following code does not fire in jest tests. */
+            /* istanbul ignore next */
+            if (e) {
+              e.stopPropagation();
+              e.preventDefault();
+            }
+            onDelete();
+          }}
+          testID="task-item-delete"
+        >
           X
         </tg.Button>
       </tg.Card>

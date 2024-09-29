@@ -15,7 +15,11 @@ import { Platform } from 'react-native';
 
 const ItemSeparator = () => <tg.YStack height="$1" />;
 
-function TaskListComponent() {
+interface TaskListProps {
+  onSelectTask: (taskId: string) => void;
+}
+
+function TaskListComponent({ onSelectTask }: TaskListProps) {
   logSetup('TaskList');
   const tasks = useTasks();
   const { isBulkLoading, bulkLoadingProgress } = useBulkLoadStatus();
@@ -32,9 +36,26 @@ function TaskListComponent() {
   const renderItem = useCallback(
     ({ item, index }) => {
       logCall('TaskList', 'renderItem', item.id);
-      return <TaskItem id={item.id} isSelected={index === selectedTaskIndex} />;
+      return (
+        <TaskItem
+          key={item.id}
+          id={item.id}
+          isSelected={index === selectedTaskIndex}
+          onSelect={() => {
+            setSelectedTaskIndex(index);
+            onSelectTask(item.id);
+          }}
+          onDelete={() => {
+            deleteTask(item.id);
+            /* istanbul ignore next */
+            if (index === selectedTaskIndex) {
+              setSelectedTaskIndex(-1);
+            }
+          }}
+        />
+      );
     },
-    [selectedTaskIndex],
+    [selectedTaskIndex, onSelectTask],
   );
 
   const keyExtractor = useCallback((item) => {
@@ -42,6 +63,8 @@ function TaskListComponent() {
     return item.id;
   }, []);
 
+  /* Code coverage is handled by the task-keys.cy.ts test */
+  /* istanbul ignore next */
   const handleAddTaskArrowDown = useCallback(() => {
     if (sortedTasks.length > 0) {
       setSelectedTaskIndex(0);
@@ -124,15 +147,19 @@ function TaskListComponent() {
   return (
     <tg.YStack flex={1} gap="$4" p="$4" testID="task-list">
       <AddTask ref={addTaskInputRef} onArrowDown={handleAddTaskArrowDown} />
-      <FlashList
-        data={sortedTasks}
-        renderItem={renderItem}
-        keyExtractor={keyExtractor}
-        estimatedItemSize={55}
-        ItemSeparatorComponent={ItemSeparator}
-        contentContainerStyle={{ paddingRight: 28 }}
-        extraData={selectedTaskIndex}
-      />
+      {sortedTasks.length > 0 ? (
+        <FlashList
+          data={sortedTasks}
+          renderItem={renderItem}
+          keyExtractor={keyExtractor}
+          estimatedItemSize={55}
+          ItemSeparatorComponent={ItemSeparator}
+          contentContainerStyle={{ paddingRight: 28 }}
+          extraData={selectedTaskIndex}
+        />
+      ) : (
+        <tg.Text>No tasks available. Add a new task to get started!</tg.Text>
+      )}
       <tg.Text p="$2" ta="center" fontSize="$3">
         Total Tasks: {sortedTasks.length}
       </tg.Text>

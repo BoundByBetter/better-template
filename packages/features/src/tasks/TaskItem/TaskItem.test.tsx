@@ -2,7 +2,7 @@ import React from 'react';
 import { fireEvent } from '@testing-library/react-native';
 import { TaskItem } from './TaskItem';
 import { TaskStatus } from '@boundbybetter/shared';
-import { deleteTask, useTask } from '@boundbybetter/state';
+import { useTask } from '@boundbybetter/state';
 import { renderWithTamagui } from '../../renderWithTamagui.test-util';
 import { describe, it, expect } from '@jest/globals';
 
@@ -26,7 +26,12 @@ describe('TaskItem', () => {
 
   it('should render the task title', async () => {
     const { getByText } = renderWithTamagui(
-      <TaskItem id={mockTask.id} isSelected={false} />,
+      <TaskItem
+        id={mockTask.id}
+        isSelected={false}
+        onSelect={() => {}}
+        onDelete={() => {}}
+      />,
     );
     const title = getByText(mockTask.title);
     expect(title).toBeTruthy();
@@ -34,24 +39,40 @@ describe('TaskItem', () => {
 
   it('should render a delete button', async () => {
     const { getByText } = renderWithTamagui(
-      <TaskItem id={mockTask.id} isSelected={false} />,
+      <TaskItem
+        id={mockTask.id}
+        isSelected={false}
+        onSelect={() => {}}
+        onDelete={() => {}}
+      />,
     );
     const deleteButton = getByText('X');
     expect(deleteButton).toBeTruthy();
   });
 
   it('should call deleteTask when delete button is pressed', async () => {
+    const onDeleteMock = jest.fn();
     const { getByText } = renderWithTamagui(
-      <TaskItem id={mockTask.id} isSelected={false} />,
+      <TaskItem
+        id={mockTask.id}
+        isSelected={false}
+        onSelect={() => {}}
+        onDelete={onDeleteMock}
+      />,
     );
     const deleteButton = getByText('X');
     fireEvent.press(deleteButton);
-    expect(deleteTask).toHaveBeenCalledWith(mockTask.id);
+    expect(onDeleteMock).toHaveBeenCalled();
   });
 
   it('should apply selected background color when isSelected is true', async () => {
     const { getByTestId } = renderWithTamagui(
-      <TaskItem id={mockTask.id} isSelected={true} />,
+      <TaskItem
+        id={mockTask.id}
+        isSelected={true}
+        onSelect={() => {}}
+        onDelete={() => {}}
+      />,
     );
     const taskItem = getByTestId('task-item');
     expect(taskItem.props.style).toHaveProperty('backgroundColor', {
@@ -61,12 +82,34 @@ describe('TaskItem', () => {
 
   it('should not apply selected background color when isSelected is false', async () => {
     const { getByTestId } = renderWithTamagui(
-      <TaskItem id={mockTask.id} isSelected={false} />,
+      <TaskItem
+        id={mockTask.id}
+        isSelected={false}
+        onSelect={() => {}}
+        onDelete={() => {}}
+      />,
     );
     const taskItem = getByTestId('task-item');
     expect(taskItem.props.style).not.toHaveProperty(
       'backgroundColor',
       '$color4',
     );
+  });
+
+  it('should not trigger onSelect when delete button is pressed', () => {
+    const onSelectMock = jest.fn();
+    const onDeleteMock = jest.fn();
+    const { getByText } = renderWithTamagui(
+      <TaskItem
+        id={mockTask.id}
+        isSelected={false}
+        onSelect={onSelectMock}
+        onDelete={onDeleteMock}
+      />,
+    );
+    const deleteButton = getByText('X');
+    fireEvent.press(deleteButton);
+    expect(onDeleteMock).toHaveBeenCalledTimes(1);
+    expect(onSelectMock).not.toHaveBeenCalled();
   });
 });
