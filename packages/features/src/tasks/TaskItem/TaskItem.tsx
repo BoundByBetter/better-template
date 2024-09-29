@@ -41,7 +41,7 @@ const TaskItemComponent = (props: TaskProps) => {
           pr="$0"
           $gtSm={{ flexDirection: 'row', alignItems: 'center' }}
         >
-          <tg.Text f={1} testID="task-item.title">
+          <tg.Text f={1} testID="task-item-title">
             {task.title}
           </tg.Text>
           <tg.Stack

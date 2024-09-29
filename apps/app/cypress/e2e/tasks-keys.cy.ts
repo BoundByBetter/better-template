@@ -92,4 +92,43 @@ describe('Task Input Focus and Creation', () => {
       .last()
       .should('have.css', 'background-color', selectedColor);
   });
+
+  it('should delete a selected task when pressing the delete key', () => {
+    // Create three tasks
+    const tasks = ['Task 1', 'Task 2', 'Task 3'];
+    const selectedColor = 'rgb(157, 218, 251)';
+
+    // Press 'n' key to focus on the input
+    cy.get('body').type('n');
+
+    tasks.forEach((task) => {
+      cy.get('[data-testid=new-task-name]').type(`${task}{enter}`);
+    });
+
+    // Hit escape to blur the input
+    cy.get('body').type('{esc}');
+
+    // Press down arrow key to select the second task
+    cy.get('body').type('{downarrow}{downarrow}');
+    cy.get('[data-testid=task-item]')
+      .eq(1)
+      .should('have.css', 'background-color', selectedColor);
+
+    // Press delete key to delete the selected task
+    cy.get('body').type('{del}');
+
+    // Verify that the second task has been deleted
+    cy.get('[data-testid=task-item-title]').should('have.length', 2);
+    cy.get('[data-testid=task-item-title]')
+      .first()
+      .should('contain.text', 'Task 3');
+    cy.get('[data-testid=task-item-title]')
+      .last()
+      .should('contain.text', 'Task 1');
+
+    // Verify that the selection moves to the next task (now 'Task 3')
+    cy.get('[data-testid=task-item]')
+      .last()
+      .should('have.css', 'background-color', selectedColor);
+  });
 });

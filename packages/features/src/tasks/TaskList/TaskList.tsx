@@ -7,7 +7,7 @@ import React, {
 } from 'react';
 import { FlashList } from '@shopify/flash-list';
 import { TaskItem } from '../TaskItem';
-import { useTasks, useBulkLoadStatus } from '@boundbybetter/state';
+import { useTasks, useBulkLoadStatus, deleteTask } from '@boundbybetter/state';
 import { logCall, logMessage, logSetup } from '@boundbybetter/shared';
 import { AddTask } from '../AddTask';
 import { tg } from '@boundbybetter/ui';
@@ -71,6 +71,18 @@ function TaskListComponent() {
             logMessage('TaskList', 'ArrowUp', newIndex);
             return newIndex;
           });
+        } else if (event.key === 'Delete' || event.key === 'Backspace') {
+          event.preventDefault();
+          if (selectedTaskIndex !== -1 && sortedTasks[selectedTaskIndex]) {
+            const taskToDelete = sortedTasks[selectedTaskIndex];
+            deleteTask(taskToDelete.id);
+            logMessage('TaskList', 'DeleteTask', taskToDelete.id);
+            setSelectedTaskIndex((prevIndex) => {
+              return prevIndex >= sortedTasks.length - 1
+                ? prevIndex - 1
+                : prevIndex;
+            });
+          }
         }
       };
       window.addEventListener('keydown', handleKeyPress);
@@ -79,7 +91,7 @@ function TaskListComponent() {
         window.removeEventListener('keydown', handleKeyPress);
       };
     }
-  }, [sortedTasks.length]);
+  }, [sortedTasks, selectedTaskIndex]);
 
   if (isBulkLoading) {
     return (
