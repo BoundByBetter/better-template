@@ -1,4 +1,4 @@
-import { Feature, featureDeleted } from '@boundbybetter/shared';
+import { Feature } from '@boundbybetter/shared';
 import { deleteFeature } from '@boundbybetter/state';
 import { tg } from '@boundbybetter/ui';
 import moment from 'moment';

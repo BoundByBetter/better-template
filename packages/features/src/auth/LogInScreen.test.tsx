@@ -13,7 +13,7 @@ jest.mock('@boundbybetter/state', () => ({
 describe('LogInScreen', () => {
   it('should render the login options', () => {
     const { getByText, getByTestId } = renderWithTamagui(<LogInScreen />);
-    
+
     expect(getByTestId('app-log-in')).toBeTruthy();
     expect(getByText('My App')).toBeTruthy();
     expect(getByText('Log In')).toBeTruthy();

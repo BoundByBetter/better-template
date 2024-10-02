@@ -227,7 +227,22 @@
         "${input:selectProjectFolder}"
       ],
       "group": "test",
-      "problemMatcher": ["$jest-cli"],
+      "problemMatcher": {
+        "source": "jest",
+        "fileLocation": ["relative", "${workspaceFolder}"],
+        "pattern": [
+          {
+            "regexp": "^\\s*(\\d+|)\\)\\s(.*)$",
+            "message": 2
+          },
+          {
+            "regexp": "^\\s*at\\s(.*)\\s\\(([^:]*):(\\d+):(\\d+)\\)$",
+            "file": 2,
+            "line": 3,
+            "column": 4
+          }
+        ]
+      },
     },
 		{ "label": "Unit Testing: Run workspace tests with coverage",
 			"detail": "Runs all unit tests in the selected workspace.",
@@ -239,7 +254,22 @@
         "--collectCoverageFrom=${input:selectProjectFolder}/src/**/*.{js,jsx,ts,tsx}"    
       ],
       "group": "test",
-      "problemMatcher": ["$jest-cli"],
+      "problemMatcher": {
+        "source": "jest",
+        "fileLocation": ["relative", "${workspaceFolder}"],
+        "pattern": [
+          {
+            "regexp": "^\\s*(\\d+|)\\)\\s(.*)$",
+            "message": 2
+          },
+          {
+            "regexp": "^\\s*at\\s(.*)\\s\\(([^:]*):(\\d+):(\\d+)\\)$",
+            "file": 2,
+            "line": 3,
+            "column": 4
+          }
+        ]
+      },
     },
     { "label": "Unit Testing: View code coverage",
       "detail": "Serves the code coverage report using npx serve.",
@@ -309,12 +339,12 @@
     // { "label": "E2E Mobile: Run admin tests" },
 
     // Pipeline
-    { "label": "E2E Web: Run all tests",
+    { "label": "Pipeline: Pre-Commit",
       "type": "shell",
       "command": "yarn",
-      "args": ["pipeline:run"],
+      "args": ["pipeline:pre-commit"],
       "problemMatcher": [],
-      "detail": "Starts the app using yarn start:app:web command."
+      "detail": "Runs the pre-commit pipeline."
     },
     
   ],

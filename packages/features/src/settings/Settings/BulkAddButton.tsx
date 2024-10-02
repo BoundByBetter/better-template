@@ -1,5 +1,5 @@
 import React from 'react';
-import { bulkAddTasks, useBulkLoadStatus } from '@boundbybetter/state';
+import { bulkAddTasks } from '@boundbybetter/state';
 import { tg } from '@boundbybetter/ui';
 
 interface BulkAddButtonProps {

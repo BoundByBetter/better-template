@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { nanoid } from '@reduxjs/toolkit';
-import { Feature, FeatureStatus, featureAdded } from '@boundbybetter/shared';
+import { Feature, FeatureStatus } from '@boundbybetter/shared';
 import { logMessage } from '@boundbybetter/shared';
 import { tg } from '@boundbybetter/ui';
 import { Check, ChevronDown } from '@tamagui/lucide-icons';

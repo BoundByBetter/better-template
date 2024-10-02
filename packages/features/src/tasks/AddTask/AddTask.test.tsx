@@ -1,6 +1,5 @@
 import React from 'react';
 import { fireEvent, waitFor } from '@testing-library/react-native';
-import { TextInput } from 'react-native';
 import { AddTask } from './AddTask';
 import { renderWithTamagui } from '../../renderWithTamagui.test-util';
 import { useActiveFeature } from '../../features/useActiveFeature';
