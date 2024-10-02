@@ -1,3 +1,4 @@
+import { Platform } from 'react-native';
 import {
   logRaw,
   globalOptions,
@@ -192,6 +193,7 @@ describe('logger', () => {
         .spyOn(console, 'groupCollapsed')
         .mockImplementation(() => {});
       globalOptions.logging = 'true';
+      Platform.OS = 'web';
       logGroup('Test Group');
       expect(consoleSpy).toHaveBeenCalledWith('Test Group');
       consoleSpy.mockRestore();
