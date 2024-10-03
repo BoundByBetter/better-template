@@ -10,20 +10,22 @@
     "deps:add-dev": "node tools/scripts/deps-install-dev.js",
     "deps:fix": "YARN_ENABLE_IMMUTABLE_INSTALLS=false && npx expo install --fix",
     "site:start": "EXPO_USE_METRO_WORKSPACE_ROOT=1 npx expo start",
-    "site:web-e2e": "npx cypress run",
-    "site:start-and-web-e2e": "chmod +x ./test/run-tests.sh && ./test/run-tests.sh",
     "site:lint": "npx eslint .",
     "site:build": "npx tsc -b",
     "site:test": "npx jest --colors",
     "site:run-android": "EXPO_USE_METRO_WORKSPACE_ROOT=1 npx expo run:android",
     "site:build-android-local": "npx eas build --platform android --profile development --local --output ./better-app.dev.apk",
-    "site:list:devices": "adb devices",
-    "site:install:android": "adb install -r ./better-app.dev.apk",
+    "site:install-android": "adb install -r ./better-app.dev.apk",
     "site:android": "EXPO_USE_METRO_WORKSPACE_ROOT=1 npx expo start --android --dev-client",
     "site:ios": "EXPO_USE_METRO_WORKSPACE_ROOT=1 npx expo start --ios --dev-client",
     "site:web": "EXPO_USE_METRO_WORKSPACE_ROOT=1 npx expo start --web",
-    "android": "expo run:android",
-    "ios": "expo run:ios"
+    "site:export-and-serve": "npx expo export --platform web && npx serve -s dist -p 3000",
+    "site:web-e2e": "npx cypress run",
+    "site:web-e2e-dev": "npx cypress open",
+    "site:start-and-web-e2e-dev": "chmod +x ./test/start-run-web-e2e-dev.sh && ./test/start-run-web-e2e-dev.sh",
+    "site:export-and-serve-e2e": "chmod +x ./test/export-serve-run-web-e2e.sh && ./test/export-serve-run-web-e2e.sh",
+    "site:mobile-e2e": "maestro test ./maestro/master-flow.yaml",
+    "site:start-and-mobile-e2e": "chmod +x ./test/run-tests.sh && ./test/run-tests.sh"
   },
   "dependencies": {
     "@boundbybetter/features": "workspace:*",
@@ -60,6 +62,7 @@
     "@tamagui/babel-plugin": "^1.106.0",
     "@types/node": "^22.1.0",
     "@types/react": "~18.2.45",
+    "cypress": "^13.13.3",
     "typescript": "~5.3.3"
   },
   "private": true

@@ -43,13 +43,13 @@ describe('_layout', () => {
     jest.clearAllMocks();
   });
 
-  it('should render tab one for the root', async () => {
+  it('should render a welcome screen', async () => {
     (useFonts as jest.Mock).mockReturnValue([true, null]);
     renderRouter(appDir, {
       initialUrl: '/',
     });
-    const tabOne = await screen.findAllByText('Home');
-    expect(tabOne).toBeTruthy();
+    const welcome = await screen.findAllByText('Welcome to the site!');
+    expect(welcome).toBeTruthy();
   }, 60000);
 
   it('should render the splash screen while the fonts are loading on web', () => {
@@ -77,8 +77,8 @@ describe('_layout', () => {
     renderRouter(appDir, {
       initialUrl: '/',
     });
-    const tabOne = await screen.findAllByText('Home');
-    expect(tabOne).toBeTruthy();
+    const welcome = await screen.findAllByText('Welcome to the site!');
+    expect(welcome).toBeTruthy();
 
     // TODO: Just triggering code coverage.  No idea on how to assert on this:
     // const sut = await screen.findByTestId('theme-provider');

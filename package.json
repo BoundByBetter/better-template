@@ -24,12 +24,14 @@
     "mobile:wireless": "ip=$(adb shell ip -f inet addr show wlan0 | grep -oP '(?<=inet\\s)\\d+(\\.\\d+){3}') && adb tcpip 5555 && adb connect $ip",
     "mobile:wireless-connect": "adb connect",
     "mobile:wireless-disconnect": "adb disconnect",
-    "e2e:web": "yarn app:start-and-web-e2e && yarn site:start-and-web-e2e",
+    "e2e:web": "yarn app:export-and-serve-e2e && yarn site:export-and-serve-e2e",
+
     "start:cypress:app": "yarn workspace @boundbybetter/app run cypress open",
     "start:site": "yarn workspace @boundbybetter/site run start",
     "start:site:web": "yarn workspace @boundbybetter/site run web",
     "start:site:android": "yarn workspace @boundbybetter/site run android",
-    "pipeline:pre-commit": "yarn code:lint-all && yarn code:compile-all && yarn test:cover-all"
+
+    "pipeline:pre-commit": "yarn code:lint-all && yarn code:compile-all && yarn test:cover-all && yarn e2e:web"
   },
   "resolutions": {
     "react": "18.2.0",

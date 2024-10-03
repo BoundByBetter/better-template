@@ -289,16 +289,23 @@
     { "label": "Dev: Start dev server for web",
       "type": "shell",
       "command": "yarn",
-      "args": ["app:web"],
+      "args": ["${input:selectApp}:web"],
       "problemMatcher": [],
-      "detail": "Starts the app using yarn start:app:web command."
+      "detail": "Starts metro bundler for the web app you specify."
     },
-    { "label": "Dev: Start dev server for Android",
+    { "label": "Dev: Export and serve a web app",
       "type": "shell",
       "command": "yarn",
-      "args": ["app:android"],
+      "args": ["${input:selectApp}:export-and-serve"],
       "problemMatcher": [],
-      "detail": "Starts the app for android."
+      "detail": "Exports and serves the web app you specify."
+    },
+    { "label": "Dev: Start dev server for Android app",
+      "type": "shell",
+      "command": "yarn",
+      "args": ["${input:selectApp}:android"],
+      "problemMatcher": [],
+      "detail": "Starts the selected app for android."
     },
     { "label": "Dev: Start dev server for Sync",
       "type": "shell",
@@ -311,21 +318,30 @@
     { "label": "E2E Web: Open Cypress for E2E test development",
       "type": "shell",
       "command": "yarn",
-      "args": ["start:cypress:app"],
+      "args": ["${input:selectApp}:web-e2e-dev"],
       "problemMatcher": [],
-      "detail": "Opens cypress using yarn start:cypress:app command."
+      "detail": "Opens cypress for developing e2e tests for the app you specify."
     },
-    { "label": "E2E Web: Start app and open Cypress for E2E dev",
-      "dependsOn": ["Start App for Web", "Open Cypress"],
+    { "label": "E2E Web: Start Dev Server and Open Cypress for E2E test development",
+      "type": "shell",
+      "command": "yarn",
+      "args": ["${input:selectApp}:start-and-web-e2e-dev"],
       "problemMatcher": [],
-      "detail": "Runs both start-app and start-cypress tasks in parallel."
+      "detail": "Starts the dev server for the app you specify and opens cypress for e2e test development."
+    },
+    { "label": "E2E Web: Export and Serve App and Run Cypress E2E tests",
+      "type": "shell",
+      "command": "yarn",
+      "args": ["${input:selectApp}:export-and-serve-e2e"],
+      "problemMatcher": [],
+      "detail": "Exports and serves the app you specify and runs the e2e tests."
     },
     { "label": "E2E Web: Run all tests",
       "type": "shell",
       "command": "yarn",
       "args": ["e2e:web"],
       "problemMatcher": [],
-      "detail": "Starts the app using yarn start:app:web command."
+      "detail": "Exports and serves each web app and then runs the e2e tests."
     },
     // { "label": "E2E Web: Run app tests" },
     // { "label": "E2E Web: Run site tests" },
@@ -376,5 +392,14 @@
       "type": "promptString",
       "description": "Enter the name of the Android device.",
     },
+    { "id": "selectApp",
+      "type": "pickString",
+      "description": "Select an app",
+      "options": [
+        "app",
+        "admin",
+        "site"
+      ],
+    }
   ]
 }

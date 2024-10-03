@@ -24,7 +24,7 @@ EXPO_PID=$!
 sleep 10
 
 # Run the tests
-yarn cypress run
+yarn cypress open
 
 # Check if the Expo process is still running and kill it
 if ps -p $EXPO_PID > /dev/null

@@ -1,7 +1,7 @@
 // Added next 3 lines for tamagui.
 // Removing to get tests to pass.
 // import '../tamagui-web.css'
-import { tg, colors, tamaguiConfig } from '@boundbybetter/ui';
+import { tg, colors, tamaguiConfig, useColorScheme } from '@boundbybetter/ui';
 // import { tamaguiConfig } from '../tamagui.config'
 
 import FontAwesome from '@expo/vector-icons/FontAwesome';
@@ -16,7 +16,6 @@ import * as SplashScreen from 'expo-splash-screen';
 import { useEffect } from 'react';
 
 import { Platform } from 'react-native';
-import { useColorScheme } from '@boundbybetter/ui';
 import { WebSplashScreen } from '@boundbybetter/features';
 import { logCall, logRaw, logSetup } from '@boundbybetter/shared';
 
@@ -27,7 +26,7 @@ export {
 
 export const unstable_settings = {
   // Ensure that reloading on `/modal` keeps a back button present.
-  initialRouteName: '(tabs)',
+  initialRouteName: 'index',
 };
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
@@ -37,7 +36,9 @@ export default function RootLayout() {
   logSetup('RootLayout');
   const [loaded, error] = useFonts({
     // Added next two lines for tamagui. (Removing to get tests to run)
+    // eslint-disable-next-line @typescript-eslint/no-require-imports
     Inter: require('@tamagui/font-inter/otf/Inter-Medium.otf'),
+    // eslint-disable-next-line @typescript-eslint/no-require-imports
     InterBold: require('@tamagui/font-inter/otf/Inter-Bold.otf'),
     //SpaceMono: require('../assets/fonts/SpaceMono-Regular.ttf'),
     ...FontAwesome.font,
@@ -92,8 +93,7 @@ function RootLayoutNav() {
         }
       >
         <Stack>
-          <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-          <Stack.Screen name="modal" options={{ presentation: 'modal' }} />
+          <Stack.Screen name="index" />
         </Stack>
       </ThemeProvider>
     </tg.TamaguiProvider>
