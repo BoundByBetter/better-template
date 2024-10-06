@@ -137,44 +137,53 @@
       "detail": "Compiles all ts, tsx, js, and jsx files on change."
     },
 
-    // Mobile
-    { "label": "Mobile: List Android devices",
+    // Devices
+    { "label": "Devices: List Android devices",
       "type": "shell",
-      "command": "yarn mobile:devices",
+      "command": "yarn devices:list",
       "problemMatcher": [],
       "detail": "Lists all android devices connected to the computer."
     },
-    { "label": "Mobile: Switch Android device to wireless",
+    { "label": "Devices: Switch Android device to wireless",
       "type": "shell",
-      "command": "yarn mobile:wireless",
+      "command": "yarn devices:wireless-switch",
       "problemMatcher": [],
       "detail": "Switches the android device to using a tcpip connection."
     },
-    { "label": "Mobile: Connect to Android device wirelessly",
+    { "label": "Devices: Connect to Android device wirelessly",
       "type": "shell",
-      "command": "yarn mobile:wireless-connect ${input:androidDeviceIp}:5555",
+      "command": "yarn devices:wireless-connect ${input:androidDeviceIp}:5555",
       "problemMatcher": [],
       "detail": "Connects to the android device wirelessly."
     },
-    { "label": "Mobile: Disconnect from Android device",
+    { "label": "Devices: Disconnect from Android device",
       "type": "shell",
-      "command": "yarn mobile:wireless-disconnect ${input:androidDeviceName}",
+      "command": "yarn devices:wireless-disconnect ${input:androidDeviceName}",
       "problemMatcher": [],
       "detail": "Disconnects the named android device."
     },
+    
+    // Mobile
     { "label": "Mobile: Build app for Android with EAS locally",
       "type": "shell",
       "command": "yarn",
-      "args": ["app:build-android-local"],
+      "args": ["${input:selectMobileApp}:build-android-local-${input:androidProfile}"],
       "problemMatcher": [],
-      "detail": "Builds the app for android."
+      "detail": "Builds the selected app for android for the selected profile."
     },
     { "label": "Mobile: Install EAS locally built APK",
       "type": "shell",
       "command": "yarn",
-      "args": ["app:install-android"],
+      "args": ["${input:selectMobileApp}:install-android-${input:androidProfile}"],
       "problemMatcher": [],
-      "detail": "Installs the app for android."
+      "detail": "Installs the selected app for android for the selected profile."
+    },
+    { "label": "Mobile: Build and Install EAS locally built APK",
+      "type": "shell",
+      "command": "yarn",
+      "args": ["${input:selectMobileApp}:build-install-android-${input:androidProfile}"],
+      "problemMatcher": [],
+      "detail": "Builds and installs the selected app for android for the selected profile."
     },
     { "label": "Mobile: Build and install Android app using Expo",
       "type": "shell",
@@ -289,21 +298,21 @@
     { "label": "Dev: Start dev server for web",
       "type": "shell",
       "command": "yarn",
-      "args": ["${input:selectApp}:web"],
+      "args": ["${input:selectWebApp}:web"],
       "problemMatcher": [],
       "detail": "Starts metro bundler for the web app you specify."
     },
     { "label": "Dev: Export and serve a web app",
       "type": "shell",
       "command": "yarn",
-      "args": ["${input:selectApp}:export-and-serve"],
+      "args": ["${input:selectWebApp}:export-and-serve"],
       "problemMatcher": [],
       "detail": "Exports and serves the web app you specify."
     },
     { "label": "Dev: Start dev server for Android app",
       "type": "shell",
       "command": "yarn",
-      "args": ["${input:selectApp}:android"],
+      "args": ["${input:selectMobileApp}:android"],
       "problemMatcher": [],
       "detail": "Starts the selected app for android."
     },
@@ -318,21 +327,21 @@
     { "label": "E2E Web: Open Cypress for E2E test development",
       "type": "shell",
       "command": "yarn",
-      "args": ["${input:selectApp}:web-e2e-dev"],
+      "args": ["${input:selectWebApp}:web-e2e-dev"],
       "problemMatcher": [],
       "detail": "Opens cypress for developing e2e tests for the app you specify."
     },
     { "label": "E2E Web: Start Dev Server and Open Cypress for E2E test development",
       "type": "shell",
       "command": "yarn",
-      "args": ["${input:selectApp}:start-and-web-e2e-dev"],
+      "args": ["${input:selectWebApp}:start-and-web-e2e-dev"],
       "problemMatcher": [],
       "detail": "Starts the dev server for the app you specify and opens cypress for e2e test development."
     },
     { "label": "E2E Web: Export and Serve App and Run Cypress E2E tests",
       "type": "shell",
       "command": "yarn",
-      "args": ["${input:selectApp}:export-and-serve-e2e"],
+      "args": ["${input:selectWebApp}:export-and-serve-e2e"],
       "problemMatcher": [],
       "detail": "Exports and serves the app you specify and runs the e2e tests."
     },
@@ -342,6 +351,22 @@
       "args": ["e2e:web"],
       "problemMatcher": [],
       "detail": "Exports and serves each web app and then runs the e2e tests."
+    },
+
+    // E2E Mobile
+    { "label": "E2E Mobile: Run for selected app",
+      "type": "shell",
+      "command": "yarn",
+      "args": ["${input:selectMobileApp}:mobile-e2e"],
+      "problemMatcher": [],
+      "detail": "Starts the app you specify and runs the e2e tests."
+    },
+    { "label": "E2E Mobile: Build, Install, and Run all tests",
+      "type": "shell",
+      "command": "yarn",
+      "args": ["e2e:mobile"],
+      "problemMatcher": [],
+      "detail": "Builds the app you specify, installs it, and runs the e2e tests."
     },
     // { "label": "E2E Web: Run app tests" },
     // { "label": "E2E Web: Run site tests" },
@@ -360,9 +385,8 @@
       "command": "yarn",
       "args": ["pipeline:pre-commit"],
       "problemMatcher": [],
-      "detail": "Runs the pre-commit pipeline."
+      "detail": "Runs the pre-commit pipeline. Make sure an android device is connected prior to running this."
     },
-    
   ],
   "inputs": [
     { "id": "selectProjectFolder",
@@ -392,13 +416,29 @@
       "type": "promptString",
       "description": "Enter the name of the Android device.",
     },
-    { "id": "selectApp",
+    { "id": "selectWebApp",
       "type": "pickString",
       "description": "Select an app",
       "options": [
         "app",
         "admin",
         "site"
+      ],
+    },
+    { "id": "selectMobileApp",
+      "type": "pickString",
+      "description": "Select an app",
+      "options": [
+        "app",
+        "admin"
+      ],
+    },
+    { "id": "androidProfile",
+      "type": "pickString",
+      "description": "Select an android profile",
+      "options": [
+        "dev",
+        "preview"
       ],
     }
   ]

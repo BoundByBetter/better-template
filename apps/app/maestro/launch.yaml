@@ -1,5 +1,0 @@
-# flow.yaml
-
-appId: ${APP}
----
-- launchApp: ${APP}

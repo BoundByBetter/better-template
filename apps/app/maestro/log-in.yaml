@@ -1,5 +1,0 @@
-# flow.yaml
-
-appId: ${APP}
----
-- tapOn: Microsoft

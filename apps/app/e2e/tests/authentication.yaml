@@ -1,0 +1,63 @@
+appId: com.boundbybetter.betterapp.preview
+---
+- clearState
+- launchApp
+- assertVisible:
+    id: "app-log-in"
+
+- assertVisible:
+    text: "Microsoft"
+
+- assertVisible:
+    text: "Google"
+
+- assertVisible:
+    text: "Facebook"
+
+# Log in and out using Microsoft
+- tapOn:
+    text: "Microsoft"
+
+- assertVisible:
+    id: "home-screen"
+
+- tapOn:
+    id: "tab-settings"
+
+- tapOn:
+    text: "Sign Out"
+
+- assertVisible:
+    id: "app-log-in"
+
+# Log in and out using Google
+- tapOn:
+    text: "Google"
+
+- assertVisible:
+    id: "home-screen"
+
+- tapOn:
+    id: "tab-settings"
+
+- tapOn:
+    text: "Sign Out"
+
+- assertVisible:
+    id: "app-log-in"
+
+# Log in and out using Facebook
+- tapOn:
+    text: "Facebook"
+
+- assertVisible:
+    id: "home-screen"
+
+- tapOn:
+    id: "tab-settings"
+
+- tapOn:
+    text: "Sign Out"
+
+- assertVisible:
+    id: "app-log-in"

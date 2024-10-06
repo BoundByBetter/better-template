@@ -1,0 +1,6 @@
+appId: com.boundbybetter.betterapp.preview
+---
+- pressKey: power
+- swipe:
+    start: 50%, 80%
+    end: 50%, 20%

@@ -16,22 +16,21 @@
     "deps:fix": "YARN_ENABLE_IMMUTABLE_INSTALLS=false && npx expo install --fix",
     "deps:fix-all": "yarn deps:fix && yarn workspaces foreach --all run deps:fix",
     "deps:upgrade": "node tools/scripts/deps-upgrade.js",
+    
     "code:lint-all": "npx eslint .",
     "code:compile-all": "npx tsc -b",
     "test:run-all": "npx jest --color",
     "test:cover-all": "npx jest --color --coverage",
-    "mobile:devices": "adb devices",
-    "mobile:wireless": "ip=$(adb shell ip -f inet addr show wlan0 | grep -oP '(?<=inet\\s)\\d+(\\.\\d+){3}') && adb tcpip 5555 && adb connect $ip",
-    "mobile:wireless-connect": "adb connect",
-    "mobile:wireless-disconnect": "adb disconnect",
+    
+    "devices:list": "adb devices",
+    "devices:wireless-switch": "ip=$(adb shell ip -f inet addr show wlan0 | grep -oP '(?<=inet\\s)\\d+(\\.\\d+){3}') && adb tcpip 5555 && adb connect $ip",
+    "devices:wireless-connect": "adb connect",
+    "devices:wireless-disconnect": "adb disconnect",
+    
     "e2e:web": "yarn app:export-and-serve-e2e && yarn site:export-and-serve-e2e",
-
-    "start:cypress:app": "yarn workspace @boundbybetter/app run cypress open",
-    "start:site": "yarn workspace @boundbybetter/site run start",
-    "start:site:web": "yarn workspace @boundbybetter/site run web",
-    "start:site:android": "yarn workspace @boundbybetter/site run android",
-
-    "pipeline:pre-commit": "yarn code:lint-all && yarn code:compile-all && yarn test:cover-all && yarn e2e:web"
+    "e2e:mobile": "yarn app:mobile-build-install-e2e",
+    
+    "pipeline:pre-commit": "chmod +x ./tools/scripts/pipeline-precommit.sh && bash ./tools/scripts/pipeline-precommit.sh"
   },
   "resolutions": {
     "react": "18.2.0",
@@ -63,5 +62,6 @@
     "react": "18.2.0",
     "react-native": "0.74.5",
     "shelljs": "^0.8.5"
-  }
+  },
+  "version": "1.0.0"
 }

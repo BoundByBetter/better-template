@@ -24,7 +24,9 @@ EXPO_PID=$!
 sleep 10
 
 # Run the tests
-yarn maestro test ../maestro/master-flow.yaml
+export MEASTRO_APP_ID="com.boundbybetter.betterapp.dev" && maestro test maestro/master-flow.yaml
+echo "APP value: ${MEASTRO_APP_ID}"
+
 
 # Check if the Expo process is still running and kill it
 if ps -p $EXPO_PID > /dev/null

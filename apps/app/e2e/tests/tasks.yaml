@@ -1,0 +1,61 @@
+appId: "com.boundbybetter.betterapp.preview"
+---
+- clearState
+- launchApp
+- tapOn:
+    text: "Microsoft"
+- tapOn:
+    id: "new-task-name"
+- inputText: "Task 1"
+- tapOn:
+    id: "new-task-submit"
+- assertVisible:
+    id: "task-item-title"
+    index: 0
+    text: "Task 1"
+- tapOn:
+    id: "new-task-name"
+- inputText: "Task 2"
+- tapOn:
+    id: "new-task-submit"
+- assertVisible:
+    id: "task-item-title"
+    index: 0
+    text: "Task 2"
+- tapOn:
+    id: "new-task-name"
+- inputText: "Task 3"
+- tapOn:
+    id: "new-task-submit"
+- assertVisible:
+    id: "task-item-title"
+    index: 0
+    text: "Task 3"
+- tapOn:
+    id: "task-item"
+    index: 0
+- tapOn:
+    id: "task-item"
+    index: 0
+- assertVisible:
+    id: "task-details"
+- assertVisible:
+    id: "task-details-title"
+    text: "Task 3"
+- tapOn:
+    id: "task-details-close"
+- assertVisible:
+    id: "task-list"
+- assertNotVisible:
+    id: "task-details"
+- tapOn:
+    id: "task-item-delete"
+    index: 0
+- assertVisible:
+    id: "task-item"
+- assertVisible:
+    id: "task-item-title"
+    index: 0
+    text: "Task 2"
+- assertVisible:
+    text: "Task 1"

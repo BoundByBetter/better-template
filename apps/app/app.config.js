@@ -1,12 +1,7 @@
-const IS_PROD = process.env.APP_VARIANT === 'prod';
-const IS_PREVIEW = process.env.APP_VARIANT === 'preview';
+const variant = process.env.APP_VARIANT;
 
 export default {
-  name: IS_PROD
-    ? 'BetterApp'
-    : IS_PREVIEW
-      ? 'BetterApp (Preview)'
-      : 'BetterApp (Dev)',
+  name: variant === 'prod' ? 'BetterApp' : 'BetterApp (' + variant + ')',
   slug: 'better-app',
   version: '0.0.7',
   runtimeVersion: '0.0.7',
@@ -20,20 +15,15 @@ export default {
     backgroundColor: '#ffffff',
   },
   owner: 'bound-by-better',
-  scheme: IS_PROD
-    ? 'better-app'
-    : IS_PREVIEW
-      ? 'better-app-preview'
-      : 'better-app-dev',
+  scheme: variant === 'prod' ? 'better-app' : 'better-app-' + variant,
   assetBundlePatterns: ['**/*'],
   ios: {
     supportsTablet: true,
     userInterfaceStyle: 'automatic',
-    bundleIdentifier: IS_PROD
-      ? 'com.boundbybetter.betterapp'
-      : IS_PREVIEW
-        ? 'com.boundbybetter.betterapp.preview'
-        : 'com.boundbybetter.betterapp.dev',
+    bundleIdentifier:
+      variant === 'prod'
+        ? 'com.boundbybetter.betterapp'
+        : 'com.boundbybetter.betterapp.' + variant,
   },
   android: {
     userInterfaceStyle: 'automatic',
@@ -41,11 +31,18 @@ export default {
       foregroundImage: './assets/images/adaptive-icon.png',
       backgroundColor: '#FFFFFF',
     },
-    package: IS_PROD
-      ? 'com.boundbybetter.betterapp'
-      : IS_PREVIEW
-        ? 'com.boundbybetter.betterapp.preview'
-        : 'com.boundbybetter.betterapp.dev',
+    package:
+      variant === 'prod'
+        ? 'com.boundbybetter.betterapp'
+        : 'com.boundbybetter.betterapp.' + variant,
+    buildTypes: {
+      preview: {
+        initWith: 'release',
+        matchingFallbacks: ['release'],
+        signingConfig: 'debug',
+        proguardFiles: ['proguard-rules.pro'],
+      },
+    },
   },
   web: {
     favicon: './assets/images/favicon.png',
@@ -62,6 +59,12 @@ export default {
       },
     ],
     ['expo-dev-launcher', { launchMode: 'most-recent' }],
+    [
+      'expo-dev-client',
+      {
+        addGeneratedScheme: variant !== 'prod',
+      },
+    ],
   ],
   experiments: {
     typedRoutes: true,

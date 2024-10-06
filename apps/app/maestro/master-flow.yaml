@@ -1,8 +1,0 @@
-# flow.yaml
-
-appId: ${APP}
----
-- runFlow: launch.yaml
-- runFlow: log-in.yaml
-- runFlow: tasks.yaml
-- runFlow: log-out.yaml

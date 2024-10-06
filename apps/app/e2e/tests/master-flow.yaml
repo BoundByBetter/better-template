@@ -1,0 +1,8 @@
+# flow.yaml
+
+appId: com.boundbybetter.betterapp.preview
+---
+- pressKey: power
+- runFlow: authentication.yaml
+- runFlow: persistence.yaml
+- runFlow: tasks.yaml

@@ -39,4 +39,18 @@ config.transformer.babelTransformerPath = require.resolve(
 );
 config.resolver.sourceExts = [...config.resolver.sourceExts, 'svg', 'mjs'];
 
+// Setup metro caching.
+
+const { FileStore } = require('metro-cache');
+config.cacheStores = [
+  new FileStore({
+    root: path.join(projectRoot, 'node_modules', '.cache', 'metro'),
+  }),
+];
+
+config.maxWorkers = 2;
+
+config.transformer.enableBabelRCLookup = false;
+config.transformer.enableBabelRuntime = false;
+
 module.exports = config;

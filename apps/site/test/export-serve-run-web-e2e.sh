@@ -24,10 +24,10 @@ npx serve -s dist -p 8081 &
 EXPO_PID=$!
 
 # Wait for Expo to start (adjust the sleep duration as needed)
-# sleep 5
+# sleep 45
 
 # Run the tests
-yarn cypress run
+yarn cypress run --config-file e2e/cypress.config.ts
 
 # Check if the Expo process is still running and kill it
 if ps -p $EXPO_PID > /dev/null

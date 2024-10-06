@@ -13,19 +13,12 @@
     "site:lint": "npx eslint .",
     "site:build": "npx tsc -b",
     "site:test": "npx jest --colors",
-    "site:run-android": "EXPO_USE_METRO_WORKSPACE_ROOT=1 npx expo run:android",
-    "site:build-android-local": "npx eas build --platform android --profile development --local --output ./better-app.dev.apk",
-    "site:install-android": "adb install -r ./better-app.dev.apk",
-    "site:android": "EXPO_USE_METRO_WORKSPACE_ROOT=1 npx expo start --android --dev-client",
-    "site:ios": "EXPO_USE_METRO_WORKSPACE_ROOT=1 npx expo start --ios --dev-client",
     "site:web": "EXPO_USE_METRO_WORKSPACE_ROOT=1 npx expo start --web",
     "site:export-and-serve": "npx expo export --platform web && npx serve -s dist -p 3000",
-    "site:web-e2e": "npx cypress run",
-    "site:web-e2e-dev": "npx cypress open",
+    "site:web-e2e": "npx cypress run --config-file e2e/cypress.config.ts",
+    "site:web-e2e-dev": "npx cypress open --config-file e2e/cypress.config.ts",
     "site:start-and-web-e2e-dev": "chmod +x ./test/start-run-web-e2e-dev.sh && ./test/start-run-web-e2e-dev.sh",
-    "site:export-and-serve-e2e": "chmod +x ./test/export-serve-run-web-e2e.sh && ./test/export-serve-run-web-e2e.sh",
-    "site:mobile-e2e": "maestro test ./maestro/master-flow.yaml",
-    "site:start-and-mobile-e2e": "chmod +x ./test/run-tests.sh && ./test/run-tests.sh"
+    "site:export-and-serve-e2e": "chmod +x ./test/export-serve-run-web-e2e.sh && ./test/export-serve-run-web-e2e.sh"
   },
   "dependencies": {
     "@boundbybetter/features": "workspace:*",

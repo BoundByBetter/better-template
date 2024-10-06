@@ -4,6 +4,7 @@ import { updateCurrentUser } from '@boundbybetter/state';
 import { User } from '@boundbybetter/shared';
 
 export const LogInScreen = () => {
+  const theme = tg.useTheme();
   const logIn = (method: string) => {
     const newUser: User = {
       userName: 'Test User',
@@ -16,7 +17,13 @@ export const LogInScreen = () => {
   };
 
   return (
-    <tg.YStack padding="$4" space="$2" testID="app-log-in">
+    <tg.YStack
+      padding="$4"
+      space="$2"
+      testID="app-log-in"
+      backgroundColor={theme.background}
+      flex={1}
+    >
       <tg.H1>My App</tg.H1>
       <tg.H3>Log In</tg.H3>
       <tg.Paragraph>Please select a method for logging in.</tg.Paragraph>

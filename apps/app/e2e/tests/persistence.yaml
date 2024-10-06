@@ -1,0 +1,29 @@
+appId: "com.boundbybetter.betterapp.preview"
+---
+- clearState
+- launchApp
+- tapOn:
+    text: "Microsoft"
+- tapOn:
+    id: "new-task-name"
+- inputText: "This is a test"
+- tapOn:
+    id: "new-task-submit"
+- assertVisible:
+    id: "task-item"
+- assertVisible:
+    id: "task-item-title"
+    text: "This is a test"
+# Simulate closing and reopening the app
+- stopApp
+- launchApp
+# Wait for up to 10 seconds for the task to appear
+- extendedWaitUntil:
+    visible:
+      id: "task-item"
+    timeout: 10000
+- assertVisible:
+    id: "task-item"
+- assertVisible:
+    id: "task-item-title"
+    text: "This is a test"
