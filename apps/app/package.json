@@ -9,12 +9,10 @@
     "deps:add": "npx expo install",
     "deps:add-dev": "node tools/scripts/deps-install-dev.js",
     "deps:fix": "YARN_ENABLE_IMMUTABLE_INSTALLS=false && npx expo install --fix",
-
     "app:start": "EXPO_USE_METRO_WORKSPACE_ROOT=1 npx expo start",
     "app:lint": "npx eslint .",
     "app:build": "npx tsc -b",
     "app:test": "npx jest --colors",
-
     "app:build-android-local-dev": "npx eas build --platform android --profile development --local --output ./better-app.dev.apk",
     "app:build-android-local-preview": "npx eas build --platform android --profile preview --local --output ./better-app.preview.apk",
     "app:install-android-dev": "adb install -r ./better-app.dev.apk",
@@ -23,18 +21,17 @@
     "app:build-install-android-preview": "yarn app:build-android-local-preview && yarn app:install-android-preview",
     "app:run-android-dev": "APP_VARIANT=dev EXPO_USE_METRO_WORKSPACE_ROOT=1 npx expo run:android",
     "app:run-android-preview": "APP_VARIANT=preview EXPO_USE_METRO_WORKSPACE_ROOT=1 npx expo run:android --variant release",
-
     "app:android": "APP_VARIANT=dev EXPO_USE_METRO_WORKSPACE_ROOT=1 npx expo start --android --dev-client",
     "app:ios": "APP_VARIANT=dev EXPO_USE_METRO_WORKSPACE_ROOT=1 npx expo start --ios --dev-client",
     "app:web": "APP_VARIANT=dev EXPO_USE_METRO_WORKSPACE_ROOT=1 npx expo start --web",
-
+    "app:export": "npx expo export --platform web",
+    "app:deploy-prod": "npx netlify deploy --prod",
+    "app:export-deploy-prod": "yarn app:export && yarn app:deploy-prod",
     "app:export-and-serve": "npx expo export --platform web && npx serve -s dist -p 3000",
-
     "app:web-e2e": "npx cypress run --config-file e2e/cypress.config.ts",
     "app:web-e2e-dev": "npx cypress open --config-file e2e/cypress.config.ts",
     "app:start-and-web-e2e-dev": "chmod +x ./test/start-run-web-e2e-dev.sh && ./test/start-run-web-e2e-dev.sh",
     "app:export-and-serve-e2e": "chmod +x ./test/export-serve-run-web-e2e.sh && ./test/export-serve-run-web-e2e.sh",
-
     "app:mobile-e2e": "maestro test e2e/tests/master-flow.yaml",
     "app:mobile-build-install-e2e": "yarn app:build-android-local-preview && yarn app:install-android-preview && yarn app:mobile-e2e"
   },
@@ -58,6 +55,7 @@
     "expo-splash-screen": "~0.27.5",
     "expo-status-bar": "~1.12.1",
     "expo-updates": "~0.25.25",
+    "netlify-cli": "^17.36.4",
     "react": "18.2.0",
     "react-native": "0.74.5",
     "react-native-gesture-handler": "~2.16.1",
