@@ -7,10 +7,25 @@ app.http('negotiate', {
   methods: ['GET', 'POST'],
   authLevel: 'anonymous',
   handler: async (request, context) => {
-    const userId =
-      request.query.get('userId') ||
-      request.headers.get('x-ms-client-principal-name') ||
-      'anonymous';
+    let userId;
+    context.log('Environment:', process.env.AZURE_FUNCTIONS_ENVIRONMENT);
+
+    // Check if running locally
+    if (process.env.AZURE_FUNCTIONS_ENVIRONMENT === 'Development') {
+      // If local, get userId from request parameter
+      userId = request.query.get('userId') || request.body?.userId;
+      context.log('UserId:', userId);
+      if (!userId) {
+        return { status: 400, body: 'UserId is required when running locally' };
+      }
+    } else {
+      // In Azure, use the original method
+      userId = request.headers.get('x-ms-client-principal-name');
+      if (!userId) {
+        return { status: 401, body: 'Unauthorized' };
+      }
+    }
+
     const group = userId;
 
     const serviceClient = new WebPubSubServiceClient(

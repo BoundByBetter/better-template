@@ -6,8 +6,9 @@
   "scripts": {
     "deps:check": "npx npm-check-updates && npx expo install --check",
     "deps:add": "npx expo install",
-    "deps:add-dev": "node tools/scripts/deps-install-dev.js",
+    "deps:add-dev": "node ../../tools/scripts/deps-install-dev.js",
     "deps:fix": "YARN_ENABLE_IMMUTABLE_INSTALLS=false && npx expo install --fix",
+    "server-af:start": "azurite & func start",
     "lint": "eslint .",
     "build": "tsc -b",
     "test": "npx jest --color",
@@ -18,7 +19,8 @@
     "@azure/web-pubsub": "^1.1.3"
   },
   "devDependencies": {
-    "azure-functions-core-tools": "^4.x"
+    "azure-functions-core-tools": "^4.x",
+    "azurite": "^3.32.0"
   },
   "installConfig": {
     "hoistingLimits": "workspaces"

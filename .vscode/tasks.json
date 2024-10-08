@@ -372,13 +372,15 @@
     // { "label": "E2E Web: Run site tests" },
     // { "label": "E2E Web: Run admin tests" },
 
-    // E2E Mobile
-    // { "label": "E2E Mobile: Open maestro studio to write tests" },
-    // { "label": "E2E Mobile: Run all tests" },
-    // { "label": "E2E Mobile: Run app tests" },
-    // { "label": "E2E Mobile: Run site tests" },
-    // { "label": "E2E Mobile: Run admin tests" },
-
+    // Server
+    { "label": "Server: Start Azure Function Emulator",
+      "type": "shell",
+      "command": "yarn",
+      "args": ["server-af:start"],
+      "problemMatcher": [],
+      "detail": "Starts the Azure Function Emulator."
+    },
+    
     // Pipeline
     { "label": "Pipeline: Pre-Commit",
       "type": "shell",

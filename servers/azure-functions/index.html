@@ -20,7 +20,13 @@
         } else {
           // negotiate
           let messages = document.querySelector("#messages");
-          let res = await fetch(`${window.location.origin}/api/negotiate`, {
+          const localDev = window.location.origin.includes("localhost");
+          const urlParams = new URLSearchParams(window.location.search);
+          const userId = urlParams.get('userId') || 'test';
+          console.log('userId', userId);
+          const negotiateUrl = `${window.location.origin}/api/negotiate${localDev ? '?userId=' + userId : ''}`;
+          console.log('negotiateUrl', negotiateUrl);
+          let res = await fetch(negotiateUrl, {
             credentials: "include",
           });
           let url = await res.json();
