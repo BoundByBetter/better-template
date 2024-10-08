@@ -401,7 +401,8 @@
         "packages/shared", 
         "packages/state", 
         "packages/ui",
-        "servers/dev-server"
+        "servers/dev-server",
+        "servers/azure-functions"
       ],
     },
     { "id": "dependencies",

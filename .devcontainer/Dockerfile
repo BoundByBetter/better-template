@@ -109,3 +109,7 @@ RUN apt-get install lsof
 RUN yes | sdkmanager "emulator"
 
 RUN echo "no" | avdmanager create avd -n test_avd -k "system-images;android-33;google_apis;x86_64" --device "pixel"
+
+RUN curl -sL https://aka.ms/InstallAzureCLIDeb | bash
+
+RUN npm i -g azure-functions-core-tools@4 --unsafe-perm true

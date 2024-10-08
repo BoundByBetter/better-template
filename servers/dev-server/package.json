@@ -20,5 +20,8 @@
     "@types/ws": "^8",
     "jest-websocket-mock": "^2.5.0",
     "typescript": "^5.3.3"
+  },
+  "installConfig": {
+    "hoistingLimits": "workspaces"
   }
 }
