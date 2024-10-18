@@ -5,46 +5,49 @@ const hubName = 'simplechat';
 
 app.http('negotiate', {
   methods: ['GET', 'POST'],
-  authLevel: 'anonymous',
+  authLevel: 'anonymous', // Change to 'function' if you want to restrict access
   handler: async (request, context) => {
     let userId;
     context.log('Environment:', process.env.AZURE_FUNCTIONS_ENVIRONMENT);
-
-    // Check if running locally
-    if (process.env.AZURE_FUNCTIONS_ENVIRONMENT === 'Development') {
-      // If local, get userId from request parameter
-      userId = request.query.get('userId') || request.body?.userId;
-      context.log('UserId:', userId);
-      if (!userId) {
-        return { status: 400, body: 'UserId is required when running locally' };
-      }
-    } else {
-      // In Azure, use the original method
-      userId = request.headers.get('x-ms-client-principal-name');
-      if (!userId) {
-        return { status: 401, body: 'Unauthorized' };
-      }
-    }
-
-    const group = userId;
-
-    const serviceClient = new WebPubSubServiceClient(
-      process.env.WebPubSubConnectionString,
-      hubName,
-    );
-
     try {
-      const token = await serviceClient.getClientAccessToken({
+      context.log('Request headers:', request.headers);
+      // Use Easy Auth to get user information from headers
+      userId = request.headers.get('x-ms-client-principal-id');
+      context.log('User ID:', userId);
+      if (!userId) {
+        return {
+          status: 401,
+          body: 'Unauthorized: No client principal found',
+        };
+      }
+
+      // Continue with your logic...
+      const group = userId;
+
+      const serviceClient = new WebPubSubServiceClient(
+        process.env.WebPubSubConnectionString,
+        hubName,
+      );
+
+      const accessToken = await serviceClient.getClientAccessToken({
         userId: userId,
         roles: ['webpubsub.sendToGroup', 'webpubsub.joinLeaveGroup'],
         groups: [group],
       });
 
       context.log('Negotiation request:', { userId, group });
-      return { jsonBody: { url: token.url } };
+      context.res = {
+        headers: {
+          'Access-Control-Allow-Origin': 'http://localhost:8081',
+          'Access-Control-Allow-Credentials': 'true',
+          'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
+          'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+        },
+      };
+      return { jsonBody: { url: accessToken.url } };
     } catch (error) {
-      context.log.error('Error generating token:', error);
-      return { status: 500, body: 'Error generating token' };
+      context.log('Error handling request:', error);
+      return { status: 500, body: 'Unexpected error' };
     }
   },
 });

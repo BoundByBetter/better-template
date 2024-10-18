@@ -33,9 +33,13 @@
     "app:start-and-web-e2e-dev": "chmod +x ./test/start-run-web-e2e-dev.sh && ./test/start-run-web-e2e-dev.sh",
     "app:export-and-serve-e2e": "chmod +x ./test/export-serve-run-web-e2e.sh && ./test/export-serve-run-web-e2e.sh",
     "app:mobile-e2e": "maestro test e2e/tests/master-flow.yaml",
-    "app:mobile-build-install-e2e": "yarn app:build-android-local-preview && yarn app:install-android-preview && yarn app:mobile-e2e"
+    "app:mobile-build-install-e2e": "yarn app:build-android-local-preview && yarn app:install-android-preview && yarn app:mobile-e2e",
+    "android": "expo run:android",
+    "ios": "expo run:ios"
   },
   "dependencies": {
+    "@azure/msal-browser": "^3.26.1",
+    "@azure/msal-react": "^2.1.1",
     "@babel/core": "^7.24.0",
     "@boundbybetter/features": "workspace:*",
     "@boundbybetter/shared": "workspace:*",
@@ -48,6 +52,7 @@
     "@shopify/flash-list": "1.6.4",
     "expo": "~51.0.31",
     "expo-constants": "~16.0.2",
+    "expo-crypto": "~13.0.2",
     "expo-dev-client": "~4.0.26",
     "expo-font": "~12.0.10",
     "expo-linking": "~6.3.1",
@@ -55,7 +60,10 @@
     "expo-splash-screen": "~0.27.5",
     "expo-status-bar": "~1.12.1",
     "expo-updates": "~0.25.25",
+    "expo-web-browser": "~13.0.3",
+    "install": "^0.13.0",
     "netlify-cli": "^17.36.4",
+    "npm": "^10.9.0",
     "react": "18.2.0",
     "react-native": "0.74.5",
     "react-native-gesture-handler": "~2.16.1",

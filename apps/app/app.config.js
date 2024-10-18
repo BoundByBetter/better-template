@@ -1,10 +1,18 @@
 const variant = process.env.APP_VARIANT;
+// Get first three characters of variant
+const shortVariant = variant.slice(0, 3);
 
 export default {
-  name: variant === 'prod' ? 'BetterApp' : 'BetterApp (' + variant + ')',
-  slug: 'better-app',
-  version: '0.0.7',
-  runtimeVersion: '0.0.7',
+  name:
+    shortVariant === 'prod'
+      ? 'Better Template'
+      : 'Better Template (' + shortVariant + ')',
+  slug:
+    shortVariant === 'prod'
+      ? 'better-template'
+      : 'better-template-' + shortVariant,
+  version: '0.0.8',
+  runtimeVersion: '0.0.8',
   orientation: 'portrait',
   icon: './assets/images/icon.png',
   // Added for tamagui.
@@ -15,15 +23,18 @@ export default {
     backgroundColor: '#ffffff',
   },
   owner: 'bound-by-better',
-  scheme: variant === 'prod' ? 'better-app' : 'better-app-' + variant,
+  scheme:
+    shortVariant === 'prod'
+      ? 'better-template'
+      : 'better-template-' + shortVariant,
   assetBundlePatterns: ['**/*'],
   ios: {
     supportsTablet: true,
     userInterfaceStyle: 'automatic',
     bundleIdentifier:
       variant === 'prod'
-        ? 'com.boundbybetter.betterapp'
-        : 'com.boundbybetter.betterapp.' + variant,
+        ? 'com.boundbybetter.bettertemplate'
+        : 'com.boundbybetter.bettertemplate.' + shortVariant,
   },
   android: {
     userInterfaceStyle: 'automatic',
@@ -32,9 +43,9 @@ export default {
       backgroundColor: '#FFFFFF',
     },
     package:
-      variant === 'prod'
-        ? 'com.boundbybetter.betterapp'
-        : 'com.boundbybetter.betterapp.' + variant,
+      shortVariant === 'prod'
+        ? 'com.boundbybetter.bettertemplate'
+        : 'com.boundbybetter.bettertemplate.' + shortVariant,
     buildTypes: {
       preview: {
         initWith: 'release',
@@ -71,10 +82,10 @@ export default {
   },
   extra: {
     eas: {
-      projectId: 'f8a3e524-1104-4579-9323-9f274f126eee',
+      projectId: 'b3eb1a51-3050-4224-839c-75c184c49d71',
     },
   },
   updates: {
-    url: 'https://u.expo.dev/f8a3e524-1104-4579-9323-9f274f126eee',
+    url: 'https://u.expo.dev/b3eb1a51-3050-4224-839c-75c184c49d71',
   },
 };

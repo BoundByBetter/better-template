@@ -1,15 +1,15 @@
 import { createMergeableStore } from 'tinybase';
 import { createExpoSqlitePersister } from 'tinybase/persisters/persister-expo-sqlite';
 import { createLocalPersister } from 'tinybase/persisters/persister-browser';
-import {
-  createWsSynchronizer,
-  WsSynchronizer,
-} from 'tinybase/synchronizers/synchronizer-ws-client';
+import { WsSynchronizer } from 'tinybase/synchronizers/synchronizer-ws-client';
 import * as SQLite from 'expo-sqlite';
 import { Platform } from 'react-native';
-import { logCall, logMessage } from '@boundbybetter/shared';
+import { logCall, logError, logMessage } from '@boundbybetter/shared';
 import { Persister, Persists } from 'tinybase/persisters';
 import { createMetrics } from 'tinybase';
+import { createAzureWPSSynchronizer } from './sync/azureWebPubSubSynchronizer';
+import { WebPubSubClient } from '@azure/web-pubsub-client';
+import { Synchronizer } from 'tinybase/synchronizers';
 
 export const store = createMergeableStore('my-store').setTables({
   tasks: {},
@@ -63,6 +63,10 @@ if (typeof jest === 'undefined') {
       logCall('store', 'initializePersister', 'startAuto');
       persister.startAutoLoad();
       persister.startAutoSave();
+      persister.load().then(() => {
+        logCall('store', 'initializePersister', 'persister.load');
+        connectToSyncServer();
+      });
       return persister;
     })
     .catch((error) => {
@@ -73,43 +77,96 @@ if (typeof jest === 'undefined') {
         error,
       );
     });
-
-  // Create PartyKit synchronizer
+}
+let synchronizer: Synchronizer | null = null;
+export async function connectToSyncServer() {
   try {
-    createWsSynchronizer(store, new WebSocket('ws://10.24.1.57:8043/myroom'))
-      .then(async (synchronizer) => {
-        logCall('store', 'createWsSynchronizer', 'Starting sync');
-        await synchronizer.startSync();
-        synchronizer.addStatusListener((synchronizer, status) => {
-          const statusMessage =
-            status === 0 ? 'idle' : status === 1 ? 'loading' : 'saving';
-          const stats = (
-            synchronizer as WsSynchronizer<WebSocket>
-          ).getSynchronizerStats();
-          logCall(
-            'store',
-            'addStatusListener',
-            `Synchronizer status: ${statusMessage}`,
-            'stats',
-            stats,
-          );
-        });
-        return synchronizer;
-      })
-      .catch((error) => {
-        logCall(
-          'store',
-          'createWsSynchronizer',
-          'Error creating WebSocket synchronizer',
-          error,
-        );
-      });
-  } catch (error) {
+    const user = store.getRow('user', 'current');
+    logCall('store', 'connectToSyncServer', 'user', user);
+    if (synchronizer) {
+      logMessage('store', 'connectToSyncServer', 'Synchronizer already exists');
+      return;
+    }
+    if (!user.accessToken || !user.idToken) {
+      logMessage('store', 'connectToSyncServer', 'No access token or id token');
+      return;
+    }
     logCall(
       'store',
-      'createWsSynchronizer',
+      'connectToSyncServer',
+      'authTokenResponse',
+      'user.accessToken',
+      user.accessToken,
+      'user.idToken',
+      user.idToken,
+    );
+    // const authTokenResponse = await fetch(
+    //   'https://better-template-api.azurewebsites.net/.auth/login/aad',
+    //   {
+    //     method: 'POST',
+    //     headers: {
+    //       'Content-Type': 'application/json',
+    //     },
+    //     body: JSON.stringify({
+    //       access_token: user.accessToken,
+    //       id_token: user.idToken,
+    //     }),
+    //   },
+    // );
+    // logCall(
+    //   'store',
+    //   'connectToSyncServer',
+    //   'authTokenResponse',
+    //   authTokenResponse,
+    // );
+    // const authToken = await authTokenResponse.json();
+    const negotiateUrl =
+      'https://better-template-api.azurewebsites.net/api/negotiate';
+    const negotiateResponse = await fetch(negotiateUrl, {
+      headers: {
+        Authorization: `Bearer ${user.idToken.toString()}`,
+        // Authorization: `Bearer ${user.accessToken.toString()}`,
+        // 'X-ZUMO-AUTH': user.idToken.toString(),
+        // 'X-ZUMO-AUTH': authToken.authenticationToken,
+      },
+    });
+    logCall(
+      'store',
+      'connectToSyncServer',
+      'negotiateResponse',
+      negotiateResponse,
+    );
+    const data = await negotiateResponse.json();
+
+    const wpsClient = new WebPubSubClient(data.url);
+
+    synchronizer = await createAzureWPSSynchronizer(
+      store,
+      user.userId.toString(),
+      wpsClient,
+    );
+
+    await synchronizer.startSync();
+
+    synchronizer.addStatusListener((synchronizer, status) => {
+      const statusMessage =
+        status === 0 ? 'idle' : status === 1 ? 'loading' : 'saving';
+      const stats = (
+        synchronizer as WsSynchronizer<WebSocket>
+      ).getSynchronizerStats();
+      logCall(
+        'store',
+        'addStatusListener',
+        `Synchronizer status: ${statusMessage}`,
+        'stats',
+        stats,
+      );
+    });
+  } catch (error) {
+    logError(
+      error as Error,
+      'connectToSyncServer',
       'Error creating WebSocket synchronizer',
-      error,
     );
   }
 }

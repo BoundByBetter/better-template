@@ -8,8 +8,11 @@ export const useCurrentUser = (): User | undefined => {
     ? undefined
     : ({
         id: user.id,
+        userId: user.userId,
         userName: user.userName,
         userEmail: user.userEmail,
         groups: user.groups ? JSON.parse(user.groups.toString()) : [],
+        accessToken: user.accessToken,
+        idToken: user.idToken,
       } as User);
 };

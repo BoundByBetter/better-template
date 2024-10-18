@@ -20,4 +20,4 @@ export { useCurrentUser } from './users/useCurrentUser';
 export { updateCurrentUser } from './users/updateCurrentUser';
 export { clearCurrentUser } from './users/clearCurrentUser';
 
-export { store } from './store';
+export { store, connectToSyncServer } from './store';

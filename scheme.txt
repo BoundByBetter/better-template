@@ -1,0 +1,1452 @@
+Domain verification status:
+  com.google.android.youtube:
+    ID: af9aa8e9-787a-4f32-95f4-64f03f14e42c
+    Signatures: [5A:AD:2B:EE:6D:B9:5D:17:E0:5A:08:D7:D1:E6:4C:10:A1:51:18:79:15:44:83:91:6B:6A:E6:C7:FD:9C:B0:C6]
+    Domain verification state:
+      youtu.be: system_configured
+      m.youtube.com: system_configured
+      youtube.com: system_configured
+      www.youtube.com: system_configured
+    User all:
+      Verification link handling allowed: true
+      Selection state:
+        Disabled:
+          youtu.be
+          m.youtube.com
+          youtube.com
+          www.youtube.com
+  com.google.android.googlequicksearchbox:
+    ID: 2205ed5d-8cad-4ff4-910b-d732960fb351
+    Signatures: [7C:E8:3C:1B:71:F3:D5:72:FE:D0:4C:8D:40:C5:CB:10:FF:75:E6:D8:7D:9D:F6:FB:D5:3F:04:68:C2:90:50:53]
+    Domain verification state:
+      assistant.google.com: system_configured
+      bard.google.com: system_configured
+      google.com: system_configured
+      labs.google.com: system_configured
+      vr.google.com: system_configured
+      lens.google: system_configured
+      pairdevice.gle: system_configured
+      www.google.com: system_configured
+      signin.google: system_configured
+      search.google: system_configured
+      shoppinglist.google.com: system_configured
+      gemini.google.com: system_configured
+      arvr.google.com: system_configured
+      podcasts.google.com: system_configured
+      smartlocktvsignin.google: system_configured
+    User all:
+      Verification link handling allowed: true
+      Selection state:
+        Disabled:
+          assistant.google.com
+          bard.google.com
+          google.com
+          labs.google.com
+          vr.google.com
+          lens.google
+          pairdevice.gle
+          www.google.com
+          signin.google
+          search.google
+          shoppinglist.google.com
+          gemini.google.com
+          arvr.google.com
+          podcasts.google.com
+          smartlocktvsignin.google
+  com.google.android.apps.messaging:
+    ID: 506e3292-6b2b-4e53-8213-d8b97437168e
+    Signatures: [F7:E7:3D:4E:DC:2B:7F:55:EE:CD:3F:89:8D:3C:CA:7D:A9:CB:BF:51:69:4E:BA:14:F8:16:E2:EC:CF:01:50:35]
+    Domain verification state:
+      messages.google.com: verified
+      rbm.goog: verified
+    User all:
+      Verification link handling allowed: true
+      Selection state:
+        Disabled:
+          messages.google.com
+          rbm.goog
+  com.android.vending:
+    ID: f2ff0280-77ff-445f-8740-8cda51a4d984
+    Signatures: [7C:E8:3C:1B:71:F3:D5:72:FE:D0:4C:8D:40:C5:CB:10:FF:75:E6:D8:7D:9D:F6:FB:D5:3F:04:68:C2:90:50:53]
+    Domain verification state:
+      play.google.com: system_configured
+      market.android.com: system_configured
+    User all:
+      Verification link handling allowed: true
+      Selection state:
+        Disabled:
+          play.google.com
+          market.android.com
+  com.workflowy.android:
+    ID: 2eef2cab-bf6b-40f5-a9e8-2a8eb6957d68
+    Signatures: [26:1E:D9:02:F2:E3:9D:8D:8B:F5:AD:ED:97:5A:10:11:21:6A:32:C2:48:03:BA:54:04:77:D1:E3:11:6F:0C:DF]
+    Domain verification state:
+      workflowy.com: verified
+    User all:
+      Verification link handling allowed: true
+      Selection state:
+        Disabled:
+          workflowy.com
+  com.google.android.gm:
+    ID: ba0692e6-c569-40d0-ab86-f0b5143ca59e
+    Signatures: [7C:E8:3C:1B:71:F3:D5:72:FE:D0:4C:8D:40:C5:CB:10:FF:75:E6:D8:7D:9D:F6:FB:D5:3F:04:68:C2:90:50:53]
+    Domain verification state:
+      gmail.app.goo.gl: verified
+      dynamite-autopush.sandbox.google.com: verified
+      tel.meet: verified
+      d.meet: verified
+      chat.google.com: verified
+      t.meet: verified
+      dynamite-preprod.sandbox.google.com: verified
+      enterprise.google.com: verified
+      stream.meet.google.com: verified
+      client-side-encryption.google.com: verified
+      dial.meet: verified
+      meet.google.com: verified
+      krahsc.google.com: verified
+    User all:
+      Verification link handling allowed: true
+      Selection state:
+        Disabled:
+          gmail.app.goo.gl
+          dynamite-autopush.sandbox.google.com
+          tel.meet
+          d.meet
+          chat.google.com
+          t.meet
+          dynamite-preprod.sandbox.google.com
+          enterprise.google.com
+          stream.meet.google.com
+          client-side-encryption.google.com
+          dial.meet
+          meet.google.com
+          krahsc.google.com
+  com.google.android.apps.tachyon:
+    ID: e84c5280-2685-477f-bf89-08f3bbc55e26
+    Signatures: [07:DD:0C:BA:5A:36:5F:B2:27:B1:6D:03:3B:FD:60:51:02:DF:EC:27:5E:BE:91:0B:61:7E:81:AC:AD:21:13:FE]
+    Domain verification state:
+      tel.meet: verified
+      d.meet: verified
+      t.meet: verified
+      duo.google.com: verified
+      stream.meet.google.com: verified
+      client-side-encryption.google.com: verified
+      dial.meet: verified
+      meet.google.com: verified
+      krahsc.google.com: verified
+    User all:
+      Verification link handling allowed: true
+      Selection state:
+        Disabled:
+          tel.meet
+          d.meet
+          t.meet
+          duo.google.com
+          stream.meet.google.com
+          client-side-encryption.google.com
+          dial.meet
+          meet.google.com
+          krahsc.google.com
+  com.google.android.apps.nbu.files:
+    ID: e9445173-0952-427b-b551-5a5f34850a90
+    Signatures: [1C:81:7C:AE:36:28:ED:57:26:F8:02:0B:71:48:35:11:03:62:13:69:1F:7C:61:5C:6F:97:4A:70:A1:56:74:F3]
+    Domain verification state:
+      files.google.com: verified
+      filesgo.google.com: verified
+    User all:
+      Verification link handling allowed: true
+      Selection state:
+        Disabled:
+          files.google.com
+          filesgo.google.com
+  com.google.android.apps.docs:
+    ID: 8cfcdacb-bbcd-4842-a570-6fb0a5370720
+    Signatures: [F0:FD:6C:5B:41:0F:25:CB:25:C3:B5:33:46:C8:97:2F:AE:30:F8:EE:74:11:DF:91:04:80:AD:6B:2D:60:DB:83]
+    Domain verification state:
+      docs.google.com: system_configured
+      drive.google.com: system_configured
+      icing.drive.google.com: system_configured
+      client-side-encryption.google.com: system_configured
+      spreadsheets.google.com: system_configured
+      krahsc.google.com: system_configured
+    User all:
+      Verification link handling allowed: true
+      Selection state:
+        Disabled:
+          docs.google.com
+          drive.google.com
+          icing.drive.google.com
+          client-side-encryption.google.com
+          spreadsheets.google.com
+          krahsc.google.com
+  com.google.android.apps.maps:
+    ID: 4c76c25b-1d16-4432-bd86-16a2e3a7ce74
+    Signatures: [7C:E8:3C:1B:71:F3:D5:72:FE:D0:4C:8D:40:C5:CB:10:FF:75:E6:D8:7D:9D:F6:FB:D5:3F:04:68:C2:90:50:53]
+    Domain verification state:
+      www.google.com.ag: system_configured
+      www.google.com.ai: system_configured
+      www.google.com.ar: system_configured
+      www.google.com.au: system_configured
+      www.google.com.bd: system_configured
+      www.google.com.bh: system_configured
+      www.google.com.bn: system_configured
+      www.google.com.bo: system_configured
+      www.google.com.br: system_configured
+      www.google.com.bz: system_configured
+      www.google.com.co: system_configured
+      www.google.com.cu: system_configured
+      www.google.com.do: system_configured
+      www.google.com.ec: system_configured
+      www.google.com.eg: system_configured
+      www.google.com.et: system_configured
+      www.google.com.fj: system_configured
+      www.google.com.gh: system_configured
+      www.google.com.gi: system_configured
+      www.google.com.gt: system_configured
+      www.google.com.hk: system_configured
+      www.google.com.iq: system_configured
+      www.google.com.jm: system_configured
+      www.google.com.kh: system_configured
+      www.google.com.kw: system_configured
+      www.google.com.lb: system_configured
+      www.google.com.ly: system_configured
+      www.google.com.mm: system_configured
+      www.google.com.mt: system_configured
+      www.google.com.mx: system_configured
+      www.google.com.my: system_configured
+      www.google.com.na: system_configured
+      www.google.com.ng: system_configured
+      www.google.com.ni: system_configured
+      www.google.com.np: system_configured
+      www.google.com.om: system_configured
+      www.google.com.pa: system_configured
+      www.google.com.pe: system_configured
+      www.google.com.pg: system_configured
+      www.google.com.ph: system_configured
+      www.google.com.pr: system_configured
+      www.google.com.py: system_configured
+      www.google.com.qa: system_configured
+      www.google.com.sa: system_configured
+      www.google.com.sb: system_configured
+      www.google.com.sg: system_configured
+      www.google.com.sl: system_configured
+      www.google.com.sv: system_configured
+      www.google.com.tr: system_configured
+      www.google.com.tw: system_configured
+      www.google.com.ua: system_configured
+      www.google.com.uy: system_configured
+      www.google.com.vc: system_configured
+      search.google.com: system_configured
+      google.cat: system_configured
+      google.com: system_configured
+      maps.google.co.ao: system_configured
+      maps.google.co.bw: system_configured
+      maps.google.co.ck: system_configured
+      maps.google.co.cr: system_configured
+      maps.google.co.id: system_configured
+      maps.google.co.il: system_configured
+      maps.google.co.in: system_configured
+      maps.google.co.jp: system_configured
+      maps.google.co.ke: system_configured
+      maps.google.co.kr: system_configured
+      maps.google.co.ls: system_configured
+      maps.google.co.mz: system_configured
+      maps.google.co.nz: system_configured
+      maps.google.co.th: system_configured
+      maps.google.co.tz: system_configured
+      maps.google.co.ug: system_configured
+      maps.google.co.uk: system_configured
+      maps.google.co.ve: system_configured
+      maps.google.co.vi: system_configured
+      maps.google.co.za: system_configured
+      maps.google.co.zm: system_configured
+      maps.google.co.zw: system_configured
+      maps.google.it.ao: system_configured
+      goo.gl: system_configured
+      www.google.co.ao: system_configured
+      www.google.co.bw: system_configured
+      www.google.co.ck: system_configured
+      www.google.co.cr: system_configured
+      www.google.co.id: system_configured
+      www.google.co.il: system_configured
+      www.google.co.in: system_configured
+      www.google.co.jp: system_configured
+      www.google.co.ke: system_configured
+      www.google.co.kr: system_configured
+      www.google.co.ls: system_configured
+      www.google.co.ma: system_configured
+      www.google.co.mz: system_configured
+      www.google.co.nz: system_configured
+      www.google.co.th: system_configured
+      www.google.co.tz: system_configured
+      www.google.co.ug: system_configured
+      www.google.co.uk: system_configured
+      www.google.co.ve: system_configured
+      www.google.co.vi: system_configured
+      www.google.co.za: system_configured
+      www.google.co.zm: system_configured
+      www.google.co.zw: system_configured
+      ditu.google.com: system_configured
+      www.google.it.ao: system_configured
+      maps.google.com.ag: system_configured
+      maps.google.com.ai: system_configured
+      maps.google.com.ar: system_configured
+      maps.google.com.au: system_configured
+      maps.google.com.bd: system_configured
+      maps.google.com.bh: system_configured
+      maps.google.com.bn: system_configured
+      maps.google.com.bo: system_configured
+      maps.google.com.br: system_configured
+      maps.google.com.bz: system_configured
+      maps.google.com.co: system_configured
+      maps.google.com.cu: system_configured
+      maps.google.com.do: system_configured
+      maps.google.com.ec: system_configured
+      maps.google.com.eg: system_configured
+      maps.google.com.et: system_configured
+      maps.google.com.fj: system_configured
+      maps.google.com.gh: system_configured
+      maps.google.com.gi: system_configured
+      maps.google.com.gt: system_configured
+      maps.google.com.hk: system_configured
+      maps.google.com.jm: system_configured
+      maps.google.com.kh: system_configured
+      maps.google.com.kw: system_configured
+      maps.google.com.lb: system_configured
+      maps.google.com.ly: system_configured
+      maps.google.com.mm: system_configured
+      maps.google.com.mt: system_configured
+      maps.google.com.mx: system_configured
+      maps.google.com.my: system_configured
+      maps.google.com.na: system_configured
+      maps.google.com.ng: system_configured
+      maps.google.com.ni: system_configured
+      maps.google.com.np: system_configured
+      maps.google.com.om: system_configured
+      maps.google.com.pa: system_configured
+      maps.google.com.pe: system_configured
+      maps.google.com.pg: system_configured
+      maps.google.com.ph: system_configured
+      maps.google.com.pr: system_configured
+      maps.google.com.py: system_configured
+      maps.google.com.qa: system_configured
+      maps.google.com.sa: system_configured
+      maps.google.com.sb: system_configured
+      maps.google.com.sg: system_configured
+      maps.google.com.sl: system_configured
+      maps.google.com.sv: system_configured
+      maps.google.com.tr: system_configured
+      maps.google.com.tw: system_configured
+      maps.google.com.ua: system_configured
+      maps.google.com.uy: system_configured
+      maps.google.com.vc: system_configured
+      www.google.cat: system_configured
+      www.google.com: system_configured
+      google.com.ag: system_configured
+      google.com.ai: system_configured
+      google.com.ar: system_configured
+      google.com.au: system_configured
+      google.com.bd: system_configured
+      google.com.bh: system_configured
+      google.com.bn: system_configured
+      google.com.bo: system_configured
+      google.com.br: system_configured
+      google.com.bz: system_configured
+      google.com.co: system_configured
+      google.com.cu: system_configured
+      google.com.do: system_configured
+      google.com.ec: system_configured
+      google.com.eg: system_configured
+      google.com.et: system_configured
+      google.com.fj: system_configured
+      google.com.gh: system_configured
+      google.com.gi: system_configured
+      google.com.gt: system_configured
+      google.com.hk: system_configured
+      google.com.iq: system_configured
+      google.com.jm: system_configured
+      google.com.kh: system_configured
+      google.com.kw: system_configured
+      google.com.lb: system_configured
+      google.com.ly: system_configured
+      google.com.mm: system_configured
+      google.com.mt: system_configured
+      google.com.mx: system_configured
+      google.com.my: system_configured
+      google.com.na: system_configured
+      google.com.ng: system_configured
+      google.com.ni: system_configured
+      google.com.np: system_configured
+      google.com.om: system_configured
+      google.com.pa: system_configured
+      google.com.pe: system_configured
+      google.com.pg: system_configured
+      google.com.ph: system_configured
+      google.com.pr: system_configured
+      google.com.py: system_configured
+      google.com.qa: system_configured
+      google.com.sa: system_configured
+      google.com.sb: system_configured
+      google.com.sg: system_configured
+      google.com.sl: system_configured
+      google.com.sv: system_configured
+      google.com.tr: system_configured
+      google.com.tw: system_configured
+      google.com.ua: system_configured
+      google.com.uy: system_configured
+      google.com.vc: system_configured
+      mapsengine.google.com: system_configured
+      www.google.ad: system_configured
+      www.google.ae: system_configured
+      www.google.am: system_configured
+      www.google.as: system_configured
+      www.google.at: system_configured
+      www.google.az: system_configured
+      www.google.ba: system_configured
+      www.google.be: system_configured
+      www.google.bf: system_configured
+      www.google.bg: system_configured
+      www.google.bi: system_configured
+      www.google.bj: system_configured
+      www.google.bs: system_configured
+      www.google.bt: system_configured
+      www.google.by: system_configured
+      www.google.ca: system_configured
+      www.google.cd: system_configured
+      www.google.cf: system_configured
+      www.google.cg: system_configured
+      www.google.ch: system_configured
+      www.google.ci: system_configured
+      www.google.cl: system_configured
+      www.google.cm: system_configured
+      www.google.cn: system_configured
+      www.google.cv: system_configured
+      www.google.cz: system_configured
+      www.google.de: system_configured
+      www.google.dj: system_configured
+      www.google.dk: system_configured
+      www.google.dm: system_configured
+      www.google.dz: system_configured
+      www.google.ee: system_configured
+      www.google.es: system_configured
+      www.google.fi: system_configured
+      www.google.fm: system_configured
+      www.google.fr: system_configured
+      www.google.ga: system_configured
+      www.google.ge: system_configured
+      www.google.gg: system_configured
+      www.google.gl: system_configured
+      www.google.gm: system_configured
+      www.google.gp: system_configured
+      www.google.gr: system_configured
+      www.google.gy: system_configured
+      www.google.hn: system_configured
+      www.google.hr: system_configured
+      www.google.ht: system_configured
+      www.google.hu: system_configured
+      www.google.ie: system_configured
+      www.google.im: system_configured
+      www.google.iq: system_configured
+      www.google.is: system_configured
+      www.google.it: system_configured
+      www.google.je: system_configured
+      www.google.jo: system_configured
+      www.google.kg: system_configured
+      www.google.ki: system_configured
+      www.google.kz: system_configured
+      www.google.la: system_configured
+      www.google.li: system_configured
+      www.google.lk: system_configured
+      www.google.lt: system_configured
+      www.google.lu: system_configured
+      www.google.lv: system_configured
+      www.google.mg: system_configured
+      www.google.mk: system_configured
+      www.google.ml: system_configured
+      www.google.mn: system_configured
+      www.google.mo: system_configured
+      www.google.ms: system_configured
+      www.google.mu: system_configured
+      www.google.mv: system_configured
+      www.google.mw: system_configured
+      www.google.ne: system_configured
+      www.google.ng: system_configured
+      www.google.nl: system_configured
+      www.google.no: system_configured
+      www.google.nr: system_configured
+      www.google.nu: system_configured
+      www.google.pl: system_configured
+      www.google.pn: system_configured
+      www.google.pt: system_configured
+      www.google.ro: system_configured
+      www.google.rs: system_configured
+      www.google.ru: system_configured
+      www.google.rw: system_configured
+      www.google.sc: system_configured
+      www.google.se: system_configured
+      www.google.sh: system_configured
+      www.google.si: system_configured
+      www.google.sk: system_configured
+      www.google.sm: system_configured
+      www.google.sn: system_configured
+      www.google.so: system_configured
+      www.google.st: system_configured
+      www.google.td: system_configured
+      www.google.tg: system_configured
+      www.google.tk: system_configured
+      www.google.tl: system_configured
+      www.google.tn: system_configured
+      www.google.to: system_configured
+      www.google.tt: system_configured
+      www.google.vg: system_configured
+      www.google.vu: system_configured
+      www.google.ws: system_configured
+      plus.codes: system_configured
+      g.co: system_configured
+      maps.google.ad: system_configured
+      maps.google.ae: system_configured
+      maps.google.am: system_configured
+      maps.google.as: system_configured
+      maps.google.at: system_configured
+      maps.google.az: system_configured
+      maps.google.ba: system_configured
+      maps.google.be: system_configured
+      maps.google.bf: system_configured
+      maps.google.bg: system_configured
+      maps.google.bi: system_configured
+      maps.google.bj: system_configured
+      maps.google.bs: system_configured
+      maps.google.bt: system_configured
+      maps.google.by: system_configured
+      maps.google.ca: system_configured
+      maps.google.cd: system_configured
+      maps.google.cf: system_configured
+      maps.google.cg: system_configured
+      maps.google.ch: system_configured
+      maps.google.ci: system_configured
+      maps.google.cl: system_configured
+      maps.google.cm: system_configured
+      maps.google.cv: system_configured
+      maps.google.cz: system_configured
+      maps.google.de: system_configured
+      maps.google.dj: system_configured
+      maps.google.dk: system_configured
+      maps.google.dm: system_configured
+      maps.google.dz: system_configured
+      maps.google.ee: system_configured
+      maps.google.es: system_configured
+      maps.google.fi: system_configured
+      maps.google.fm: system_configured
+      maps.google.fr: system_configured
+      maps.google.ga: system_configured
+      maps.google.ge: system_configured
+      maps.google.gg: system_configured
+      maps.google.gl: system_configured
+      maps.google.gm: system_configured
+      maps.google.gp: system_configured
+      maps.google.gr: system_configured
+      maps.google.gy: system_configured
+      maps.google.hn: system_configured
+      maps.google.hr: system_configured
+      maps.google.ht: system_configured
+      maps.google.hu: system_configured
+      maps.google.ie: system_configured
+      maps.google.im: system_configured
+      maps.google.iq: system_configured
+      maps.google.is: system_configured
+      maps.google.it: system_configured
+      maps.google.je: system_configured
+      maps.google.jo: system_configured
+      maps.google.kg: system_configured
+      maps.google.ki: system_configured
+      maps.google.kz: system_configured
+      maps.google.la: system_configured
+      maps.google.li: system_configured
+      maps.google.lk: system_configured
+      maps.google.lt: system_configured
+      maps.google.lu: system_configured
+      maps.google.lv: system_configured
+      maps.google.mg: system_configured
+      maps.google.mk: system_configured
+      maps.google.ml: system_configured
+      maps.google.mn: system_configured
+      maps.google.mo: system_configured
+      maps.google.ms: system_configured
+      maps.google.mu: system_configured
+      maps.google.mv: system_configured
+      maps.google.mw: system_configured
+      maps.google.ne: system_configured
+      maps.google.ng: system_configured
+      maps.google.nl: system_configured
+      maps.google.no: system_configured
+      maps.google.nr: system_configured
+      maps.google.nu: system_configured
+      maps.google.pl: system_configured
+      maps.google.pn: system_configured
+      maps.google.pt: system_configured
+      maps.google.ro: system_configured
+      maps.google.rs: system_configured
+      maps.google.ru: system_configured
+      maps.google.rw: system_configured
+      maps.google.sc: system_configured
+      maps.google.se: system_configured
+      maps.google.sh: system_configured
+      maps.google.si: system_configured
+      maps.google.sk: system_configured
+      maps.google.sm: system_configured
+      maps.google.sn: system_configured
+      maps.google.so: system_configured
+      maps.google.st: system_configured
+      maps.google.td: system_configured
+      maps.google.tg: system_configured
+      maps.google.tk: system_configured
+      maps.google.tl: system_configured
+      maps.google.tn: system_configured
+      maps.google.to: system_configured
+      maps.google.tt: system_configured
+      maps.google.vg: system_configured
+      maps.google.vu: system_configured
+      maps.google.ws: system_configured
+      business.google.com: system_configured
+      maps.google.cat: system_configured
+      maps.google.com: system_configured
+      google.co.ao: system_configured
+      google.co.bw: system_configured
+      google.co.ck: system_configured
+      google.co.cr: system_configured
+      google.co.id: system_configured
+      google.co.il: system_configured
+      google.co.in: system_configured
+      google.co.jp: system_configured
+      google.co.ke: system_configured
+      google.co.kr: system_configured
+      google.co.ls: system_configured
+      google.co.ma: system_configured
+      google.co.mz: system_configured
+      google.co.nz: system_configured
+      google.co.th: system_configured
+      google.co.tz: system_configured
+      google.co.ug: system_configured
+      google.co.uk: system_configured
+      google.co.ve: system_configured
+      google.co.vi: system_configured
+      google.co.za: system_configured
+      google.co.zm: system_configured
+      google.co.zw: system_configured
+      google.it.ao: system_configured
+      google.ad: system_configured
+      google.ae: system_configured
+      google.am: system_configured
+      google.as: system_configured
+      google.at: system_configured
+      google.az: system_configured
+      google.ba: system_configured
+      google.be: system_configured
+      google.bf: system_configured
+      google.bg: system_configured
+      google.bi: system_configured
+      google.bj: system_configured
+      google.bs: system_configured
+      google.bt: system_configured
+      google.by: system_configured
+      google.ca: system_configured
+      google.cd: system_configured
+      google.cf: system_configured
+      google.cg: system_configured
+      google.ch: system_configured
+      google.ci: system_configured
+      google.cl: system_configured
+      google.cm: system_configured
+      google.cn: system_configured
+      google.cv: system_configured
+      google.cz: system_configured
+      google.de: system_configured
+      google.dj: system_configured
+      google.dk: system_configured
+      google.dm: system_configured
+      google.dz: system_configured
+      google.ee: system_configured
+      google.es: system_configured
+      google.fi: system_configured
+      google.fm: system_configured
+      google.fr: system_configured
+      google.ga: system_configured
+      google.ge: system_configured
+      google.gg: system_configured
+      google.gl: system_configured
+      google.gm: system_configured
+      google.gp: system_configured
+      google.gr: system_configured
+      google.gy: system_configured
+      google.hn: system_configured
+      google.hr: system_configured
+      google.ht: system_configured
+      google.hu: system_configured
+      google.ie: system_configured
+      google.im: system_configured
+      google.iq: system_configured
+      google.is: system_configured
+      google.it: system_configured
+      google.je: system_configured
+      google.jo: system_configured
+      google.kg: system_configured
+      google.ki: system_configured
+      google.kz: system_configured
+      google.la: system_configured
+      google.li: system_configured
+      google.lk: system_configured
+      google.lt: system_configured
+      google.lu: system_configured
+      google.lv: system_configured
+      google.mg: system_configured
+      google.mk: system_configured
+      google.ml: system_configured
+      google.mn: system_configured
+      google.mo: system_configured
+      google.ms: system_configured
+      google.mu: system_configured
+      google.mv: system_configured
+      google.mw: system_configured
+      google.ne: system_configured
+      google.ng: system_configured
+      google.nl: system_configured
+      google.no: system_configured
+      google.nr: system_configured
+      google.nu: system_configured
+      google.pl: system_configured
+      google.pn: system_configured
+      google.pt: system_configured
+      google.ro: system_configured
+      google.rs: system_configured
+      google.ru: system_configured
+      google.rw: system_configured
+      google.sc: system_configured
+      google.se: system_configured
+      google.sh: system_configured
+      google.si: system_configured
+      google.sk: system_configured
+      google.sm: system_configured
+      google.sn: system_configured
+      google.so: system_configured
+      google.st: system_configured
+      google.td: system_configured
+      google.tg: system_configured
+      google.tk: system_configured
+      google.tl: system_configured
+      google.tn: system_configured
+      google.to: system_configured
+      google.tt: system_configured
+      google.vg: system_configured
+      google.vu: system_configured
+      google.ws: system_configured
+      local.google.com: system_configured
+    User all:
+      Verification link handling allowed: true
+      Selection state:
+        Disabled:
+          www.google.com.ag
+          www.google.com.ai
+          www.google.com.ar
+          www.google.com.au
+          www.google.com.bd
+          www.google.com.bh
+          www.google.com.bn
+          www.google.com.bo
+          www.google.com.br
+          www.google.com.bz
+          www.google.com.co
+          www.google.com.cu
+          www.google.com.do
+          www.google.com.ec
+          www.google.com.eg
+          www.google.com.et
+          www.google.com.fj
+          www.google.com.gh
+          www.google.com.gi
+          www.google.com.gt
+          www.google.com.hk
+          www.google.com.iq
+          www.google.com.jm
+          www.google.com.kh
+          www.google.com.kw
+          www.google.com.lb
+          www.google.com.ly
+          www.google.com.mm
+          www.google.com.mt
+          www.google.com.mx
+          www.google.com.my
+          www.google.com.na
+          www.google.com.ng
+          www.google.com.ni
+          www.google.com.np
+          www.google.com.om
+          www.google.com.pa
+          www.google.com.pe
+          www.google.com.pg
+          www.google.com.ph
+          www.google.com.pr
+          www.google.com.py
+          www.google.com.qa
+          www.google.com.sa
+          www.google.com.sb
+          www.google.com.sg
+          www.google.com.sl
+          www.google.com.sv
+          www.google.com.tr
+          www.google.com.tw
+          www.google.com.ua
+          www.google.com.uy
+          www.google.com.vc
+          search.google.com
+          google.cat
+          google.com
+          maps.google.co.ao
+          maps.google.co.bw
+          maps.google.co.ck
+          maps.google.co.cr
+          maps.google.co.id
+          maps.google.co.il
+          maps.google.co.in
+          maps.google.co.jp
+          maps.google.co.ke
+          maps.google.co.kr
+          maps.google.co.ls
+          maps.google.co.mz
+          maps.google.co.nz
+          maps.google.co.th
+          maps.google.co.tz
+          maps.google.co.ug
+          maps.google.co.uk
+          maps.google.co.ve
+          maps.google.co.vi
+          maps.google.co.za
+          maps.google.co.zm
+          maps.google.co.zw
+          maps.google.it.ao
+          goo.gl
+          www.google.co.ao
+          www.google.co.bw
+          www.google.co.ck
+          www.google.co.cr
+          www.google.co.id
+          www.google.co.il
+          www.google.co.in
+          www.google.co.jp
+          www.google.co.ke
+          www.google.co.kr
+          www.google.co.ls
+          www.google.co.ma
+          www.google.co.mz
+          www.google.co.nz
+          www.google.co.th
+          www.google.co.tz
+          www.google.co.ug
+          www.google.co.uk
+          www.google.co.ve
+          www.google.co.vi
+          www.google.co.za
+          www.google.co.zm
+          www.google.co.zw
+          ditu.google.com
+          www.google.it.ao
+          maps.google.com.ag
+          maps.google.com.ai
+          maps.google.com.ar
+          maps.google.com.au
+          maps.google.com.bd
+          maps.google.com.bh
+          maps.google.com.bn
+          maps.google.com.bo
+          maps.google.com.br
+          maps.google.com.bz
+          maps.google.com.co
+          maps.google.com.cu
+          maps.google.com.do
+          maps.google.com.ec
+          maps.google.com.eg
+          maps.google.com.et
+          maps.google.com.fj
+          maps.google.com.gh
+          maps.google.com.gi
+          maps.google.com.gt
+          maps.google.com.hk
+          maps.google.com.jm
+          maps.google.com.kh
+          maps.google.com.kw
+          maps.google.com.lb
+          maps.google.com.ly
+          maps.google.com.mm
+          maps.google.com.mt
+          maps.google.com.mx
+          maps.google.com.my
+          maps.google.com.na
+          maps.google.com.ng
+          maps.google.com.ni
+          maps.google.com.np
+          maps.google.com.om
+          maps.google.com.pa
+          maps.google.com.pe
+          maps.google.com.pg
+          maps.google.com.ph
+          maps.google.com.pr
+          maps.google.com.py
+          maps.google.com.qa
+          maps.google.com.sa
+          maps.google.com.sb
+          maps.google.com.sg
+          maps.google.com.sl
+          maps.google.com.sv
+          maps.google.com.tr
+          maps.google.com.tw
+          maps.google.com.ua
+          maps.google.com.uy
+          maps.google.com.vc
+          www.google.cat
+          www.google.com
+          google.com.ag
+          google.com.ai
+          google.com.ar
+          google.com.au
+          google.com.bd
+          google.com.bh
+          google.com.bn
+          google.com.bo
+          google.com.br
+          google.com.bz
+          google.com.co
+          google.com.cu
+          google.com.do
+          google.com.ec
+          google.com.eg
+          google.com.et
+          google.com.fj
+          google.com.gh
+          google.com.gi
+          google.com.gt
+          google.com.hk
+          google.com.iq
+          google.com.jm
+          google.com.kh
+          google.com.kw
+          google.com.lb
+          google.com.ly
+          google.com.mm
+          google.com.mt
+          google.com.mx
+          google.com.my
+          google.com.na
+          google.com.ng
+          google.com.ni
+          google.com.np
+          google.com.om
+          google.com.pa
+          google.com.pe
+          google.com.pg
+          google.com.ph
+          google.com.pr
+          google.com.py
+          google.com.qa
+          google.com.sa
+          google.com.sb
+          google.com.sg
+          google.com.sl
+          google.com.sv
+          google.com.tr
+          google.com.tw
+          google.com.ua
+          google.com.uy
+          google.com.vc
+          mapsengine.google.com
+          www.google.ad
+          www.google.ae
+          www.google.am
+          www.google.as
+          www.google.at
+          www.google.az
+          www.google.ba
+          www.google.be
+          www.google.bf
+          www.google.bg
+          www.google.bi
+          www.google.bj
+          www.google.bs
+          www.google.bt
+          www.google.by
+          www.google.ca
+          www.google.cd
+          www.google.cf
+          www.google.cg
+          www.google.ch
+          www.google.ci
+          www.google.cl
+          www.google.cm
+          www.google.cn
+          www.google.cv
+          www.google.cz
+          www.google.de
+          www.google.dj
+          www.google.dk
+          www.google.dm
+          www.google.dz
+          www.google.ee
+          www.google.es
+          www.google.fi
+          www.google.fm
+          www.google.fr
+          www.google.ga
+          www.google.ge
+          www.google.gg
+          www.google.gl
+          www.google.gm
+          www.google.gp
+          www.google.gr
+          www.google.gy
+          www.google.hn
+          www.google.hr
+          www.google.ht
+          www.google.hu
+          www.google.ie
+          www.google.im
+          www.google.iq
+          www.google.is
+          www.google.it
+          www.google.je
+          www.google.jo
+          www.google.kg
+          www.google.ki
+          www.google.kz
+          www.google.la
+          www.google.li
+          www.google.lk
+          www.google.lt
+          www.google.lu
+          www.google.lv
+          www.google.mg
+          www.google.mk
+          www.google.ml
+          www.google.mn
+          www.google.mo
+          www.google.ms
+          www.google.mu
+          www.google.mv
+          www.google.mw
+          www.google.ne
+          www.google.ng
+          www.google.nl
+          www.google.no
+          www.google.nr
+          www.google.nu
+          www.google.pl
+          www.google.pn
+          www.google.pt
+          www.google.ro
+          www.google.rs
+          www.google.ru
+          www.google.rw
+          www.google.sc
+          www.google.se
+          www.google.sh
+          www.google.si
+          www.google.sk
+          www.google.sm
+          www.google.sn
+          www.google.so
+          www.google.st
+          www.google.td
+          www.google.tg
+          www.google.tk
+          www.google.tl
+          www.google.tn
+          www.google.to
+          www.google.tt
+          www.google.vg
+          www.google.vu
+          www.google.ws
+          plus.codes
+          g.co
+          maps.google.ad
+          maps.google.ae
+          maps.google.am
+          maps.google.as
+          maps.google.at
+          maps.google.az
+          maps.google.ba
+          maps.google.be
+          maps.google.bf
+          maps.google.bg
+          maps.google.bi
+          maps.google.bj
+          maps.google.bs
+          maps.google.bt
+          maps.google.by
+          maps.google.ca
+          maps.google.cd
+          maps.google.cf
+          maps.google.cg
+          maps.google.ch
+          maps.google.ci
+          maps.google.cl
+          maps.google.cm
+          maps.google.cv
+          maps.google.cz
+          maps.google.de
+          maps.google.dj
+          maps.google.dk
+          maps.google.dm
+          maps.google.dz
+          maps.google.ee
+          maps.google.es
+          maps.google.fi
+          maps.google.fm
+          maps.google.fr
+          maps.google.ga
+          maps.google.ge
+          maps.google.gg
+          maps.google.gl
+          maps.google.gm
+          maps.google.gp
+          maps.google.gr
+          maps.google.gy
+          maps.google.hn
+          maps.google.hr
+          maps.google.ht
+          maps.google.hu
+          maps.google.ie
+          maps.google.im
+          maps.google.iq
+          maps.google.is
+          maps.google.it
+          maps.google.je
+          maps.google.jo
+          maps.google.kg
+          maps.google.ki
+          maps.google.kz
+          maps.google.la
+          maps.google.li
+          maps.google.lk
+          maps.google.lt
+          maps.google.lu
+          maps.google.lv
+          maps.google.mg
+          maps.google.mk
+          maps.google.ml
+          maps.google.mn
+          maps.google.mo
+          maps.google.ms
+          maps.google.mu
+          maps.google.mv
+          maps.google.mw
+          maps.google.ne
+          maps.google.ng
+          maps.google.nl
+          maps.google.no
+          maps.google.nr
+          maps.google.nu
+          maps.google.pl
+          maps.google.pn
+          maps.google.pt
+          maps.google.ro
+          maps.google.rs
+          maps.google.ru
+          maps.google.rw
+          maps.google.sc
+          maps.google.se
+          maps.google.sh
+          maps.google.si
+          maps.google.sk
+          maps.google.sm
+          maps.google.sn
+          maps.google.so
+          maps.google.st
+          maps.google.td
+          maps.google.tg
+          maps.google.tk
+          maps.google.tl
+          maps.google.tn
+          maps.google.to
+          maps.google.tt
+          maps.google.vg
+          maps.google.vu
+          maps.google.ws
+          business.google.com
+          maps.google.cat
+          maps.google.com
+          google.co.ao
+          google.co.bw
+          google.co.ck
+          google.co.cr
+          google.co.id
+          google.co.il
+          google.co.in
+          google.co.jp
+          google.co.ke
+          google.co.kr
+          google.co.ls
+          google.co.ma
+          google.co.mz
+          google.co.nz
+          google.co.th
+          google.co.tz
+          google.co.ug
+          google.co.uk
+          google.co.ve
+          google.co.vi
+          google.co.za
+          google.co.zm
+          google.co.zw
+          google.it.ao
+          google.ad
+          google.ae
+          google.am
+          google.as
+          google.at
+          google.az
+          google.ba
+          google.be
+          google.bf
+          google.bg
+          google.bi
+          google.bj
+          google.bs
+          google.bt
+          google.by
+          google.ca
+          google.cd
+          google.cf
+          google.cg
+          google.ch
+          google.ci
+          google.cl
+          google.cm
+          google.cn
+          google.cv
+          google.cz
+          google.de
+          google.dj
+          google.dk
+          google.dm
+          google.dz
+          google.ee
+          google.es
+          google.fi
+          google.fm
+          google.fr
+          google.ga
+          google.ge
+          google.gg
+          google.gl
+          google.gm
+          google.gp
+          google.gr
+          google.gy
+          google.hn
+          google.hr
+          google.ht
+          google.hu
+          google.ie
+          google.im
+          google.iq
+          google.is
+          google.it
+          google.je
+          google.jo
+          google.kg
+          google.ki
+          google.kz
+          google.la
+          google.li
+          google.lk
+          google.lt
+          google.lu
+          google.lv
+          google.mg
+          google.mk
+          google.ml
+          google.mn
+          google.mo
+          google.ms
+          google.mu
+          google.mv
+          google.mw
+          google.ne
+          google.ng
+          google.nl
+          google.no
+          google.nr
+          google.nu
+          google.pl
+          google.pn
+          google.pt
+          google.ro
+          google.rs
+          google.ru
+          google.rw
+          google.sc
+          google.se
+          google.sh
+          google.si
+          google.sk
+          google.sm
+          google.sn
+          google.so
+          google.st
+          google.td
+          google.tg
+          google.tk
+          google.tl
+          google.tn
+          google.to
+          google.tt
+          google.vg
+          google.vu
+          google.ws
+          local.google.com
+  com.google.android.gms:
+    ID: a2f55f54-3aae-49c9-b703-04098469889f
+    Signatures: [7C:E8:3C:1B:71:F3:D5:72:FE:D0:4C:8D:40:C5:CB:10:FF:75:E6:D8:7D:9D:F6:FB:D5:3F:04:68:C2:90:50:53]
+    Domain verification state:
+      digitalkeypairing.org: system_configured
+      proofing.gmsdrops.goog: system_configured
+      wallet.apple.com: system_configured
+      staging-walletshare.sandbox.googleapis.com: system_configured
+      walletshare.googleapis.com: system_configured
+      cert-wallet.apple.com: system_configured
+      pay.sandbox.google.com: system_configured
+      one.google.com: system_configured
+      simtransfer.goog: system_configured
+      gds.google.com: system_configured
+      proofing.upgradeparty.goog: system_configured
+      accounts.google.com: system_configured
+      accounts.sandbox.google.com: system_configured
+      business.google.com: system_configured
+      enterprise.google.com: system_configured
+      *.app.goo.gl: system_configured
+      wallet.google.com: system_configured
+      gaiastaging.corp.google.com: system_configured
+      pay.google.com: system_configured
+      www.android.com: system_configured
+      near.by: system_configured
+    User all:
+      Verification link handling allowed: true
+      Selection state:
+        Disabled:
+          fir-auth-gms.firebaseapp.com
+          digitalkeypairing.org
+          proofing.gmsdrops.goog
+          wallet.apple.com
+          staging-walletshare.sandbox.googleapis.com
+          walletshare.googleapis.com
+          cert-wallet.apple.com
+          pay.sandbox.google.com
+          one.google.com
+          simtransfer.goog
+          gds.google.com
+          proofing.upgradeparty.goog
+          accounts.google.com
+          accounts.sandbox.google.com
+          business.google.com
+          enterprise.google.com
+          *.app.goo.gl
+          wallet.google.com
+          gaiastaging.corp.google.com
+          pay.google.com
+          www.android.com
+          near.by
+  com.google.android.videos:
+    ID: f533c8b9-e601-4664-9881-3ff0496411c3
+    Signatures: [5A:AD:2B:EE:6D:B9:5D:17:E0:5A:08:D7:D1:E6:4C:10:A1:51:18:79:15:44:83:91:6B:6A:E6:C7:FD:9C:B0:C6]
+    Domain verification state:
+      play.google.com: system_configured
+      tv.google.com: system_configured
+    User all:
+      Verification link handling allowed: true
+      Selection state:
+        Disabled:
+          play.google.com
+          tv.google.com
+  com.google.android.apps.photos:
+    ID: 3f807b63-6a4a-4dad-baf9-0e998b98c43b
+    Signatures: [5A:AD:2B:EE:6D:B9:5D:17:E0:5A:08:D7:D1:E6:4C:10:A1:51:18:79:15:44:83:91:6B:6A:E6:C7:FD:9C:B0:C6]
+    Domain verification state:
+      photos.google.com: system_configured
+      goo.gl: system_configured
+      crowdsource.google.com: system_configured
+      photos.app.goo.gl: system_configured
+    User all:
+      Verification link handling allowed: true
+      Selection state:
+        Disabled:
+          photos.google.com
+          goo.gl
+          crowdsource.google.com
+          photos.app.goo.gl
+  com.google.android.calendar:
+    ID: b5bb331c-60b4-4721-ae6c-ea49f1252c9e
+    Signatures: [7C:E8:3C:1B:71:F3:D5:72:FE:D0:4C:8D:40:C5:CB:10:FF:75:E6:D8:7D:9D:F6:FB:D5:3F:04:68:C2:90:50:53]
+    Domain verification state:
+      www.google.com: system_configured
+      calendar.google.com: system_configured
+      client-side-encryption.google.com: system_configured
+      krahsc.google.com: system_configured
+    User all:
+      Verification link handling allowed: true
+      Selection state:
+        Disabled:
+          www.google.com
+          calendar.google.com
+          client-side-encryption.google.com
+          krahsc.google.com
+  com.google.android.projection.gearhead:
+    ID: 25fdabe1-176a-4f68-b62e-90137380ca24
+    Signatures: [1C:A8:DC:C0:BE:D3:CB:D8:72:D2:CB:79:12:00:C0:29:2C:A9:97:57:68:A8:2D:67:6B:8B:42:4F:B6:5B:52:95]
+    Domain verification state:
+      androidauto.com: verified
+    User all:
+      Verification link handling allowed: true
+      Selection state:
+        Disabled:
+          androidauto.com
+  com.android.wallpaper:
+    ID: 5ccdbf7f-86ba-4a75-96ec-92ec8f582177
+    Signatures: [35:F9:D6:BA:56:31:96:14:81:2D:B8:91:73:9F:81:E4:45:6F:F1:1F:E1:AC:F0:D5:0F:D2:C5:42:7E:9D:00:DD]
+    Domain verification state:
+      g.co: 1024
+    User all:
+      Verification link handling allowed: true
+      Selection state:
+        Disabled:
+          g.co
+  com.google.android.apps.youtube.music:
+    ID: 8c4b7bcd-362f-473f-9f31-aeeb649c2197
+    Signatures: [6A:2F:65:EC:69:4A:6A:63:2A:CD:CB:50:80:91:2A:56:5F:90:3D:4B:8D:83:F0:EB:8E:44:FB:DF:26:60:D8:E1]
+    Domain verification state:
+      music.youtube.com: system_configured
+    User all:
+      Verification link handling allowed: true
+      Selection state:
+        Disabled:
+          music.youtube.com
+  com.google.android.apps.adm:
+    ID: 94ff6a88-4935-42a8-8fc8-4cef0198cd0a
+    Signatures: [7C:E8:3C:1B:71:F3:D5:72:FE:D0:4C:8D:40:C5:CB:10:FF:75:E6:D8:7D:9D:F6:FB:D5:3F:04:68:C2:90:50:53]
+    Domain verification state:
+      google.com: verified
+      findmydevice.app.google: verified
+      www.google.com: verified
+      android.com: verified
+      www.android.com: verified
+    User all:
+      Verification link handling allowed: true
+      Selection state:
+        Disabled:
+          google.com
+          findmydevice.app.google
+          www.google.com
+          android.com
+          www.android.com
+  com.google.android.inputmethod.latin e9f593aa-c206-46aa-8997-9b72153d7885:
+    User all:
+      Verification link handling allowed: true
+      Selection state:
+        Disabled:
+          deeplink.com.google.android.inputmethod.latin

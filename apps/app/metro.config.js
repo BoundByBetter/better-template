@@ -48,9 +48,7 @@ config.cacheStores = [
   }),
 ];
 
-config.maxWorkers = 2;
-
-config.transformer.enableBabelRCLookup = false;
-config.transformer.enableBabelRuntime = false;
+// config.transformer.enableBabelRCLookup = false;
+// config.transformer.enableBabelRuntime = false;
 
 module.exports = config;

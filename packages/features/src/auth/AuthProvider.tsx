@@ -1,6 +1,7 @@
 import React from 'react';
 import { useCurrentUser } from '@boundbybetter/state';
 import { LogInScreen } from './LogInScreen';
+import { logCall } from '@boundbybetter/shared';
 
 export interface AuthProviderProps {
   children: JSX.Element;
@@ -8,17 +9,13 @@ export interface AuthProviderProps {
 
 export const AuthProvider = (props: AuthProviderProps) => {
   const user = useCurrentUser();
+  logCall('AuthProvider', user);
 
   // Function to check if the user is logged in
   const isLoggedIn = () => {
-    return user?.userEmail !== undefined;
+    return user?.userId !== undefined;
   };
 
-  // Render login screen if user is not logged in
-  if (!isLoggedIn()) {
-    return <LogInScreen />;
-  }
-
   // Render the app if user is logged in
-  return props.children;
+  return isLoggedIn() ? props.children : <LogInScreen />;
 };

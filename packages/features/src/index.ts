@@ -1,4 +1,6 @@
 // istanbul ignore file
+import { Platform } from 'react-native';
+
 export { TaskList } from './tasks/TaskList';
 export { FeatureList } from './features/FeatureList';
 export { Banner, SiteBanner, AdminBanner } from './components/Banner';

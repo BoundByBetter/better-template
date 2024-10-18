@@ -16,9 +16,11 @@
   },
   "dependencies": {
     "@azure/functions": "^4.5.1",
-    "@azure/web-pubsub": "^1.1.3"
+    "@azure/web-pubsub": "^1.1.3",
+    "jsonwebtoken": "^9.0.2"
   },
   "devDependencies": {
+    "@types/jsonwebtoken": "^9",
     "azure-functions-core-tools": "^4.x",
     "azurite": "^3.32.0"
   },
