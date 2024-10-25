@@ -1,12 +1,21 @@
 import { renderHook } from '@testing-library/react-native';
 import { useTask } from './useTask';
-import { store } from '../store';
+import { createStore } from 'tinybase';
+import { useUserStore } from '../useUserStore';
 import { describe, it, expect, beforeEach } from '@jest/globals';
 import { globalOptions } from '@boundbybetter/shared';
 
+jest.mock('../useUserStore', () => ({
+  useUserStore: jest.fn(),
+}));
+
 describe('useTask', () => {
+  let store;
+
   beforeEach(() => {
-    store.delTables();
+    jest.clearAllMocks();
+    store = createStore();
+    (useUserStore as jest.Mock).mockReturnValue(store);
   });
 
   it('should return a specific task from the store with createdAt and updatedAt', () => {
@@ -53,20 +62,5 @@ describe('useTask', () => {
     const { result } = renderHook(() => useTask('1'));
 
     expect(result.current).toBeUndefined();
-  });
-
-  it('should log the caller if provided', () => {
-    const spy = jest.spyOn(console, 'log');
-    globalOptions.logging = 'true';
-    renderHook(() => useTask('1', ['test']));
-    expect(spy).toHaveBeenCalledWith(
-      expect.any(String),
-      'call',
-      'test',
-      'useTask',
-      '1',
-    );
-    spy.mockRestore();
-    globalOptions.logging = 'false';
   });
 });

@@ -79,6 +79,31 @@ jest.mock('@boundbybetter/features', () => {
   };
 });
 
+jest.mock('@boundbybetter/auth', () => {
+  const React = jest.requireActual('react');
+  const View = jest.requireActual('react-native').View;
+  return {
+    AuthProvider: jest
+      .fn()
+      .mockImplementation(({ children }: { children: React.ReactNode }) => (
+        <View testID="AuthProvider">{children}</View>
+      )),
+    useCurrentUser: jest.fn(),
+  };
+});
+
+jest.mock('@boundbybetter/state', () => {
+  const React = jest.requireActual('react');
+  const View = jest.requireActual('react-native').View;
+  return {
+    StateProvider: jest
+      .fn()
+      .mockImplementation(({ children }: { children: React.ReactNode }) => (
+        <View testID="StateProvider">{children}</View>
+      )),
+  };
+});
+
 jest.mock('expo-splash-screen', () => {
   const actual = jest.requireActual('expo-splash-screen');
   return {
@@ -132,3 +157,16 @@ jest.mock('react-native/Libraries/Animated/NativeAnimatedHelper');
 //   "@tamagui/font-inter/otf/Inter-Bold.otf",
 //   () => "mocked-inter-bold-font",
 // );
+jest.mock('@azure/web-pubsub-client', () => ({
+  WebPubSubClient: {
+    constructor() {
+      // Initialize any necessary properties or state here
+    },
+    sendEvent: jest.fn(),
+    on: jest.fn(),
+    sendToGroup: jest.fn(),
+    start: jest.fn(),
+    joinGroup: jest.fn(),
+    stop: jest.fn(),
+  },
+}));

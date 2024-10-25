@@ -1,8 +1,9 @@
 import { useRow } from 'tinybase/ui-react';
-import { store } from '../store';
 import { Feature, FeatureStatus } from '@boundbybetter/shared';
+import { useUserStore } from '../useUserStore';
 
 export const useFeature = (featureId: string): Feature | undefined => {
+  const store = useUserStore();
   const feature = useRow('features', featureId, store);
   return Object.keys(feature).length === 0
     ? undefined

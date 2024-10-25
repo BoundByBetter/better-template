@@ -1,13 +1,13 @@
 import React from 'react';
 import { fireEvent, waitFor } from '@testing-library/react-native';
 import { AddFeature } from './AddFeature';
-import { addFeature } from '@boundbybetter/state';
+import { useAddFeature } from '@boundbybetter/state';
 import { renderWithTamagui } from '../../renderWithTamagui.test-util';
 import { describe, expect, it } from '@jest/globals';
 import '@testing-library/jest-native/extend-expect';
 
 jest.mock('@boundbybetter/state', () => ({
-  addFeature: jest.fn(),
+  useAddFeature: jest.fn(),
 }));
 
 describe('AddFeature', () => {
@@ -21,6 +21,8 @@ describe('AddFeature', () => {
   });
 
   it('should update the status when the selected value changes', async () => {
+    const addFeatureMock = jest.fn();
+    (useAddFeature as jest.Mock).mockImplementation(() => addFeatureMock);
     const { getByTestId, getByText } = renderWithTamagui(<AddFeature />);
     const select = getByTestId('select-status');
     expect(select).toBeTruthy();
@@ -28,7 +30,7 @@ describe('AddFeature', () => {
     await waitFor(() => expect(select).toHaveTextContent('ACTIVE'));
     const addButton = getByText('Add');
     fireEvent.press(addButton);
-    expect(addFeature).toHaveBeenCalledWith(
+    expect(addFeatureMock).toHaveBeenCalledWith(
       expect.objectContaining({
         status: 'ACTIVE',
       }),
@@ -36,6 +38,8 @@ describe('AddFeature', () => {
   });
 
   it('should call addFeature when Add button is pressed', async () => {
+    const addFeatureMock = jest.fn();
+    (useAddFeature as jest.Mock).mockImplementation(() => addFeatureMock);
     const { getByPlaceholderText, getByText } = renderWithTamagui(
       <AddFeature />,
     );
@@ -46,7 +50,7 @@ describe('AddFeature', () => {
     fireEvent.press(addButton);
 
     await waitFor(() =>
-      expect(addFeature).toHaveBeenCalledWith(
+      expect(addFeatureMock).toHaveBeenCalledWith(
         expect.objectContaining({
           key: 'New Feature Title',
           status: 'INACTIVE',

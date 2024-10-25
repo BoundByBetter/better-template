@@ -1,5 +1,5 @@
 import React from 'react';
-import { bulkAddTasks } from '@boundbybetter/state';
+import { useBulkAddTasks } from '@boundbybetter/state';
 import { tg } from '@boundbybetter/ui';
 
 interface BulkAddButtonProps {
@@ -7,6 +7,7 @@ interface BulkAddButtonProps {
 }
 
 export const BulkAddButton = ({ count }: BulkAddButtonProps) => {
+  const bulkAddTasks = useBulkAddTasks();
   const handleBulkAdd = () => {
     bulkAddTasks(count);
   };

@@ -4,6 +4,7 @@ import { TaskList } from '../TaskList';
 import { TaskDetails } from '../TaskDetails';
 import { tg } from '@boundbybetter/ui';
 import { describe, it, beforeEach, expect } from '@jest/globals';
+import { act } from '@testing-library/react-native';
 
 jest.mock('../TaskList', () => {
   const View = require('react-native').View;
@@ -46,7 +47,9 @@ describe('TasksScreen', () => {
     // Simulate task selection
     const taskList = TaskList as unknown as jest.Mock;
     const onSelectTask = taskList.mock.calls[0][0].onSelectTask;
-    onSelectTask('task-1');
+    act(() => {
+      onSelectTask('task-1');
+    });
 
     expect(TaskDetails).toHaveBeenCalledWith(
       expect.objectContaining({ taskId: 'task-1' }),
@@ -60,12 +63,16 @@ describe('TasksScreen', () => {
     // Simulate task selection
     const taskList = TaskList as unknown as jest.Mock;
     const onSelectTask = taskList.mock.calls[0][0].onSelectTask;
-    onSelectTask('task-1');
+    act(() => {
+      onSelectTask('task-1');
+    });
 
     // Simulate closing TaskDetails
     const taskDetails = TaskDetails as jest.Mock;
     const onClose = taskDetails.mock.calls[0][0].onClose;
-    onClose();
+    act(() => {
+      onClose();
+    });
 
     expect(TaskDetails).toHaveBeenCalledTimes(1);
     taskDetails.mockClear();
@@ -84,7 +91,9 @@ describe('TasksScreen', () => {
     // Simulate task selection
     const taskList = TaskList as unknown as jest.Mock;
     const onSelectTask = taskList.mock.calls[0][0].onSelectTask;
-    onSelectTask('task-1');
+    act(() => {
+      onSelectTask('task-1');
+    });
 
     expect(TaskDetails).toHaveBeenCalledWith(
       expect.objectContaining({ taskId: 'task-1' }),

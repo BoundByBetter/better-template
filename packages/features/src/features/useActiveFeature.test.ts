@@ -1,11 +1,15 @@
 import { renderHook } from '@testing-library/react-native';
-import { useCurrentUser, useFeature } from '@boundbybetter/state';
+import { useFeature } from '@boundbybetter/state';
 import { FeatureStatus } from '@boundbybetter/shared';
 import { useActiveFeature } from './useActiveFeature';
+import { useCurrentUser } from '@boundbybetter/auth';
 import { describe, it, expect } from '@jest/globals';
 
 jest.mock('@boundbybetter/state', () => ({
   useFeature: jest.fn(),
+}));
+
+jest.mock('@boundbybetter/auth', () => ({
   useCurrentUser: jest.fn(),
 }));
 

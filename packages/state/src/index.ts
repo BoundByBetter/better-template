@@ -1,23 +1,19 @@
 /* istanbul ignore file */
-export { useTasks } from './tasks/useTasks';
+export { useTaskIds } from './tasks/useTaskIds';
 export { useTask } from './tasks/useTask';
 export { useTaskStatus } from './tasks/useTaskStatus';
 export { useBulkLoadStatus } from './tasks/useBulkLoadStatus';
 export { useTaskCount } from './tasks/useTaskCount';
-export { addTask } from './tasks/addTask';
-export { updateTask } from './tasks/updateTask';
-export { deleteTask } from './tasks/deleteTask';
-export { bulkAddTasks } from './tasks/bulkAddTasks';
-export { clearAllTasks } from './tasks/clearAllTasks';
+export { useAddTask } from './tasks/useAddTask';
+export { useUpdateTask } from './tasks/useUpdateTask';
+export { useDeleteTask } from './tasks/useDeleteTask';
+export { useBulkAddTasks } from './tasks/useBulkAddTasks';
+export { useClearAllTasks } from './tasks/useClearAllTasks';
 
 export { useFeatures } from './features/useFeatures';
 export { useFeature } from './features/useFeature';
-export { addFeature } from './features/addFeature';
-export { updateFeature } from './features/updateFeature';
-export { deleteFeature } from './features/deleteFeature';
+export { useAddFeature } from './features/useAddFeature';
+export { useUpdateFeature } from './features/useUpdateFeature';
+export { useDeleteFeature } from './features/useDeleteFeature';
 
-export { useCurrentUser } from './users/useCurrentUser';
-export { updateCurrentUser } from './users/updateCurrentUser';
-export { clearCurrentUser } from './users/clearCurrentUser';
-
-export { store, connectToSyncServer } from './store';
+export { UserStateProvider as StateProvider } from './UserStateProvider';

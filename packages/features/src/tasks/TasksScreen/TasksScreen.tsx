@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import { TaskList } from '../TaskList';
 import { TaskDetails } from '../TaskDetails';
 import { tg } from '@boundbybetter/ui';
@@ -9,15 +9,15 @@ export function TasksScreen() {
   const [selectedTaskId, setSelectedTaskId] = useState<string | null>(null);
   const media = tg.useMedia();
 
-  const handleSelectTask = (taskId: string) => {
+  const handleSelectTask = useCallback((taskId: string) => {
     logCall('TasksScreen', 'handleSelectTask', { taskId });
     setSelectedTaskId(taskId);
-  };
+  }, []);
 
-  const handleCloseDetails = () => {
+  const handleCloseDetails = useCallback(() => {
     logCall('TasksScreen', 'handleCloseDetails');
     setSelectedTaskId(null);
-  };
+  }, []);
 
   if (media.gtMd) {
     logCall(

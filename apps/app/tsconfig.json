@@ -9,5 +9,5 @@
     "../../packages/**/*.ts",
     ".expo/types/**/*.ts", 
     "expo-env.d.ts"
-  ]
+, "../../packages/auth/src/useCurrentUser.test.tsx", "../../packages/state/src/renderWithMockUserStateProvider.test-util.tsx"  ]
 }

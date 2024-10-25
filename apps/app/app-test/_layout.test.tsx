@@ -13,13 +13,13 @@ describe('_layout', () => {
     jest.clearAllMocks();
   });
 
-  it('should render the authentication provider', async () => {
+  it('should render the authentication provider and state provider', async () => {
     (useFonts as jest.Mock).mockReturnValue([true, null]);
-    //render(<RootLayout />)
     renderRouter(appDir, {
       initialUrl: '/',
     });
     expect(screen.queryByTestId('AuthProvider')).not.toBeNull();
+    expect(screen.queryByTestId('StateProvider')).not.toBeNull();
   }, 60000);
 
   it('should render tab one for the root', async () => {

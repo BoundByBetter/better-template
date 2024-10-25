@@ -1,7 +1,8 @@
 import { useCell } from 'tinybase/ui-react';
-import { store } from '../store';
+import { useUserStore } from '../useUserStore';
 
 export const useBulkLoadStatus = () => {
+  const store = useUserStore();
   const isBulkLoading = useCell('app', 'status', 'isBulkLoading', store);
   const bulkLoadingProgress = useCell(
     'app',

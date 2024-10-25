@@ -1,20 +1,23 @@
 import React from 'react';
 import { TaskList } from './TaskList';
-import { useTasks, useBulkLoadStatus, deleteTask } from '@boundbybetter/state';
-import { AddTask } from '../AddTask';
+import {
+  useTaskIds,
+  useBulkLoadStatus,
+  useDeleteTask,
+} from '@boundbybetter/state';
 import { renderWithTamagui } from '../../renderWithTamagui.test-util';
 import { describe, it, expect, beforeEach } from '@jest/globals';
 import { TaskItem } from '../TaskItem';
 import { fireEvent } from '@testing-library/react-native';
 
-//mock useTasks
+// Mock useTasks and other hooks
 jest.mock('@boundbybetter/state', () => ({
-  useTasks: jest.fn(),
+  useTaskIds: jest.fn(),
   useBulkLoadStatus: jest.fn(),
-  deleteTask: jest.fn(),
+  useDeleteTask: jest.fn(),
 }));
 
-//spy on TaskItem
+// Spy on TaskItem
 jest.mock('../TaskItem', () => {
   const { View } = require('react-native');
   return {
@@ -26,11 +29,16 @@ jest.mock('../TaskItem', () => {
   };
 });
 
-//mock AddTask
+// Mock AddTask without jest.fn()
 jest.mock('../AddTask', () => {
+  const React = require('react');
   const { View } = require('react-native');
+  const AddTask = React.forwardRef((props, ref) => (
+    <View testID="add-task" ref={ref} {...props} />
+  ));
+  AddTask.displayName = 'AddTask';
   return {
-    AddTask: jest.fn(() => <View testID="add-task" />),
+    AddTask,
   };
 });
 
@@ -40,23 +48,7 @@ describe('TaskList', () => {
   });
 
   it('should render a TaskItem for each task', () => {
-    const mockTasks = [
-      {
-        id: '1',
-        title: 'My Task',
-        status: 'ACTIVE',
-        content: 'This is my task',
-        createdAt: '2023-05-01T00:00:00.000Z',
-      },
-      {
-        id: '2',
-        title: 'My Second Task',
-        status: 'ACTIVE',
-        content: 'This is my second task',
-        createdAt: '2023-05-02T00:00:00.000Z',
-      },
-    ];
-    (useTasks as jest.Mock).mockReturnValue(mockTasks);
+    (useTaskIds as jest.Mock).mockReturnValue(['1', '2']);
     (useBulkLoadStatus as jest.Mock).mockReturnValue({
       isBulkLoading: false,
       bulkLoadingProgress: 0,
@@ -86,21 +78,19 @@ describe('TaskList', () => {
   });
 
   it('should render an AddTask component', () => {
-    (useTasks as jest.Mock).mockReturnValue([]);
+    (useTaskIds as jest.Mock).mockReturnValue([]);
     (useBulkLoadStatus as jest.Mock).mockReturnValue({
       isBulkLoading: false,
       bulkLoadingProgress: 0,
     });
-    renderWithTamagui(<TaskList onSelectTask={jest.fn()} />);
-    expect(AddTask).toHaveBeenCalledTimes(1);
+    const { getByTestId } = renderWithTamagui(
+      <TaskList onSelectTask={jest.fn()} />,
+    );
+    expect(getByTestId('add-task')).toBeTruthy();
   });
 
   it('should display the correct total task count', () => {
-    const mockTasks = [
-      { id: '1', title: 'Task 1', createdAt: '2023-05-01T00:00:00.000Z' },
-      { id: '2', title: 'Task 2', createdAt: '2023-05-02T00:00:00.000Z' },
-    ];
-    (useTasks as jest.Mock).mockReturnValue(mockTasks);
+    (useTaskIds as jest.Mock).mockReturnValue(['1', '2']);
     (useBulkLoadStatus as jest.Mock).mockReturnValue({
       isBulkLoading: false,
       bulkLoadingProgress: 0,
@@ -113,7 +103,7 @@ describe('TaskList', () => {
   });
 
   it('should display loading state when bulk loading', () => {
-    (useTasks as jest.Mock).mockReturnValue([]);
+    (useTaskIds as jest.Mock).mockReturnValue([]);
     (useBulkLoadStatus as jest.Mock).mockReturnValue({
       isBulkLoading: true,
       bulkLoadingProgress: 50,
@@ -126,20 +116,7 @@ describe('TaskList', () => {
   });
 
   it('should display a message when there are no tasks', () => {
-    (useTasks as jest.Mock).mockReturnValue([]);
-    (useBulkLoadStatus as jest.Mock).mockReturnValue({
-      isBulkLoading: false,
-      bulkLoadingProgress: 0,
-    });
-
-    const { getByText } = renderWithTamagui(
-      <TaskList onSelectTask={jest.fn()} />,
-    );
-    expect(getByText('Total Tasks: 0')).toBeTruthy();
-  });
-
-  it('should handle undefined tasks', () => {
-    (useTasks as jest.Mock).mockReturnValue(undefined);
+    (useTaskIds as jest.Mock).mockReturnValue([]);
     (useBulkLoadStatus as jest.Mock).mockReturnValue({
       isBulkLoading: false,
       bulkLoadingProgress: 0,
@@ -152,7 +129,7 @@ describe('TaskList', () => {
   });
 
   it('should handle empty tasks array', () => {
-    (useTasks as jest.Mock).mockReturnValue([]);
+    (useTaskIds as jest.Mock).mockReturnValue([]);
     (useBulkLoadStatus as jest.Mock).mockReturnValue({
       isBulkLoading: false,
       bulkLoadingProgress: 0,
@@ -165,23 +142,7 @@ describe('TaskList', () => {
   });
 
   it('should call onSelectTask and update selectedTaskIndex when a task is selected', () => {
-    const mockTasks = [
-      {
-        id: '1',
-        title: 'My Task',
-        status: 'ACTIVE',
-        content: 'This is my task',
-        createdAt: '2023-05-01T00:00:00.000Z',
-      },
-      {
-        id: '2',
-        title: 'My Second Task',
-        status: 'ACTIVE',
-        content: 'This is my second task',
-        createdAt: '2023-05-02T00:00:00.000Z',
-      },
-    ];
-    (useTasks as jest.Mock).mockReturnValue(mockTasks);
+    (useTaskIds as jest.Mock).mockReturnValue(['1', '2']);
     (useBulkLoadStatus as jest.Mock).mockReturnValue({
       isBulkLoading: false,
       bulkLoadingProgress: 0,
@@ -215,15 +176,13 @@ describe('TaskList', () => {
   });
 
   it('should handle task deletion correctly', () => {
-    const mockTasks = [
-      { id: '1', title: 'Task 1', createdAt: '2023-05-01T00:00:00.000Z' },
-      { id: '2', title: 'Task 2', createdAt: '2023-05-02T00:00:00.000Z' },
-    ];
-    (useTasks as jest.Mock).mockReturnValue(mockTasks);
+    (useTaskIds as jest.Mock).mockReturnValue(['1', '2']);
     (useBulkLoadStatus as jest.Mock).mockReturnValue({
       isBulkLoading: false,
       bulkLoadingProgress: 0,
     });
+    const deleteTaskMock = jest.fn();
+    (useDeleteTask as jest.Mock).mockImplementation(() => deleteTaskMock);
 
     const mockOnSelectTask = jest.fn();
     const { getAllByTestId } = renderWithTamagui(
@@ -242,7 +201,7 @@ describe('TaskList', () => {
     fireEvent.press(deleteButtons[0]);
 
     // Check if deleteTask was called with the correct task id
-    expect(deleteTask).toHaveBeenCalledWith('1');
+    expect(deleteTaskMock).toHaveBeenCalledWith('1');
 
     // Check if TaskItem is rendered with updated props
     expect(TaskItem).toHaveBeenCalledTimes(2);
@@ -256,15 +215,14 @@ describe('TaskList', () => {
   });
 
   it('should deselect task when deleting the selected task', () => {
-    const mockTasks = [
-      { id: '1', title: 'Task 1', createdAt: '2023-05-01T00:00:00.000Z' },
-      { id: '2', title: 'Task 2', createdAt: '2023-05-02T00:00:00.000Z' },
-    ];
-    (useTasks as jest.Mock).mockReturnValue(mockTasks);
+    (useTaskIds as jest.Mock).mockReturnValue(['1', '2']);
     (useBulkLoadStatus as jest.Mock).mockReturnValue({
       isBulkLoading: false,
       bulkLoadingProgress: 0,
     });
+
+    const deleteTaskMock = jest.fn();
+    (useDeleteTask as jest.Mock).mockImplementation(() => deleteTaskMock);
 
     const mockOnSelectTask = jest.fn();
     const { getAllByTestId } = renderWithTamagui(
@@ -283,7 +241,7 @@ describe('TaskList', () => {
     fireEvent.press(deleteButtons[0]);
 
     // Check if deleteTask was called with the correct task id
-    expect(deleteTask).toHaveBeenCalledWith('1');
+    expect(deleteTaskMock).toHaveBeenCalledWith('1');
 
     // Check if TaskItem is rendered with updated props
     expect(TaskItem).toHaveBeenCalledTimes(2);

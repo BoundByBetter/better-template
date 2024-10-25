@@ -4,16 +4,25 @@ import { AddTask } from './AddTask';
 import { renderWithTamagui } from '../../renderWithTamagui.test-util';
 import { useActiveFeature } from '../../features/useActiveFeature';
 import { describe, it, expect, beforeEach } from '@jest/globals';
-import { store } from '@boundbybetter/state';
+import { useAddTask, useTaskCount } from '@boundbybetter/state';
 
 jest.mock('../../features/useActiveFeature', () => ({
   useActiveFeature: jest.fn(),
 }));
 
+jest.mock('@boundbybetter/state', () => ({
+  useTaskCount: jest.fn(),
+  useAddTask: jest.fn(),
+}));
+
 describe('AddTask', () => {
   beforeEach(() => {
-    store.delTables();
     (useActiveFeature as jest.Mock).mockReturnValue(true);
+    (useTaskCount as jest.Mock).mockReturnValue(0);
+    (useAddTask as jest.Mock).mockImplementation((task) => {
+      // Mock implementation for adding a task
+      return jest.fn();
+    });
   });
 
   it('should update the title when input value changes', () => {
@@ -26,6 +35,9 @@ describe('AddTask', () => {
   });
 
   it('should add a new task when Add button is pressed and clear the input', async () => {
+    const addTaskMock = jest.fn();
+    (useAddTask as jest.Mock).mockImplementation(() => addTaskMock);
+
     const { getByPlaceholderText, getByText } = renderWithTamagui(<AddTask />);
     const inputElement = getByPlaceholderText('New Task Name');
     const addButton = getByText('Add');
@@ -34,12 +46,13 @@ describe('AddTask', () => {
     fireEvent.press(addButton);
 
     await waitFor(() => {
-      const tasks = store.getTable('tasks');
-      expect(Object.keys(tasks).length).toBe(1);
-      const newTask = Object.values(tasks)[0] as any;
-      expect(newTask.title).toBe('New Task Title');
-      expect(newTask.status).toBe('ACTIVE');
-      expect(newTask.rating).toBe(5);
+      expect(addTaskMock).toHaveBeenCalledWith(
+        expect.objectContaining({
+          title: 'New Task Title',
+          rating: 5,
+          status: 'ACTIVE',
+        }),
+      );
     });
 
     expect(inputElement.props.value).toBe('');
@@ -48,14 +61,8 @@ describe('AddTask', () => {
   it('should prevent the user from adding more than 5 tasks if the user is not a member of the licensed group', async () => {
     (useActiveFeature as jest.Mock).mockReturnValue(false);
 
-    // Add 5 tasks to the store
-    for (let i = 0; i < 5; i++) {
-      store.setRow('tasks', `task${i}`, {
-        id: `task${i}`,
-        title: `Task ${i}`,
-        status: 'ACTIVE',
-      });
-    }
+    // Mock the tasks to simulate existing tasks
+    (useTaskCount as jest.Mock).mockReturnValue(5);
 
     const { getByText } = renderWithTamagui(<AddTask />);
 

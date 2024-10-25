@@ -2,21 +2,24 @@ import React from 'react';
 import { fireEvent } from '@testing-library/react-native';
 import { Settings } from './Settings';
 import {
-  useCurrentUser,
-  clearCurrentUser,
-  clearAllTasks,
+  useClearAllTasks,
   useTaskCount,
   useBulkLoadStatus,
 } from '@boundbybetter/state';
 import { renderWithTamagui } from '../../renderWithTamagui.test-util';
 import { describe, it, expect } from '@jest/globals';
+import { useCurrentUser, useLogOut } from '@boundbybetter/auth';
 
 jest.mock('@boundbybetter/state', () => ({
-  useCurrentUser: jest.fn(),
-  clearCurrentUser: jest.fn(),
-  clearAllTasks: jest.fn(),
+  useClearAllTasks: jest.fn(),
   useTaskCount: jest.fn(),
+  useBulkAddTasks: jest.fn(),
   useBulkLoadStatus: jest.fn(),
+}));
+
+jest.mock('@boundbybetter/auth', () => ({
+  useCurrentUser: jest.fn(),
+  useLogOut: jest.fn(),
 }));
 
 describe('Settings', () => {
@@ -49,7 +52,7 @@ describe('Settings', () => {
     expect(getByText('Hello there John Doe,')).toBeTruthy();
   });
 
-  it('should call clearCurrentUser when the sign out button is pressed', () => {
+  it('should call logOut when the sign out button is pressed', () => {
     (useCurrentUser as jest.Mock).mockReturnValue({
       userName: 'John Doe',
       userEmail: 'john@example.com',
@@ -59,11 +62,13 @@ describe('Settings', () => {
       isBulkLoading: false,
       bulkLoadingProgress: 0,
     });
+    const logOutMock = jest.fn();
+    (useLogOut as jest.Mock).mockImplementation(() => logOutMock);
 
     const { getByText } = renderWithTamagui(<Settings />);
-    const signOutButton = getByText('Sign Out');
+    const signOutButton = getByText('Log Out');
     fireEvent.press(signOutButton);
-    expect(clearCurrentUser).toHaveBeenCalled();
+    expect(logOutMock).toHaveBeenCalled();
   });
 
   it('should call clearAllTasks when the clear all tasks button is pressed', () => {
@@ -76,11 +81,13 @@ describe('Settings', () => {
       isBulkLoading: false,
       bulkLoadingProgress: 0,
     });
+    const clearAllTasksMock = jest.fn();
+    (useClearAllTasks as jest.Mock).mockImplementation(() => clearAllTasksMock);
 
     const { getByTestId } = renderWithTamagui(<Settings />);
     const clearAllTasksButton = getByTestId('clear-all-tasks');
     fireEvent.press(clearAllTasksButton);
-    expect(clearAllTasks).toHaveBeenCalled();
+    expect(clearAllTasksMock).toHaveBeenCalled();
   });
 
   it('should display the correct number of tasks', () => {

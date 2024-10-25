@@ -1,8 +1,9 @@
 import { useTable } from 'tinybase/ui-react';
-import { store } from '../store';
 import { Feature } from '@boundbybetter/shared';
+import { useUserStore } from '../useUserStore';
 
 export const useFeatures = (): Feature[] | undefined => {
+  const store = useUserStore();
   const features = useTable('features', store);
   return Object.keys(features).length === 0
     ? undefined

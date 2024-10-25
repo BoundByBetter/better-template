@@ -1,13 +1,14 @@
 import React from 'react';
 import { fireEvent } from '@testing-library/react-native';
 import { BulkAddButton } from './BulkAddButton';
-import { bulkAddTasks, useBulkLoadStatus } from '@boundbybetter/state';
+import { useBulkAddTasks, useBulkLoadStatus } from '@boundbybetter/state';
 import { renderWithTamagui } from '../../renderWithTamagui.test-util';
 import { describe, beforeEach, afterEach, it, expect } from '@jest/globals';
 
 jest.mock('@boundbybetter/state', () => ({
   bulkAddTasks: jest.fn(),
   useBulkLoadStatus: jest.fn(),
+  useBulkAddTasks: jest.fn(), // Add this line to mock useBulkAddTasks
 }));
 
 describe('BulkAddButton', () => {
@@ -32,12 +33,14 @@ describe('BulkAddButton', () => {
   });
 
   it('should call bulkAddTasks when pressed', () => {
+    const bulkAddTasksMock = jest.fn();
+    (useBulkAddTasks as jest.Mock).mockImplementation(() => bulkAddTasksMock);
     const { getByText } = renderWithTamagui(<BulkAddButton count={100} />);
     const button = getByText('Bulk Add 100 Tasks');
 
     fireEvent.press(button);
 
-    expect(bulkAddTasks).toHaveBeenCalledWith(100);
+    expect(bulkAddTasksMock).toHaveBeenCalledWith(100);
   });
 
   it('should not render in production environment', () => {

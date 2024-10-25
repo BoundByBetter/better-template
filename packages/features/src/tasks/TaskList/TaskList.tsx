@@ -1,13 +1,11 @@
-import React, {
-  useCallback,
-  useMemo,
-  useEffect,
-  useRef,
-  useState,
-} from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { FlashList } from '@shopify/flash-list';
 import { TaskItem } from '../TaskItem';
-import { useTasks, useBulkLoadStatus, deleteTask } from '@boundbybetter/state';
+import {
+  useTaskIds,
+  useBulkLoadStatus,
+  useDeleteTask,
+} from '@boundbybetter/state';
 import { logCall, logMessage, logSetup } from '@boundbybetter/shared';
 import { AddTask } from '../AddTask';
 import { tg } from '@boundbybetter/ui';
@@ -21,32 +19,26 @@ interface TaskListProps {
 
 function TaskListComponent({ onSelectTask }: TaskListProps) {
   logSetup('TaskList');
-  const tasks = useTasks();
+  const taskIds = useTaskIds();
   const { isBulkLoading, bulkLoadingProgress } = useBulkLoadStatus();
   const addTaskInputRef = useRef(null);
   const [selectedTaskIndex, setSelectedTaskIndex] = useState(-1);
-
-  const sortedTasks = useMemo(() => {
-    logCall('TaskList', 'useMemo');
-    return tasks
-      ? [...tasks].sort((a, b) => b.createdAt.localeCompare(a.createdAt))
-      : [];
-  }, [tasks]);
+  const deleteTask = useDeleteTask();
 
   const renderItem = useCallback(
-    ({ item, index }) => {
-      logCall('TaskList', 'renderItem', item.id);
+    ({ item, index }: { item: string; index: number }) => {
+      logCall('TaskList', 'renderItem', item);
       return (
         <TaskItem
-          key={item.id}
-          id={item.id}
+          key={item}
+          id={item}
           isSelected={index === selectedTaskIndex}
           onSelect={() => {
             setSelectedTaskIndex(index);
-            onSelectTask(item.id);
+            onSelectTask(item);
           }}
           onDelete={() => {
-            deleteTask(item.id);
+            deleteTask(item);
             /* istanbul ignore next */
             if (index === selectedTaskIndex) {
               setSelectedTaskIndex(-1);
@@ -55,28 +47,22 @@ function TaskListComponent({ onSelectTask }: TaskListProps) {
         />
       );
     },
-    [selectedTaskIndex, onSelectTask],
+    [selectedTaskIndex, onSelectTask, deleteTask],
   );
-
-  const keyExtractor = useCallback((item) => {
-    logCall('TaskList', 'keyExtractor', item.id);
-    return item.id;
-  }, []);
 
   /* Code coverage is handled by the task-keys.cy.ts test */
   /* istanbul ignore next */
   const handleAddTaskArrowDown = useCallback(() => {
-    if (sortedTasks.length > 0) {
+    if (taskIds.length > 0) {
       setSelectedTaskIndex(0);
     }
-  }, [sortedTasks]);
+  }, [taskIds]);
 
   /* Code coverage is handled by the task-keys.cy.ts test */
   /* istanbul ignore next */
   useEffect(() => {
     if (Platform.OS === 'web') {
       const handleKeyPress = (event: KeyboardEvent) => {
-        console.log('event', event);
         if (
           event.key === 'n' &&
           !event.ctrlKey &&
@@ -89,7 +75,7 @@ function TaskListComponent({ onSelectTask }: TaskListProps) {
           event.preventDefault();
           setSelectedTaskIndex((prevIndex) => {
             const newIndex =
-              prevIndex < sortedTasks.length - 1 ? prevIndex + 1 : prevIndex;
+              prevIndex < taskIds.length - 1 ? prevIndex + 1 : prevIndex;
             logMessage('TaskList', 'ArrowDown', newIndex);
             return newIndex;
           });
@@ -107,12 +93,12 @@ function TaskListComponent({ onSelectTask }: TaskListProps) {
           });
         } else if (event.key === 'Delete' || event.key === 'Backspace') {
           event.preventDefault();
-          if (selectedTaskIndex !== -1 && sortedTasks[selectedTaskIndex]) {
-            const taskToDelete = sortedTasks[selectedTaskIndex];
-            deleteTask(taskToDelete.id);
-            logMessage('TaskList', 'DeleteTask', taskToDelete.id);
+          if (selectedTaskIndex !== -1 && taskIds[selectedTaskIndex]) {
+            const taskToDelete = taskIds[selectedTaskIndex];
+            deleteTask(taskToDelete);
+            logMessage('TaskList', 'DeleteTask', taskToDelete);
             setSelectedTaskIndex((prevIndex) => {
-              return prevIndex >= sortedTasks.length - 1
+              return prevIndex >= taskIds.length - 1
                 ? prevIndex - 1
                 : prevIndex;
             });
@@ -125,7 +111,7 @@ function TaskListComponent({ onSelectTask }: TaskListProps) {
         window.removeEventListener('keydown', handleKeyPress);
       };
     }
-  }, [sortedTasks, selectedTaskIndex]);
+  }, [taskIds, selectedTaskIndex, deleteTask]);
 
   if (isBulkLoading) {
     return (
@@ -147,11 +133,11 @@ function TaskListComponent({ onSelectTask }: TaskListProps) {
   return (
     <tg.YStack flex={1} gap="$4" p="$4" testID="task-list">
       <AddTask ref={addTaskInputRef} onArrowDown={handleAddTaskArrowDown} />
-      {sortedTasks.length > 0 ? (
+      {taskIds.length > 0 ? (
         <FlashList
-          data={sortedTasks}
+          data={taskIds}
           renderItem={renderItem}
-          keyExtractor={keyExtractor}
+          keyExtractor={(item) => item}
           estimatedItemSize={55}
           ItemSeparatorComponent={ItemSeparator}
           contentContainerStyle={{ paddingRight: 28 }}
@@ -161,7 +147,7 @@ function TaskListComponent({ onSelectTask }: TaskListProps) {
         <tg.Text>No tasks available. Add a new task to get started!</tg.Text>
       )}
       <tg.Text p="$2" ta="center" fontSize="$3">
-        Total Tasks: {sortedTasks.length}
+        Total Tasks: {taskIds.length}
       </tg.Text>
     </tg.YStack>
   );

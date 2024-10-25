@@ -1,11 +1,12 @@
 import { useRow } from 'tinybase/ui-react';
-import { store } from '../store';
 import { Task, logCall } from '@boundbybetter/shared';
+import { useUserStore } from '../useUserStore';
 
 export const useTask = (
   taskId: string,
   caller?: string[],
 ): Task | undefined => {
+  const store = useUserStore();
   const logParams = caller
     ? [...caller, 'useTask', taskId]
     : ['useTask', taskId];

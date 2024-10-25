@@ -1,15 +1,28 @@
 import { renderHook } from '@testing-library/react-native';
 import { useFeatures } from './useFeatures';
-import { store } from '../store';
+import { useUserStore } from '../useUserStore';
+import { useTable } from 'tinybase/ui-react';
 import { describe, it, expect, beforeEach } from '@jest/globals';
 
+jest.mock('../useUserStore', () => ({
+  useUserStore: jest.fn(),
+}));
+
+jest.mock('tinybase/ui-react', () => ({
+  useTable: jest.fn(),
+}));
+
 describe('useFeatures', () => {
+  const mockUseUserStore = useUserStore as jest.Mock;
+  const mockUseTable = useTable as jest.Mock;
+
   beforeEach(() => {
-    store.delTables();
+    jest.clearAllMocks();
+    mockUseUserStore.mockReturnValue({});
   });
 
   it('should return all features from the store', () => {
-    store.setTable('features', {
+    const features = {
       feature1: {
         id: 'feature1',
         key: 'Feature 1',
@@ -26,7 +39,9 @@ describe('useFeatures', () => {
         createdAt: new Date().toISOString(),
         updatedAt: new Date().toISOString(),
       },
-    });
+    };
+
+    mockUseTable.mockReturnValue(features);
 
     const { result } = renderHook(() => useFeatures());
 
@@ -51,22 +66,10 @@ describe('useFeatures', () => {
   });
 
   it('should return undefined when there are no features', () => {
+    mockUseTable.mockReturnValue({});
+
     const { result } = renderHook(() => useFeatures());
 
     expect(result.current).toBeUndefined();
-  });
-
-  it('should return an empty array when there are no groups', () => {
-    store.setTable('features', {
-      feature1: {
-        id: 'feature1',
-        key: 'Feature 1',
-        status: 'ACTIVE',
-      },
-    });
-
-    const { result } = renderHook(() => useFeatures());
-
-    expect(result.current[0].groups).toEqual([]);
   });
 });

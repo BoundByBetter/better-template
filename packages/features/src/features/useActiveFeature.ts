@@ -1,6 +1,7 @@
-import { useFeature, useCurrentUser } from '@boundbybetter/state';
+import { useFeature } from '@boundbybetter/state';
 import { features } from './Features';
 import { FeatureStatus } from '@boundbybetter/shared';
+import { useCurrentUser } from '@boundbybetter/auth';
 
 export const useActiveFeature = (featureKey: string): boolean => {
   const featureDetail = features[featureKey];

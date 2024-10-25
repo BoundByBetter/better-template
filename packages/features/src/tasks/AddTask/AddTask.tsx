@@ -1,5 +1,5 @@
 import React, { forwardRef, useState } from 'react';
-import { useTasks, addTask } from '@boundbybetter/state';
+import { useAddTask, useTaskCount } from '@boundbybetter/state';
 import { nanoid } from '@reduxjs/toolkit';
 import { logCall, logSetup, Task, TaskStatus } from '@boundbybetter/shared';
 import { logMessage } from '@boundbybetter/shared';
@@ -18,7 +18,8 @@ export const AddTask = forwardRef<tg.Input, AddTaskProps>(function AddTask(
 ) {
   logSetup('AddTask');
   const [newTaskName, setNewTaskName] = useState('');
-  const tasks = useTasks();
+  const taskCount = useTaskCount();
+  const addTask = useAddTask();
 
   const createTask = async () => {
     logCall('AddTask', 'createTask');
@@ -56,7 +57,6 @@ export const AddTask = forwardRef<tg.Input, AddTaskProps>(function AddTask(
     }
   };
 
-  const taskCount = tasks ? Object.keys(tasks).length : 0;
   const unlimitedTasks = useActiveFeature(FeatureKeys.MyAppTasksUnlimited);
   const canAdd = taskCount < 5 || unlimitedTasks;
 

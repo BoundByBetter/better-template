@@ -4,11 +4,12 @@ import { Feature, FeatureStatus } from '@boundbybetter/shared';
 import { logMessage } from '@boundbybetter/shared';
 import { tg } from '@boundbybetter/ui';
 import { Check, ChevronDown } from '@tamagui/lucide-icons';
-import { addFeature } from '@boundbybetter/state';
+import { useAddFeature } from '@boundbybetter/state';
 
 export function AddFeature() {
   const [newFeatureName, setNewFeatureName] = useState('');
   const [newFeatureStatus, setNewFeatureStatus] = useState('INACTIVE');
+  const addFeature = useAddFeature();
 
   const createFeature = () => {
     const feature: Feature = {

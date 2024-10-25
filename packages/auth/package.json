@@ -1,0 +1,25 @@
+{
+  "name": "@boundbybetter/auth",
+  "version": "1.0.0",
+  "main": "./src/index.ts",
+  "author": "Stewart Armbrecht",
+  "license": "MIT",
+  "scripts": {
+    "deps:check": "npx npm-check-updates && npx expo install --check",
+    "deps:add": "npx expo install",
+    "deps:add-dev": "node tools/scripts/deps-install-dev.js",
+    "deps:fix": "YARN_ENABLE_IMMUTABLE_INSTALLS=false && npx expo install --fix",
+    "lint": "eslint .",
+    "build": "tsc -b",
+    "test": "npx jest --color",
+    "cover": "npx jest --color --coverage"
+  },
+  "private": true,
+  "dependencies": {
+    "expo": "~51.0.31",
+    "expo-auth-session": "~5.5.2",
+    "expo-web-browser": "~13.0.3",
+    "jwt-decode": "^4.0.0",
+    "react": "18.2.0"
+  }
+}

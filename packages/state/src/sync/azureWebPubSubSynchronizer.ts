@@ -16,38 +16,26 @@ export const createAzureWPSSynchronizer = async <
   onReceive?: Receive,
   onIgnoredError?: (error: any) => void,
 ) => {
-  logCall('createAzureWPSSynchronizer');
+  store.addRowCountListener('Tasks', (rowCount) => {
+    logCall('createAzureWPSSynchronizer', 'Row count', rowCount);
+  });
+  logCall('createAzureWPSSynchronizer', 'Initializing synchronizer');
+
+  // Event listeners for the WebPubSubClient
   webPubSubClient.on('connected', (event) => {
-    logCall(
-      'createAzureWPSSynchronizer',
-      'webPubSubClient.on',
-      'connected',
-      event,
-    );
+    logCall('createAzureWPSSynchronizer', 'Connected to WebPubSub', event);
   });
+
   webPubSubClient.on('disconnected', (event) => {
-    logCall(
-      'createAzureWPSSynchronizer',
-      'webPubSubClient.on',
-      'disconnected',
-      event,
-    );
+    logCall('createAzureWPSSynchronizer', 'Disconnected from WebPubSub', event);
   });
+
   webPubSubClient.on('server-message', (event) => {
-    logCall(
-      'createAzureWPSSynchronizer',
-      'webPubSubClient.on',
-      'server-message',
-      event,
-    );
+    logCall('createAzureWPSSynchronizer', 'Received server message', event);
   });
+
   webPubSubClient.on('rejoin-group-failed', (event) => {
-    logCall(
-      'createAzureWPSSynchronizer',
-      'webPubSubClient.on',
-      'rejoin-group-failed',
-      event,
-    );
+    logCall('createAzureWPSSynchronizer', 'Failed to rejoin group', event);
   });
 
   const send = (
@@ -56,6 +44,12 @@ export const createAzureWPSSynchronizer = async <
     message: Message,
     body: any,
   ): void => {
+    logCall('createAzureWPSSynchronizer', 'Sending message', {
+      toClientId,
+      requestId,
+      message,
+      body,
+    });
     webPubSubClient.sendToGroup(
       userId,
       { toClientId, requestId, message, body },
@@ -71,18 +65,13 @@ export const createAzureWPSSynchronizer = async <
         message: Message;
         body: any;
       };
-      logCall(
-        'createAzureWPSSynchronizer',
-        'webPubSubClient.on',
-        'group-message',
-        event,
-      );
+      logCall('createAzureWPSSynchronizer', 'Received group message', event);
       receive(toClientId, requestId, message, body);
     });
   };
 
   const destroy = (): void => {
-    logCall('createAzureWPSSynchronizer', 'destroy');
+    logCall('createAzureWPSSynchronizer', 'Destroying synchronizer');
     webPubSubClient.stop();
   };
 
@@ -98,7 +87,9 @@ export const createAzureWPSSynchronizer = async <
   );
 
   await webPubSubClient.start();
+  logCall('createAzureWPSSynchronizer', 'WebPubSubClient started');
   await webPubSubClient.joinGroup(userId);
+  logCall('createAzureWPSSynchronizer', 'Joined group', userId);
 
   return synchronizer;
 };

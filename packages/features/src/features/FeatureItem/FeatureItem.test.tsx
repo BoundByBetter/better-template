@@ -2,12 +2,12 @@ import React from 'react';
 import { fireEvent } from '@testing-library/react-native';
 import { FeatureItem } from './FeatureItem';
 import { FeatureStatus } from '@boundbybetter/shared';
-import { deleteFeature } from '@boundbybetter/state';
+import { useDeleteFeature } from '@boundbybetter/state';
 import { renderWithTamagui } from '../../renderWithTamagui.test-util';
 import { describe, it, expect } from '@jest/globals';
 
 jest.mock('@boundbybetter/state', () => ({
-  deleteFeature: jest.fn(),
+  useDeleteFeature: jest.fn(),
 }));
 
 describe('FeatureItem', () => {
@@ -42,9 +42,11 @@ describe('FeatureItem', () => {
       status: FeatureStatus.ACTIVE,
       groups: [],
     };
+    const deleteFeatureMock = jest.fn();
+    (useDeleteFeature as jest.Mock).mockImplementation(() => deleteFeatureMock);
     const { getByText } = renderWithTamagui(<FeatureItem feature={feature} />);
     const deleteButton = getByText('X');
     fireEvent.press(deleteButton);
-    expect(deleteFeature).toHaveBeenCalledWith(feature.id);
+    expect(deleteFeatureMock).toHaveBeenCalledWith(feature.id);
   });
 });

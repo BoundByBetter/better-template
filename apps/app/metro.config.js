@@ -11,6 +11,7 @@ const config = getDefaultConfig(projectRoot);
 // If your monorepo tooling can give you the list of monorepo workspaces linked
 // in your app workspace, you can automate this list instead of hardcoding them.
 const monorepoPackages = {
+  '@boundbybetter/auth': path.resolve(monorepoRoot, 'packages/auth'),
   '@boundbybetter/features': path.resolve(monorepoRoot, 'packages/features'),
   '@boundbybetter/state': path.resolve(monorepoRoot, 'packages/state'),
   '@boundbybetter/shared': path.resolve(monorepoRoot, 'packages/shared'),

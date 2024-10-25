@@ -16,8 +16,10 @@ import * as SplashScreen from 'expo-splash-screen';
 import { useEffect } from 'react';
 
 import { Platform } from 'react-native';
-import { AuthProvider, WebSplashScreen } from '@boundbybetter/features';
+import { WebSplashScreen } from '@boundbybetter/features';
 import { logCall, logRaw, logSetup } from '@boundbybetter/shared';
+import { StateProvider } from '@boundbybetter/state';
+import { AuthProvider } from '@boundbybetter/auth';
 
 export {
   // Catch any errors thrown by the Layout component.
@@ -93,10 +95,12 @@ function RootLayoutNav() {
         }
       >
         <AuthProvider>
-          <Stack>
-            <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-            <Stack.Screen name="modal" options={{ presentation: 'modal' }} />
-          </Stack>
+          <StateProvider>
+            <Stack>
+              <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+              <Stack.Screen name="modal" options={{ presentation: 'modal' }} />
+            </Stack>
+          </StateProvider>
         </AuthProvider>
       </ThemeProvider>
     </tg.TamaguiProvider>

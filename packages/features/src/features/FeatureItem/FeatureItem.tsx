@@ -1,5 +1,5 @@
 import { Feature } from '@boundbybetter/shared';
-import { deleteFeature } from '@boundbybetter/state';
+import { useDeleteFeature } from '@boundbybetter/state';
 import { tg } from '@boundbybetter/ui';
 import moment from 'moment';
 import { Platform } from 'react-native';
@@ -9,6 +9,7 @@ export interface FeatureProps {
 }
 
 export function FeatureItem(props: FeatureProps) {
+  const deleteFeature = useDeleteFeature();
   const deleteFeatureHandler = () => {
     deleteFeature(props.feature.id);
   };
