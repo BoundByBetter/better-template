@@ -6,7 +6,7 @@ import { useUserStore } from '../useUserStore';
 
 jest.mock('../useUserStore');
 
-describe('useTasks', () => {
+describe('useTaskIds', () => {
   let store;
 
   beforeEach(() => {

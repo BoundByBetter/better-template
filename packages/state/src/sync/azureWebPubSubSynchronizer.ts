@@ -16,9 +16,6 @@ export const createAzureWPSSynchronizer = async <
   onReceive?: Receive,
   onIgnoredError?: (error: any) => void,
 ) => {
-  store.addRowCountListener('Tasks', (rowCount) => {
-    logCall('createAzureWPSSynchronizer', 'Row count', rowCount);
-  });
   logCall('createAzureWPSSynchronizer', 'Initializing synchronizer');
 
   // Event listeners for the WebPubSubClient

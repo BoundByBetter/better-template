@@ -78,6 +78,14 @@ describe('LogInScreen', () => {
     expect(promptAsyncMock).toHaveBeenCalled();
   });
 
+  it('should call onLogin with null if the login method is invalid', () => {
+    const onLogin = jest.fn();
+    renderWithTamagui(<LogInScreen onLogin={onLogin} />);
+    const microsoftButton = screen.getByText('Microsoft');
+    fireEvent.press(microsoftButton);
+    expect(onLogin).toHaveBeenCalledWith(null);
+  });
+
   it('should call updateCurrentUser with correct data when successful login with Email', async () => {
     const promptAsyncMock = jest.fn().mockReturnValue({
       type: 'success',

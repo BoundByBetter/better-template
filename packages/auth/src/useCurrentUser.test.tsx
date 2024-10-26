@@ -1,7 +1,7 @@
 import { renderHook } from '@testing-library/react-native';
 import { useCurrentUser } from './useCurrentUser';
 import { describe, it, expect, beforeEach } from '@jest/globals';
-import { AuthContext } from './AuthProvider';
+import { AuthContext } from './AuthContext';
 
 const mockSetCurrentUser = jest.fn();
 const mockClearCurrentUser = jest.fn();

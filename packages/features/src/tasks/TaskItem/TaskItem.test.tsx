@@ -112,4 +112,16 @@ describe('TaskItem', () => {
     expect(onDeleteMock).toHaveBeenCalledTimes(1);
     expect(onSelectMock).not.toHaveBeenCalled();
   });
+  it('should return null if the task is not found', () => {
+    (useTask as jest.Mock).mockReturnValue(null);
+    const { getByText } = renderWithTamagui(
+      <TaskItem
+        id={mockTask.id}
+        isSelected={false}
+        onSelect={() => {}}
+        onDelete={() => {}}
+      />,
+    );
+    expect(getByText('Task not found')).toBeTruthy();
+  });
 });

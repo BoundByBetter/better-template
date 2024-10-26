@@ -18,16 +18,12 @@ const TaskItemComponent = forwardRef<View, TaskProps>(
     logSetup('TaskList', 'TaskItem', 'id', id, 'isSelected', isSelected);
     const task = useTask(id, ['TaskList', 'TaskItem']);
 
-    if (!task) {
-      return null;
-    }
-
     return (
       <View ref={ref}>
         <tg.YStack gap="$2">
           <tg.Card
             fd="row"
-            key={task.id}
+            key={task?.id ?? id}
             testID="task-item"
             backgroundColor={isSelected ? '$color4' : undefined}
             focusable
@@ -41,7 +37,7 @@ const TaskItemComponent = forwardRef<View, TaskProps>(
               $gtSm={{ flexDirection: 'row', alignItems: 'center' }}
             >
               <tg.Text f={1} testID="task-item-title">
-                {task.title}
+                {task?.title ?? 'Task not found'}
               </tg.Text>
               <tg.Stack
                 fd="row"
@@ -70,25 +66,27 @@ const TaskItemComponent = forwardRef<View, TaskProps>(
                   $gtSm={{ alignSelf: 'flex-end', paddingRight: '$4' }}
                   pl="$4"
                 >
-                  {moment(task.createdAt).fromNow()}
+                  {task ? moment(task?.createdAt).fromNow() : ''}
                 </tg.Text>
               </tg.Stack>
             </tg.Stack>
-            <tg.Button
-              $gtSm={{ height: '100%' }}
-              onPress={(e) => {
-                /* The following code does not fire in jest tests. */
-                /* istanbul ignore next */
-                if (e) {
-                  e.stopPropagation();
-                  e.preventDefault();
-                }
-                onDelete();
-              }}
-              testID="task-item-delete"
-            >
-              X
-            </tg.Button>
+            {task && (
+              <tg.Button
+                $gtSm={{ height: '100%' }}
+                onPress={(e) => {
+                  /* The following code does not fire in jest tests. */
+                  /* istanbul ignore next */
+                  if (e) {
+                    e.stopPropagation();
+                    e.preventDefault();
+                  }
+                  onDelete();
+                }}
+                testID="task-item-delete"
+              >
+                X
+              </tg.Button>
+            )}
           </tg.Card>
         </tg.YStack>
       </View>

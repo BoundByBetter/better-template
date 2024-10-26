@@ -3,7 +3,7 @@ import { logCall } from '@boundbybetter/shared';
 import { useUserStore } from '../useUserStore';
 
 export const useTaskIds = (): string[] => {
-  logCall('useTasks');
+  logCall('useTaskIds');
   const store = useUserStore();
   return useRowIds('tasks', store);
 };

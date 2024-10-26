@@ -24,4 +24,7 @@ module.exports = {
     '!src/index.tsx',
     '!**/node_modules/**',
   ],
+  coverageReporters: ['lcov', 'text', 'cobertura'],
+  coveragePathIgnorePatterns: ['/node_modules/', '/test/'],
+  coverageDirectory: '<rootDir>/coverage',
 };

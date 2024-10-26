@@ -1,10 +1,11 @@
-import React from 'react';
-import { render } from '@testing-library/react-native';
+import React, { useEffect } from 'react';
+import { render, waitFor } from '@testing-library/react-native';
 import { AuthProvider } from './AuthProvider';
 import { Text } from 'react-native';
 import { describe, expect, it, beforeEach } from '@jest/globals';
-import { User } from './User';
 import { useState } from 'react';
+import { User } from './User';
+import { useAuth } from './useAuth';
 
 jest.mock('./LogInScreen', () => {
   const Text = require('react-native').Text;
@@ -17,10 +18,14 @@ jest.mock('./LogInScreen', () => {
   };
 });
 
-jest.mock('react', () => ({
-  ...jest.requireActual('react'),
-  useState: jest.fn(),
-}));
+jest.mock('react', () => {
+  const React = jest.requireActual('react');
+  return {
+    ...React,
+    useState: jest.fn().mockReturnValue(React.useState),
+    // useContext: jest.fn().mockReturnValue(React.useContext),
+  };
+});
 
 describe('AuthProvider', () => {
   beforeEach(() => {
@@ -93,5 +98,47 @@ describe('AuthProvider', () => {
     );
 
     expect(getByText('Child Component')).toBeTruthy();
+  });
+  it('should set the clearCurrentUser function to set the current user to null', async () => {
+    let currentUser: User | null = {
+      userId: 'user1',
+      accessToken: 'token1',
+      idToken: 'idToken1',
+      userEmail: 'mytest',
+      userName: 'mytest',
+      groups: [],
+    };
+    const setStateMock = (user: User | null) => {
+      currentUser = user;
+    };
+
+    // Mock useState to return the currentUser and the setter function
+    (useState as jest.Mock).mockImplementation((initialValue) => [
+      currentUser,
+      setStateMock,
+    ]);
+    const ChildComponent = () => {
+      const { clearCurrentUser, currentUser } = useAuth();
+      useEffect(() => {
+        clearCurrentUser();
+      }, [clearCurrentUser, currentUser]);
+      return <Text>Child Component {currentUser ? 'true' : 'false'}</Text>;
+    };
+    const { getByText, rerender } = render(
+      <AuthProvider>
+        <ChildComponent />
+      </AuthProvider>,
+    );
+    await waitFor(() => {
+      expect(getByText('Child Component true')).toBeTruthy();
+    });
+    rerender(
+      <AuthProvider>
+        <ChildComponent />
+      </AuthProvider>,
+    );
+    await waitFor(() => {
+      expect(getByText('Log In Screen')).toBeTruthy();
+    });
   });
 });

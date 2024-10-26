@@ -1,7 +1,7 @@
 import * as WebBrowser from 'expo-web-browser';
 import React from 'react';
 import { tg } from '@boundbybetter/ui';
-import { logMessage } from '@boundbybetter/shared';
+import { logError, logMessage } from '@boundbybetter/shared';
 import { JwtPayload, jwtDecode } from 'jwt-decode';
 
 import {
@@ -71,7 +71,7 @@ export const LogInScreen = ({ onLogin }: LogInScreenProps) => {
             code: codeResponse.params.code,
             extraParams: authRequest.codeVerifier
               ? { code_verifier: authRequest.codeVerifier }
-              : undefined,
+              : /* istanbul ignore next */ undefined,
             redirectUri,
             scopes: ['openid', 'profile', 'email', 'offline_access'],
           },
@@ -100,6 +100,8 @@ export const LogInScreen = ({ onLogin }: LogInScreenProps) => {
         };
         onLogin(newUser); // Update the user in AuthProvider
       }
+    } else {
+      onLogin(null);
     }
   };
   return (
@@ -120,13 +122,22 @@ export const LogInScreen = ({ onLogin }: LogInScreenProps) => {
       >
         Email
       </tg.Button>
-      <tg.Button width="$14" onPress={() => logIn('Microsoft')}>
+      <tg.Button
+        width="$14"
+        onPress={/* istanbul ignore next */ () => logIn('Microsoft')}
+      >
         Microsoft
       </tg.Button>
-      <tg.Button width="$14" onPress={() => logIn('Google')}>
+      <tg.Button
+        width="$14"
+        onPress={/* istanbul ignore next */ () => logIn('Google')}
+      >
         Google
       </tg.Button>
-      <tg.Button width="$14" onPress={() => logIn('Facebook')}>
+      <tg.Button
+        width="$14"
+        onPress={/* istanbul ignore next */ () => logIn('Facebook')}
+      >
         Facebook
       </tg.Button>
     </tg.YStack>

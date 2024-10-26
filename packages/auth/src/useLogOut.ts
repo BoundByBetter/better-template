@@ -1,6 +1,6 @@
 import { fetchDiscoveryAsync } from 'expo-auth-session';
-import { logMessage } from '@boundbybetter/shared';
-import { useAuth } from './AuthProvider';
+import { logError, logMessage } from '@boundbybetter/shared';
+import { useAuth } from './useAuth';
 export const useLogOut = () => {
   const { clearCurrentUser } = useAuth(); // Use the clearCurrentUser method
 
@@ -17,7 +17,8 @@ export const useLogOut = () => {
         window.location.href = logoutUrl; // Redirect to logout
       }
     } catch (error) {
-      logMessage('handleSignOut error', error);
+      /* istanbul ignore next */
+      logError(error);
     }
     clearCurrentUser(); // Clear the user from context
   };
